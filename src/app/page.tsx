@@ -5,7 +5,7 @@ import { LoggedOut } from "./loggedOut/page"
 
 const Page = ()=>{
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
   return (
     <div>
