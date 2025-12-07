@@ -2,6 +2,7 @@
 import {useState} from "react"
 import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
+import { Header } from "@/components/header/header"
 
 const Page = ()=>{
 
@@ -9,6 +10,7 @@ const Page = ()=>{
 
   return (
     <div>
+      <Header/>
       {loggedIn && <LoggedIn/>}
       {!loggedIn && <LoggedOut/>}
     </div>
