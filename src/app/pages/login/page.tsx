@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { userHook } from "@/context/userContext"
 
 const formSchema = z.object({
     email: z.email({ pattern: z.regexes.email }),
@@ -12,6 +13,8 @@ const formSchema = z.object({
 })
 
 export const LoginForm = () => {
+
+    const {setUser} = userHook()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -22,6 +25,11 @@ export const LoginForm = () => {
     })
 
     const handleLogin = (values: z.infer<typeof formSchema>) => {
+        try {
+            
+        }catch(error: any){
+            
+        }
         console.log("Fazendo login: ", values)
     }
 
