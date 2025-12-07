@@ -3,8 +3,11 @@ import { useState } from "react"
 import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
 import { Header } from "@/components/header/header"
+import { userHook } from "@/context/userContext"
 
 const Page = () => {
+
+    const {user} = userHook()
 
     const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
