@@ -6,7 +6,7 @@ import { Header } from "@/components/header/header"
 
 const Page = () => {
 
-    const [loggedIn, setLoggedIn] = useState<boolean>(true)
+    const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
     return (
         <div className="bg-neutral-100 min-h-screen">
