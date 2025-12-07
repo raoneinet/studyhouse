@@ -9,7 +9,7 @@ const Page = ()=>{
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
   return (
-    <div>
+    <div className="bg-neutral-100 min-h-screen">
       <Header/>
       {loggedIn && <LoggedIn/>}
       {!loggedIn && <LoggedOut/>}
