@@ -1,7 +1,11 @@
+import { LoginForm } from "../pages/login/page"
+
 export const LoggedOut = () => {
     return (
         <div className="container mx-auto">
-            Logged Out
+            <div>
+                Logged Out
+            </div>
         </div>
     )
 }
