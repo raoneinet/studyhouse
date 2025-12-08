@@ -1,15 +1,12 @@
 "use client"
-import { useState } from "react"
 import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
-import { Header } from "@/components/header/header"
+import { Header } from "@/ui/header/header"
 import { useAuth } from "@/context/userContext"
 
 const Page = () => {
 
     const {user} = useAuth()
-
-    const [loggedIn, setLoggedIn] = useState<boolean>(true)
 
     return (
         <div className="bg-neutral-100 min-h-screen">

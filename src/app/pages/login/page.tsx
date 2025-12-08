@@ -2,7 +2,15 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context/userContext"
@@ -14,7 +22,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
-    const {login} = useAuth()
+    const { login } = useAuth()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -39,7 +47,7 @@ export const LoginForm = () => {
 
             const userData = await userFetch.json()
 
-            if(userData.status === "success"){
+            if (userData.status === "success") {
                 login(userData.user)
             }
 

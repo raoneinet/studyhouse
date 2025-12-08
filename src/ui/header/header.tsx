@@ -1,8 +1,8 @@
 import { Logobrand } from "@/components/header/logobrand"
-import { LoginDialog } from "../dialog/loginDialog"
+import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
 import { LoginForm } from "@/app/pages/login/page"
-import { RegisterDialog } from "../dialog/registerDialog"
+import { RegisterDialog } from "@/components/dialog/registerDialog"
 
 export const Header = () => {
 
