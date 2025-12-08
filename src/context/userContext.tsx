@@ -40,8 +40,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
     const logout = () => {
         setUser(null)
-        localStorage.remove("token")
-        localStorage.remove("user")
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
     }
 
     return (
