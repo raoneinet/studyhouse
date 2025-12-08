@@ -20,13 +20,12 @@ export const UserMenuDropdown = () => {
                 <UserAvatar/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+                <DropdownMenuLabel className="opacity-50 -mt-3">{user?.username}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Perfil</DropdownMenuItem>
                 <DropdownMenuItem>Configurações</DropdownMenuItem>
-                <DropdownMenuItem onClick={logout}>
-                    Sair
-                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>Sair</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )
