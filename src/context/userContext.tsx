@@ -17,37 +17,41 @@ type User = {
 
 type authContextType = {
     user: User | null
-    login: (userData: User)=>void
-    logout: ()=>void
+    login: (userData: User) => void
+    logout: () => void
 }
 
 const UserContext = createContext<authContextType>({
     user: null,
-    login: ()=>{},
-    logout: ()=>{}
+    login: () => { },
+    logout: () => { }
 })
 
-export const ContextProvider = ({children}: {children: ReactNode})=>{
+export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
-    const [user, setUser] = useState<User | null>(null)
+    const savedUser = localStorage.getItem("user")
+    const [user, setUser] = useState<User | null>(() => {
+        return savedUser ? JSON.parse(savedUser) : null
+    })
 
-    const login = (userData: User)=>{
+    const login = (userData: User) => {
         setUser(userData)
     }
 
-    const logout = ()=>{
+    const logout = () => {
         setUser(null)
         localStorage.remove("token")
+        localStorage.remove("user")
     }
 
     return (
-        <UserContext.Provider value={{user, login, logout}}>
+        <UserContext.Provider value={{ user, login, logout }}>
             {children}
         </UserContext.Provider>
     )
 }
 
-export const useAuth = ()=> {
+export const useAuth = () => {
     const userAuth = useContext(UserContext)
 
     return userAuth

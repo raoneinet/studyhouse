@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context/userContext"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     email: z.email({ pattern: z.regexes.email }),
@@ -22,6 +23,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
+    const router = useRouter()
     const { login } = useAuth()
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -51,6 +53,8 @@ export const LoginForm = () => {
                 if(data.token) localStorage.setItem("token", data.token)
 
                 login(data.user)
+                localStorage.setItem("user", JSON.stringify(data.user))
+                router.push("/")
             }
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
