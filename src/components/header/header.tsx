@@ -13,7 +13,7 @@ export const Header = () => {
                     title="📚 Studyhouse"
                     subtitle="Organize seus estudos de forma fácil"
                 />
-                {user === false && <LoginDialog/>}
+                {!user && <LoginDialog/>}
             </div>
            
         </header>

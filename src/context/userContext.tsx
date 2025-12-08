@@ -17,7 +17,7 @@ type authContextType = {
     login: (userData: User)=>void
 }
 
-const UserContext = createContext<authContextType | any>({
+const UserContext = createContext<authContextType>({
     user: null,
     login: ()=>{}
 })
