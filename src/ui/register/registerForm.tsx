@@ -1,3 +1,4 @@
+"use client"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useRegisterUserMutation } from "@/app/reducer/userReducer"
 
 const formSchema = z.object({
     firstname: z.string(),
@@ -22,6 +24,8 @@ const formSchema = z.object({
 })
 
 export const RegisterForm = () => {
+
+    const [registerUser] = useRegisterUserMutation()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -39,28 +43,13 @@ export const RegisterForm = () => {
         const email = values.email.split("@")
         const dob = values.date_of_birth.split("-")
         const randNum = Math.floor(Math.random() * 10)
-        console.log(`@${email[0]+dob[0]+"_"+randNum}`)
+        const username = `@${email[0]+dob[0]+"_"+randNum}`
 
-        const url = "http://localhost/studyhouse_backend/api/register.php"
         try {
-            const createUser = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    firstname: values.firstname,
-                    lastname: values.lastname,
-                    username: `@${email[0]+dob[0]+"_"+randNum}`,
-                    date_of_birth: values.date_of_birth,
-                    email: values.email,
-                    password: values.password,
-                })
-            })
 
-            const userData = createUser.json()
+            const createUser = await registerUser({...values, username}).unwrap()
 
-            return userData
+            return createUser
 
         } catch (error: any) {
             console.log("Erro ao registrar usuário: ", error)
