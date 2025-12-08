@@ -1,3 +1,4 @@
+"use client"
 import {
     createContext,
     useContext,
@@ -6,15 +7,15 @@ import {
 } from "react"
 
 type userCtxType = {
-    user: any
-    setUser: (user: any)=>void
+    user: any;
+    setUser: (user: any)=>void;
 }
 
-const UserContext = createContext<userCtxType | null>(null)
+const UserContext = createContext<boolean | any>(null)
 
 export const ContextProvider = ({children}: {children: ReactNode})=>{
 
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState<any>(false)
 
     return (
         <UserContext.Provider value={{user, setUser}}>
@@ -23,7 +24,7 @@ export const ContextProvider = ({children}: {children: ReactNode})=>{
     )
 }
 
-export const userHook = ()=> {
+export const useUser = ()=> {
     const user = useContext(UserContext)
 
     return user
