@@ -6,26 +6,39 @@ import {
     ReactNode
 } from "react"
 
-type userCtxType = {
-    user: any;
-    setUser: (user: any)=>void;
+type User = {
+    id: number
+    email: string
+    password: string
 }
 
-const UserContext = createContext<boolean | any>(null)
+type authContextType = {
+    user: User | null
+    login: (userData: User)=>void
+}
+
+const UserContext = createContext<authContextType | any>({
+    user: null,
+    login: ()=>{}
+})
 
 export const ContextProvider = ({children}: {children: ReactNode})=>{
 
-    const [user, setUser] = useState<any>(false)
+    const [user, setUser] = useState<User | null>(null)
+
+    const login = (userData: User)=>{
+        setUser(userData)
+    }
 
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{user, login}}>
             {children}
         </UserContext.Provider>
     )
 }
 
-export const useUser = ()=> {
-    const user = useContext(UserContext)
+export const useAuth = ()=> {
+    const userAuth = useContext(UserContext)
 
-    return user
+    return userAuth
 }

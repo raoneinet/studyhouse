@@ -1,10 +1,10 @@
 import { Logobrand } from "@/components/header/logobrand"
 import { LoginDialog } from "../dialog/loginDialog"
-import { useUser } from "@/context/userContext"
+import { useAuth } from "@/context/userContext"
 
 export const Header = () => {
 
-    const {user} = useUser()
+    const {user} = useAuth()
 
     return (
         <header className="py-5 px-5 bg-neutral-300">
