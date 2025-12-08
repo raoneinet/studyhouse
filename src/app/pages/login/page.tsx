@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { userHook } from "@/context/userContext"
+import { useAuth } from "@/context/userContext"
 
 const formSchema = z.object({
     email: z.email({ pattern: z.regexes.email }),
@@ -14,7 +14,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
-    const {setUser} = userHook()
+    const {login} = useAuth()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -24,11 +24,29 @@ export const LoginForm = () => {
         }
     })
 
-    const handleLogin = (values: z.infer<typeof formSchema>) => {
+    const handleLogin = async (values: z.infer<typeof formSchema>) => {
         try {
-            
-        }catch(error: any){
-            
+            const userFetch = await fetch("http://localhost/studyhouse_backend/api/get_user.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: values.email,
+                    password: values.password
+                })
+            })
+
+            const userData = await userFetch.json()
+
+            if(userData.status === "success"){
+                login(userData.user)
+            }
+
+            console.log("Login realizado!")
+
+        } catch (error: any) {
+
         }
         console.log("Fazendo login: ", values)
     }
