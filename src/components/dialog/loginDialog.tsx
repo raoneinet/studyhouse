@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/dialog"
 import { LoginForm } from "@/app/pages/login/page"
 
-export const LoginDialog = () => {
+export const LoginDialog = ({title, form}: any) => {
     return (
         <Dialog>
-            <DialogTrigger>Login</DialogTrigger>
+            <DialogTrigger>{title}</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Studyhouse</DialogTitle>
@@ -19,7 +19,7 @@ export const LoginDialog = () => {
                         Faça login para organizar seus estudos de forma fácil
                     </DialogDescription>
                 </DialogHeader>
-                <LoginForm/>
+                {form}
             </DialogContent>
         </Dialog>
     )
