@@ -1,4 +1,4 @@
-import { LoginForm } from "../pages/login/page"
+import { LoginForm } from "../../ui/login/loginForm"
 
 export const LoggedOut = () => {
     return (

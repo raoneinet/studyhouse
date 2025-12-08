@@ -2,10 +2,19 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context/userContext"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     email: z.email({ pattern: z.regexes.email }),
@@ -14,7 +23,8 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
-    const {login} = useAuth()
+    const router = useRouter()
+    const { login } = useAuth()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -26,7 +36,7 @@ export const LoginForm = () => {
 
     const handleLogin = async (values: z.infer<typeof formSchema>) => {
         try {
-            const userFetch = await fetch("http://localhost/studyhouse_backend/api/get_user.php", {
+            const userFetch = await fetch("http://localhost/studyhouse_backend/api/login.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,18 +47,18 @@ export const LoginForm = () => {
                 })
             })
 
-            const userData = await userFetch.json()
+            const data = await userFetch.json()
+            
+            if(data.status === "success"){
+                if(data.token) localStorage.setItem("token", data.token)
 
-            if(userData.status === "success"){
-                login(userData.user)
+                login(data.user)
+                localStorage.setItem("user", JSON.stringify(data.user))
+                router.push("/")
             }
-
-            console.log("Login realizado!")
-
         } catch (error: any) {
-
+            console.log("Erro ao fazer login: ", error)
         }
-        console.log("Fazendo login: ", values)
     }
 
     return (
