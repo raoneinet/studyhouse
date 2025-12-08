@@ -60,6 +60,8 @@ export const RegisterForm = () => {
 
             const userData = createUser.json()
 
+            return userData
+
         } catch (error: any) {
             console.log("Erro ao registrar usuário: ", error)
         }
