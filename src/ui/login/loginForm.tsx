@@ -34,7 +34,7 @@ export const LoginForm = () => {
 
     const handleLogin = async (values: z.infer<typeof formSchema>) => {
         try {
-            const userFetch = await fetch("http://localhost/studyhouse_backend/api/get_user.php", {
+            const userFetch = await fetch("http://localhost/studyhouse_backend/api/login.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
