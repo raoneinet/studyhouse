@@ -6,7 +6,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
 import { UserAvatar } from "@/components/header/userAvatar"
 import { useAuth } from "@/context/userContext"
 

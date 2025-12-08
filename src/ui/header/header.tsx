@@ -3,7 +3,6 @@ import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
 import { LoginForm } from "@/ui/login/loginForm"
 import { RegisterForm } from "@/ui/register/registerForm"
-import { UserAvatar } from "@/components/header/userAvatar"
 import { UserMenuDropdown } from "@/components/header/userMenuDropdown"
 
 export const Header = () => {
