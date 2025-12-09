@@ -4,7 +4,7 @@ import "./globals.css"
 import { ContextProvider } from "@/context/userContext"
 import { Provider } from "react-redux"
 import { store } from "@/app/store/store"
-import { Providers } from "./reducer/provider"
+import { Providers } from "./providers/provider"
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
