@@ -9,6 +9,13 @@ export const userApi = createApi({
         },
     }),
     endpoints: (builder) => ({
+        loginUser: builder.mutation({
+            query: ({email, password}) =>({
+                url: "/login.php",
+                method: "POST",
+                body: {email, password}
+            })
+        }),
         registerUser: builder.mutation({
             query: (data) => ({
                 url: "/register.php",
@@ -20,5 +27,6 @@ export const userApi = createApi({
 })
 
 export const {
+    useLoginUserMutation,
     useRegisterUserMutation
 } = userApi
