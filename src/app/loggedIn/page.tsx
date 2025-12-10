@@ -1,5 +1,5 @@
-import { Navigation } from "@/ui/menu/navigation"
-import { CreateItem } from "@/ui/createItem/createItem"
+import { Navigation } from "@/app/ui/menu/navigation"
+import { CreateItem } from "@/app/ui/createItem/createItem"
 
 export const LoggedIn = () => {
     return (

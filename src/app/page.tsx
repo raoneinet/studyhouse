@@ -1,7 +1,7 @@
 "use client"
 import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
-import { Header } from "@/ui/header/header"
+import { Header } from "@/app/ui/header/header"
 import { useAuth } from "@/context/userContext"
 
 const Page = () => {
