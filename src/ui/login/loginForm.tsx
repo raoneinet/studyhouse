@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/context/userContext"
 import { useRouter } from "next/navigation"
+import { useLoginUserMutation } from "@/app/reducer/userReducer"
 
 const formSchema = z.object({
     email: z.email({ pattern: z.regexes.email }),
@@ -23,6 +24,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
+    const [loginUser] = useLoginUserMutation()
     const router = useRouter()
     const { login } = useAuth()
 
@@ -35,27 +37,20 @@ export const LoginForm = () => {
     })
 
     const handleLogin = async (values: z.infer<typeof formSchema>) => {
+        const email: string = values.email
+        const password: string = values.password
+        
         try {
-            const userFetch = await fetch("http://localhost/studyhouse_backend/api/login.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: values.email,
-                    password: values.password
-                })
-            })
+            const userFetch = await loginUser({ email, password }).unwrap()
 
-            const data = await userFetch.json()
-            
-            if(data.status === "success"){
-                if(data.token) localStorage.setItem("token", data.token)
+            if (userFetch.status === "success") {
+                if (userFetch.token) localStorage.setItem("token", userFetch.token)
 
-                login(data.user)
-                localStorage.setItem("user", JSON.stringify(data.user))
+                login(userFetch.user)
+                localStorage.setItem("user", JSON.stringify(userFetch.user))
                 router.push("/")
             }
+
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
         }
