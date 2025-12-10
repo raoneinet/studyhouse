@@ -6,7 +6,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { LoginForm } from "@/ui/login/loginForm"
+import { LoginForm } from "@/app/ui/login/loginForm"
 
 export const LoginDialog = ({title, form}: any) => {
     return (
