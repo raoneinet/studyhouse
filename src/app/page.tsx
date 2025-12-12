@@ -1,18 +1,28 @@
 "use client"
+import { Header } from "@/ui/header/header"
 import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
-import { Header } from "@/app/ui/header/header"
 import { useAuth } from "@/context/userContext"
+import { AppSidebar } from "@/components/sidebar/app-sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 
-const Page = () => {
+const Page = ({ children }: { children: React.ReactNode }) => {
 
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     return (
         <div className="bg-neutral-100 min-h-screen">
-            <Header />
-            {user && <LoggedIn />}
-            {!user && <LoggedOut />}
+            {user &&
+                <SidebarProvider>
+                    <AppSidebar />
+                    <main>
+                        {children}
+                    </main>
+                </SidebarProvider>
+            }
+            {!user &&
+                <LoggedOut/>
+            }
         </div>
     )
 }
