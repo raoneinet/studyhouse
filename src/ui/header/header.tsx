@@ -1,9 +1,9 @@
 import { Logobrand } from "@/components/header/logobrand"
 import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
-import { LoginForm } from "@/app/ui/login/loginForm"
-import { RegisterForm } from "@/app/ui/register/registerForm"
 import { UserMenuDropdown } from "@/components/header/userMenuDropdown"
+import { LoginForm } from "../login/loginForm"
+import { RegisterForm } from "../register/registerForm"
 
 export const Header = () => {
 
@@ -11,7 +11,7 @@ export const Header = () => {
 
     return (
         <header className="py-5 px-5 bg-neutral-300">
-            <div className="container mx-auto  flex justify-between items-center">
+            <div className="flex justify-between items-center">
                 <Logobrand
                     title="📚 Studyhouse"
                     subtitle="Organize seus estudos de forma fácil"

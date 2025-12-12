@@ -22,6 +22,7 @@ const UserContext = createContext<authContextType>({
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
     const savedUser = localStorage.getItem("user")
+    
     const [user, setUser] = useState<User | null>(() => {
         return savedUser ? JSON.parse(savedUser) : null
     })

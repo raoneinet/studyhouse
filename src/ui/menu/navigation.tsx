@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button"
-import { usePathname } from "next/navigation"
 import Link from "next/link"
 
 export const Navigation = () => {
 
     const links = [
         { href: "/", label: "Home" },
-        { href: "/createNewItem", label: "Novo Item" },
+        { href: "/pages/dashboard", label: "Novo Item" },
         { href: "/allItems", label: "Todos os Itens" },
     ]
     return (
