@@ -1,28 +1,28 @@
 "use client"
-import { Header } from "@/ui/header/header"
-import { LoggedIn } from "./loggedIn/page"
-import { LoggedOut } from "./loggedOut/page"
 import { useAuth } from "@/context/userContext"
-import { AppSidebar } from "@/components/sidebar/app-sidebar"
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { Header } from "@/ui/header/header"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import LandingPage from "@/ui/lp/landingpage"
 
-const Page = ({ children }: { children: React.ReactNode }) => {
-
+const Page = () => {
     const { user } = useAuth()
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user) {
+            router.push("/protected")
+        }
+    }, [user, router])
 
     return (
-        <div className="bg-neutral-100 min-h-screen">
-            {user &&
-                <SidebarProvider>
-                    <AppSidebar />
-                    <main>
-                        {children}
-                    </main>
-                </SidebarProvider>
-            }
-            {!user &&
-                <LoggedOut/>
-            }
+        <div className="min-h-screen">
+            <Header />
+            <main className="min-h-screen flex items-center justify-center">
+                <h1 className="text-3xl font-bold">
+                    <LandingPage/>
+                </h1>
+            </main>
         </div>
     )
 }

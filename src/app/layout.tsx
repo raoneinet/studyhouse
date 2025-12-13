@@ -1,11 +1,9 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import { Providers } from "./providers/provider"
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/sidebar/app-sidebar"
 
 export const metadata: Metadata = {
-    title: "Studyhouse",
+    title: "Studyhub",
     description: "A place to organize your studies",
 };
 
