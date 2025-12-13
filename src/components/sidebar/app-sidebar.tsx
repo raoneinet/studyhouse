@@ -1,9 +1,11 @@
 "use client"
+import { BookOpen } from 'lucide-react';
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -14,6 +16,7 @@ import {
 import { Logobrand } from "../header/logobrand"
 import { UserMenuDropdown } from "../header/userMenuDropdown"
 import { useAuth } from "@/context/userContext"
+import { MenuSidebarFooter } from "./sidebar-footer"
 import Link from "next/link"
 
 // Menu items.
@@ -29,8 +32,8 @@ const items = [
         icon: Inbox,
     },
     {
-        title: "Calendar",
-        url: "#",
+        title: "Novo Cart",
+        url: "/protected/newCard",
         icon: Calendar,
     },
     {
@@ -54,10 +57,16 @@ export function AppSidebar() {
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel className="mb-8">
-                        <Logobrand
-                            title="Studyhouse"
-                            subtitle="Organize seus estudos de forma fácil"
-                        />
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                                <BookOpen className="w-5 h-5 text-white" />
+                            </div>
+                            <Logobrand
+                                title="Studyhouse"
+                                subtitle=""
+                            />
+                        </div>
+
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
@@ -73,16 +82,11 @@ export function AppSidebar() {
                             ))}
                         </SidebarMenu>
                     </SidebarGroupContent>
-                    <SidebarGroupLabel className="flex gap-3">
-                        {user &&
-                            <>
-                                <UserMenuDropdown />
-                                <p className="text-lg">{`${user?.firstname} ${user?.lastname}`}</p>
-                            </>
-                        }
-                    </SidebarGroupLabel>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                <MenuSidebarFooter />
+            </SidebarFooter>
         </Sidebar>
     )
 }
