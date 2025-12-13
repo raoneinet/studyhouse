@@ -3,7 +3,7 @@ import "./globals.css"
 import { Providers } from "./providers/provider"
 
 export const metadata: Metadata = {
-    title: "Studyhouse",
+    title: "Studyhub",
     description: "A place to organize your studies",
 };
 
