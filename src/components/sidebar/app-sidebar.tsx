@@ -4,6 +4,7 @@ import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -14,6 +15,7 @@ import {
 import { Logobrand } from "../header/logobrand"
 import { UserMenuDropdown } from "../header/userMenuDropdown"
 import { useAuth } from "@/context/userContext"
+import { MenuSidebarFooter } from "./sidebar-footer"
 import Link from "next/link"
 
 // Menu items.
@@ -29,8 +31,8 @@ const items = [
         icon: Inbox,
     },
     {
-        title: "Calendar",
-        url: "#",
+        title: "Novo Cart",
+        url: "/protected/newCard",
         icon: Calendar,
     },
     {
@@ -73,16 +75,11 @@ export function AppSidebar() {
                             ))}
                         </SidebarMenu>
                     </SidebarGroupContent>
-                    <SidebarGroupLabel className="flex gap-3">
-                        {user &&
-                            <>
-                                <UserMenuDropdown />
-                                <p className="text-lg">{`${user?.firstname} ${user?.lastname}`}</p>
-                            </>
-                        }
-                    </SidebarGroupLabel>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                <MenuSidebarFooter />
+            </SidebarFooter>
         </Sidebar>
     )
 }
