@@ -1,6 +1,4 @@
 "use client"
-import { Header } from "@/ui/header/header"
-import { LoggedIn } from "./loggedIn/page"
 import { LoggedOut } from "./loggedOut/page"
 import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"

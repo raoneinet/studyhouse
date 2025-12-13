@@ -2,9 +2,9 @@ import { Header } from "@/ui/header/header"
 
 export const LoggedOut = () => {
     return (
-        <div className="container mx-auto">
+        <div>
             <Header/>
-            <div>
+            <div className="container mx-auto">
                 Logged Out
             </div>
         </div>

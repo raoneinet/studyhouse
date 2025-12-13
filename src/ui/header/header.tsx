@@ -10,8 +10,8 @@ export const Header = () => {
     const { user } = useAuth()
 
     return (
-        <header className="py-5 px-5 bg-neutral-300">
-            <div className="flex justify-between items-center">
+        <header className="py-5 px-10 bg-neutral-300">
+            <div className="container mx-auto flex justify-between items-center">
                 <Logobrand
                     title="📚 Studyhouse"
                     subtitle="Organize seus estudos de forma fácil"
