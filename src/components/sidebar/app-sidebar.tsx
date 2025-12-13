@@ -1,4 +1,5 @@
 "use client"
+import { BookOpen } from 'lucide-react';
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
@@ -56,10 +57,16 @@ export function AppSidebar() {
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel className="mb-8">
-                        <Logobrand
-                            title="Studyhouse"
-                            subtitle="Organize seus estudos de forma fácil"
-                        />
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                                <BookOpen className="w-5 h-5 text-white" />
+                            </div>
+                            <Logobrand
+                                title="Studyhouse"
+                                subtitle=""
+                            />
+                        </div>
+
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
