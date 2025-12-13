@@ -4,13 +4,15 @@ import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { LoggedOut } from "../loggedOut/page"
+import { useRouter } from "next/navigation"
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 
     const { user } = useAuth()
+    const router = useRouter()
 
     if (!user) {
-        return <LoggedOut />
+        router.push("/")
     }
 
     return (
