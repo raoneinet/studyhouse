@@ -12,20 +12,20 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Logobrand } from "../header/logobrand"
-import { UserAvatar } from "../header/userAvatar"
 import { UserMenuDropdown } from "../header/userMenuDropdown"
 import { useAuth } from "@/context/userContext"
+import Link from "next/link"
 
 // Menu items.
 const items = [
     {
         title: "Home",
-        url: "#",
+        url: "/",
         icon: Home,
     },
     {
-        title: "Inbox",
-        url: "#",
+        title: "Meus Cards",
+        url: "/protected/myCards",
         icon: Inbox,
     },
     {
@@ -64,10 +64,10 @@ export function AppSidebar() {
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
+                                        <Link href={item.url}>
                                             <item.icon />
-                                            <span>{item.title}</span>
-                                        </a>
+                                            {item.title}
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
