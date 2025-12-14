@@ -1,6 +1,5 @@
 import { Search } from "lucide-react"
 import { Input } from "../ui/input"
-import { Button } from "../ui/button"
 import { FilterItems } from "../filter/filterItems"
 
 export const SearchBar = () => {
