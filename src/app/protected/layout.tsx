@@ -1,9 +1,7 @@
 "use client"
-
 import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { LoggedOut } from "../loggedOut/page"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
@@ -20,6 +18,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="flex min-h-screen bg-neutral-100 overflow-x-hidden">
                 <AppSidebar />
                 <main className="w-screen bg-[#F6F9FB] px-6">
+                    <SidebarTrigger />
                     {children}
                 </main>
             </div>

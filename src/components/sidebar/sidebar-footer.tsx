@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/sidebar"
 import { User } from "@/types/user"
 
-export const MenuSidebarFooter = ({ user }: {user: User | null}) => {
+export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: any}) => {
 
     const { isMobile } = useSidebar()
 
@@ -72,7 +72,7 @@ export const MenuSidebarFooter = ({ user }: {user: User | null}) => {
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={logout}>
                             <LogOut />
                             Sair
                         </DropdownMenuItem>
