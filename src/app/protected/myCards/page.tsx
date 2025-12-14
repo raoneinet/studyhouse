@@ -1,13 +1,21 @@
 import { Title } from "@/components/title/title"
+import { SearchBar } from "@/components/search/search"
 
 const MyCards = () => {
     return (
-        <div className="md:max-w-5xl">
+        <div className="md:max-w-full">
             <Title
                 title="Meus Cards"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
-            Here I will have all my cards WITH WHAT I HAVE ENTERED
+            <div className="flex w-full md:gap-3">
+                <div className="flex-1 md:flex-2">
+                    <SearchBar/>
+                </div>
+                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3">
+                    ...
+                </div>
+            </div>
         </div>
     )
 }
