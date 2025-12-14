@@ -1,56 +1,84 @@
+"use client"
+import {
+    BadgeCheck,
+    ChevronsUpDown,
+    LogOut,
+    Settings
+} from "lucide-react"
+import { UserAvatar } from "../header/userAvatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
+    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
-} from "@radix-ui/react-dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import {
-    SidebarFooter,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem
-} from "../ui/sidebar"
-import { ChevronUp } from "lucide-react"
-import { useAuth } from "@/context/userContext"
-import { UserAvatar } from "../header/userAvatar"
+    SidebarMenuItem,
+    useSidebar
+} from "@/components/ui/sidebar"
+import { User } from "@/types/user"
 
-export const MenuSidebarFooter = () => {
+export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: any}) => {
 
-    const user = useAuth()
+    const { isMobile } = useSidebar()
 
     return (
-        <>
-            <SidebarFooter>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <SidebarMenuButton>
-                                    {user &&
-                                        <>
-                                            <UserAvatar /> {user?.user?.firstname} {user?.user?.lastname}
-                                            <ChevronUp className="ml-auto" />
-                                        </>
-                                    }
-                                </SidebarMenuButton>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent
-                                side="top"
-                                className="w-[--radix-popper-anchor-width]"
-                            >
-                                <DropdownMenuLabel>{user?.user?.email}</DropdownMenuLabel>
-                                <DropdownMenuLabel className="opacity-50 -mt-1">{user?.user?.username}</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>Perfil</DropdownMenuItem>
-                                <DropdownMenuItem>Configurações</DropdownMenuItem>
-                                <DropdownMenuItem onClick={user?.logout}>Sair</DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarFooter>
-        </>
+        <SidebarMenu>
+            <SidebarMenuItem>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <SidebarMenuButton
+                            size="lg"
+                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                        >
+                            <UserAvatar />
+                            <div className="grid flex-1 text-left text-sm leading-tight">
+                                <span className="truncate font-medium">{user?.firstname} {user?.lastname}</span>
+                                <span className="truncate text-xs">{user?.username}</span>
+                            </div>
+                            <ChevronsUpDown className="ml-auto size-4" />
+                        </SidebarMenuButton>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                        side={isMobile ? "bottom" : "right"}
+                        align="end"
+                        sideOffset={4}
+                    >
+                        <DropdownMenuLabel className="p-0 font-normal">
+                            <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                                <UserAvatar />
+                                <div className="grid flex-1 text-left text-sm leading-tight">
+                                    <span className="truncate font-bold">{user?.firstname} {user?.lastname}</span>
+                                    <span className="truncate text-xs opacity-70">{user?.username}</span>
+                                    <span className="truncate text-xs opacity-70">{user?.email}</span>
+                                </div>
+                            </div>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuGroup>
+                            <DropdownMenuItem>
+                                <BadgeCheck />
+                                Conta
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Settings />
+                                Configurações
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={logout}>
+                            <LogOut />
+                            Sair
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </SidebarMenuItem>
+        </SidebarMenu>
     )
 }

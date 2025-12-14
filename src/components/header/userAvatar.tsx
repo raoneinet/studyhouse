@@ -7,7 +7,7 @@ import {
 export const UserAvatar = () => {
     return (
         <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src="https://github.com/shadcn.png" alt="profile picture"/>
             <AvatarFallback>SH</AvatarFallback>
         </Avatar>
     )
