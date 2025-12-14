@@ -1,6 +1,7 @@
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
+import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 
 const MyCards = () => {
     return (
@@ -15,9 +16,10 @@ const MyCards = () => {
                     <ItemCard/>
                     <ItemCard/>
                     <ItemCard/>
+                    <ItemCard/>
                 </div>
-                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3">
-                    ...
+                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit border">
+                    <ItemDetailSidebar />
                 </div>
             </div>
         </div>
