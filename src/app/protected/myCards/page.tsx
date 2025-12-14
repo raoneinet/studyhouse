@@ -16,8 +16,9 @@ const MyCards = () => {
                     <ItemCard/>
                     <ItemCard/>
                     <ItemCard/>
+                    <ItemCard/>
                 </div>
-                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit">
+                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit border">
                     <ItemDetailSidebar />
                 </div>
             </div>
