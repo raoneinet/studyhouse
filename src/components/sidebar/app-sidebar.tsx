@@ -14,7 +14,6 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { Logobrand } from "../header/logobrand"
 import { useAuth } from "@/context/userContext"
 import { MenuSidebarFooter } from "./sidebar-footer"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
