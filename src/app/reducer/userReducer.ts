@@ -4,16 +4,17 @@ export const userApi = createApi({
     reducerPath: "userapi",
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost/studyhouse_backend/api",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json"
         },
     }),
     endpoints: (builder) => ({
         loginUser: builder.mutation({
-            query: ({email, password}) =>({
+            query: ({ email, password }) => ({
                 url: "/login.php",
                 method: "POST",
-                body: {email, password}
+                body: { email, password }
             })
         }),
         registerUser: builder.mutation({
@@ -24,7 +25,7 @@ export const userApi = createApi({
             })
         }),
         createSubject: builder.mutation({
-            query: (data)=>({
+            query: (data) => ({
                 url: "/create_subject.php",
                 method: "POST",
                 body: data

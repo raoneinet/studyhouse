@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from "react"
 import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
@@ -10,8 +11,16 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
     const { user } = useAuth()
     const router = useRouter()
 
+
+
+    useEffect(() => {
+        if (!user) {
+            router.push("/")
+        }
+    }, [user, router])
+
     if (!user) {
-        router.push("/")
+        return null
     }
 
     return (
