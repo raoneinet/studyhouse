@@ -1,5 +1,11 @@
 import { Edit } from "lucide-react"
-import { SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar"
+import {
+    SidebarGroup,
+    SidebarGroupAction,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarMenu
+} from "../ui/sidebar"
 
 
 export const ItemDetailSidebar = () => {

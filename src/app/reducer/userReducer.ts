@@ -22,11 +22,19 @@ export const userApi = createApi({
                 method: "POST",
                 body: data
             })
+        }),
+        createSubject: builder.mutation({
+            query: (data)=>({
+                url: "/create_subject.php",
+                method: "POST",
+                body: data
+            })
         })
     })
 })
 
 export const {
     useLoginUserMutation,
-    useRegisterUserMutation
+    useRegisterUserMutation,
+    useCreateSubjectMutation
 } = userApi
