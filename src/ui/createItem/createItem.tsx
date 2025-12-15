@@ -136,17 +136,20 @@ export const CreateItem = () => {
                                             <SelectValue placeholder="Matématica" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="light">IA</SelectItem>
-                                            <SelectItem value="dark">História</SelectItem>
+                                            <SelectItem value="history">História</SelectItem>
                                             <SelectItem value="math">Matemática</SelectItem>
                                             <SelectItem value="programming">Programação</SelectItem>
                                             <SelectItem value="computing">Computação</SelectItem>
-                                            <SelectItem value="engineer">Engenharia</SelectItem>
+                                            <SelectItem value="engineering">Engenharia</SelectItem>
                                             <SelectItem value="language">Línguas</SelectItem>
                                             <SelectItem value="linguistics">Linguística</SelectItem>
                                             <SelectItem value="science">Ciência</SelectItem>
                                             <SelectItem value="economics">Econômia</SelectItem>
                                             <SelectItem value="law">Lei/Direito</SelectItem>
+                                            <SelectItem value="world">Mundo</SelectItem>
+                                            <SelectItem value="biology">Biologia</SelectItem>
+                                            <SelectItem value="humanities">Humanidades</SelectItem>
+                                            <SelectItem value="politics">Política</SelectItem>
                                             <SelectItem value="other">Outro</SelectItem>
                                         </SelectContent>
                                     </Select>
