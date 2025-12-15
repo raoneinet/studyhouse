@@ -1,4 +1,5 @@
 "use client"
+import { useCreateSubjectMutation } from "@/app/reducer/userReducer"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -36,6 +37,8 @@ const formSchema = z.object({
 
 export const CreateItem = () => {
 
+    const [createSubject] = useCreateSubjectMutation()
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,7 +52,7 @@ export const CreateItem = () => {
         }
     })
 
-    const handleCreateItem = (values: z.infer<typeof formSchema>) => {
+    const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
         toast("Criado assunto de estudo", {
             description: "Sunday, December 03, 2023 at 9:00 AM",
             action: {
@@ -58,6 +61,12 @@ export const CreateItem = () => {
             },
         })
 
+        try {
+            const createItem = await createSubject(values).unwrap()
+            console.log(values)
+        } catch (error: any) {
+            console.log("Erro ao criar assunto. ", error)
+        }
     }
 
     return (
