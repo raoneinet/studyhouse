@@ -173,7 +173,7 @@ export const CreateItem = () => {
                                             <SelectValue placeholder="Lendo..." />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="start">Não lido</SelectItem>
+                                            <SelectItem value="notstarted">Não lido</SelectItem>
                                             <SelectItem value="ongoing">Lendo</SelectItem>
                                             <SelectItem value="onhold">Em pausa</SelectItem>
                                             <SelectItem value="done">Concluído</SelectItem>
@@ -199,10 +199,10 @@ export const CreateItem = () => {
                                             <SelectValue placeholder="Alta" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="start">Baixa</SelectItem>
-                                            <SelectItem value="ongoing">Média</SelectItem>
-                                            <SelectItem value="onhold">Alta</SelectItem>
-                                            <SelectItem value="done">Urgente</SelectItem>
+                                            <SelectItem value="low">Baixa</SelectItem>
+                                            <SelectItem value="medium">Média</SelectItem>
+                                            <SelectItem value="high">Alta</SelectItem>
+                                            <SelectItem value="urgent">Urgente</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </FormControl>
