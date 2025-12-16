@@ -53,8 +53,11 @@ export const CreateItem = () => {
     })
 
     const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
+
+        const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
+
         try {
-            const createItem = await createSubject(values).unwrap()
+            const createItem = await createSubject({...values, created_at}).unwrap()
 
             toast("Criado assunto de estudo", {
                 description: "Sunday, December 03, 2023 at 9:00 AM",
