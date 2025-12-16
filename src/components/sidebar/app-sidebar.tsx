@@ -31,7 +31,7 @@ const items = [
         icon: Inbox,
     },
     {
-        title: "Novo Cart",
+        title: "Novo Card",
         url: "/protected/newCard",
         icon: Calendar,
     },

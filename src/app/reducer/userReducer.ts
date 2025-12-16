@@ -30,6 +30,11 @@ export const userApi = createApi({
                 method: "POST",
                 body: data
             })
+        }),
+        getAllCards: builder.query<any, any>({
+            query: ()=>({
+                url: "cards.php"
+            })
         })
     })
 })
@@ -37,5 +42,6 @@ export const userApi = createApi({
 export const {
     useLoginUserMutation,
     useRegisterUserMutation,
-    useCreateSubjectMutation
+    useCreateSubjectMutation,
+    useGetAllCardsQuery
 } = userApi

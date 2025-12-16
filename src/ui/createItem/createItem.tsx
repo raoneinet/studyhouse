@@ -53,16 +53,20 @@ export const CreateItem = () => {
     })
 
     const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
-        toast("Criado assunto de estudo", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
-            action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-            },
-        })
+
+        const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
 
         try {
-            const createItem = await createSubject(values).unwrap()
+            const createItem = await createSubject({...values, created_at}).unwrap()
+
+            toast("Criado assunto de estudo", {
+                description: "Sunday, December 03, 2023 at 9:00 AM",
+                action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                },
+            })
+
             console.log(values)
         } catch (error: any) {
             console.log("Erro ao criar assunto. ", error)
@@ -114,7 +118,7 @@ export const CreateItem = () => {
                         <FormItem>
                             <FormLabel>Descrição</FormLabel>
                             <FormControl>
-                                <Textarea placeholder="Descrição e anotações sobre este assunto" />
+                                <Textarea {...field} placeholder="Descrição e anotações sobre este assunto" />
                             </FormControl>
                             <FormDescription>
                                 Insira uma descrição do assunto
@@ -131,7 +135,10 @@ export const CreateItem = () => {
                             <FormItem>
                                 <FormLabel>Categoria</FormLabel>
                                 <FormControl>
-                                    <Select>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                    >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Matématica" />
                                         </SelectTrigger>
@@ -168,12 +175,15 @@ export const CreateItem = () => {
                             <FormItem>
                                 <FormLabel>Status</FormLabel>
                                 <FormControl>
-                                    <Select>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                    >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Lendo..." />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="start">Não lido</SelectItem>
+                                            <SelectItem value="notstarted">Não lido</SelectItem>
                                             <SelectItem value="ongoing">Lendo</SelectItem>
                                             <SelectItem value="onhold">Em pausa</SelectItem>
                                             <SelectItem value="done">Concluído</SelectItem>
@@ -194,15 +204,18 @@ export const CreateItem = () => {
                             <FormItem>
                                 <FormLabel>Prioridade</FormLabel>
                                 <FormControl>
-                                    <Select>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                    >
                                         <SelectTrigger className="w-full">
                                             <SelectValue placeholder="Alta" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="start">Baixa</SelectItem>
-                                            <SelectItem value="ongoing">Média</SelectItem>
-                                            <SelectItem value="onhold">Alta</SelectItem>
-                                            <SelectItem value="done">Urgente</SelectItem>
+                                            <SelectItem value="low">Baixa</SelectItem>
+                                            <SelectItem value="medium">Média</SelectItem>
+                                            <SelectItem value="high">Alta</SelectItem>
+                                            <SelectItem value="urgent">Urgente</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </FormControl>
