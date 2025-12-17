@@ -5,11 +5,10 @@ import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import {useGetAllCardsQuery} from "@/app/reducer/userReducer"
 import { Card } from "@/types/card"
-import { Item } from "@radix-ui/react-dropdown-menu"
 
 const MyCards = () => {
 
-    const {data} = useGetAllCardsQuery(undefined)
+    const {data} = useGetAllCardsQuery([])
 
     console.log(data)
     return (
