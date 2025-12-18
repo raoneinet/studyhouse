@@ -1,20 +1,24 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Card } from "@/types/card"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, CircleDot } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
+import { priorityOptions } from "@/utils/priorityOptions"
+import { PriorityType } from "@/types/priorityType"
 
 export const ItemCard = ({ card }: { card: Card }) => {
 
     const [status, setStatus] = useState<StatusType[]>()
+    const [priority, setPriority] = useState<PriorityType[]>()
     const tags = card.tags.split(",")
-
-    console.log(status)
 
     useEffect(() => {
         const statOption = statusOptions.filter(stat => stat.id === card.status)
         setStatus(statOption)
+
+        const priority = priorityOptions.filter(item => item.id === card.priority)
+        setPriority(priority)
     }, [])
 
 
@@ -24,11 +28,13 @@ export const ItemCard = ({ card }: { card: Card }) => {
                 <div className="flex gap-3">
                     <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
                         <span className="text-green-600">{card.category}</span>
-
                     </div>
-                    <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
-                        <span className="text-green-600">{card.priority}</span>
-                    </div>
+                    {priority?.map((item) => (
+                        <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
+                            <CircleDot className="w-3"/>
+                            <span>{item.label}</span>
+                        </div>
+                    ))}
                 </div>
                 <div className="py-2">
                     <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">

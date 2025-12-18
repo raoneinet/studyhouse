@@ -1,5 +1,5 @@
 import { StatusType } from "@/types/statusType"
-import { Circle, CircleDot, CheckCircle2, AlertCircle } from "lucide-react"
+import { Circle, CircleDot, CheckCircle2, AlertCircle, CircleMinus } from "lucide-react"
 
 export const statusOptions: StatusType[] = [
     {
@@ -13,7 +13,7 @@ export const statusOptions: StatusType[] = [
     {
         id: "ongoing",
         label: "Em andamento",
-        icon: CircleDot,
+        icon: CircleMinus,
         color: "text-blue-500",
         bgColor: "bg-blue-100",
         textColor: "text-blue-700"
