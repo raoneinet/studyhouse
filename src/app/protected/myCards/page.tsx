@@ -1,14 +1,22 @@
 "use client"
+import { useState, useEffect } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
-import {useGetAllCardsQuery} from "@/app/reducer/userReducer"
+import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
 import { Card } from "@/types/card"
 
 const MyCards = () => {
 
-    const {data} = useGetAllCardsQuery([])
+    const { data } = useGetAllCardsQuery()
+    const [selectCard, setSelectCard] = useState<Card>()
+
+    useEffect(() => {
+        if (selectCard) {
+            console.log("Selecionou o assunto:", selectCard)
+        }
+    }, [selectCard])
 
     console.log(data)
     return (
@@ -19,14 +27,14 @@ const MyCards = () => {
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
-                    <SearchBar/>
+                    <SearchBar />
                     {data?.subjects.map((item: Card) => (
-                        <ItemCard key={item.id} card={item}/>
+                        <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
-                    
+
                 </div>
                 <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit border">
-                    <ItemDetailSidebar />
+                    <ItemDetailSidebar selectCard={selectCard} />
                 </div>
             </div>
         </div>

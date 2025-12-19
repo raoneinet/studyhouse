@@ -1,3 +1,4 @@
+import { Card } from "@/types/card"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const userApi = createApi({
@@ -31,7 +32,7 @@ export const userApi = createApi({
                 body: data
             })
         }),
-        getAllCards: builder.query<any, any>({
+        getAllCards: builder.query<any, void>({
             query: ()=>({
                 url: "cards.php"
             })
