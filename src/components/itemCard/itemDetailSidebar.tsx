@@ -23,7 +23,7 @@ export const ItemDetailSidebar = (selectCard: any) => {
                     </SidebarGroupAction>
                 </SidebarMenu>
                 <SidebarGroupContent>
-                    <CardSideDetail selectedCard={selectCard.selectCard}/>
+                    <CardSideDetail selectedCard={selectCard?.selectCard}/>
                 </SidebarGroupContent>
             </SidebarContent>
         </SidebarGroup>
