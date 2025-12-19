@@ -9,8 +9,9 @@ import { Card } from "@/types/card"
 
 const MyCards = () => {
 
-    const { data } = useGetAllCardsQuery()
+    const { data = {subjects: []}} = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Card>()
+    const {subjects} = data
 
     useEffect(() => {
         if (selectCard) {
@@ -28,7 +29,7 @@ const MyCards = () => {
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
-                    {data?.subjects.map((item: Card) => (
+                    {subjects.map((item: Card) => (
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
 
