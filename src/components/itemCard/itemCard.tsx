@@ -7,7 +7,12 @@ import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { PriorityType } from "@/types/priorityType"
 
-export const ItemCard = ({ card }: { card: Card }) => {
+type Props = {
+    card: Card
+    handleSelectCard: (card: Card)=>void
+}
+
+export const ItemCard = ({ card, handleSelectCard }: Props) => {
 
     const [status, setStatus] = useState<StatusType[]>()
     const [priority, setPriority] = useState<PriorityType[]>()
@@ -21,9 +26,8 @@ export const ItemCard = ({ card }: { card: Card }) => {
         setPriority(priority)
     }, [])
 
-
     return (
-        <div className="p-4 bg-white rounded-lg border">
+        <div className="p-4 bg-white rounded-lg border" onClick={()=>handleSelectCard(card)}>
             <div>
                 <div className="flex gap-3">
                     <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
