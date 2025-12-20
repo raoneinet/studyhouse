@@ -26,7 +26,7 @@ import {
 
 const formSchema = z.object({
     title: z.string().min(2),
-    link: z.array(
+    links: z.array(
         z.object({
             value: z.string().optional()
         })
@@ -47,7 +47,7 @@ export const CreateItem = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
-            link: [{ value: "" }],
+            links: [{ value: "" }],
             description: "",
             category: "",
             status: "",
@@ -58,7 +58,7 @@ export const CreateItem = () => {
 
     const { fields, append, remove } = useFieldArray({
         control: form.control,
-        name: "link"
+        name: "links"
     })
 
     const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
@@ -106,7 +106,7 @@ export const CreateItem = () => {
                         <FormField
                             key={item.id}
                             control={form.control}
-                            name={`link.${index}.value`}
+                            name={`links.${index}.value`}
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel
