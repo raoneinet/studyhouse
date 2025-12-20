@@ -43,13 +43,11 @@ export const CreateItem = () => {
 
     const [createSubject] = useCreateSubjectMutation()
 
-
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
-            link: [{value: ""}],
+            link: [{ value: "" }],
             description: "",
             category: "",
             status: "",
@@ -136,11 +134,16 @@ export const CreateItem = () => {
                     ))}
 
 
-                    <Button
-                        type="button"
-                        className="flex-1 bg-blue-600 text-white place-self-end"
-                        onClick={() => append({value: ""})}
-                    >+</Button>
+                    {fields.length < 5 &&
+                        <Button
+                            type="button"
+                            className="flex-1 bg-blue-600 text-white place-self-end"
+                            onClick={() => {
+                                if (fields.length >= 5) return console.log("Máximo de 5 links")
+                                append({ value: "" })
+                            }}
+                        >+</Button>
+                    }
                 </div>
                 <FormField
                     control={form.control}
