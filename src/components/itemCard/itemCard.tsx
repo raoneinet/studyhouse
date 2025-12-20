@@ -25,7 +25,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                     <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
                         <span className="text-green-600">{card.category}</span>
                     </div>
-                    {priority?.map((item) => (
+                    {priority.map((item) => (
                         <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
                             <CircleDot className="w-3" />
                             <span>{item.label}</span>
