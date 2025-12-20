@@ -18,6 +18,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
     const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
 
+
     return (
         <div className="p-4 bg-white rounded-lg border" onClick={() => handleSelectCard(card)}>
             <div>
@@ -52,7 +53,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="flex gap-2 py-2 items-center">
                     <ExternalLink className="w-4 h-4" />
-                    <span>{card.link} links</span>
+                    <span>{card.links?.length} links</span>
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">

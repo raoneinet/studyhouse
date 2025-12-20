@@ -5,10 +5,15 @@ import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot } from "lucide-react"
 
-export const CardSideDetail = ({selectedCard}:{selectedCard: Card}) => {
+export const CardSideDetail = ({ selectedCard }: { selectedCard: Card }) => {
 
     const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)
+
+    let link;
+    for (let i = 0; i < selectedCard.links.length; i++) {
+        link = link + selectedCard.links[i]
+    }
 
     console.log("CardSideDetail =====", selectedCard)
     return (
@@ -51,7 +56,7 @@ export const CardSideDetail = ({selectedCard}:{selectedCard: Card}) => {
                             key={item.id}
                             className={`ml-2 px-2 rounded-md flex w-fit items-center gap-2 ${item.bgColor} ${item.color} ${item.borderColor}`}
                         >
-                            <CircleDot className="w-3"/>
+                            <CircleDot className="w-3" />
                             <span>{item.label}</span>
                         </div>
                     ))}
@@ -65,18 +70,25 @@ export const CardSideDetail = ({selectedCard}:{selectedCard: Card}) => {
             <div className="flex flex-col gap-1">
                 <span className="font-bold text-slate-700">Tags</span>
                 <div className="flex  gap-3">
-                {selectedCard?.tags.split(",").map((item, index) => (
-                    <div className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md">
-                        <span key={index} className="">
-                            {item}
-                        </span>
-                    </div>
-                ))}
+                    {selectedCard?.tags.split(",").map((item, index) => (
+                        <div className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md">
+                            <span key={index} className="">
+                                {item}
+                            </span>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="flex flex-col gap-1">
-                <span className="font-bold  text-slate-700">Links de Estudo</span>
-                <span>{selectedCard?.link}</span>
+                <span className="font-bold  text-slate-700">Links de Estudo ({selectedCard.links.length})</span>
+                {selectedCard.links.map((item: string) => (
+                    <span className=" bg-slate-100 px-2 py-3 rounded-md my-1">
+                        <a href={item} target="_blank" className="flex gap-2 items-center">
+                            <ExternalLink className="w-4" />
+                            {item}
+                        </a>
+                    </span>
+                ))}
             </div>
         </div>
     )

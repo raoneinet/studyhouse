@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation"
 import { useCreateSubjectMutation } from "@/app/reducer/userReducer"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -42,6 +43,7 @@ const formSchema = z.object({
 export const CreateItem = () => {
 
     const [createSubject] = useCreateSubjectMutation()
+    const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -76,6 +78,7 @@ export const CreateItem = () => {
                 },
             })
 
+            router.push("/protected/myCards")
             console.log(values)
         } catch (error: any) {
             console.log("Erro ao criar assunto. ", error)

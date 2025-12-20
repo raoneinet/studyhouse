@@ -1,7 +1,7 @@
 export type Card = {
     id: number
     title: string
-    link: string
+    links: string[]
     description: string
     category: string
     status: string
