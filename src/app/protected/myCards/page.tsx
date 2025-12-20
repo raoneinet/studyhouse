@@ -10,9 +10,8 @@ import { Card } from "@/types/card"
 const MyCards = () => {
 
     const { data = { subjects: [] } } = useGetAllCardsQuery()
-    const [selectCard, setSelectCard] = useState<Card>()
+    const [selectCard, setSelectCard] = useState<Card | any>(null)
     const { subjects } = data
-    console.log("SUBJECTS....", subjects)
 
     return (
         <div className="md:max-w-full">

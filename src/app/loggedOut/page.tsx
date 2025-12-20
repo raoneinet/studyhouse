@@ -1,4 +1,4 @@
-import { Header } from "@/ui/header/header"
+import { Header } from "@/components/header/header"
 
 export const LoggedOut = () => {
     return (

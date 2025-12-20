@@ -1,4 +1,4 @@
-import { CreateItem } from "@/ui/createItem/createItem"
+import { CreateItem } from "@/components/createItem/createItem"
 
 export const LoggedIn = () => {
     return (

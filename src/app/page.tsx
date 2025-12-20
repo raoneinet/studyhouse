@@ -1,9 +1,9 @@
 "use client"
 import { useAuth } from "@/context/userContext"
-import { Header } from "@/ui/header/header"
+import { Header } from "@/components/header/header"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
-import LandingPage from "@/ui/lp/landingpage"
+import LandingPage from "@/components/lp/landingpage"
 
 const Page = () => {
     const { user } = useAuth()
