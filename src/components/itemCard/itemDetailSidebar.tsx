@@ -10,22 +10,24 @@ import {
 import { CardSideDetail } from "./cardSideDetail"
 import { Card } from "@/types/card"
 
-export const ItemDetailSidebar = (selectCard: any) => {
+export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
 
-    console.log("aqui...",selectCard.selectCard)
+    console.log("aqui...", selectCard)
     return (
         <SidebarGroup>
             <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
-            <SidebarContent>
-                <SidebarMenu>
-                    <SidebarGroupAction>
-                        <Edit /> <span className="sr-only">Edit Project</span>
-                    </SidebarGroupAction>
-                </SidebarMenu>
-                <SidebarGroupContent>
-                    <CardSideDetail selectedCard={selectCard?.selectCard}/>
-                </SidebarGroupContent>
-            </SidebarContent>
+            {selectCard &&
+                <SidebarContent>
+                    <SidebarMenu>
+                        <SidebarGroupAction>
+                            <Edit /> <span className="sr-only">Edit Project</span>
+                        </SidebarGroupAction>
+                    </SidebarMenu>
+                    <SidebarGroupContent>
+                        <CardSideDetail selectedCard={selectCard} />
+                    </SidebarGroupContent>
+                </SidebarContent>
+            }
         </SidebarGroup>
     )
 }

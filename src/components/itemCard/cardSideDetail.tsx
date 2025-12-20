@@ -5,27 +5,27 @@ import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot } from "lucide-react"
 
-export const CardSideDetail = (selectedCard: any) => {
+export const CardSideDetail = ({selectedCard}:{selectedCard: Card}) => {
 
-    const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard.selectedCard?.status)
-    const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard.selectedCard?.priority)
+    const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
+    const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)
 
-    console.log("outro aqui...", selectedCard)
+    console.log("CardSideDetail =====", selectedCard)
     return (
         <div
-            key={selectedCard.selectedCard?.id}
+            key={selectedCard?.id}
             className="w-full flex flex-col gap-5"
         >
             <div>
                 <h2 className="font-bold text-slate-700 text-2xl capitalize">
-                    {selectedCard.selectedCard?.title}
+                    {selectedCard?.title}
                 </h2>
             </div>
             <div className="flex flex-col gap-2">
                 <div>
                     <span className="font-bold text-slate-700">Categoria:</span>
                     <span className="ml-2 px-2 py-1 rounded-md bg-green-100 text-green-600 bg-opacity-10 w-fit">
-                        {selectedCard.selectedCard?.category}
+                        {selectedCard?.category}
                     </span>
                 </div>
                 <div className="flex items-center">
@@ -47,27 +47,36 @@ export const CardSideDetail = (selectedCard: any) => {
                 <div className="flex items-center">
                     <span className="font-bold text-slate-700">Prioridade:</span>
                     {priority.map(item => (
-                        <span 
+                        <div
+                            key={item.id}
                             className={`ml-2 px-2 rounded-md flex w-fit items-center gap-2 ${item.bgColor} ${item.color} ${item.borderColor}`}
                         >
                             <CircleDot className="w-3"/>
-                            {item.label}
-                        </span>
+                            <span>{item.label}</span>
+                        </div>
                     ))}
 
                 </div>
             </div>
             <div className="flex flex-col gap-1">
                 <span className="font-bold text-slate-700">Descrição</span>
-                <p>{selectedCard.selectedCard?.description}</p>
+                <p>{selectedCard?.description}</p>
             </div>
             <div className="flex flex-col gap-1">
                 <span className="font-bold text-slate-700">Tags</span>
-                <span>{selectedCard.selectedCard?.tags}</span>
+                <div className="flex  gap-3">
+                {selectedCard?.tags.split(",").map((item, index) => (
+                    <div className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md">
+                        <span key={index} className="">
+                            {item}
+                        </span>
+                    </div>
+                ))}
+                </div>
             </div>
             <div className="flex flex-col gap-1">
                 <span className="font-bold  text-slate-700">Links de Estudo</span>
-                <span>{selectedCard.selectedCard?.link}</span>
+                <span>{selectedCard?.link}</span>
             </div>
         </div>
     )
