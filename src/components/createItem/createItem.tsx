@@ -2,7 +2,7 @@
 import { useCreateSubjectMutation } from "@/app/reducer/userReducer"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Input } from "@/components/ui/input"
@@ -26,7 +26,11 @@ import {
 
 const formSchema = z.object({
     title: z.string().min(2),
-    link: z.string(),
+    link: z.array(
+        z.object({
+            value: z.string().optional()
+        })
+    ),
     description: z.string(),
     category: z.string(),
     status: z.string(),
@@ -39,11 +43,13 @@ export const CreateItem = () => {
 
     const [createSubject] = useCreateSubjectMutation()
 
+
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: "",
-            link: "",
+            link: [{value: ""}],
             description: "",
             category: "",
             status: "",
@@ -52,12 +58,17 @@ export const CreateItem = () => {
         }
     })
 
+    const { fields, append, remove } = useFieldArray({
+        control: form.control,
+        name: "link"
+    })
+
     const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
 
         const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
 
         try {
-            const createItem = await createSubject({...values, created_at}).unwrap()
+            const createItem = await createSubject({ ...values, created_at }).unwrap()
 
             toast("Criado assunto de estudo", {
                 description: "Sunday, December 03, 2023 at 9:00 AM",
@@ -93,23 +104,43 @@ export const CreateItem = () => {
                     )}
                 />
                 <div className="flex flex-col">
-                    <FormField
-                        control={form.control}
-                        name="link"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Link</FormLabel>
-                                <FormControl>
-                                    <Input {...field} placeholder="https://www..." />
-                                </FormControl>
-                                <FormDescription>
-                                    Salve os seus liks de consulta
-                                </FormDescription>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="button" className="flex-1 bg-blue-600 text-white place-self-end">+</Button>
+                    {fields.map((item, index) => (
+                        <FormField
+                            key={item.id}
+                            control={form.control}
+                            name={`link.${index}.value`}
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel
+                                        className="flex justify-between"
+                                    >Link
+                                        {fields.length > 1 &&
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                onClick={() => remove(index)}
+                                                className="h-5 px-2 rounded-full"
+                                            >x</Button>
+                                        }
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input {...field} placeholder="https://www..." />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Salve os seus liks de consulta
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    ))}
+
+
+                    <Button
+                        type="button"
+                        className="flex-1 bg-blue-600 text-white place-self-end"
+                        onClick={() => append({value: ""})}
+                    >+</Button>
                 </div>
                 <FormField
                     control={form.control}
