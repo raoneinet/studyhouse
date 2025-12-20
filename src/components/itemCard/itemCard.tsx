@@ -1,33 +1,27 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card } from "@/types/card"
-import { ExternalLink, CircleDot } from "lucide-react"
+import { ExternalLink, CircleDot, Icon } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { PriorityType } from "@/types/priorityType"
 
+
 type Props = {
     card: Card
-    handleSelectCard: (card: Card)=>void
+    handleSelectCard: (card: Card) => void
 }
 
 export const ItemCard = ({ card, handleSelectCard }: Props) => {
 
-    const [status, setStatus] = useState<StatusType[]>()
-    const [priority, setPriority] = useState<PriorityType[]>()
     const tags = card.tags.split(",")
 
-    useEffect(() => {
-        const statOption = statusOptions.filter(stat => stat.id === card.status)
-        setStatus(statOption)
-
-        const priority = priorityOptions.filter(item => item.id === card.priority)
-        setPriority(priority)
-    }, [])
+    const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
+    const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
 
     return (
-        <div className="p-4 bg-white rounded-lg border" onClick={()=>handleSelectCard(card)}>
+        <div className="p-4 bg-white rounded-lg border" onClick={() => handleSelectCard(card)}>
             <div>
                 <div className="flex gap-3">
                     <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
@@ -35,7 +29,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                     </div>
                     {priority?.map((item) => (
                         <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
-                            <CircleDot className="w-3"/>
+                            <CircleDot className="w-3" />
                             <span>{item.label}</span>
                         </div>
                     ))}
@@ -64,15 +58,16 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">
-                        {status?.map(item => {
-                            const Icon = item.icon
+                        {statuses.map(stat => {
+                            const Icon = stat.icon
                             return (
-                                <div key={item.id} className={`${item.bgColor} w-full flex gap-3 px-5 py-2`}>
-                                    <Icon className={`${item.color} w-4`} />
-                                    <span className={`${item.textColor}`}>{item.label}</span>
+                                <div key={stat.id} className={`${stat.bgColor} w-full flex gap-3 px-5 py-2`}>
+                                    <Icon className={`${stat.color} w-4`} />
+                                    <span className={`${stat.textColor}`}>{stat.label}</span>
                                 </div>
                             )
-                        })}
+                        }
+                        )}
                     </div>
                 </div>
             </div>

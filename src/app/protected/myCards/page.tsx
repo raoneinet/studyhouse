@@ -9,17 +9,11 @@ import { Card } from "@/types/card"
 
 const MyCards = () => {
 
-    const { data = {subjects: []}} = useGetAllCardsQuery()
+    const { data = { subjects: [] } } = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Card>()
-    const {subjects} = data
+    const { subjects } = data
+    console.log("SUBJECTS....", subjects)
 
-    useEffect(() => {
-        if (selectCard) {
-            console.log("Selecionou o assunto:", selectCard)
-        }
-    }, [selectCard])
-
-    console.log(data)
     return (
         <div className="md:max-w-full">
             <Title
