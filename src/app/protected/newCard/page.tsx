@@ -1,4 +1,4 @@
-import { CreateItem } from "@/ui/createItem/createItem"
+import { CreateItem } from "@/components/createItem/createItem"
 import { Title } from "@/components/title/title"
 
 const CreateNewItem = () => {
