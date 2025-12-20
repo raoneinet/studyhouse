@@ -12,7 +12,6 @@ import { Card } from "@/types/card"
 
 export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
 
-    console.log("aqui...", selectCard)
     return (
         <SidebarGroup>
             <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>

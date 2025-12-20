@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import { Card } from "@/types/card"
 import { ExternalLink, CircleDot, Icon } from "lucide-react"
 import { StatusType } from "@/types/statusType"

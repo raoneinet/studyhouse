@@ -10,12 +10,6 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Card }) => {
     const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)
 
-    let link;
-    for (let i = 0; i < selectedCard.links.length; i++) {
-        link = link + selectedCard.links[i]
-    }
-
-    console.log("CardSideDetail =====", selectedCard)
     return (
         <div
             key={selectedCard?.id}
