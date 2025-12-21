@@ -1,11 +1,11 @@
-import { Card } from "@/types/card"
+import { Subject } from "@/types/subject"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot } from "lucide-react"
 
-export const CardSideDetail = ({ selectedCard }: { selectedCard: Card }) => {
+export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
 
     const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)

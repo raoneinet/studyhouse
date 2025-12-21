@@ -1,4 +1,4 @@
-export type Card = {
+export type Subject = {
     id: number
     title: string
     links: string[]
