@@ -15,16 +15,15 @@ export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
 
     return (
         <SidebarGroup>
-            <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
+            <SidebarMenu className="flex flex-row justify-between">
+                <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
+                {selectCard !== null &&
+                    <CardOptionsMenu />
+                }
+            </SidebarMenu>
+
             {selectCard &&
                 <SidebarContent>
-                    <SidebarMenu>
-                        <SidebarGroupAction>
-                            {selectCard !== null &&
-                                <CardOptionsMenu/>
-                            }
-                        </SidebarGroupAction>
-                    </SidebarMenu>
                     <SidebarGroupContent>
                         <CardSideDetail selectedCard={selectCard} />
                     </SidebarGroupContent>

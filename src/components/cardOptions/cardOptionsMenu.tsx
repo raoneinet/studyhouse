@@ -1,21 +1,27 @@
 "use client"
-import { useState } from "react"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { MoreHorizontalIcon } from "lucide-react"
+import { useDeleteCardMutation } from "@/app/reducer/userReducer"
 
-export const CardOptionsMenu = () => {
+export const CardOptionsMenu = ({cardId}: {cardId: number} ) => {
 
-    const [showNewDialog, setShowNewDialog] = useState(false)
-    const [showShareDialog, setShowShareDialog] = useState(false)
+    const [deleteCard] = useDeleteCardMutation()
+
+    const handleDeleteSubject = async (id: number) => {
+        try {
+            await deleteCard(id).unwrap()
+            console.log("APAGOU O ID: ", id)
+        } catch (error: any) {
+            console.log("Erro ao eliminar assunto. ", error)
+        }
+    }
 
     return (
         <DropdownMenu modal={false}>
@@ -29,7 +35,7 @@ export const CardOptionsMenu = () => {
                     <DropdownMenuItem>
                         Editar
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDeleteSubject(cardId)}>
                         Eliminar
                     </DropdownMenuItem>
                 </DropdownMenuGroup>

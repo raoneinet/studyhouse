@@ -18,7 +18,6 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
     const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
 
-
     return (
         <div className="p-4 bg-white rounded-lg border">
             <div onClick={() => handleSelectCard(card)}>
@@ -36,7 +35,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                         ))}
                     </div>
                     <div className="w-fit place-self-end">
-                        <CardOptionsMenu />
+                        <CardOptionsMenu cardId={card.id}/>
                     </div>
                 </div>
                 <div className="py-2">
