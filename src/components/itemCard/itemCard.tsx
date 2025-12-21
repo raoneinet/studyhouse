@@ -1,6 +1,6 @@
 "use client"
-import { Card } from "@/types/card"
-import { ExternalLink, CircleDot, Icon } from "lucide-react"
+import { Subject } from "@/types/subject"
+import { ExternalLink, CircleDot } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
@@ -9,8 +9,8 @@ import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 
 type Props = {
-    card: Card
-    handleSelectCard: (card: Card) => void
+    card: Subject
+    handleSelectCard: (card: Subject) => void
 }
 
 export const ItemCard = ({ card, handleSelectCard }: Props) => {

@@ -1,4 +1,4 @@
-export type Card = {
+export type Subject = {
     id: number
     title: string
     links: string[]
@@ -7,5 +7,5 @@ export type Card = {
     status: string
     priority: string
     tags: string
-
+    created_at?: Date
 }

@@ -5,13 +5,15 @@ import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
-import { Card } from "@/types/card"
+import { Subject } from "@/types/subject"
 
 const MyCards = () => {
 
-    const { data = { subjects: [] } } = useGetAllCardsQuery()
-    const [selectCard, setSelectCard] = useState<Card | any>(null)
-    const { subjects } = data
+    const { data = [] } = useGetAllCardsQuery()
+    const [selectCard, setSelectCard] = useState<Subject | any>(null)
+    //const { subjects } = data
+
+    console.log(data)
 
     return (
         <div className="md:max-w-full">
@@ -22,7 +24,7 @@ const MyCards = () => {
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
-                    {subjects.map((item: Card) => (
+                    {data.map((item: Subject) => (
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
                 </div>

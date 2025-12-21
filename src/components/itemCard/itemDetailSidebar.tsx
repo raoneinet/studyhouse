@@ -8,17 +8,17 @@ import {
     SidebarMenu
 } from "../ui/sidebar"
 import { CardSideDetail } from "./cardSideDetail"
-import { Card } from "@/types/card"
+import { Subject } from "@/types/subject"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
-export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
+export const ItemDetailSidebar = ({ selectCard }: { selectCard: Subject }) => {
 
     return (
         <SidebarGroup>
             <SidebarMenu className="flex flex-row justify-between">
                 <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
                 {selectCard !== null &&
-                    <CardOptionsMenu />
+                    <CardOptionsMenu cardId={selectCard.id}/>
                 }
             </SidebarMenu>
 

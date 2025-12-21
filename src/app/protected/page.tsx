@@ -1,3 +1,4 @@
+import StudyAppLayout from "@/components/dashboard/dashboard"
 import { Title } from "@/components/title/title"
 
 const MyCards = () => {
@@ -7,7 +8,7 @@ const MyCards = () => {
                 title="Home"
                 style="text-2xl font-bold text-slate-800 pb-5"
             />
-            Here I will have all INFORMATION
+            <StudyAppLayout/>
         </div>
     )
 }

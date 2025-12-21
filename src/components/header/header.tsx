@@ -1,10 +1,8 @@
-import { Logobrand } from "@/components/header/logobrand"
 import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
-import { UserMenuDropdown } from "@/components/header/userMenuDropdown"
-import { LoginForm } from "../login/loginForm"
-import { RegisterForm } from "../register/registerForm"
-import { BookOpen, Star, Zap, Target, TrendingUp, Check, Menu, X, ArrowRight, Sparkles, Clock, Tag } from 'lucide-react';
+import { LoginForm } from "@/components/login/loginForm"
+import { RegisterForm } from "@/components/register/registerForm"
+import { BookOpen } from 'lucide-react';
 
 export const Header = () => {
 
@@ -25,10 +23,12 @@ export const Header = () => {
                         <LoginDialog
                             title="Login"
                             form={<LoginForm />}
+                            desc="Faça login para organizar seus estudos de forma fácil"
                         />
                         <LoginDialog
                             title="Criar conta"
                             form={<RegisterForm />}
+                            desc="Crie uma conta para organizar seus estudos de forma fácil"
                         />
                     </div>
                 }
