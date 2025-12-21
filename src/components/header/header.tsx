@@ -32,12 +32,6 @@ export const Header = () => {
                         />
                     </div>
                 }
-                {user &&
-                    <div className="flex gap-2 items-center">
-                        <p>{`${user.firstname} ${user.lastname}`}</p>
-                        <UserMenuDropdown />
-                    </div>
-                }
             </div>
         </header>
     )

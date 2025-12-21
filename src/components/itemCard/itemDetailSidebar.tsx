@@ -9,24 +9,21 @@ import {
 } from "../ui/sidebar"
 import { CardSideDetail } from "./cardSideDetail"
 import { Card } from "@/types/card"
+import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
 
     return (
         <SidebarGroup>
-            <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
+            <SidebarMenu className="flex flex-row justify-between">
+                <SidebarGroupLabel className="text-slate-800 text-lg font-semibold">Card de estudo</SidebarGroupLabel>
+                {selectCard !== null &&
+                    <CardOptionsMenu />
+                }
+            </SidebarMenu>
+
             {selectCard &&
                 <SidebarContent>
-                    <SidebarMenu>
-                        <SidebarGroupAction>
-                            {selectCard !== null &&
-                                <>
-                                    < Edit className="cursor-pointer" />
-                                    <span className="sr-only">Edit Project</span>
-                                </>
-                            }
-                        </SidebarGroupAction>
-                    </SidebarMenu>
                     <SidebarGroupContent>
                         <CardSideDetail selectedCard={selectCard} />
                     </SidebarGroupContent>

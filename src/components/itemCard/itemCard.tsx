@@ -5,6 +5,7 @@ import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { PriorityType } from "@/types/priorityType"
+import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 
 type Props = {
@@ -17,20 +18,25 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
     const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
 
-
     return (
-        <div className="p-4 bg-white rounded-lg border" onClick={() => handleSelectCard(card)}>
-            <div>
-                <div className="flex gap-3">
-                    <div className={`px-3 py-1 rounded-full text-xs font-medium bg-green-100 bg-opacity-10 w-fit`}>
-                        <span className="text-green-600">{card.category}</span>
+        <div className="p-4 bg-white rounded-lg border">
+            <div onClick={() => handleSelectCard(card)}>
+                <div className="flex justify-between items-center ">
+                    <div className="flex gap-3">
+                        <span 
+                            className="px-3 py-1 rounded-full text-xs font-medium text-green-600 bg-green-100 bg-opacity-10 w-fittext-green-600">
+                                {card.category}
+                        </span>
+                        {priority.map((item) => (
+                            <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
+                                <CircleDot className="w-3" />
+                                <span>{item.label}</span>
+                            </div>
+                        ))}
                     </div>
-                    {priority.map((item) => (
-                        <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
-                            <CircleDot className="w-3" />
-                            <span>{item.label}</span>
-                        </div>
-                    ))}
+                    <div className="w-fit place-self-end">
+                        <CardOptionsMenu cardId={card.id}/>
+                    </div>
                 </div>
                 <div className="py-2">
                     <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
