@@ -9,6 +9,7 @@ import {
 } from "../ui/sidebar"
 import { CardSideDetail } from "./cardSideDetail"
 import { Card } from "@/types/card"
+import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
 
@@ -20,10 +21,7 @@ export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
                     <SidebarMenu>
                         <SidebarGroupAction>
                             {selectCard !== null &&
-                                <>
-                                    < Edit className="cursor-pointer" />
-                                    <span className="sr-only">Edit Project</span>
-                                </>
+                                <CardOptionsMenu/>
                             }
                         </SidebarGroupAction>
                     </SidebarMenu>

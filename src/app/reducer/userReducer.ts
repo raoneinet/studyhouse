@@ -33,8 +33,15 @@ export const userApi = createApi({
             })
         }),
         getAllCards: builder.query<any, void>({
-            query: ()=>({
+            query: () => ({
                 url: "cards.php"
+            })
+        }),
+        deleteCard: builder.mutation({
+            query: (data) => ({
+                url: "/delete.php",
+                method: "POST",
+                body: data
             })
         })
     })
