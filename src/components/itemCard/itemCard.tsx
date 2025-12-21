@@ -1,6 +1,6 @@
 "use client"
 import { Card } from "@/types/card"
-import { ExternalLink, CircleDot, Icon } from "lucide-react"
+import { ExternalLink, CircleDot } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
