@@ -6,17 +6,16 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { LoginForm } from "@/app/ui/login/loginForm"
 
-export const LoginDialog = ({title, form}: any) => {
+export const LoginDialog = ({title, form, desc}: any) => {
     return (
         <Dialog>
-            <DialogTrigger>{title}</DialogTrigger>
+            <DialogTrigger className="text-slate-800">{title}</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Studyhouse</DialogTitle>
                     <DialogDescription>
-                        Faça login para organizar seus estudos de forma fácil
+                        {desc}
                     </DialogDescription>
                 </DialogHeader>
                 {form}
