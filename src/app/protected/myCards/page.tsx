@@ -27,9 +27,11 @@ const MyCards = () => {
                     ))}
 
                 </div>
-                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit border">
-                    <ItemDetailSidebar selectCard={selectCard} />
-                </div>
+<div className="hidden lg:block flex-1">
+  <div className="sticky top-4 bg-white rounded-lg p-3 border">
+    <ItemDetailSidebar selectCard={selectCard} />
+  </div>
+</div>
             </div>
         </div>
     )
