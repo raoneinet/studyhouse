@@ -1,10 +1,8 @@
-import { Logobrand } from "@/components/header/logobrand"
 import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
-import { UserMenuDropdown } from "@/components/header/userMenuDropdown"
 import { LoginForm } from "../login/loginForm"
 import { RegisterForm } from "../register/registerForm"
-import { BookOpen, Star, Zap, Target, TrendingUp, Check, Menu, X, ArrowRight, Sparkles, Clock, Tag } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 export const Header = () => {
 
