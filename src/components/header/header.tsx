@@ -19,7 +19,7 @@ export const Header = () => {
                 </div>
 
                 {!user &&
-                    <div className="flex gap-3 text-slate-800">
+                    <div className="flex gap-3">
                         <LoginDialog
                             title="Login"
                             form={<LoginForm />}
