@@ -7,4 +7,5 @@ export type Card = {
     status: string
     priority: string
     tags: string
+
 }

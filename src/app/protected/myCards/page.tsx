@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
@@ -25,10 +25,11 @@ const MyCards = () => {
                     {subjects.map((item: Card) => (
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
-
                 </div>
-                <div className="hidden lg:block flex-1 bg-white rounded-lg p-3 h-fit border">
-                    <ItemDetailSidebar selectCard={selectCard} />
+                <div className="hidden lg:block flex-1">
+                    <div className="sticky top-4 bg-white rounded-lg p-3 border">
+                        <ItemDetailSidebar selectCard={selectCard} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,12 @@ export const ItemDetailSidebar = ({ selectCard }: { selectCard: Card }) => {
                 <SidebarContent>
                     <SidebarMenu>
                         <SidebarGroupAction>
-                            <Edit /> <span className="sr-only">Edit Project</span>
+                            {selectCard !== null &&
+                                <>
+                                    < Edit className="cursor-pointer" />
+                                    <span className="sr-only">Edit Project</span>
+                                </>
+                            }
                         </SidebarGroupAction>
                     </SidebarMenu>
                     <SidebarGroupContent>

@@ -1,18 +1,15 @@
 "use client"
-import { BookOpen } from 'lucide-react';
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem,
-    useSidebar,
+    SidebarMenuItem
 } from "@/components/ui/sidebar"
 import { useAuth } from "@/context/userContext"
 import { MenuSidebarFooter } from "./sidebar-footer"
@@ -34,16 +31,6 @@ const items = [
         title: "Novo Card",
         url: "/protected/newCard",
         icon: Calendar,
-    },
-    {
-        title: "Search",
-        url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
     },
 ]
 
