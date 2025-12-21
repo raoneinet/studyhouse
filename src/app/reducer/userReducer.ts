@@ -31,11 +31,12 @@ export const userApi = createApi({
                 url: "create_subject.php",
                 method: "POST",
                 body: data
-            })
+            }),
+            invalidatesTags: [{type: "Subjects", id: "LIST"}]
         }),
         getAllCards: builder.query<Subject[], void>({
             query: () => ({
-                url: "cards.php"
+                url: "get_subjects.php"
             }),
             providesTags: (result) =>
                 result
