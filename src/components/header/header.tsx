@@ -1,7 +1,7 @@
 import { LoginDialog } from "@/components/dialog/loginDialog"
 import { useAuth } from "@/context/userContext"
-import { LoginForm } from "../login/loginForm"
-import { RegisterForm } from "../register/registerForm"
+import { LoginForm } from "@/components/login/loginForm"
+import { RegisterForm } from "@/components/register/registerForm"
 import { BookOpen } from 'lucide-react';
 
 export const Header = () => {
