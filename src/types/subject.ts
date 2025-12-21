@@ -7,5 +7,5 @@ export type Subject = {
     status: string
     priority: string
     tags: string
-
+    created_at?: Date
 }

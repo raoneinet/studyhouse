@@ -9,9 +9,11 @@ import { Subject } from "@/types/subject"
 
 const MyCards = () => {
 
-    const { data = { subjects: [] } } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
-    const { subjects } = data
+    //const { subjects } = data
+
+    console.log(data)
 
     return (
         <div className="md:max-w-full">
@@ -22,7 +24,7 @@ const MyCards = () => {
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
-                    {subjects.map((item: Subject) => (
+                    {data.map((item: Subject) => (
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
                 </div>
