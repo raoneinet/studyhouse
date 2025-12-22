@@ -19,6 +19,7 @@ const MyCards = () => {
         <div className="md:max-w-full">
             <Title
                 title="Meus Cards"
+                subtitle="Todos os meus cards de estudo"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
