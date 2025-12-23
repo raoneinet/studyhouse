@@ -187,68 +187,7 @@ const StudyAppLayout = () => {
       <main className={`ml-64 p-8 transition-all ${selectedCard ? 'mr-96' : ''}`}>
         {currentPage === 'dashboard' && (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-linear-to-br from-orange-500 to-red-500 rounded-xl shadow-sm p-6 text-white">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <p className="text-orange-100 text-sm mb-1">Sequência de Estudos</p>
-                    <p className="text-4xl font-bold">{studyStreak} dias</p>
-                  </div>
-                  <Flame className="w-16 h-16 text-orange-200" />
-                </div>
-                <p className="text-orange-100 text-sm">Continue assim! Você está no caminho certo 🔥</p>
-              </div>
-
-              <div className="bg-linear-to-br from-blue-500 to-purple-500 rounded-xl shadow-sm p-6 text-white">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <p className="text-blue-100 text-sm mb-1">Tempo de Estudo (Este Mês)</p>
-                    <p className="text-4xl font-bold">{totalStudyTime}h</p>
-                  </div>
-                  <Brain className="w-16 h-16 text-blue-200" />
-                </div>
-                <p className="text-blue-100 text-sm">+15% comparado ao mês passado 📈</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-blue-500" />
-                  Cards por Categoria
-                </h3>
-                <div className="space-y-3">
-                  {cardsByCategory.map(cat => (
-                    <div key={cat.id} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${cat.color}`}></div>
-                        <span className="text-slate-700 font-medium">{cat.name}</span>
-                      </div>
-                      <span className="text-slate-600 font-bold">{cat.count}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-green-500" />
-                  Atividade Recente
-                </h3>
-                <div className="space-y-3">
-                  {recentActivity.map(activity => (
-                    <div key={activity.id} className="flex items-start justify-between py-2 border-b border-slate-100 last:border-0">
-                      <div>
-                        <p className="text-sm font-medium text-slate-800">{activity.card}</p>
-                        <p className={`text-xs ${activity.color}`}>{activity.action}</p>
-                      </div>
-                      <span className="text-xs text-slate-500">{activity.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
+            
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">

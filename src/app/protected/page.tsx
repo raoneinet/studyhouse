@@ -1,3 +1,5 @@
+import { ActivityCard } from "@/components/dashboard/activityCard"
+import { CategoryCard } from "@/components/dashboard/categoryCard"
 import StudyAppLayout from "@/components/dashboard/dashboard"
 import { SummaryCards } from "@/components/dashboard/summaryCards"
 import { Title } from "@/components/title/title"
@@ -36,6 +38,10 @@ const MyCards = () => {
                     Icon={<CheckCircle2 className="w-8 h-8 text-green-500"/>}
                     txtColor="text-green-600"
                 />
+            </div>
+            <div className="flex flex-col md:flex-row gap-5 mt-5">
+                <CategoryCard/>
+                <ActivityCard/>
             </div>
             <StudyAppLayout />
         </div>
