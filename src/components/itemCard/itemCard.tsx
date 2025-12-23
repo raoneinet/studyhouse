@@ -1,6 +1,6 @@
 "use client"
 import { Subject } from "@/types/subject"
-import { ExternalLink, CircleDot } from "lucide-react"
+import { ExternalLink, AlertCircle } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
@@ -29,7 +29,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                         </span>
                         {priority.map((item) => (
                             <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
-                                <CircleDot className="w-3" />
+                                <AlertCircle className="w-3" />
                                 <span>{item.label}</span>
                             </div>
                         ))}

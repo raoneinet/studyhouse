@@ -187,50 +187,6 @@ const StudyAppLayout = () => {
       <main className={`ml-64 p-8 transition-all ${selectedCard ? 'mr-96' : ''}`}>
         {currentPage === 'dashboard' && (
           <>
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-slate-800 mb-2">Dashboard</h2>
-              <p className="text-slate-600">Bem-vindo de volta! Aqui está um resumo dos seus estudos</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-600">Total de Cards</p>
-                    <p className="text-2xl font-bold text-slate-800">{totalCards}</p>
-                  </div>
-                  <Grid className="w-8 h-8 text-slate-400" />
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-600">Em Andamento</p>
-                    <p className="text-2xl font-bold text-blue-600">{inProgressCards}</p>
-                  </div>
-                  <CircleDot className="w-8 h-8 text-blue-500" />
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-600">Prioridade Alta</p>
-                    <p className="text-2xl font-bold text-red-600">{highPriorityCards}</p>
-                  </div>
-                  <AlertCircle className="w-8 h-8 text-red-500" />
-                </div>
-              </div>
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-600">Concluídos</p>
-                    <p className="text-2xl font-bold text-green-600">{completedCards}</p>
-                  </div>
-                  <CheckCircle2 className="w-8 h-8 text-green-500" />
-                </div>
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="bg-linear-to-br from-orange-500 to-red-500 rounded-xl shadow-sm p-6 text-white">
                 <div className="flex items-center justify-between mb-4">
