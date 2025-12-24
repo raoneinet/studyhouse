@@ -2,7 +2,7 @@ import { AlertCircle, Star } from "lucide-react"
 
 export const MiniCards = ()=>{
     return (
-        <div className="flex-1 border-2 p-5 rounded-lg flex flex-col gap-3">
+        <div className="min-w-full md:flex-1 border-2 p-5 rounded-lg flex flex-col gap-3">
             <div className="flex justify-between items-center">
                 <div className="text-xs">Categoria</div>
                 <div>

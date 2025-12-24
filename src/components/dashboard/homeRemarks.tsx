@@ -13,8 +13,8 @@ export const HomeRemarks = () => {
                     Cards em destaque</h1>
                 <p className="text-sm text-blue-600 font-medium">Ver todos →</p>
             </div>
-            <div className="flex flex-col gap-5">
-                <div className="flex lg:flex-row flex-col gap-5">
+            <div className="flex flex-col gap-5 py-5">
+                <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
                     <MiniCards />
                     <MiniCards />
                     <MiniCards />
