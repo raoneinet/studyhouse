@@ -13,7 +13,7 @@ const MyCards = () => {
                 subtitle="Bem-vindo de volta! Aqui está um resumo dos seus estudos"
                 style="text-2xl font-bold text-slate-800 pb-5"
             />
-            <div className="flex flex-col md:flex-row gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
                 <SummaryCards
                     title="Total de Cards"
                     total="4"
