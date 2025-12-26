@@ -20,7 +20,6 @@ export const HomeRemarks = () => {
                     <MiniCards />
                     <MiniCards />
                 </div>
-
                 <ActionButtons />
             </div>
         </div>
