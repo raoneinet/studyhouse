@@ -29,8 +29,8 @@ const MyCards = () => {
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
                 </div>
-                <div className="hidden lg:block flex-1">
-                    <div className="sticky top-4 bg-white rounded-lg p-3 border">
+                <div className="hidden lg:block flex-1 min-w-0">
+                    <div className="sticky top-4 bg-white rounded-lg py-3 border">
                         <ItemDetailSidebar selectCard={selectCard} />
                     </div>
                 </div>
