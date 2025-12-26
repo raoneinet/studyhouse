@@ -16,10 +16,10 @@ export const MiniCards = ()=>{
                 </div>
             </div>
             <div className="flex flex-col gap-2">
-                <div className="px-2 text-sm bg-red-100 w-fit rounded-md text-red-500 font-medium flex gap-1 items-center">
+                <div className="px-2 text-xs bg-red-100 w-fit rounded-md text-red-500 font-medium flex gap-1 items-center">
                     <AlertCircle className="w-3 h-3" /> Alta
                 </div>
-                <div className="px-2 text-sm bg-blue-100 rounded-md text-blue-500 font-medium">
+                <div className="px-2 text-xs bg-blue-100 rounded-md text-blue-500 font-medium">
                     Em Andamento
                 </div>
             </div>

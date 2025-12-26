@@ -7,10 +7,11 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { MoreHorizontalIcon } from "lucide-react"
+import { MoreHorizontal, MoreHorizontalIcon } from "lucide-react"
 import { useDeleteCardMutation } from "@/app/reducer/userReducer"
+import { SidebarMenuAction } from "../ui/sidebar"
 
-export const CardOptionsMenu = ({cardId}: {cardId: number} ) => {
+export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
 
     const [deleteCard] = useDeleteCardMutation()
 
@@ -26,19 +27,15 @@ export const CardOptionsMenu = ({cardId}: {cardId: number} ) => {
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" aria-label="Open menu" size="icon-sm">
-                    <MoreHorizontalIcon />
-                </Button>
+                <MoreHorizontal />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-fit" align="end">
-                <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        Editar
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDeleteSubject(cardId)}>
-                        Eliminar
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
+            <DropdownMenuContent side="right" align="start">
+                <DropdownMenuItem>
+                    <span>Edit Project</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleDeleteSubject(cardId)}>
+                    <span>Delete Project</span>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

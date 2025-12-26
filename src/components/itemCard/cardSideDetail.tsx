@@ -13,7 +13,7 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
     return (
         <div
             key={selectedCard?.id}
-            className="w-full flex flex-col gap-5"
+            className="max-w-full flex flex-col gap-5"
         >
             <div>
                 <h2 className="font-bold text-slate-700 text-2xl capitalize">
@@ -63,11 +63,11 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
             </div>
             <div className="flex flex-col gap-1">
                 <span className="font-bold text-slate-700">Tags</span>
-                <div className="flex  gap-3">
+                <div className="flex gap-3 flex-wrap">
                     {selectedCard?.tags.split(",").map((item, index) => (
                         <div
                             key={index}
-                            className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md">
+                            className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md flex-wrap">
                             <span className="">
                                 {item}
                             </span>
@@ -75,12 +75,12 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
                     ))}
                 </div>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 flex-wrap">
                 <span className="font-bold  text-slate-700">Links de Estudo ({selectedCard.links.length})</span>
                 {selectedCard.links.map((item: string, index: number) => (
                     <div
                         key={index}
-                        className=" bg-slate-100 px-2 py-3 rounded-md my-1">
+                        className=" bg-slate-100 px-2 py-3 rounded-md my-1 wrap-anywhere">
                         <a href={item} target="_blank" className="flex gap-2 items-center">
                             <ExternalLink className="w-4" />
                             {item}
