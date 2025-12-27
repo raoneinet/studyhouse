@@ -2,10 +2,8 @@ import { ActivityCard } from "@/components/dashboard/activityCard"
 import { CategoryCard } from "@/components/dashboard/categoryCard"
 import { HomeRemarks } from "@/components/dashboard/homeRemarks"
 import { Ongoing } from "@/components/dashboard/ongoing"
-import { SummaryCards } from "@/components/dashboard/summaryCards"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
-import { AlertCircle, CheckCircle2, CircleDot, Grid } from "lucide-react"
 
 const MyCards = () => {
     return (
