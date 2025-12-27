@@ -9,4 +9,5 @@ export type Subject = {
     priority: string
     tags: string
     created_at?: Date | any
+    is_favorite: number | string
 }
