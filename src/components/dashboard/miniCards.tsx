@@ -33,7 +33,9 @@ export const MiniCards = ({ card }: Props) => {
                     {stats.map(item => {
                         const Icon = item.icon
                         return (
-                            <div className={`px-2 rounded-md flex gap-1 text-xs w-fit items-center ${item.bgColor} ${item.textColor}`}>
+                            <div 
+                            key={item.id}
+                            className={`px-2 rounded-md flex gap-1 text-xs w-fit items-center ${item.bgColor} ${item.textColor}`}>
                                 <Icon className="w-3" />
                                 <span>{item?.label}</span>
                             </div>
