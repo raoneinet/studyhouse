@@ -2,7 +2,7 @@
 
 type Props = {
     title: string
-    total: string
+    total: number | string
     Icon?: any
     txtColor?: string
     iconColor?: string

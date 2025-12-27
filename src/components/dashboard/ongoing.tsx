@@ -9,7 +9,7 @@ export const Ongoing = () => {
     console.log("EM ANDAMENTO", data)
 
     return (
-        <div className=" mt-5 p-5 rounded-lg bg-white">
+        <div className=" mt-5 p-5 rounded-lg bg-white border">
             <div className="flex justify-between items-center pb-5">
                 <h1 className="font-bold text-xl text-slate-700 flex gap-2 items-center">
                     <CircleDot className="w-6 h-6 text-blue-600" />

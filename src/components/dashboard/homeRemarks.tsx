@@ -6,7 +6,7 @@ import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
 
 export const HomeRemarks = () => {
 
-    const { data } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllCardsQuery()
 
     return (
         <div className="flex-1 flex flex-col bg-white border p-5 rounded-lg mt-5">
@@ -19,7 +19,7 @@ export const HomeRemarks = () => {
             </div>
             <div className="flex flex-col gap-5 py-5">
                 <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
-                    {data?.map(remark => (
+                    {data.slice(0, 4).map(remark => (
                         <MiniCards 
                             key={remark.id}
                             card={remark}
