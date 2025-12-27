@@ -1,3 +1,4 @@
+
 export type Subject = {
     id: number
     title: string
@@ -7,5 +8,5 @@ export type Subject = {
     status: string
     priority: string
     tags: string
-    created_at?: Date
+    created_at?: Date | any
 }
