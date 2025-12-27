@@ -32,7 +32,7 @@ export const userApi = createApi({
                 method: "POST",
                 body: data
             }),
-            invalidatesTags: [{type: "Subjects", id: "LIST"}]
+            invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
         getAllCards: builder.query<Subject[], void>({
             query: () => ({
@@ -56,6 +56,14 @@ export const userApi = createApi({
                 body: { id }
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
+        }),
+        toggleFavorite: builder.mutation({
+            query: ({ id, isFavorite }) => ({
+                url: `favorite.php`,
+                method: "POST",
+                body: { id, isFavorite }
+            }),
+            invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         })
     })
 })
@@ -65,5 +73,6 @@ export const {
     useRegisterUserMutation,
     useCreateSubjectMutation,
     useGetAllCardsQuery,
-    useDeleteCardMutation
+    useDeleteCardMutation,
+    useToggleFavoriteMutation
 } = userApi
