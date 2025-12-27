@@ -1,8 +1,6 @@
 "use client"
 import { TrendingUp } from "lucide-react"
 import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
-import { statusOptions } from "@/utils/statusOptions"
-import { StatusType } from "@/types/statusType"
 
 export const ActivityCard = () => {
 
