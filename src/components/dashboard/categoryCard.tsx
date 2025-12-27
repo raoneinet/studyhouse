@@ -31,7 +31,7 @@ export const CategoryCard = () => {
                 </h1>
             </div>
             {categories.map(cat => (
-                <div className="flex justify-between items-center ">
+                <div key={cat.category} className="flex justify-between items-center ">
                     <div className="flex gap-2 items-center">
                         <div className="w-3 h-3 rounded-full bg-blue-600"></div>
                         <div className="font-bold">{cat.category}</div>
