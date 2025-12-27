@@ -1,8 +1,13 @@
+"use client"
 import { Award } from "lucide-react"
 import { MiniCards } from "./miniCards"
 import { ActionButtons } from "./actionButtons"
+import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
 
 export const HomeRemarks = () => {
+
+    const { data } = useGetAllCardsQuery()
+
     return (
         <div className="flex-1 flex flex-col bg-white border p-5 rounded-lg mt-5">
             <div className="flex justify-between items-center">
@@ -14,10 +19,12 @@ export const HomeRemarks = () => {
             </div>
             <div className="flex flex-col gap-5 py-5">
                 <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
-                    <MiniCards />
-                    <MiniCards />
-                    <MiniCards />
-                    <MiniCards />
+                    {data?.map(remark => (
+                        <MiniCards 
+                            key={remark.id}
+                            card={remark}
+                        />
+                    ))}
                 </div>
                 <ActionButtons />
             </div>
