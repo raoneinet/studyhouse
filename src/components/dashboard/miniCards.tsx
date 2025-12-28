@@ -16,7 +16,7 @@ export const MiniCards = ({ card }: Props) => {
     const handleFavorite = async (card: any) => {
         await toggleFavorite({
             id: card.id,
-            isFavorite: !card?.isFavorite
+            isFavorite: !card?.is_favorite
         }).unwrap()
     }
 
