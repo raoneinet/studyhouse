@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, Home, Inbox } from "lucide-react"
+import { Calendar, CircleDot, Home, Inbox, Star } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -31,6 +31,16 @@ const items = [
         title: "Novo Card",
         url: "/protected/newCard",
         icon: Calendar,
+    },
+    {
+        title: "Favoritos",
+        url: "/protected/favorites",
+        icon: Star,
+    },
+    {
+        title: "EmAndamento",
+        url: "/protected/ongoing",
+        icon: CircleDot,
     },
 ]
 

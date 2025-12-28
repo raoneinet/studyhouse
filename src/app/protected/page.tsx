@@ -1,6 +1,6 @@
 import { ActivityCard } from "@/components/dashboard/activityCard"
 import { CategoryCard } from "@/components/dashboard/categoryCard"
-import { HomeRemarks } from "@/components/dashboard/homeRemarks"
+import { FavoriteCards } from "@/components/dashboard/favoriteCards"
 import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
@@ -24,7 +24,7 @@ const MyCards = () => {
                 <ActivityCard />
             </div>
             <div>
-                <HomeRemarks />
+                <FavoriteCards />
             </div>
         </div>
     )

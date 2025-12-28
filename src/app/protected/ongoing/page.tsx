@@ -12,18 +12,18 @@ const MyCards = () => {
     const { data = [] } = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
 
-
     return (
         <div className="md:max-w-full">
             <Title
-                title="Meus Cards"
-                subtitle="Todos os meus cards de estudo"
+                title="Em Andamento"
+                subtitle="Todos os meus cards de estudo em andamento"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
-                    {data.map((item: Subject) => (
+                    {data.map((item: Subject) => 
+                        item.status === "ongoing" && (
                         <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
                     ))}
                 </div>
