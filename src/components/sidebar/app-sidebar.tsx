@@ -38,7 +38,7 @@ const items = [
         icon: Star,
     },
     {
-        title: "ongoing",
+        title: "EmAndamento",
         url: "/protected/ongoing",
         icon: CircleDot,
     },
