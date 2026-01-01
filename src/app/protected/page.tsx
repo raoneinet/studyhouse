@@ -1,11 +1,18 @@
+"use client"
 import { ActivityCard } from "@/components/dashboard/activityCard"
 import { CategoryCard } from "@/components/dashboard/categoryCard"
 import { FavoriteCards } from "@/components/dashboard/favoriteCards"
 import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
+import { useGetDashBoardDataQuery } from "../reducer/userReducer"
 
 const MyCards = () => {
+
+    const {data} = useGetDashBoardDataQuery()
+
+    console.log(data)
+
     return (
         <div className="w-full">
             <Title

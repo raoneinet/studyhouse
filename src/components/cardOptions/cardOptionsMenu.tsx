@@ -8,16 +8,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { MoreHorizontal, MoreHorizontalIcon } from "lucide-react"
-import { useDeleteCardMutation } from "@/app/reducer/userReducer"
+import { useDeleteSubjectMutation } from "@/app/reducer/userReducer"
 import { SidebarMenuAction } from "../ui/sidebar"
 
 export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
 
-    const [deleteCard] = useDeleteCardMutation()
+    const [deleteSubject] = useDeleteSubjectMutation()
 
     const handleDeleteSubject = async (id: number) => {
         try {
-            await deleteCard(id).unwrap()
+            await deleteSubject(id).unwrap()
             console.log("APAGOU O ID: ", id)
         } catch (error: any) {
             console.log("Erro ao eliminar assunto. ", error)

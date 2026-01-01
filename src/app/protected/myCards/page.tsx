@@ -4,13 +4,13 @@ import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 
 const MyCards = () => {
 
-    const { data = [] } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllSubjectsQuery()
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
 
     const [triggerGetSubjectById, {data: selectedCard, isFetching}] = useLazyGetSubjectByIdQuery()

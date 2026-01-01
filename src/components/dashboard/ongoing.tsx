@@ -1,12 +1,13 @@
 "use client"
 import { CircleDot } from "lucide-react"
 import { MiniCards } from "./miniCards"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
 import { useRouter } from "next/navigation"
+import { Subject } from "@/types/subject"
 
 export const Ongoing = () => {
 
-    const { data } = useGetAllCardsQuery()
+    const { data } = useGetDashBoardDataQuery()
     const router = useRouter()
 
     const goToOngoings = ()=> router.push("/protected/ongoing")
@@ -28,7 +29,7 @@ export const Ongoing = () => {
                 </button>
             </div>
             <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
-                {data?.map((ongoing) => (
+                {data?.continueStudying.map((ongoing: Subject) => (
                     ongoing.status === "ongoing" && (
                         <MiniCards key={ongoing.id}
                             card={ongoing} />

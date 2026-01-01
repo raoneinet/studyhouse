@@ -1,11 +1,19 @@
 "use client"
 import { TrendingUp } from "lucide-react"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+
+type RecentAct = {
+    id: number
+    title: string
+    category: string
+    description: string
+    status: string
+    created_at: string
+}
 
 export const ActivityCard = () => {
 
-    const { data = [] } = useGetAllCardsQuery()
-
+    const { data } = useGetDashBoardDataQuery()
 
     return (
         <div className="flex flex-col flex-1 p-5 gap-4 bg-white rounded-lg border">
@@ -17,7 +25,7 @@ export const ActivityCard = () => {
                     Atividade Recente
                 </h1>
             </div>
-            {data.slice(0, 4).map(item => (
+            {data?.recentActivity.map((item: RecentAct) => (
                 <div key={item.id} className="flex justify-between border-b last:border-none pb-2">
                     <div className="">
                         <div className="flex gap-1 font-bold text-sm text-slate-600">
