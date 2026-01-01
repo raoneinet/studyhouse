@@ -26,6 +26,9 @@ export const userApi = createApi({
                 body: data
             })
         }),
+        getDashBoardData: builder.query<any, void>({
+            query: ()=> ({url: "get_dashboard_data.php"})
+        }),
         createSubject: builder.mutation({
             query: (data) => ({
                 url: "create_subject.php",
@@ -79,6 +82,7 @@ export const userApi = createApi({
 export const {
     useLoginUserMutation,
     useRegisterUserMutation,
+    useGetDashBoardDataQuery,
     useCreateSubjectMutation,
     useGetAllSubjectsQuery,
     useDeleteSubjectMutation,
