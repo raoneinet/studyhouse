@@ -4,26 +4,36 @@ import { Header } from "@/components/header/header"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import LandingPage from "@/components/lp/landingpage"
+import { Spinner } from "@/components/loading/spinner"
 
 const Page = () => {
-    const { user } = useAuth()
+    const { user, loading, setLoading } = useAuth()
     const router = useRouter()
 
     useEffect(() => {
-        if (user) {
+        if (user && !loading) {
             router.push("/protected")
+        }
+
+        if (document.readyState === "loading") {
+            setLoading(true)
+        } else if (document.readyState === "complete") {
+            setLoading(false)
         }
     }, [user, router])
 
     return (
-        <div className="min-h-screen">
-            <Header />
-            <main className="min-h-screen flex items-center justify-center">
-                <h1 className="text-3xl font-bold">
-                    <LandingPage/>
-                </h1>
-            </main>
-        </div>
+        <>
+            {loading && <Spinner />}
+            {!loading && !user &&
+                <div className="min-h-screen">
+                    <Header />
+                    <main className="min-h-screen flex items-center justify-center">
+                        <LandingPage />
+                    </main>
+                </div>
+            }
+        </>
     )
 }
 

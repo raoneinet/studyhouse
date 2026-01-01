@@ -13,17 +13,22 @@ type authContextType = {
     user: User | null
     login: (userData: User) => void
     logout: () => void
+    loading: boolean
+    setLoading: (arg: boolean)=>void
 }
 
 const UserContext = createContext<authContextType>({
     user: null,
     login: () => { },
-    logout: () => { }
+    logout: () => { },
+    loading: false,
+    setLoading: ()=>{}
 })
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [user, setUser] = useState<User | null>(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const checkSession = async () => {
@@ -71,7 +76,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, login, logout, loading, setLoading }}>
             {children}
         </UserContext.Provider>
     )
