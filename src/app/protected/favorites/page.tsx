@@ -5,12 +5,24 @@ import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 
 const MyCards = () => {
 
     const { data = [] } = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
+
+    const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
+
+    const handleSelectCard = async (id:number)=> {
+        try{
+            const result = await triggerGetSubjectById(id).unwrap()
+            setSelectCard(result)
+        }catch(error: any){
+            console.log("Erro ao buscar item favorito por ID. ", error)
+        }
+    }
 
     return (
         <div className="md:max-w-full">
@@ -24,7 +36,7 @@ const MyCards = () => {
                     <SearchBar />
                     {data.map((item: Subject) => 
                         (item.is_favorite === 1) && (
-                        <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
+                        <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                     ))}
                 </div>
                 <div className="hidden lg:block flex-1 min-w-0">

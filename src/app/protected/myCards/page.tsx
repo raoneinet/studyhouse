@@ -24,7 +24,6 @@ const MyCards = () => {
         }
     }
 
-
     return (
         <div className="md:max-w-full">
             <Title

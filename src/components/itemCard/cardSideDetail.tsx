@@ -3,7 +3,7 @@ import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
-import { ExternalLink, CircleDot } from "lucide-react"
+import { ExternalLink, CircleDot, Star } from "lucide-react"
 
 export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
 
@@ -13,11 +13,16 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
     return (
         <div
             key={selectedCard?.id}
-            className="max-w-full flex flex-col gap-5"
+            className="max-w-full flex flex-col gap-5 px-2"
         >
             <div>
-                <h2 className="font-bold text-slate-700 text-2xl capitalize">
-                    {selectedCard?.title}
+                <h2 className="font-bold text-slate-700 text-2xl capitalize flex justify-between items-center">
+                    <span>{selectedCard?.title}</span>
+                    <Star className={`w-6 h-6 cursor-pointer
+                            ${(selectedCard?.is_favorite === 1)
+                            ? "text-yellow-500 fill-yellow-500"
+                            : "text-gray-400 fill-transparent"}
+                    `} />
                 </h2>
             </div>
             <div className="flex flex-col gap-2">
