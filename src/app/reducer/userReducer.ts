@@ -64,6 +64,14 @@ export const userApi = createApi({
                 body: { id, isFavorite }
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
+        }),
+        getSubjectById: builder.query<Subject, number>({
+            query: (id: number) => ({
+                url: `get_subject.php?id=${id}`
+            }),
+            providesTags: (result, error, id) => [
+                { type: "Subjects", id}
+            ]
         })
     })
 })
@@ -74,5 +82,6 @@ export const {
     useCreateSubjectMutation,
     useGetAllCardsQuery,
     useDeleteCardMutation,
-    useToggleFavoriteMutation
+    useToggleFavoriteMutation,
+    useLazyGetSubjectByIdQuery
 } = userApi
