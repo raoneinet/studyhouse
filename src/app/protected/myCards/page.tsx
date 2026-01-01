@@ -5,12 +5,24 @@ import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 
 const MyCards = () => {
 
     const { data = [] } = useGetAllCardsQuery()
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
+
+    const [triggerGetSubjectById, {data: selectedCard, isFetching}] = useLazyGetSubjectByIdQuery()
+
+    const handleSelectCard = async (id: number)=>{
+        try{
+            const result = await triggerGetSubjectById(id).unwrap()
+            setSelectCard(result)
+        }catch(error){
+            console.log("Erro ao buscar por assunto por ID: ", error)
+        }
+    }
 
 
     return (
@@ -24,7 +36,7 @@ const MyCards = () => {
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
                     {data.map((item: Subject) => (
-                        <ItemCard key={item.id} card={item} handleSelectCard={setSelectCard} />
+                        <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                     ))}
                 </div>
                 <div className="hidden lg:block flex-1 min-w-0">

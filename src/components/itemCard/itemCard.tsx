@@ -10,7 +10,7 @@ import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 type Props = {
     card: Subject
-    handleSelectCard: (card: Subject) => void
+    handleSelectCard: (id: number) => void
 }
 
 export const ItemCard = ({ card, handleSelectCard }: Props) => {
@@ -20,7 +20,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
 
     return (
         <div className="p-4 bg-white rounded-lg border">
-            <div onClick={() => handleSelectCard(card)}>
+            <div onClick={() => handleSelectCard(card.id)}>
                 <div className="flex justify-between items-center ">
                     <div className="flex gap-3">
                         <span 
