@@ -1,10 +1,10 @@
 "use client"
 import { TrendingUp } from "lucide-react"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 
 export const ActivityCard = () => {
 
-    const { data = [] } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllSubjectsQuery()
 
 
     return (

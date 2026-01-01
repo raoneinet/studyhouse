@@ -1,11 +1,11 @@
 "use client"
 import { Target } from "lucide-react"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useMemo } from "react"
 
 export const CategoryCard = () => {
 
-    const { data = [] } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllSubjectsQuery()
 
     const categories = useMemo(() => {
         const countCat: Record<string, number> = {}

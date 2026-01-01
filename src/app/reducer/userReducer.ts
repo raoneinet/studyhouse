@@ -34,7 +34,7 @@ export const userApi = createApi({
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
-        getAllCards: builder.query<Subject[], void>({
+        getAllSubjects: builder.query<Subject[], void>({
             query: () => ({
                 url: "get_subjects.php"
             }),
@@ -49,7 +49,7 @@ export const userApi = createApi({
                     ]
                     : [{ type: "Subjects" as const, id: "LIST" }]
         }),
-        deleteCard: builder.mutation({
+        deleteSubject: builder.mutation({
             query: (id: number) => ({
                 url: "delete_subject.php",
                 method: "POST",
@@ -80,8 +80,8 @@ export const {
     useLoginUserMutation,
     useRegisterUserMutation,
     useCreateSubjectMutation,
-    useGetAllCardsQuery,
-    useDeleteCardMutation,
+    useGetAllSubjectsQuery,
+    useDeleteSubjectMutation,
     useToggleFavoriteMutation,
     useLazyGetSubjectByIdQuery
 } = userApi

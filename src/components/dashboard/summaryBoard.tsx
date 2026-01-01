@@ -1,12 +1,12 @@
 "use client"
 import { AlertCircle, CheckCircle2, CircleDot, Grid } from "lucide-react"
 import { SummaryCards } from "./summaryCards"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useMemo } from "react"
 
 export const SummaryBoard = () => {
 
-    const {data = []} = useGetAllCardsQuery()
+    const {data = []} = useGetAllSubjectsQuery()
 
     const totalItems = useMemo(()=>{
         return data.reduce((acc, card)=>{

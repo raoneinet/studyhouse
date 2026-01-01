@@ -1,12 +1,12 @@
 "use client"
 import { CircleDot } from "lucide-react"
 import { MiniCards } from "./miniCards"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useRouter } from "next/navigation"
 
 export const Ongoing = () => {
 
-    const { data } = useGetAllCardsQuery()
+    const { data } = useGetAllSubjectsQuery()
     const router = useRouter()
 
     const goToOngoings = ()=> router.push("/protected/ongoing")

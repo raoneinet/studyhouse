@@ -2,12 +2,12 @@
 import { Award, Star } from "lucide-react"
 import { MiniCards } from "./miniCards"
 import { ActionButtons } from "./actionButtons"
-import { useGetAllCardsQuery } from "@/app/reducer/userReducer"
+import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useRouter } from "next/navigation"
 
 export const FavoriteCards = () => {
 
-    const { data = [] } = useGetAllCardsQuery()
+    const { data = [] } = useGetAllSubjectsQuery()
     const router = useRouter()
 
     const goToFavorites = ()=> router.push("/protected/favorites")
