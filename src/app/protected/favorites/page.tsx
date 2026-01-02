@@ -28,7 +28,7 @@ const MyCards = () => {
     return (
         <div className="md:max-w-full">
             <Title
-                title="Favoritos"
+                title={`Favoritos (${data?.totalItems})`}
                 subtitle="Todos os meus cards favoritos de estudo"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
