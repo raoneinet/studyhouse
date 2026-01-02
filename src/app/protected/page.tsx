@@ -9,10 +9,6 @@ import { useGetDashBoardDataQuery } from "../reducer/userReducer"
 
 const MyCards = () => {
 
-    const {data} = useGetDashBoardDataQuery()
-
-    console.log(data)
-
     return (
         <div className="w-full">
             <Title

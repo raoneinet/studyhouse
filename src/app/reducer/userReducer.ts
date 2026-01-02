@@ -1,6 +1,14 @@
 import { Subject } from "@/types/subject"
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
+type PaginatedSubjects = {
+    data: Subject[];
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+};
+
 export const userApi = createApi({
     reducerPath: "userapi",
     tagTypes: ["Subjects"],
@@ -27,7 +35,12 @@ export const userApi = createApi({
             })
         }),
         getDashBoardData: builder.query<any, void>({
-            query: ()=> ({url: "get_dashboard_data.php"})
+            query: () => ({
+                url: "get_dashboard_data.php"
+            }),
+            providesTags: (result, error, id) => [
+                { type: "Subjects", id: "LIST" }
+            ]
         }),
         createSubject: builder.mutation({
             query: (data) => ({
@@ -37,14 +50,44 @@ export const userApi = createApi({
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
-        getAllSubjects: builder.query<Subject[], void>({
-            query: () => ({
-                url: "get_subjects.php"
+        getAllSubjects: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+            query: ({ page, limit }) => ({
+                url: `get_subjects.php?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
                     ? [
-                        ...result.map((subject) => ({
+                        ...result?.data.map((subject) => ({
+                            type: "Subjects" as const,
+                            id: subject.id,
+                        })),
+                        { type: "Subjects" as const, id: "LIST" }
+                    ]
+                    : [{ type: "Subjects" as const, id: "LIST" }]
+        }),
+        getAllFavorites: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+            query: ({ page, limit }) => ({
+                url: `get_favorites.php?page=${page}&limit=${limit}`
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result?.data.map((subject) => ({
+                            type: "Subjects" as const,
+                            id: subject.id,
+                        })),
+                        { type: "Subjects" as const, id: "LIST" }
+                    ]
+                    : [{ type: "Subjects" as const, id: "LIST" }]
+        }),
+        getAllOngoings: builder.query<PaginatedSubjects, {page: number, limit: number}>({
+            query: ({page, limit}) => ({
+                url: `get_ongoings.php?page=${page}&limit=${limit}`
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result?.data.map((subject) => ({
                             type: "Subjects" as const,
                             id: subject.id,
                         })),
@@ -73,7 +116,7 @@ export const userApi = createApi({
                 url: `get_subject.php?id=${id}`
             }),
             providesTags: (result, error, id) => [
-                { type: "Subjects", id}
+                { type: "Subjects", id }
             ]
         })
     })
@@ -85,6 +128,8 @@ export const {
     useGetDashBoardDataQuery,
     useCreateSubjectMutation,
     useGetAllSubjectsQuery,
+    useGetAllFavoritesQuery,
+    useGetAllOngoingsQuery,
     useDeleteSubjectMutation,
     useToggleFavoriteMutation,
     useLazyGetSubjectByIdQuery
