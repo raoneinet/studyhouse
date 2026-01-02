@@ -80,6 +80,21 @@ export const userApi = createApi({
                     ]
                     : [{ type: "Subjects" as const, id: "LIST" }]
         }),
+        getAllOngoings: builder.query<PaginatedSubjects, {page: number, limit: number}>({
+            query: ({page, limit}) => ({
+                url: `get_ongoings.php?page=${page}&limit=${limit}`
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result?.data.map((subject) => ({
+                            type: "Subjects" as const,
+                            id: subject.id,
+                        })),
+                        { type: "Subjects" as const, id: "LIST" }
+                    ]
+                    : [{ type: "Subjects" as const, id: "LIST" }]
+        }),
         deleteSubject: builder.mutation({
             query: (id: number) => ({
                 url: "delete_subject.php",
@@ -114,6 +129,7 @@ export const {
     useCreateSubjectMutation,
     useGetAllSubjectsQuery,
     useGetAllFavoritesQuery,
+    useGetAllOngoingsQuery,
     useDeleteSubjectMutation,
     useToggleFavoriteMutation,
     useLazyGetSubjectByIdQuery

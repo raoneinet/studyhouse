@@ -14,7 +14,6 @@ const MyCards = () => {
     const limit = 3
 
     const { data } = useGetAllFavoritesQuery({ page, limit })
-
     const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
 
     const handleSelectCard = async (id: number) => {
