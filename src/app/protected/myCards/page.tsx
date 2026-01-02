@@ -44,7 +44,7 @@ const MyCards = () => {
                             Anterior
                         </button>
                         <p>Página {page} de {data?.totalPages || 1}</p>
-                        <button onClick={() => setPage(prev => prev + 1)} disabled={page >= data?.totalPages}>
+                        <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
                             Próxima
                         </button>
 

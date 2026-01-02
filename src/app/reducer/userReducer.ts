@@ -35,11 +35,11 @@ export const userApi = createApi({
             })
         }),
         getDashBoardData: builder.query<any, void>({
-            query: ()=> ({
+            query: () => ({
                 url: "get_dashboard_data.php"
             }),
             providesTags: (result, error, id) => [
-                { type: "Subjects", id: "LIST"}
+                { type: "Subjects", id: "LIST" }
             ]
         }),
         createSubject: builder.mutation({
@@ -50,9 +50,24 @@ export const userApi = createApi({
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
-        getAllSubjects: builder.query<PaginatedSubjects, {page: number, limit: number}>({
-            query: ({page, limit}) => ({
+        getAllSubjects: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+            query: ({ page, limit }) => ({
                 url: `get_subjects.php?page=${page}&limit=${limit}`
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result?.data.map((subject) => ({
+                            type: "Subjects" as const,
+                            id: subject.id,
+                        })),
+                        { type: "Subjects" as const, id: "LIST" }
+                    ]
+                    : [{ type: "Subjects" as const, id: "LIST" }]
+        }),
+        getAllFavorites: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+            query: ({ page, limit }) => ({
+                url: `get_favorites.php?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
@@ -86,7 +101,7 @@ export const userApi = createApi({
                 url: `get_subject.php?id=${id}`
             }),
             providesTags: (result, error, id) => [
-                { type: "Subjects", id}
+                { type: "Subjects", id }
             ]
         })
     })
@@ -98,6 +113,7 @@ export const {
     useGetDashBoardDataQuery,
     useCreateSubjectMutation,
     useGetAllSubjectsQuery,
+    useGetAllFavoritesQuery,
     useDeleteSubjectMutation,
     useToggleFavoriteMutation,
     useLazyGetSubjectByIdQuery
