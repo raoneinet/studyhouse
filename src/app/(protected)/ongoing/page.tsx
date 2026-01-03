@@ -28,7 +28,7 @@ const MyCards = () => {
     return (
         <div className="md:max-w-full">
             <Title
-                title={`Em Andamento (${data?.totalItems})`}
+                title={`Em Andamento (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards de estudo em andamento"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />

@@ -29,7 +29,7 @@ const MyCards = () => {
     return (
         <div className="md:max-w-full">
             <Title
-                title="Meus Cards"
+                title={`Meus Cards (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards de estudo"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
