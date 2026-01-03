@@ -4,8 +4,8 @@ import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
 import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
-import { useGetAllFavoritesQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
+import { useGetAllOngoingsQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 
 const MyCards = () => {
@@ -13,7 +13,7 @@ const MyCards = () => {
     const [page, setPage] = useState(1)
     const limit = 3
 
-    const { data } = useGetAllFavoritesQuery({ page, limit })
+    const { data } = useGetAllOngoingsQuery({ page, limit })
     const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
 
     const handleSelectCard = async (id: number) => {
@@ -21,22 +21,22 @@ const MyCards = () => {
             const result = await triggerGetSubjectById(id).unwrap()
             setSelectCard(result)
         } catch (error: any) {
-            console.log("Erro ao buscar item favorito por ID. ", error)
+            console.log("Erro ao bucar itens Ongoing por ID. ", error)
         }
     }
 
     return (
         <div className="md:max-w-full">
             <Title
-                title="Favoritos"
-                subtitle="Todos os meus cards favoritos de estudo"
+                title={`Em Andamento (${data?.totalItems})`}
+                subtitle="Todos os meus cards de estudo em andamento"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <SearchBar />
                     {data?.data.map((item: Subject) =>
-                        (item.is_favorite === 1) && (
+                        item.status === "ongoing" && (
                             <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))
                     }

@@ -5,12 +5,11 @@ import { FavoriteCards } from "@/components/dashboard/favoriteCards"
 import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
-import { useGetDashBoardDataQuery } from "../reducer/userReducer"
 
-const MyCards = () => {
+const Dashboard = () => {
 
     return (
-        <div className="w-full">
+        <>
             <Title
                 title="Dashboard"
                 subtitle="Bem-vindo de volta! Aqui está um resumo dos seus estudos"
@@ -29,8 +28,8 @@ const MyCards = () => {
             <div>
                 <FavoriteCards />
             </div>
-        </div>
+        </>
     )
 }
 
-export default MyCards
+export default Dashboard

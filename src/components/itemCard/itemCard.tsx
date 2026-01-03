@@ -1,11 +1,12 @@
 "use client"
 import { Subject } from "@/types/subject"
-import { ExternalLink, AlertCircle } from "lucide-react"
+import { ExternalLink, AlertCircle, Star } from "lucide-react"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { PriorityType } from "@/types/priorityType"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
+import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
 
 
 type Props = {
@@ -15,17 +16,26 @@ type Props = {
 
 export const ItemCard = ({ card, handleSelectCard }: Props) => {
 
+    const [toggleFavorite] = useToggleFavoriteMutation()
+    
     const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
+
+    const handleFavorite = async (card: any) => {
+        await toggleFavorite({
+            id: card.id,
+            isFavorite: !card?.is_favorite
+        }).unwrap()
+    }
 
     return (
         <div className="p-4 bg-white rounded-lg border">
             <div onClick={() => handleSelectCard(card.id)}>
                 <div className="flex justify-between items-center ">
                     <div className="flex gap-3">
-                        <span 
+                        <span
                             className="px-3 py-1 rounded-full text-xs font-medium text-green-600 bg-green-100 bg-opacity-10 w-fittext-green-600">
-                                {card.category}
+                            {card.category}
                         </span>
                         {priority.map((item) => (
                             <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
@@ -35,12 +45,20 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                         ))}
                     </div>
                     <div className="w-fit place-self-end">
-                        <CardOptionsMenu cardId={card.id}/>
+                        <CardOptionsMenu cardId={card.id} />
                     </div>
                 </div>
                 <div className="py-2">
-                    <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="flex gap-3 items-center text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
                         {card.title}
+                        <Star
+                            onClick={() => handleFavorite(card)}
+                            className={`w-4 h-4 cursor-pointer
+                            ${(card?.is_favorite === 1)
+                                    ? "text-yellow-500 fill-yellow-500"
+                                    : "text-gray-400 fill-transparent hover:text-yellow-400"}
+                    `}
+                        />
                     </h3>
                     <p className="text-sm text-slate-600 mb-4 line-clamp-2">
                         {card.description}

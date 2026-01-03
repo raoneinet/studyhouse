@@ -19,27 +19,27 @@ import Link from "next/link"
 const items = [
     {
         title: "Home",
-        url: "/protected",
+        url: "/",
         icon: Home,
     },
     {
         title: "Meus Cards",
-        url: "/protected/myCards",
+        url: "/myCards",
         icon: Inbox,
     },
     {
         title: "Novo Card",
-        url: "/protected/newCard",
+        url: "/newCard",
         icon: Calendar,
     },
     {
         title: "Favoritos",
-        url: "/protected/favorites",
+        url: "/favorites",
         icon: Star,
     },
     {
         title: "EmAndamento",
-        url: "/protected/ongoing",
+        url: "/ongoing",
         icon: CircleDot,
     },
 ]

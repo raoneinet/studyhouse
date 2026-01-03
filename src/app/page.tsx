@@ -12,7 +12,7 @@ const Page = () => {
 
     useEffect(() => {
         if (user && !loading) {
-            router.push("/protected")
+            router.push("/dashboard")
         }
 
         if (document.readyState === "loading") {
