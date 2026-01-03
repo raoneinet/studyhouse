@@ -3,8 +3,8 @@ import "./globals.css"
 import { Providers } from "./providers/provider"
 
 export const metadata: Metadata = {
-    title: "Studyhub",
-    description: "A place to organize your studies",
+    title: "Estudaki",
+    description: "Organizar os estudos de forma fácil",
 };
 
 export default function RootLayout({

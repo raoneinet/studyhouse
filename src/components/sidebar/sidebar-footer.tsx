@@ -22,10 +22,18 @@ import {
     useSidebar
 } from "@/components/ui/sidebar"
 import { User } from "@/types/user"
+import { useRouter } from "next/navigation"
 
 export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: any}) => {
 
     const { isMobile } = useSidebar()
+
+    const router = useRouter()
+
+    const handleLogout = ()=>{
+        router.push("/")
+        logout()
+    }
 
     return (
         <SidebarMenu>
@@ -72,7 +80,7 @@ export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: 
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={logout}>
+                        <DropdownMenuItem onClick={handleLogout}>
                             <LogOut />
                             Sair
                         </DropdownMenuItem>
