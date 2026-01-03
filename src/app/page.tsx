@@ -14,13 +14,7 @@ const Page = () => {
         if (user && !loading) {
             router.push("/dashboard")
         }
-
-        if (document.readyState === "loading") {
-            setLoading(true)
-        } else if (document.readyState === "complete") {
-            setLoading(false)
-        }
-    }, [user, router])
+    }, [user, loading, router])
 
     return (
         <>
