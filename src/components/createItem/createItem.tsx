@@ -71,14 +71,10 @@ export const CreateItem = () => {
             const createItem = await createSubject({ ...values, created_at }).unwrap()
 
             toast("Criado assunto de estudo", {
-                description: "Sunday, December 03, 2023 at 9:00 AM",
-                action: {
-                    label: "Undo",
-                    onClick: () => console.log("Undo"),
-                },
+                description: values.title
             })
 
-            router.push("/protected/myCards")
+            router.push("/myCards")
             console.log(values)
         } catch (error: any) {
             console.log("Erro ao criar assunto. ", error)
