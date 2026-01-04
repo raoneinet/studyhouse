@@ -4,10 +4,12 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 
-export const UserAvatar = () => {
+export const UserAvatar = (avatar: any) => {
+
+    console.log(avatar)
     return (
         <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="profile picture"/>
+            <AvatarImage src={avatar?.avatar} alt="profile picture"/>
             <AvatarFallback>SH</AvatarFallback>
         </Avatar>
     )

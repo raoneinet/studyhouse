@@ -7,12 +7,16 @@ import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
+import { Result } from "@/components/searchResults/result"
+import { useRouter } from "next/navigation"
 
 const MyCards = () => {
 
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
     const limit = 3
+
+    const router = useRouter()
 
     const { data } = useGetAllSubjectsQuery({ page, limit })
     const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetSubjectByIdQuery()
@@ -39,16 +43,24 @@ const MyCards = () => {
                     {data?.data.map((item: Subject) => (
                         <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                     ))}
-                    <div className="flex gap-5 items-center justify-center">
-                        <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
-                            Anterior
-                        </button>
-                        <p>Página {page} de {data?.totalPages || 1}</p>
-                        <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
-                            Próxima
-                        </button>
+                    {data?.totalItems === 0 && (
+                        <>
+                            <Result />
 
-                    </div>
+                        </>
+
+                    )}
+                    {data?.totalItems !== 0 &&
+                        <div className="flex gap-5 items-center justify-center">
+                            <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
+                                Anterior
+                            </button>
+                            <p>Página {page} de {data?.totalPages || 1}</p>
+                            <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
+                                Próxima
+                            </button>
+                        </div>
+                    }
                 </div>
                 <div className="hidden lg:block flex-1 min-w-0">
                     <div className="sticky top-4 bg-white rounded-lg py-3 border">

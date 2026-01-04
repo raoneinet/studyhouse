@@ -24,15 +24,19 @@ import {
 import { User } from "@/types/user"
 import { useRouter } from "next/navigation"
 
-export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: any}) => {
+export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout: any }) => {
+
+    const API_URL = process.env.NEXT_PUBLIC_API_URL
+
+    const avatarUrl = user?.avatar ? `${API_URL}${user.avatar}` : "https://github.com/shadcn.png"
 
     const { isMobile } = useSidebar()
 
     const router = useRouter()
 
-    const handleLogout = ()=>{
-        router.push("/")
+    const handleLogout = () => {
         logout()
+        router.push("/")
     }
 
     return (
@@ -44,7 +48,7 @@ export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: 
                             size="lg"
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
-                            <UserAvatar />
+                            <UserAvatar avatar={avatarUrl} />
                             <div className="grid flex-1 text-left text-sm leading-tight">
                                 <span className="truncate font-medium">{user?.firstname} {user?.lastname}</span>
                                 <span className="truncate text-xs">{user?.username}</span>
@@ -60,7 +64,7 @@ export const MenuSidebarFooter = ({ user, logout }: {user: User | null, logout: 
                     >
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <UserAvatar />
+                                <UserAvatar avatar={API_URL+user?.avatar} />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-bold">{user?.firstname} {user?.lastname}</span>
                                     <span className="truncate text-xs opacity-70">{user?.username}</span>

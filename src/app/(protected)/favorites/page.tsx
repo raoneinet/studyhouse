@@ -7,6 +7,7 @@ import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
 import { useGetAllFavoritesQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
+import { Result } from "@/components/searchResults/result"
 
 const MyCards = () => {
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
@@ -40,16 +41,18 @@ const MyCards = () => {
                             <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))
                     }
-                    <div className="flex gap-5 items-center justify-center">
-                        <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
-                            Anterior
-                        </button>
-                        <p>Página {page} de {data?.totalPages || 1}</p>
-                        <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
-                            Próxima
-                        </button>
-
-                    </div>
+                    {data?.totalItems === 0 && <Result />}
+                    {data?.totalItems !== 0 &&
+                        <div className="flex gap-5 items-center justify-center">
+                            <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
+                                Anterior
+                            </button>
+                            <p>Página {page} de {data?.totalPages || 1}</p>
+                            <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
+                                Próxima
+                            </button>
+                        </div>
+                    }
                 </div>
                 <div className="hidden lg:block flex-1 min-w-0">
                     <div className="sticky top-4 bg-white rounded-lg py-3 border">
