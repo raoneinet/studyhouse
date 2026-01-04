@@ -28,7 +28,7 @@ const UserContext = createContext<authContextType>({
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [user, setUser] = useState<User | null>(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const checkSession = async () => {
@@ -47,6 +47,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
             } catch (error: any) {
                 setUser(null)
                 console.log("Erro ", error)
+            }finally{
+                setLoading(false)
             }
         }
 

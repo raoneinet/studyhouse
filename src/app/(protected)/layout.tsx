@@ -3,10 +3,15 @@ import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
+import { Spinner } from "@/components/loading/spinner"
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 
-    const { user } = useAuth()
+    const { user, loading } = useAuth()
+
+    if (loading) {
+        return <Spinner />
+    }
 
     if (!user) {
         return null

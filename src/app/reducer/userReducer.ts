@@ -27,11 +27,11 @@ export const userApi = createApi({
                 body: { email, password }
             })
         }),
-        registerUser: builder.mutation({
-            query: (data) => ({
+        registerUser: builder.mutation<any, FormData>({
+            query: (formData) => ({
                 url: "register.php",
                 method: "POST",
-                body: data
+                body: formData
             })
         }),
         getDashBoardData: builder.query<any, void>({
