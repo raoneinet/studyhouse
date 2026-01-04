@@ -39,7 +39,6 @@ export const LoginForm = () => {
         }
     })
 
-
     const handleLogin = async (values: z.infer<typeof formSchema>) => {
         const email: string = values.email
         const password: string = values.password
@@ -102,9 +101,6 @@ export const LoginForm = () => {
                 />
                 <Button variant="outline" type="submit">Entrar</Button>
             </form>
-            <FormMessage>
-                <p className="text-sm text-red-500">{loginError}</p>
-            </FormMessage>
         </Form>
     )
 }

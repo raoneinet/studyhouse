@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/sidebar"
 import { User } from "@/types/user"
 import { useRouter } from "next/navigation"
+import { userApi } from "@/app/reducer/userReducer"
+import { useDispatch } from "react-redux"
 
 export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout: any }) => {
 
@@ -32,10 +34,17 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
 
     const { isMobile } = useSidebar()
 
+    const dispatch = useDispatch()
+
     const router = useRouter()
+
+    const goToAccount = ()=>{
+        router.push("/account")
+    }
 
     const handleLogout = () => {
         logout()
+        dispatch(userApi.util.resetApiState())
         router.push("/")
     }
 
@@ -74,7 +83,7 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem onClick={goToAccount}>
                                 <BadgeCheck />
                                 Conta
                             </DropdownMenuItem>
