@@ -4,11 +4,11 @@ import { Button } from "../ui/button"
 
 type Props = {
     user: any,
-    editing: boolean,
+    editPersonal: boolean,
     setIsEditing: (arg: boolean) => void
 }
 
-export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
+export const PersonalInfo = ({ user, editPersonal, setIsEditing }: Props) => {
 
     const handleCancelEdit = ()=>{
         setIsEditing(false)
@@ -22,7 +22,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
         <div className="w-full flex flex-col gap-3">
             <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Nome Completo</label>
-                {editing ?
+                {editPersonal ?
                     <Input
                         type="text"
                         value={`${user.firstname} ${user.lastname}`}
@@ -38,7 +38,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
             </div>
             <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
-                {editing ?
+                {editPersonal ?
                     <Input
                         type="email"
                         value={user.email}
@@ -54,7 +54,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
             </div>
             <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Data de nascimento</label>
-                {editing ?
+                {editPersonal ?
                     <Input
                         type="date"
                         value={user.date_of_birth}
@@ -70,7 +70,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
             </div>
             <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Profissão</label>
-                {editing ?
+                {editPersonal ?
                     <Input
                         type="text"
                         value={user.profession}
@@ -86,7 +86,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
             </div>
             <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">País</label>
-                {editing ?
+                {editPersonal ?
                     <Input
                         type="text"
                         value={user.country}
@@ -100,7 +100,7 @@ export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
                     </p>
                 }
             </div>
-            {editing &&
+            {editPersonal &&
                 <div className="flex gap-3 justify-end">
                     < Button
                         variant="link"
