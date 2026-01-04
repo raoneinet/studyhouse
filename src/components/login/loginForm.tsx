@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -18,13 +19,15 @@ import { useRouter } from "next/navigation"
 import { useLoginUserMutation } from "@/app/reducer/userReducer"
 
 const formSchema = z.object({
-    email: z.email({ pattern: z.regexes.email }),
-    password: z.string().min(6)
+    email: z.email("E-mail inválido"),
+    password: z.string("Senha inválida").min(6, "Senha deve conter no mínimo 6 caracteres")
 })
 
-export const LoginForm = () => {
 
-    const [loginUser] = useLoginUserMutation()
+export const LoginForm = () => {
+    const [loginError, setLoginError] = useState()
+
+    const [loginUser, {error}] = useLoginUserMutation()
     const router = useRouter()
     const { login } = useAuth()
 
@@ -36,10 +39,11 @@ export const LoginForm = () => {
         }
     })
 
+
     const handleLogin = async (values: z.infer<typeof formSchema>) => {
         const email: string = values.email
         const password: string = values.password
-        
+
         try {
             const userFetch = await loginUser({ email, password }).unwrap()
 
@@ -50,6 +54,11 @@ export const LoginForm = () => {
                 localStorage.setItem("user", JSON.stringify(userFetch.user))
                 router.push("/")
             }
+
+            if (userFetch.status === "error") {
+                setLoginError(userFetch.message)
+            }
+            console.log(userFetch)
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
@@ -93,6 +102,9 @@ export const LoginForm = () => {
                 />
                 <Button variant="outline" type="submit">Entrar</Button>
             </form>
+            <FormMessage>
+                <div className="text-sm text-red-500">{loginError}</div>
+            </FormMessage>
         </Form>
     )
 }

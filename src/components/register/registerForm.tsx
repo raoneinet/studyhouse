@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -14,13 +13,15 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRegisterUserMutation } from "@/app/reducer/userReducer"
+import { LoginForm } from "../login/loginForm"
 
 const formSchema = z.object({
-    firstname: z.string(),
-    lastname: z.string(),
+    firstname: z.string("Nome deve conter ao menos 2 letras"),
+    lastname: z.string("Sobrenome deve conter ao menos 2 letras"),
+    avatar: z.instanceof(File).optional(),
     date_of_birth: z.iso.date(),
     email: z.email(),
-    password: z.string()
+    password: z.string().min(2, "Senha deve conter no mínimo 6 caracteres")
 })
 
 export const RegisterForm = () => {
@@ -32,6 +33,7 @@ export const RegisterForm = () => {
         defaultValues: {
             firstname: "",
             lastname: "",
+            avatar: undefined,
             date_of_birth: "2025-01-01",
             email: "",
             password: "",
@@ -43,14 +45,28 @@ export const RegisterForm = () => {
         const email = values.email.split("@")
         const dob = values.date_of_birth.split("-")
         const randNum = Math.floor(Math.random() * 10)
-        const username = `@${email[0]+dob[0]+"_"+randNum}`
+        const username = `@${email[0] + dob[0] + "_" + randNum}`
+
+        const formData = new FormData()
+        formData.append("firstname", values.firstname);
+        formData.append("lastname", values.lastname ?? "");
+        formData.append("username", username);
+        formData.append("date_of_birth", values.date_of_birth);
+        formData.append("email", values.email);
+        formData.append("password", values.password);
+
+        if (values.avatar) {
+            formData.append("avatar", values.avatar);
+        }
 
         try {
+            const createUser = await registerUser(formData).unwrap()
 
-            const createUser = await registerUser({...values, username}).unwrap()
+            if(createUser.status === "success"){
+                return <LoginForm/>
+            }
 
             return createUser
-
         } catch (error: any) {
             console.log("Erro ao registrar usuário: ", error)
         }
@@ -82,6 +98,26 @@ export const RegisterForm = () => {
                             <FormLabel>Sobrenome</FormLabel>
                             <FormControl>
                                 <Input placeholder="Sobrenome" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="avatar"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Foto de perfil</FormLabel>
+                            <FormControl>
+                                <Input type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            form.setValue("avatar", file);
+                                        }
+                                    }} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
