@@ -5,8 +5,12 @@ import { FavoriteCards } from "@/components/dashboard/favoriteCards"
 import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
+import { Result } from "@/components/searchResults/result"
+import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
 
 const Dashboard = () => {
+
+    const { data } = useGetDashBoardDataQuery()
 
     return (
         <>
@@ -18,7 +22,12 @@ const Dashboard = () => {
             <div>
                 <SummaryBoard />
             </div>
-            <div>
+            {data?.stats.total === 0 &&
+                <div className="mt-5">
+                    <Result />
+                </div>
+            }
+            <div className="mt-5">
                 <Ongoing />
             </div>
             <div className="flex flex-col md:flex-row gap-5 mt-5">
