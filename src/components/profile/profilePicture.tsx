@@ -14,6 +14,8 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
     const API_URL = process.env.NEXT_PUBLIC_API_URL
     const avatarUrl = user?.avatar ? `${API_URL}${user.avatar}` : "https://github.com/shadcn.png"
 
+    console.log(avatarUrl)
+
 
     const handleCancelEdit = () => {
         setEditPicture(false)

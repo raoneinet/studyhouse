@@ -38,7 +38,7 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
 
     const router = useRouter()
 
-    const goToAccount = ()=>{
+    const goToAccount = () => {
         router.push("/account")
     }
 
@@ -73,7 +73,7 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
                     >
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <UserAvatar avatar={API_URL+user?.avatar} />
+                                <UserAvatar avatar={API_URL + user?.avatar} />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-bold">{user?.firstname} {user?.lastname}</span>
                                     <span className="truncate text-xs opacity-70">{user?.username}</span>
@@ -86,10 +86,6 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
                             <DropdownMenuItem onClick={goToAccount}>
                                 <BadgeCheck />
                                 Conta
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Settings />
-                                Configurações
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
