@@ -14,12 +14,15 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRegisterUserMutation } from "@/app/reducer/userReducer"
 import { LoginForm } from "../login/loginForm"
+import { LoginDialog } from "../dialog/loginDialog"
 
 const formSchema = z.object({
     firstname: z.string("Nome deve conter ao menos 2 letras"),
     lastname: z.string("Sobrenome deve conter ao menos 2 letras"),
     avatar: z.instanceof(File).optional(),
     date_of_birth: z.iso.date(),
+    profession: z.string().optional(),
+    country: z.string().optional(),
     email: z.email(),
     password: z.string().min(2, "Senha deve conter no mínimo 6 caracteres")
 })
@@ -35,6 +38,8 @@ export const RegisterForm = () => {
             lastname: "",
             avatar: undefined,
             date_of_birth: "2025-01-01",
+            profession: "",
+            country: "",
             email: "",
             password: "",
         }
@@ -48,30 +53,30 @@ export const RegisterForm = () => {
         const username = `@${email[0] + dob[0] + "_" + randNum}`
 
         const formData = new FormData()
-        formData.append("firstname", values.firstname);
-        formData.append("lastname", values.lastname ?? "");
-        formData.append("username", username);
-        formData.append("date_of_birth", values.date_of_birth);
-        formData.append("email", values.email);
-        formData.append("password", values.password);
+        formData.append("firstname", values.firstname)
+        formData.append("lastname", values.lastname ?? "")
+        formData.append("username", username)
+        formData.append("date_of_birth", values.date_of_birth)
+        formData.append("profession", values.profession ?? "")
+        formData.append("country", values.country ?? "")
+        formData.append("email", values.email)
+        formData.append("password", values.password)
 
         if (values.avatar) {
-            formData.append("avatar", values.avatar);
+            formData.append("avatar", values.avatar)
         }
 
         try {
             const createUser = await registerUser(formData).unwrap()
 
-            if(createUser.status === "success"){
-                return <LoginForm/>
+            if (createUser.status === "success") {
+                console.log("Usuário criado! Faça login")
             }
 
             return createUser
         } catch (error: any) {
             console.log("Erro ao registrar usuário: ", error)
         }
-
-        console.log(values)
     }
 
     return (
@@ -131,6 +136,32 @@ export const RegisterForm = () => {
                             <FormLabel>Data de nascimento</FormLabel>
                             <FormControl>
                                 <Input type="date" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="profession"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Profissão</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Estudante, programador..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>País</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Brasil..." {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
