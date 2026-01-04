@@ -6,11 +6,11 @@ export const ActionButtons = () => {
     const router = useRouter()
 
     const goTocreateNewCard = ()=>{
-        router.push("/protected/newCard")
+        router.push("/newCard")
     }
 
     const goToAllCards = ()=>{
-        router.push("/protected/myCards")
+        router.push("/myCards")
     }
 
     return (
