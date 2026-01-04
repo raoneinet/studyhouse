@@ -103,7 +103,7 @@ export const LoginForm = () => {
                 <Button variant="outline" type="submit">Entrar</Button>
             </form>
             <FormMessage>
-                <div className="text-sm text-red-500">{loginError}</div>
+                <p className="text-sm text-red-500">{loginError}</p>
             </FormMessage>
         </Form>
     )
