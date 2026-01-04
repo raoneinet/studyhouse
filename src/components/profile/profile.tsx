@@ -39,17 +39,14 @@ export const Profile = () => {
                             <p className="text-slate-600">{user?.username}</p>
                         </div>
                     </div>
-                    <Edit onClick={handleEditing} />
+                    <Edit onClick={handleEditing} className="cursor-pointer"/>
                 </div>
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex flex-col items-start gap-5">
                     <div className="flex gap-2">
                         <User className="text-blue-600" size={24} />
                         <h1 className="font-medium">Informações Pessoais</h1>
                     </div>
-                    <PersonalInfo user={user} editing={isEditing} />
-                    {isEditing &&
-                        < Button variant={"outline"} onClick={() => setIsEditing(false)}>Salvar</Button>
-                    }
+                    <PersonalInfo user={user} editing={isEditing} setIsEditing={setIsEditing}/>
                 </div>
             </div>
         </div >

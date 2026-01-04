@@ -1,7 +1,22 @@
 import { User } from "@/types/user"
 import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 
-export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean }) => {
+type Props = {
+    user: any,
+    editing: boolean,
+    setIsEditing: (arg: boolean) => void
+}
+
+export const PersonalInfo = ({ user, editing, setIsEditing }: Props) => {
+
+    const handleCancelEdit = ()=>{
+        setIsEditing(false)
+    }
+
+    const handleSaveEdit = () => {
+        setIsEditing(false)
+    }
 
     return (
         <div className="w-full flex flex-col gap-3">
@@ -11,7 +26,7 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     <Input
                         type="text"
                         value={`${user.firstname} ${user.lastname}`}
-                        onChange={()=>{}}
+                        onChange={() => { }}
                         className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="joao@email.com"
                     />
@@ -27,7 +42,7 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     <Input
                         type="email"
                         value={user.email}
-                        onChange={()=>{}}
+                        onChange={() => { }}
                         className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="joao@email.com"
                     />
@@ -43,7 +58,7 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     <Input
                         type="date"
                         value={user.date_of_birth}
-                        onChange={()=>{}}
+                        onChange={() => { }}
                         className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="joao@email.com"
                     />
@@ -59,7 +74,7 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     <Input
                         type="text"
                         value={user.profession}
-                        onChange={()=>{}}
+                        onChange={() => { }}
                         className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="estudante"
                     />
@@ -75,7 +90,7 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     <Input
                         type="text"
                         value={user.country}
-                        onChange={()=>{}}
+                        onChange={() => { }}
                         className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="estudante"
                     />
@@ -85,6 +100,21 @@ export const PersonalInfo = ({ user, editing }: { user: any, editing: boolean })
                     </p>
                 }
             </div>
+            {editing &&
+                <div className="flex gap-3 justify-end">
+                    < Button
+                        variant="link"
+                        onClick={handleCancelEdit}
+                        className="w-fit cursor-pointer"
+                    >Cancelar</Button>
+
+                    < Button
+                        variant="default"
+                        onClick={handleSaveEdit}
+                        className="w-fit cursor-pointer"
+                    >Salvar</Button>
+                </div>
+            }
         </div>
     )
 }
