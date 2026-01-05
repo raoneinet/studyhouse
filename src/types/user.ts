@@ -6,4 +6,6 @@ export type User = {
     username: string
     date_of_birth: Date
     email: string
+    profession: string
+    country: string
 }
