@@ -11,7 +11,7 @@ type PaginatedSubjects = {
 
 export const userApi = createApi({
     reducerPath: "userapi",
-    tagTypes: ["Subjects"],
+    tagTypes: ["User", "Subjects"],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost/studyhouse_backend/api/",
         credentials: "include",
@@ -118,6 +118,14 @@ export const userApi = createApi({
             providesTags: (result, error, id) => [
                 { type: "Subjects", id }
             ]
+        }),
+        updateUserPersonalInfo: builder.mutation({
+            query: (data)=>({
+                url: "update_user_personalInfo.php",
+                method: "POST",
+                body: data
+            }),
+            invalidatesTags: ["User"]
         })
     })
 })
@@ -132,5 +140,6 @@ export const {
     useGetAllOngoingsQuery,
     useDeleteSubjectMutation,
     useToggleFavoriteMutation,
-    useLazyGetSubjectByIdQuery
+    useLazyGetSubjectByIdQuery,
+    useUpdateUserPersonalInfoMutation
 } = userApi

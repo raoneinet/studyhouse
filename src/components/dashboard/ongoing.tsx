@@ -10,7 +10,7 @@ export const Ongoing = () => {
     const { data } = useGetDashBoardDataQuery()
     const router = useRouter()
 
-    const goToOngoings = ()=> router.push("/protected/ongoing")
+    const goToOngoings = ()=> router.push("/ongoing")
 
     return (
         <div className="p-5 rounded-lg bg-white border">

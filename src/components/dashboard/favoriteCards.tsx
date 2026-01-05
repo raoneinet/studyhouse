@@ -11,7 +11,7 @@ export const FavoriteCards = () => {
     const { data } = useGetDashBoardDataQuery()
     const router = useRouter()
 
-    const goToFavorites = ()=> router.push("/protected/favorites")
+    const goToFavorites = ()=> router.push("/favorites")
 
     return (
         <div className="flex-1 flex flex-col bg-white border p-5 rounded-lg mt-5">

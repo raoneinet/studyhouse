@@ -11,6 +11,7 @@ import {
 
 type authContextType = {
     user: User | null
+    setUser: any
     login: (userData: User) => void
     logout: () => void
     loading: boolean
@@ -19,6 +20,7 @@ type authContextType = {
 
 const UserContext = createContext<authContextType>({
     user: null,
+    setUser: ()=>{},
     login: () => { },
     logout: () => { },
     loading: false,
@@ -78,7 +80,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, loading, setLoading }}>
+        <UserContext.Provider value={{ user, setUser, login, logout, loading, setLoading }}>
             {children}
         </UserContext.Provider>
     )
