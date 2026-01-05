@@ -1,9 +1,8 @@
-import { User } from "@/types/user"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useUpdateUserPersonalInfoMutation } from "@/app/reducer/userReducer"
-import { useAuth } from "@/context/userContext"
+import { toast } from "sonner"
 
 type Props = {
     user: any,
@@ -22,8 +21,6 @@ type UpdatePersonalInfo = {
 
 export const PersonalInfo = ({ user, editPersonal, setIsEditing }: Props) => {
 
-    const {setUser} = useAuth()
-
     const [updateUserPersonalInfo] = useUpdateUserPersonalInfoMutation()
 
     const { register, handleSubmit, formState: { errors } } = useForm<UpdatePersonalInfo>()
@@ -33,9 +30,15 @@ export const PersonalInfo = ({ user, editPersonal, setIsEditing }: Props) => {
     }
 
     const handleSaveEdit: SubmitHandler<UpdatePersonalInfo> = async (data) => {
-        console.log("Valores para atualizar: ", data)
-        await updateUserPersonalInfo({...user, ...data}).unwrap()
-        setIsEditing(false)
+        try {
+            await updateUserPersonalInfo({ ...user, ...data }).unwrap()
+            setIsEditing(false)
+            toast("Usuário atualizado com sucesso")
+        }catch(error: any){
+            console.log("Erro ao atualizar usuário", error)
+            toast("Erro ao atualizar usuário")
+            setIsEditing(false)
+        }
     }
 
     return (
