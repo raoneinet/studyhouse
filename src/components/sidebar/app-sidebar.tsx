@@ -47,7 +47,7 @@ const items = [
 
 export function AppSidebar() {
 
-    const { data: user, isLoading} = useGetMeQuery()
+    const { data: user, isLoading } = useGetMeQuery()
 
     return (
         <Sidebar variant="floating" collapsible="icon" >

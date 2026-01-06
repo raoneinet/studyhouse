@@ -12,7 +12,7 @@ type PaginatedSubjects = {
 export const userApi = createApi({
     reducerPath: "userapi",
     refetchOnMountOrArgChange: false,
-    tagTypes: ["Auth","User", "Subjects"],
+    tagTypes: ["Auth", "Subjects"],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost/studyhouse_backend/api/",
         credentials: "include",
@@ -30,14 +30,14 @@ export const userApi = createApi({
             invalidatesTags: ["Auth"]
         }),
         getMe: builder.query<any, void>({
-            query: ()=>({
+            query: () => ({
                 url: "me.php"
             }),
             keepUnusedDataFor: 60,
             providesTags: ["Auth"]
         }),
         logout: builder.mutation<any, void>({
-            query: ()=>({
+            query: () => ({
                 url: "logout.php",
                 method: "POST"
             }),
@@ -96,8 +96,8 @@ export const userApi = createApi({
                     ]
                     : [{ type: "Subjects" as const, id: "LIST" }]
         }),
-        getAllOngoings: builder.query<PaginatedSubjects, {page: number, limit: number}>({
-            query: ({page, limit}) => ({
+        getAllOngoings: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+            query: ({ page, limit }) => ({
                 url: `get_ongoings.php?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
@@ -136,12 +136,12 @@ export const userApi = createApi({
             ]
         }),
         updateUserPersonalInfo: builder.mutation({
-            query: (data)=>({
+            query: (data) => ({
                 url: "update_user_personalInfo.php",
                 method: "POST",
                 body: data
             }),
-            invalidatesTags: ["User"]
+            invalidatesTags: ["Auth"]
         })
     })
 })

@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -25,8 +24,6 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
 
-    const [loginError, setLoginError] = useState()
-
     const [loginUser, {error}] = useLoginUserMutation()
     const router = useRouter()
 
@@ -48,11 +45,6 @@ export const LoginForm = () => {
             if (userFetch.status === "success") {
                 router.push("/")
             }
-
-            if (userFetch.status === "error") {
-                setLoginError(userFetch.message)
-            }
-            console.log(userFetch)
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
