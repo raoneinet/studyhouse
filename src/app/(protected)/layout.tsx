@@ -1,15 +1,15 @@
 "use client"
-import { useAuth } from "@/context/userContext"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 import { Spinner } from "@/components/loading/spinner"
+import { useGetMeQuery } from "../reducer/userReducer"
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 
-    const { user, loading } = useAuth()
+    const {data: user, isLoading, isError} = useGetMeQuery()
 
-    if (loading) {
+    if (isLoading) {
         return <Spinner />
     }
 

@@ -1,20 +1,19 @@
 "use client"
 import { useState } from "react"
-import { useAuth } from "@/context/userContext"
 import { User } from "lucide-react"
 import { PersonalInfo } from "./personalInfo"
 import { Edit, LockIcon } from "lucide-react"
-import { Input } from "../ui/input"
 import { Passwords } from "./passwords"
 import { ProfilePicture } from "./profilePicture"
 import { DeleteAccount } from "./deleteAccount"
+import { useGetMeQuery } from "@/app/reducer/userReducer"
 
 export const Profile = () => {
 
     const [editPicture, setEditPicture] = useState(false)
     const [editPersonal, setEditPersonal] = useState(false)
     const [editPassword, setEditPassword] = useState(false)
-    const { user } = useAuth()
+    const { data:user, isLoading } = useGetMeQuery()
 
     const handleEditing = () => setEditPersonal(true)
 
@@ -24,8 +23,8 @@ export const Profile = () => {
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex items-start justify-between">
                     <ProfilePicture editPicture={editPicture} setEditPicture={setEditPicture} />
                     <div className="">
-                        <h2 className="font-medium text-2xl">{user?.firstname} {user?.lastname}</h2>
-                        <p className="text-slate-600">{user?.username}</p>
+                        <h2 className="font-medium text-2xl">{user?.firstname} {user.user.lastname}</h2>
+                        <p className="text-slate-600">{user.user.username}</p>
                     </div>
                 </div>
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex flex-col items-start gap-5">
@@ -38,7 +37,7 @@ export const Profile = () => {
                             <Edit onClick={handleEditing} className="cursor-pointer w-4" />
                         }
                     </div>
-                    <PersonalInfo user={user} editPersonal={editPersonal} setIsEditing={setEditPersonal} />
+                    <PersonalInfo user={user.user} editPersonal={editPersonal} setIsEditing={setEditPersonal} />
                 </div>
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex flex-col items-start gap-5">
                     <div className="flex justify-between w-full">

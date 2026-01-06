@@ -1,12 +1,12 @@
 import { LoginDialog } from "@/components/dialog/loginDialog"
-import { useAuth } from "@/context/userContext"
 import { LoginForm } from "@/components/login/loginForm"
 import { RegisterForm } from "@/components/register/registerForm"
 import { BookOpen } from 'lucide-react';
+import { useGetMeQuery } from "@/app/reducer/userReducer";
 
 export const Header = () => {
 
-    const { user } = useAuth()
+    const {data: user, isLoading} = useGetMeQuery()
 
     return (
         <header className="py-5 px-10 ">

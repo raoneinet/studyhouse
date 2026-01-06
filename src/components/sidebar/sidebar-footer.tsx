@@ -3,7 +3,6 @@ import {
     BadgeCheck,
     ChevronsUpDown,
     LogOut,
-    Settings
 } from "lucide-react"
 import { UserAvatar } from "../header/userAvatar"
 import {
@@ -21,13 +20,19 @@ import {
     SidebarMenuItem,
     useSidebar
 } from "@/components/ui/sidebar"
-import { User } from "@/types/user"
 import { useRouter } from "next/navigation"
 import { userApi } from "@/app/reducer/userReducer"
 import { useDispatch } from "react-redux"
+import { useGetMeQuery } from "@/app/reducer/userReducer"
+import { useLogoutMutation } from "@/app/reducer/userReducer"
 
-export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout: any }) => {
 
+export const MenuSidebarFooter = () => {
+
+    const {data: user, isLoading, isError} = useGetMeQuery()
+    const [logout] = useLogoutMutation()
+
+    console.log("user: ", user)
     const API_URL = process.env.NEXT_PUBLIC_API_URL
 
     const avatarUrl = user?.avatar ? `${API_URL}${user.avatar}` : "https://github.com/shadcn.png"
@@ -42,8 +47,8 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
         router.push("/account")
     }
 
-    const handleLogout = () => {
-        logout()
+    const handleLogout = async () => {
+        await logout().unwrap()
         dispatch(userApi.util.resetApiState())
         router.push("/")
     }
@@ -59,8 +64,8 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
                         >
                             <UserAvatar avatar={avatarUrl} />
                             <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-medium">{user?.firstname} {user?.lastname}</span>
-                                <span className="truncate text-xs">{user?.username}</span>
+                                <span className="truncate font-medium">{user.user.firstname} {user.user.lastname}</span>
+                                <span className="truncate text-xs">{user.user.username}</span>
                             </div>
                             <ChevronsUpDown className="ml-auto size-4" />
                         </SidebarMenuButton>
@@ -73,11 +78,11 @@ export const MenuSidebarFooter = ({ user, logout }: { user: User | null, logout:
                     >
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <UserAvatar avatar={API_URL + user?.avatar} />
+                                <UserAvatar avatar={API_URL + user.user.avatar} />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
-                                    <span className="truncate font-bold">{user?.firstname} {user?.lastname}</span>
-                                    <span className="truncate text-xs opacity-70">{user?.username}</span>
-                                    <span className="truncate text-xs opacity-70">{user?.email}</span>
+                                    <span className="truncate font-bold">{user.user.firstname} {user.user.lastname}</span>
+                                    <span className="truncate text-xs opacity-70">{user.user.username}</span>
+                                    <span className="truncate text-xs opacity-70">{user.user.email}</span>
                                 </div>
                             </div>
                         </DropdownMenuLabel>

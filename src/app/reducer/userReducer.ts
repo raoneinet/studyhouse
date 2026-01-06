@@ -11,7 +11,8 @@ type PaginatedSubjects = {
 
 export const userApi = createApi({
     reducerPath: "userapi",
-    tagTypes: ["User", "Subjects"],
+    refetchOnMountOrArgChange: false,
+    tagTypes: ["Auth","User", "Subjects"],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost/studyhouse_backend/api/",
         credentials: "include",
@@ -25,7 +26,22 @@ export const userApi = createApi({
                 url: "login.php",
                 method: "POST",
                 body: { email, password }
-            })
+            }),
+            invalidatesTags: ["Auth"]
+        }),
+        getMe: builder.query<any, void>({
+            query: ()=>({
+                url: "me.php"
+            }),
+            keepUnusedDataFor: 60,
+            providesTags: ["Auth"]
+        }),
+        logout: builder.mutation<any, void>({
+            query: ()=>({
+                url: "logout.php",
+                method: "POST"
+            }),
+            invalidatesTags: ["Auth"]
         }),
         registerUser: builder.mutation<any, FormData>({
             query: (formData) => ({
@@ -132,6 +148,8 @@ export const userApi = createApi({
 
 export const {
     useLoginUserMutation,
+    useGetMeQuery,
+    useLogoutMutation,
     useRegisterUserMutation,
     useGetDashBoardDataQuery,
     useCreateSubjectMutation,
