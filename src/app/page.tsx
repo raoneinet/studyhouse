@@ -1,25 +1,26 @@
 "use client"
-import { useAuth } from "@/context/userContext"
 import { Header } from "@/components/header/header"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import LandingPage from "@/components/lp/landingpage"
 import { Spinner } from "@/components/loading/spinner"
+import { useGetMeQuery } from "./reducer/userReducer"
 
 const Page = () => {
-    const { user, loading, setLoading } = useAuth()
+    const { data: user, isLoading, isError } = useGetMeQuery()
     const router = useRouter()
 
+    console.log("RTK user: ", user)
     useEffect(() => {
-        if (user && !loading) {
+        if (user && !isLoading) {
             router.push("/dashboard")
         }
-    }, [user, loading, router])
+    }, [user, isLoading, router])
 
     return (
         <>
-            {loading && <Spinner />}
-            {!loading && !user &&
+            {isLoading && <Spinner />}
+            {!isLoading && !user &&
                 <div className="min-h-screen">
                     <Header />
                     <main className="min-h-screen flex items-center justify-center">

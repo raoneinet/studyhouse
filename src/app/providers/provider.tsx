@@ -1,14 +1,11 @@
 "use client"
 import { Provider } from "react-redux"
 import { store } from "../store/store"
-import {ContextProvider} from "@/context/userContext"
 
 export const Providers = ({children}: {children: React.ReactNode})=>{
     return (
         <Provider store={store}>
-            <ContextProvider>
                 {children}
-            </ContextProvider>
         </Provider>
     )
 }

@@ -1,7 +1,7 @@
 import { Edit } from "lucide-react"
 import { Input } from "../ui/input"
-import { useAuth } from "@/context/userContext"
 import { Button } from "../ui/button"
+import { useGetMeQuery } from "@/app/reducer/userReducer"
 
 type Props = {
     editPicture: boolean
@@ -10,7 +10,7 @@ type Props = {
 
 export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
 
-    const { user } = useAuth()
+    const { data:user, isLoading } = useGetMeQuery()
     const API_URL = process.env.NEXT_PUBLIC_API_URL
     const avatarUrl = user?.avatar ? `${API_URL}${user.avatar}` : "https://github.com/shadcn.png"
 

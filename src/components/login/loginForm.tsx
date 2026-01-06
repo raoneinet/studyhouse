@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -14,7 +13,6 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useAuth } from "@/context/userContext"
 import { useRouter } from "next/navigation"
 import { useLoginUserMutation } from "@/app/reducer/userReducer"
 
@@ -25,11 +23,9 @@ const formSchema = z.object({
 
 
 export const LoginForm = () => {
-    const [loginError, setLoginError] = useState()
 
     const [loginUser, {error}] = useLoginUserMutation()
     const router = useRouter()
-    const { login } = useAuth()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -47,17 +43,8 @@ export const LoginForm = () => {
             const userFetch = await loginUser({ email, password }).unwrap()
 
             if (userFetch.status === "success") {
-                if (userFetch.token) localStorage.setItem("token", userFetch.token)
-
-                login(userFetch.user)
-                localStorage.setItem("user", JSON.stringify(userFetch.user))
                 router.push("/")
             }
-
-            if (userFetch.status === "error") {
-                setLoginError(userFetch.message)
-            }
-            console.log(userFetch)
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)

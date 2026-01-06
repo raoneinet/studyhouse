@@ -11,7 +11,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem
 } from "@/components/ui/sidebar"
-import { useAuth } from "@/context/userContext"
+import { useGetMeQuery } from "@/app/reducer/userReducer"
+import { useLogoutMutation } from "@/app/reducer/userReducer"
 import { MenuSidebarFooter } from "./sidebar-footer"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
@@ -46,7 +47,7 @@ const items = [
 
 export function AppSidebar() {
 
-    const { user, logout } = useAuth()
+    const { data: user, isLoading } = useGetMeQuery()
 
     return (
         <Sidebar variant="floating" collapsible="icon" >
@@ -72,7 +73,7 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                <MenuSidebarFooter user={user} logout={logout} />
+                <MenuSidebarFooter />
             </SidebarFooter>
         </Sidebar>
     )
