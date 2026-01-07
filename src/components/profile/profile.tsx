@@ -23,7 +23,7 @@ export const Profile = () => {
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex items-start justify-between">
                     <ProfilePicture editPicture={editPicture} setEditPicture={setEditPicture} />
                     <div className="">
-                        <h2 className="font-medium text-2xl">{user?.firstname} {user.user.lastname}</h2>
+                        <h2 className="font-medium text-2xl">{user.user.firstname} {user.user.lastname}</h2>
                         <p className="text-slate-600">{user.user.username}</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export const Profile = () => {
                             <Edit onClick={handleEditing} className="cursor-pointer w-4" />
                         }
                     </div>
-                    <PersonalInfo user={user.user} editPersonal={editPersonal} setIsEditing={setEditPersonal} />
+                    <PersonalInfo editPersonal={editPersonal} setIsEditing={setEditPersonal} />
                 </div>
                 <div className="border bg-white p-3 w-full mx-auto rounded-lg flex flex-col items-start gap-5">
                     <div className="flex justify-between w-full">
