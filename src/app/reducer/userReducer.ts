@@ -21,6 +21,12 @@ export const userApi = createApi({
         },
     }),
     endpoints: (builder) => ({
+        getMe: builder.query<any, void>({
+            query: () => ({
+                url: "me.php"
+            }),
+            providesTags: ["Auth"]
+        }),
         loginUser: builder.mutation({
             query: ({ email, password }) => ({
                 url: "login.php",
@@ -28,13 +34,6 @@ export const userApi = createApi({
                 body: { email, password }
             }),
             invalidatesTags: ["Auth"]
-        }),
-        getMe: builder.query<any, void>({
-            query: () => ({
-                url: "me.php"
-            }),
-            keepUnusedDataFor: 60,
-            providesTags: ["Auth"]
         }),
         logout: builder.mutation<any, void>({
             query: () => ({
