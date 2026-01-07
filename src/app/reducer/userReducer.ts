@@ -124,7 +124,7 @@ export const userApi = createApi({
                 method: "POST",
                 body: { id, isFavorite }
             }),
-            invalidatesTags: [{ type: "Subjects", id: "LIST" }]
+            invalidatesTags: ["Subjects"]
         }),
         getSubjectById: builder.query<Subject, number>({
             query: (id: number) => ({

@@ -10,7 +10,6 @@ const Page = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()
     const router = useRouter()
 
-    console.log("RTK user: ", user)
     useEffect(() => {
         if (user && !isLoading) {
             router.push("/dashboard")
