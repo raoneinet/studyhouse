@@ -6,17 +6,18 @@ import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
 import { Result } from "@/components/searchResults/result"
-import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery, useGetMeQuery } from "@/app/reducer/userReducer"
 
 const Dashboard = () => {
 
     const { data } = useGetDashBoardDataQuery()
+    const {data: user} = useGetMeQuery()
 
     return (
         <>
             <Title
                 title="Dashboard"
-                subtitle="Bem-vindo de volta! Aqui está um resumo dos seus estudos"
+                subtitle={`Bem-vindo de volta ${user.user.firstname}! Aqui está um resumo dos seus estudos`}
                 style="text-2xl font-bold text-slate-800 pb-5"
             />
             <div>
