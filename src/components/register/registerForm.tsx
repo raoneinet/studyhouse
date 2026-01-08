@@ -13,8 +13,6 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRegisterUserMutation } from "@/app/reducer/userReducer"
-import { LoginForm } from "../login/loginForm"
-import { LoginDialog } from "../dialog/loginDialog"
 
 const formSchema = z.object({
     firstname: z.string("Nome deve conter ao menos 2 letras"),
