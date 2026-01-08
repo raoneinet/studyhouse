@@ -6,6 +6,7 @@ import { useGetMeQuery } from "@/app/reducer/userReducer"
 import { useForm, } from "react-hook-form"
 import { useUpdateAvatarMutation } from "@/app/reducer/userReducer"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 type Props = {
     editPicture: boolean
@@ -42,8 +43,12 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
         formData.append("avatar", file)
 
         try {
-            await updateAvatar(formData).unwrap()
+            const res = await updateAvatar(formData).unwrap()
 
+            if(res.status === "success"){
+                toast("Avatar atualizado")
+                setFile(null)
+            }
         } catch (error: any) {
             console.log("Erro ao atualizar avatar. ", error)
         }
@@ -92,7 +97,7 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
 
                             < Button
                                 type="submit"
-                                variant="link"
+                                variant="default"
                                 className="w-fit cursor-pointer"
                             >Salvar</Button>
                         </div>
