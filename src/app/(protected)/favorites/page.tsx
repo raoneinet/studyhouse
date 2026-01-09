@@ -12,7 +12,7 @@ import { Result } from "@/components/searchResults/result"
 const MyCards = () => {
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
-    const limit = 3
+    const limit = 10
 
     const { data } = useGetAllFavoritesQuery({ page, limit })
     const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
