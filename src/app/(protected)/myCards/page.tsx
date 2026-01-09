@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
@@ -12,7 +12,11 @@ import { FilterItems } from "@/components/filter/filterItems"
 
 const MyCards = () => {
 
-    const [viewList, setViewList] = useState(true)
+    const [viewList, setViewList] = useState(() => {
+        const list = localStorage.getItem("listview")
+        return list ? JSON.parse(list) : false
+    })
+
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
     const limit = 10
@@ -29,7 +33,13 @@ const MyCards = () => {
         }
     }
 
-    const handleView = (view: boolean) => setViewList(view)
+    const handleView = (view: boolean) => {
+        setViewList(view)
+    }
+
+    useEffect(() => {
+        localStorage.setItem("listview", JSON.stringify(viewList))
+    }, [viewList])
 
     return (
         <div className="md:max-w-full">
@@ -43,7 +53,8 @@ const MyCards = () => {
                     <div className="p-4 bg-white rounded-lg border flex gap-3">
                         <SearchBar />
                         <FilterItems
-                            handleView={handleView} 
+                            handleView={handleView}
+                            viewList={viewList}
                         />
                     </div>
                     <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid xl:grid-cols-3"} gap-3`}>
