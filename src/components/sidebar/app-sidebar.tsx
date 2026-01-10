@@ -12,7 +12,6 @@ import {
     SidebarMenuItem
 } from "@/components/ui/sidebar"
 import { useGetMeQuery } from "@/app/reducer/userReducer"
-import { useLogoutMutation } from "@/app/reducer/userReducer"
 import { MenuSidebarFooter } from "./sidebar-footer"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"

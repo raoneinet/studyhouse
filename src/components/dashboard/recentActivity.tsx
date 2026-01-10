@@ -1,6 +1,7 @@
 "use client"
 import { TrendingUp } from "lucide-react"
 import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+import { Statuses } from "../lessonCards/statuses"
 
 type RecentAct = {
     id: number
@@ -11,7 +12,7 @@ type RecentAct = {
     created_at: string
 }
 
-export const ActivityCard = () => {
+export const RecentActivity = () => {
 
     const { data } = useGetDashBoardDataQuery()
 
@@ -33,7 +34,9 @@ export const ActivityCard = () => {
                             -
                             <span>{item.category}</span>
                         </div>
-                        <div className="text-xs text-green-500">{item.status}</div>
+                        <div className="w-fit text-xs">
+                            <Statuses status={item.status} />
+                        </div>
                     </div>
                     <div>
                         <div className="text-slate-500 text-sm">

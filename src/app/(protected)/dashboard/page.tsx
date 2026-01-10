@@ -1,11 +1,11 @@
 "use client"
-import { ActivityCard } from "@/components/dashboard/activityCard"
-import { CategoryCard } from "@/components/dashboard/categoryCard"
-import { FavoriteCards } from "@/components/dashboard/favoriteCards"
-import { Ongoing } from "@/components/dashboard/ongoing"
+import { RecentActivity } from "@/components/dashboard/recentActivity"
+import { CategoryListAmounts } from "@/components/dashboard/categoryListAmount"
+import { DashboardFavorites } from "@/components/dashboard/dashboardFavorites"
+import { DashboardOngoings } from "@/components/dashboard/dashboardOngoings"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
-import { Result } from "@/components/searchResults/result"
+import { EmptyState } from "@/components/emptyState/emptyState"
 import { useGetDashBoardDataQuery, useGetMeQuery } from "@/app/reducer/userReducer"
 
 const Dashboard = () => {
@@ -25,18 +25,18 @@ const Dashboard = () => {
             </div>
             {data?.stats.total === 0 &&
                 <div className="mt-5">
-                    <Result />
+                    <EmptyState />
                 </div>
             }
             <div className="mt-5">
-                <Ongoing />
+                <DashboardOngoings />
             </div>
             <div className="flex flex-col md:flex-row gap-5 mt-5">
-                <CategoryCard />
-                <ActivityCard />
+                <CategoryListAmounts />
+                <RecentActivity />
             </div>
             <div>
-                <FavoriteCards />
+                <DashboardFavorites />
             </div>
         </>
     )

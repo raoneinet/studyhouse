@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
-import { ItemCard } from "@/components/itemCard/itemCard"
-import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
+import { LessonCard } from "@/components/lessonCards/lessonCard"
+import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
 import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
-import { Result } from "@/components/searchResults/result"
+import { EmptyState } from "@/components/emptyState/emptyState"
 import { FilterItems } from "@/components/filter/filterItems"
 
 const MyCards = () => {
@@ -58,12 +58,12 @@ const MyCards = () => {
                     </div>
                     <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"} gap-3`}>
                         {data?.data.map((item: Subject) => (
-                            <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
+                            <LessonCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))}
 
                         {data?.totalItems === 0 && (
                             <>
-                                <Result />
+                                <EmptyState />
                             </>
 
                         )}
@@ -82,7 +82,7 @@ const MyCards = () => {
                 </div>
                 <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
                     <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
-                        <ItemDetailSidebar selectCard={selectCard} closeMobileModal={closeMobileModal}/>
+                        <LessonDetailSidebar selectCard={selectCard} closeMobileModal={closeMobileModal}/>
                     </div>
                 </div>
             </div>

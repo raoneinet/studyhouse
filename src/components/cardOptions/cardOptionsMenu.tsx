@@ -2,14 +2,11 @@
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "../ui/button"
-import { MoreHorizontal, MoreHorizontalIcon } from "lucide-react"
+import { MoreHorizontal } from "lucide-react"
 import { useDeleteSubjectMutation } from "@/app/reducer/userReducer"
-import { SidebarMenuAction } from "../ui/sidebar"
 
 export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
 

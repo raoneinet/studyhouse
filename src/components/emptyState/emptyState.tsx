@@ -1,4 +1,4 @@
-export const Result = () => {
+export const EmptyState = () => {
     return (
         <div className="p-4 bg-white rounded-lg border">
             <div className="w-full text-center">

@@ -1,18 +1,21 @@
-import { Edit } from "lucide-react"
 import {
     SidebarContent,
     SidebarGroup,
-    SidebarGroupAction,
     SidebarGroupContent,
     SidebarGroupLabel,
     SidebarMenu
 } from "../ui/sidebar"
-import { CardSideDetail } from "./cardSideDetail"
+import { LessonDetails } from "./lessonDetails"
 import { Subject } from "@/types/subject"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { Separator } from "../ui/separator"
 
-export const ItemDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard: Subject, closeMobileModal?: ()=>void }) => {
+type Props = {
+    selectCard: Subject
+    closeMobileModal?: ()=>void
+}
+
+export const LessonDetailSidebar = ({ selectCard, closeMobileModal }: Props) => {
 
     return (
         <SidebarGroup>
@@ -31,11 +34,10 @@ export const ItemDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard
                     <span className="max-text-sm text-slate-500">Selecione um card para ver os detalhes</span>
                 }
             </SidebarMenu>
-
             {selectCard &&
                 <SidebarContent>
                     <SidebarGroupContent>
-                        <CardSideDetail selectedCard={selectCard} />
+                        <LessonDetails selectedCard={selectCard} />
                     </SidebarGroupContent>
                 </SidebarContent>
             }
