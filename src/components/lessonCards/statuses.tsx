@@ -12,7 +12,7 @@ export const Statuses = ({ status }: { status: string }) => {
                 return (
                     <div
                         key={stat.id}
-                        className={`${stat.bgColor} w-full flex gap-3 px-5 py-2`}
+                        className={`${stat.bgColor} w-full flex gap-3 px-2 items-center rounded-lg`}
                     >
                         <Icon className={`${stat.color} w-4`} />
                         <span className={`${stat.textColor}`}>

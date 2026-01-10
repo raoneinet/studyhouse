@@ -1,10 +1,11 @@
 "use client"
 import { Star } from "lucide-react"
 import { MiniCards } from "./miniCards"
-import { ActionButtons } from "./actionButtons"
+import { DashboardActionButtons } from "./dashboardActionButtons"
 import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
 import { useRouter } from "next/navigation"
 import { Subject } from "@/types/subject"
+import { LinkButton } from "../Buttons/linkButton"
 
 export const FavoriteCards = () => {
 
@@ -20,13 +21,11 @@ export const FavoriteCards = () => {
                     <Star className="w-5 h-5 text-yellow-500" />
                     Favoritos
                 </h1>
-                <button 
+                <LinkButton
                     type="button"
-                    onClick={goToFavorites}
-                    className="text-sm text-blue-600 font-medium"
-                >
-                    Ver todos →
-                </button>
+                    link={goToFavorites}
+                    value="Ver Todos"
+                />
             </div>
             <div className="flex flex-col gap-5 py-5">
                 <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
@@ -38,7 +37,7 @@ export const FavoriteCards = () => {
                         />
                     ))}
                 </div>
-                <ActionButtons />
+                <DashboardActionButtons />
             </div>
         </div>
     )

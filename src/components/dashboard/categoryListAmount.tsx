@@ -7,7 +7,7 @@ type Category = {
     total: number
 }
 
-export const CategoryCard = () => {
+export const CategoryListAmounts = () => {
 
     const { data } = useGetDashBoardDataQuery()
 
