@@ -1,5 +1,4 @@
 import { PriorityType } from "@/types/priorityType"
-import { Subject } from "@/types/subject"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { AlertCircle } from "lucide-react"
 
