@@ -6,7 +6,7 @@ import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot, Star } from "lucide-react"
 import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
 
-export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
+export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 
     const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)
@@ -33,7 +33,8 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
                             ${(selectedCard?.is_favorite === 1)
                                 ? "text-yellow-500 fill-yellow-500"
                                 : "text-gray-400 fill-transparent"}
-                    `} />
+                        `}
+                    />
                 </h2>
             </div>
             <div className="flex flex-col gap-2">
@@ -57,7 +58,6 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
                             </div>
                         )
                     })}
-
                 </div>
                 <div className="flex items-center">
                     <span className="font-bold text-slate-700">Prioridade:</span>
@@ -106,8 +106,4 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
             </div>
         </div>
     )
-}
-
-function toggleFavorite(arg0: { id: any; isFavorite: boolean }) {
-    throw new Error("Function not implemented.")
 }
