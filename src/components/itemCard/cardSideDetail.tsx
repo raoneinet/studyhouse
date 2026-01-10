@@ -23,10 +23,10 @@ export const CardSideDetail = ({ selectedCard }: { selectedCard: Subject }) => {
     return (
         <div
             key={selectedCard?.id}
-            className="max-w-full flex flex-col gap-5 px-2"
+            className="max-w-full flex flex-col gap-5 px-2 wrap"
         >
             <div>
-                <h2 className="font-bold text-slate-700 text-2xl capitalize flex justify-between items-center">
+                <h2 className="font-bold text-slate-700 text-2xl capitalize flex justify-between items-center wrap-anywhere">
                     <span>{selectedCard?.title}</span>
                     <Star
                         className={`w-6 h-6 cursor-pointer

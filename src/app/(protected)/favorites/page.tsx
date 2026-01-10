@@ -31,14 +31,14 @@ const MyCards = () => {
             console.log("Erro ao buscar item favorito por ID. ", error)
         }
     }
-    const handleView = (view: boolean) => {
-        setViewList(view)
-    }
+    const handleView = (view: boolean) => setViewList(view)
+
+    const closeMobileModal = ()=> setSelectCard(null)
 
     useEffect(()=>{
         localStorage.setItem("favlist", JSON.stringify(viewList))
     }, [viewList])
-    
+
     return (
         <div className="md:max-w-full">
             <Title
@@ -55,7 +55,7 @@ const MyCards = () => {
                             viewList={viewList}
                         />
                     </div>
-                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid xl:grid-cols-3"} gap-3`}>
+                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"} gap-3`}>
                         {data?.data.map((item: Subject) =>
                             (item.is_favorite === 1) && (
                                 <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
@@ -75,9 +75,9 @@ const MyCards = () => {
                         </div>
                     }
                 </div>
-                <div className="hidden lg:block flex-1 min-w-0">
-                    <div className="sticky top-4 bg-white rounded-lg py-3 border">
-                        <ItemDetailSidebar selectCard={selectCard} />
+                <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
+                    <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
+                        <ItemDetailSidebar selectCard={selectCard} closeMobileModal={closeMobileModal}/>
                     </div>
                 </div>
             </div>
