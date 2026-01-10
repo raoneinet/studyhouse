@@ -1,12 +1,10 @@
 "use client"
 import { Subject } from "@/types/subject"
 import { ExternalLink, AlertCircle, Star } from "lucide-react"
-import { StatusType } from "@/types/statusType"
-import { statusOptions } from "@/utils/statusOptions"
-import { priorityOptions } from "@/utils/priorityOptions"
-import { PriorityType } from "@/types/priorityType"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
+import { Priorities } from "./priorities"
+import { Statuses } from "./statuses"
 
 
 type Props = {
@@ -17,9 +15,6 @@ type Props = {
 export const ItemCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
-    
-    const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card.status)
-    const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === card.priority)
 
     const handleFavorite = async (card: any) => {
         await toggleFavorite({
@@ -37,12 +32,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                             className="px-3 py-1 rounded-full text-xs font-medium text-green-600 bg-green-100 bg-opacity-10 w-fittext-green-600">
                             {card.category}
                         </span>
-                        {priority.map((item) => (
-                            <div key={item.id} className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}>
-                                <AlertCircle className="w-3" />
-                                <span>{item.label}</span>
-                            </div>
-                        ))}
+                        <Priorities priority={card.priority} />
                     </div>
                     <div className="w-fit place-self-end">
                         <CardOptionsMenu cardId={card.id} />
@@ -54,10 +44,10 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                         <Star
                             onClick={() => handleFavorite(card)}
                             className={`w-4 h-4 cursor-pointer
-                            ${(card?.is_favorite === 1)
+                                    ${(card?.is_favorite === 1)
                                     ? "text-yellow-500 fill-yellow-500"
                                     : "text-gray-400 fill-transparent hover:text-yellow-400"}
-                    `}
+                            `}
                         />
                     </div>
                     <p className="text-sm text-slate-600 mb-4 line-clamp-2">
@@ -80,16 +70,7 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">
-                        {statuses.map(stat => {
-                            const Icon = stat.icon
-                            return (
-                                <div key={stat.id} className={`${stat.bgColor} w-full flex gap-3 px-5 py-2`}>
-                                    <Icon className={`${stat.color} w-4`} />
-                                    <span className={`${stat.textColor}`}>{stat.label}</span>
-                                </div>
-                            )
-                        }
-                        )}
+                        <Statuses status={card.status} />
                     </div>
                 </div>
             </div>
