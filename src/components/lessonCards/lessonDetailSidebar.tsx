@@ -12,7 +12,7 @@ import { Subject } from "@/types/subject"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { Separator } from "../ui/separator"
 
-export const ItemDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard: Subject, closeMobileModal?: ()=>void }) => {
+export const LessonDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard: Subject, closeMobileModal?: ()=>void }) => {
 
     return (
         <SidebarGroup>
@@ -31,7 +31,6 @@ export const ItemDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard
                     <span className="max-text-sm text-slate-500">Selecione um card para ver os detalhes</span>
                 }
             </SidebarMenu>
-
             {selectCard &&
                 <SidebarContent>
                     <SidebarGroupContent>

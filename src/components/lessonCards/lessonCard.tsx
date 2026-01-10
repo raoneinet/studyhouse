@@ -5,6 +5,8 @@ import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
 import { Priorities } from "./priorities"
 import { Statuses } from "./statuses"
+import { FavoriteIcon } from "./favoriteIcon"
+import { Tags } from "./tags"
 
 
 type Props = {
@@ -12,7 +14,7 @@ type Props = {
     handleSelectCard: (id: number) => void
 }
 
-export const ItemCard = ({ card, handleSelectCard }: Props) => {
+export const LessonCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
 
@@ -41,28 +43,14 @@ export const ItemCard = ({ card, handleSelectCard }: Props) => {
                 <div className="py-2">
                     <div className="flex gap-2 items-center text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
                         <span>{card.title}</span>
-                        <Star
-                            onClick={() => handleFavorite(card)}
-                            className={`w-4 h-4 cursor-pointer
-                                    ${(card?.is_favorite === 1)
-                                    ? "text-yellow-500 fill-yellow-500"
-                                    : "text-gray-400 fill-transparent hover:text-yellow-400"}
-                            `}
-                        />
+                        <FavoriteIcon handleFavorite={handleFavorite} card={card}/>
                     </div>
                     <p className="text-sm text-slate-600 mb-4 line-clamp-2">
                         {card.description}
                     </p>
                 </div>
                 <div className="flex gap-4 py-2 flex-wrap">
-                    {card.tags.split(",").map((tag, index) => (
-                        <div
-                            key={index}
-                            className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md"
-                        >
-                            {tag}
-                        </div>
-                    ))}
+                    <Tags tags={card.tags}/>
                 </div>
                 <div className="flex gap-2 py-2 items-center">
                     <ExternalLink className="w-4 h-4" />
