@@ -21,7 +21,6 @@ const formSchema = z.object({
     password: z.string("Senha inválida").min(6, "Senha deve conter no mínimo 6 caracteres")
 })
 
-
 export const LoginForm = () => {
 
     const [loginUser, {error}] = useLoginUserMutation()
@@ -42,9 +41,7 @@ export const LoginForm = () => {
         try {
             const userFetch = await loginUser({ email, password }).unwrap()
 
-            if (userFetch.status === "success") {
-                router.push("/")
-            }
+            if (userFetch.status === "success") router.push("/")
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)

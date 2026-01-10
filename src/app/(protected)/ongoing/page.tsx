@@ -8,7 +8,7 @@ import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { useGetAllOngoingsQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
-import { FilterItems } from "@/components/filter/filterItems"
+import { GridListView } from "@/components/gridListView/gridListView"
 
 const MyCards = () => {
 
@@ -51,7 +51,7 @@ const MyCards = () => {
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <div className="p-4 bg-white rounded-lg border flex gap-3">
                         <SearchBar />
-                        <FilterItems
+                        <GridListView
                             handleView={handleView}
                             viewList={viewList}
                         />

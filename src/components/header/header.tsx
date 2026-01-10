@@ -1,4 +1,4 @@
-import { LoginDialog } from "@/components/dialog/loginDialog"
+import { FormDialog } from "@/components/dialog/formDialog"
 import { LoginForm } from "@/components/login/loginForm"
 import { RegisterForm } from "@/components/register/registerForm"
 import { BookOpen } from 'lucide-react';
@@ -20,12 +20,12 @@ export const Header = () => {
 
                 {!user &&
                     <div className="flex gap-3">
-                        <LoginDialog
+                        <FormDialog
                             title="Login"
                             form={<LoginForm />}
                             desc="Faça login para organizar seus estudos de forma fácil"
                         />
-                        <LoginDialog
+                        <FormDialog
                             title="Criar conta"
                             form={<RegisterForm />}
                             desc="Crie uma conta para organizar seus estudos de forma fácil"
