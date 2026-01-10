@@ -1,8 +1,8 @@
 "use client"
 import { RecentActivity } from "@/components/dashboard/recentActivity"
 import { CategoryListAmounts } from "@/components/dashboard/categoryListAmount"
-import { FavoriteCards } from "@/components/dashboard/favoriteCards"
-import { Ongoing } from "@/components/dashboard/ongoing"
+import { DashboardFavorites } from "@/components/dashboard/dashboardFavorites"
+import { DashboardOngoings } from "@/components/dashboard/dashboardOngoings"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
 import { EmptyState } from "@/components/emptyState/emptyState"
@@ -29,14 +29,14 @@ const Dashboard = () => {
                 </div>
             }
             <div className="mt-5">
-                <Ongoing />
+                <DashboardOngoings />
             </div>
             <div className="flex flex-col md:flex-row gap-5 mt-5">
                 <CategoryListAmounts />
                 <RecentActivity />
             </div>
             <div>
-                <FavoriteCards />
+                <DashboardFavorites />
             </div>
         </>
     )

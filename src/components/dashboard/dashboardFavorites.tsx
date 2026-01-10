@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { Subject } from "@/types/subject"
 import { LinkButton } from "../Buttons/linkButton"
 
-export const FavoriteCards = () => {
+export const DashboardFavorites = () => {
 
     const { data } = useGetDashBoardDataQuery()
     const router = useRouter()
