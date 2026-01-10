@@ -1,4 +1,4 @@
-import { CreateItem } from "@/components/createItem/createItem"
+import { CreateLessonForm } from "@/components/createLesson/createItem"
 import { Title } from "@/components/title/title"
 
 const CreateNewItem = () => {
@@ -10,7 +10,7 @@ const CreateNewItem = () => {
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="bg-white border rounded-lg px-2 py-8">
-                <CreateItem />
+                <CreateLessonForm />
             </div>
         </div>
     )

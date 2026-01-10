@@ -39,7 +39,7 @@ const formSchema = z.object({
     priority: z.string()
 })
 
-export const CreateItem = () => {
+export const CreateLessonForm = () => {
 
     const [createSubject] = useCreateSubjectMutation()
     const router = useRouter()
@@ -74,7 +74,6 @@ export const CreateItem = () => {
             })
 
             router.push("/myCards")
-            console.log(values)
         } catch (error: any) {
             console.log("Erro ao criar assunto. ", error)
         }
