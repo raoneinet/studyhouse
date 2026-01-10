@@ -31,10 +31,10 @@ export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
                 <DropdownMenuItem>
-                    <span>Edit Project</span>
+                    <span>Editar</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleDeleteSubject(cardId)}>
-                    <span>Delete Project</span>
+                    <span>Deletar</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

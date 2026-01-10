@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
 import { ItemCard } from "@/components/itemCard/itemCard"
@@ -8,11 +8,17 @@ import { useGetAllFavoritesQuery } from "@/app/reducer/userReducer"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 import { Result } from "@/components/searchResults/result"
+import { FilterItems } from "@/components/filter/filterItems"
 
 const MyCards = () => {
+    const [viewList, setViewList] = useState(()=>{
+        const list = localStorage.getItem("favlist")
+        return list ? JSON.parse(list) : true
+    })
+
     const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
-    const limit = 3
+    const limit = 10
 
     const { data } = useGetAllFavoritesQuery({ page, limit })
     const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
@@ -25,7 +31,14 @@ const MyCards = () => {
             console.log("Erro ao buscar item favorito por ID. ", error)
         }
     }
+    const handleView = (view: boolean) => {
+        setViewList(view)
+    }
 
+    useEffect(()=>{
+        localStorage.setItem("favlist", JSON.stringify(viewList))
+    }, [viewList])
+    
     return (
         <div className="md:max-w-full">
             <Title
@@ -35,13 +48,21 @@ const MyCards = () => {
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
-                    <SearchBar />
-                    {data?.data.map((item: Subject) =>
-                        (item.is_favorite === 1) && (
-                            <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
-                        ))
-                    }
-                    {data?.totalItems === 0 && <Result />}
+                    <div className="p-4 bg-white rounded-lg border flex gap-3">
+                        <SearchBar />
+                        <FilterItems
+                            handleView={handleView}
+                            viewList={viewList}
+                        />
+                    </div>
+                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid xl:grid-cols-3"} gap-3`}>
+                        {data?.data.map((item: Subject) =>
+                            (item.is_favorite === 1) && (
+                                <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
+                            ))
+                        }
+                        {data?.totalItems === 0 && <Result />}
+                    </div>
                     {data?.totalItems !== 0 &&
                         <div className="flex gap-5 items-center justify-center">
                             <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
