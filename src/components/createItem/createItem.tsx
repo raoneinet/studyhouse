@@ -37,7 +37,6 @@ const formSchema = z.object({
     status: z.string(),
     tags: z.string(),
     priority: z.string()
-
 })
 
 export const CreateItem = () => {

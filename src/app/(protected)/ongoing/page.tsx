@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react"
 import { Title } from "@/components/title/title"
 import { SearchBar } from "@/components/search/searchbar"
-import { ItemCard } from "@/components/itemCard/itemCard"
-import { ItemDetailSidebar } from "@/components/itemCard/itemDetailSidebar"
+import { ItemCard } from "@/components/lessonCards/itemCard"
+import { ItemDetailSidebar } from "@/components/lessonCards/itemDetailSidebar"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { useGetAllOngoingsQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
-import { Result } from "@/components/searchResults/result"
+import { EmptyState } from "@/components/emptyState/emptyState"
 import { FilterItems } from "@/components/filter/filterItems"
 
 const MyCards = () => {
@@ -62,7 +62,7 @@ const MyCards = () => {
                                 <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                             ))
                         }
-                        {data?.totalItems === 0 && <Result />}
+                        {data?.totalItems === 0 && <EmptyState />}
                     </div>
                     {data?.totalItems !== 0 &&
                         <div className="flex gap-5 items-center justify-center">

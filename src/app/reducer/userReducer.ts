@@ -143,7 +143,7 @@ export const userApi = createApi({
             invalidatesTags: ["Auth"]
         }),
         updateAvatar: builder.mutation({
-            query: (data)=>({
+            query: (data) => ({
                 url: "update_user_picture.php",
                 method: "POST",
                 body: data

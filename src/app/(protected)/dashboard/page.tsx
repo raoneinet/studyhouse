@@ -5,7 +5,7 @@ import { FavoriteCards } from "@/components/dashboard/favoriteCards"
 import { Ongoing } from "@/components/dashboard/ongoing"
 import { Title } from "@/components/title/title"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
-import { Result } from "@/components/searchResults/result"
+import { EmptyState } from "@/components/emptyState/emptyState"
 import { useGetDashBoardDataQuery, useGetMeQuery } from "@/app/reducer/userReducer"
 
 const Dashboard = () => {
@@ -25,7 +25,7 @@ const Dashboard = () => {
             </div>
             {data?.stats.total === 0 &&
                 <div className="mt-5">
-                    <Result />
+                    <EmptyState />
                 </div>
             }
             <div className="mt-5">
