@@ -34,6 +34,8 @@ const MyCards = () => {
 
     const handleView = (view: boolean) => setViewList(view)
 
+    const closeMobileModal = ()=> setSelectCard(null)
+
     useEffect(()=>{
         localStorage.setItem("ongolist", JSON.stringify(viewList))
     },[viewList])
@@ -74,9 +76,9 @@ const MyCards = () => {
                         </div>
                     }
                 </div>
-                <div className="hidden lg:block flex-1 min-w-0">
-                    <div className="sticky top-4 bg-white rounded-lg py-3 border">
-                        <ItemDetailSidebar selectCard={selectCard} />
+                <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
+                    <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
+                        <ItemDetailSidebar selectCard={selectCard} closeMobileModal={closeMobileModal}/>
                     </div>
                 </div>
             </div>

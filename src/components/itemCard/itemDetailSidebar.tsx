@@ -12,7 +12,7 @@ import { Subject } from "@/types/subject"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { Separator } from "../ui/separator"
 
-export const ItemDetailSidebar = ({ selectCard }: { selectCard: Subject }) => {
+export const ItemDetailSidebar = ({ selectCard, closeMobileModal }: { selectCard: Subject, closeMobileModal?: ()=>void }) => {
 
     return (
         <SidebarGroup>
@@ -24,6 +24,7 @@ export const ItemDetailSidebar = ({ selectCard }: { selectCard: Subject }) => {
                     {selectCard !== null &&
                         <CardOptionsMenu cardId={selectCard.id} />
                     }
+                    <span className="md:hidden flex text-xl text-red-500" onClick={closeMobileModal}>X</span>
                 </SidebarGroupLabel>
                 <Separator className="my-3" />
                 {selectCard === null &&
