@@ -55,7 +55,7 @@ const MyCards = () => {
                             viewList={viewList}
                         />
                     </div>
-                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid xl:grid-cols-3"} gap-3`}>
+                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"} gap-3`}>
                         {data?.data.map((item: Subject) =>
                             (item.is_favorite === 1) && (
                                 <ItemCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
