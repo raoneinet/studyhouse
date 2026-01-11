@@ -1,10 +1,10 @@
 import { CreateLessonForm } from "@/components/createLesson/createItem"
-import { Title } from "@/components/title/title"
+import { PageTitle } from "@/components/titles/pageTitle"
 
 const CreateNewItem = () => {
     return (
         <div className="md:max-w-[1009px]">
-            <Title
+            <PageTitle
                 title="Novo Assunto"
                 subtitle="Criar um novo assunto para estudar"
                 style="text-2xl font-bold text-neutral-800 pb-5"

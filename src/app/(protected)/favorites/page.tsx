@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
-import { Title } from "@/components/title/title"
+import { PageTitle } from "@/components/titles/pageTitle"
 import { SearchBar } from "@/components/search/searchbar"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
@@ -41,7 +41,7 @@ const MyCards = () => {
 
     return (
         <div className="md:max-w-full">
-            <Title
+            <PageTitle
                 title={`Favoritos (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards favoritos de estudo"
                 style="text-2xl font-bold text-neutral-800 pb-5"

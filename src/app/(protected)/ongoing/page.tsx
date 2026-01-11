@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import { Title } from "@/components/title/title"
+import { PageTitle } from "@/components/titles/pageTitle"
 import { SearchBar } from "@/components/search/searchbar"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
@@ -42,7 +42,7 @@ const MyCards = () => {
 
     return (
         <div className="md:max-w-full">
-            <Title
+            <PageTitle
                 title={`Em Andamento (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards de estudo em andamento"
                 style="text-2xl font-bold text-neutral-800 pb-5"

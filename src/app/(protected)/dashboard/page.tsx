@@ -3,7 +3,7 @@ import { RecentActivity } from "@/components/dashboard/recentActivity"
 import { CategoryListAmounts } from "@/components/dashboard/categoryListAmount"
 import { DashboardFavorites } from "@/components/dashboard/dashboardFavorites"
 import { DashboardOngoings } from "@/components/dashboard/dashboardOngoings"
-import { Title } from "@/components/title/title"
+import { PageTitle } from "@/components/titles/pageTitle"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
 import { EmptyState } from "@/components/emptyState/emptyState"
 import { useGetDashBoardDataQuery, useGetMeQuery } from "@/app/reducer/userReducer"
@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <Title
+            <PageTitle
                 title="Dashboard"
                 subtitle={`Bem-vindo de volta ${user.user.firstname}! Aqui está um resumo dos seus estudos`}
                 style="text-2xl font-bold text-slate-800 pb-5"
