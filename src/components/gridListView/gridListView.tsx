@@ -1,7 +1,7 @@
 import { Grid, List } from "lucide-react"
 import { Button } from "../ui/button"
 
-export const FilterItems = ({handleView, viewList}: {handleView: (arg: boolean)=>void, viewList?: boolean}) => {
+export const GridListView = ({handleView, viewList}: {handleView: (arg: boolean)=>void, viewList?: boolean}) => {
     return (
         <div className="hidden lg:flex border border-slate-200 rounded-lg overflow-hidden w-fit">
             <Button

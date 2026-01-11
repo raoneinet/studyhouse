@@ -1,10 +1,7 @@
 "use client"
-import { BookOpen, ChevronsUpDown } from "lucide-react"
+import { BookOpen } from "lucide-react"
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuTrigger,
+    DropdownMenu
 } from "@/components/ui/dropdown-menu"
 import {
     SidebarMenu,
@@ -12,10 +9,8 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
-import { Logobrand } from "../header/logobrand"
 
 export function MenuSidebarHeader() {
-    const { isMobile } = useSidebar()
 
     return (
         <SidebarMenu>

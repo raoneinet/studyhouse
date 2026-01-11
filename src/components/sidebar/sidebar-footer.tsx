@@ -43,9 +43,7 @@ export const MenuSidebarFooter = () => {
 
     const router = useRouter()
 
-    const goToAccount = () => {
-        router.push("/account")
-    }
+    const goToAccount = () => router.push("/account")
 
     const handleLogout = async () => {
         await logout().unwrap()

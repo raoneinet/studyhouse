@@ -5,7 +5,7 @@ type Props = {
     style: string
 }
 
-export const Title = ({title, subtitle, style}: Props)=>{
+export const PageTitle = ({title, subtitle, style}: Props)=>{
     return (
         <div className={style}>
             <h2>{title}</h2>

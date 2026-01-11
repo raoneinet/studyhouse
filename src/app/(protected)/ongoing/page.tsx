@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import { Title } from "@/components/title/title"
+import { PageTitle } from "@/components/titles/pageTitle"
 import { SearchBar } from "@/components/search/searchbar"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
@@ -8,7 +8,7 @@ import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { useGetAllOngoingsQuery } from "@/app/reducer/userReducer"
 import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
-import { FilterItems } from "@/components/filter/filterItems"
+import { GridListView } from "@/components/gridListView/gridListView"
 
 const MyCards = () => {
 
@@ -42,7 +42,7 @@ const MyCards = () => {
 
     return (
         <div className="md:max-w-full">
-            <Title
+            <PageTitle
                 title={`Em Andamento (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards de estudo em andamento"
                 style="text-2xl font-bold text-neutral-800 pb-5"
@@ -51,7 +51,7 @@ const MyCards = () => {
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
                     <div className="p-4 bg-white rounded-lg border flex gap-3">
                         <SearchBar />
-                        <FilterItems
+                        <GridListView
                             handleView={handleView}
                             viewList={viewList}
                         />
