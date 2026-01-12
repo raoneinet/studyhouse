@@ -6,9 +6,11 @@ import { useUpdateLessonMutation } from "@/app/reducer/userReducer"
 import { useEffect } from "react"
 import {useState} from "react"
 import { Subject } from "@/types/subject"
+import { useRouter } from "next/navigation"
 
 const EditLesson = () => {
 
+    const router = useRouter()
     const [editLesson, setEditLesson] = useState<Subject>()
     const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
     const [updateLesson] = useUpdateLessonMutation()
@@ -22,7 +24,9 @@ const EditLesson = () => {
 
     const handleSaveLessonEdition = async (values: any)=>{
         console.log("Dados a enviar: ", values)
-        await updateLesson(values).unwrap()
+        if(!editLesson?.id || editLesson.id === undefined) return
+        await updateLesson({id: editLesson?.id, data: values}).unwrap()
+        router.push("/myLessons")
     }
 
     useEffect(() => {

@@ -59,7 +59,7 @@ export const userApi = createApi({
         }),
         createSubject: builder.mutation({
             query: (data) => ({
-                url: "create_subject.php",
+                url: "create_lesson.php",
                 method: "POST",
                 body: data
             }),
@@ -67,7 +67,7 @@ export const userApi = createApi({
         }),
         getAllSubjects: builder.query<PaginatedSubjects, { page: number, limit: number }>({
             query: ({ page, limit }) => ({
-                url: `get_subjects.php?page=${page}&limit=${limit}`
+                url: `get_lessons.php?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
@@ -112,7 +112,7 @@ export const userApi = createApi({
         }),
         deleteSubject: builder.mutation({
             query: (id: number) => ({
-                url: "delete_subject.php",
+                url: "delete_lesson.php",
                 method: "POST",
                 body: { id }
             }),
@@ -128,7 +128,7 @@ export const userApi = createApi({
         }),
         getSubjectById: builder.query<Subject, number>({
             query: (id: number) => ({
-                url: `get_subject.php?id=${id}`
+                url: `get_lesson.php?id=${id}`
             }),
             providesTags: (result, error, id) => [
                 { type: "Subjects", id }
@@ -151,10 +151,10 @@ export const userApi = createApi({
             invalidatesTags: ["Auth"]
         }),
         updateLesson: builder.mutation({
-            query: (data)=>({
+            query: ({id, data})=>({
                 url: "update_lesson.php",
-                method: "POST",
-                body: data
+                method: "PATCH",
+                body: {id, ...data}
             }),
             invalidatesTags: ["Subjects"]
         })
