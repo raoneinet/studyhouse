@@ -149,6 +149,14 @@ export const userApi = createApi({
                 body: data
             }),
             invalidatesTags: ["Auth"]
+        }),
+        updateLesson: builder.mutation({
+            query: (data)=>({
+                url: "update_lesson.php",
+                method: "POST",
+                body: data
+            }),
+            invalidatesTags: ["Subjects"]
         })
     })
 })
@@ -167,5 +175,6 @@ export const {
     useToggleFavoriteMutation,
     useLazyGetSubjectByIdQuery,
     useUpdateUserPersonalInfoMutation,
-    useUpdateAvatarMutation
+    useUpdateAvatarMutation,
+    useUpdateLessonMutation
 } = userApi

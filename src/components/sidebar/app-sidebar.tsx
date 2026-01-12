@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, CircleDot, Home, Inbox, Star } from "lucide-react"
+import { Calendar, CircleDot, Home, Inbox, Star, PlusCircle } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -11,7 +11,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem
 } from "@/components/ui/sidebar"
-import { useGetMeQuery } from "@/app/reducer/userReducer"
 import { MenuSidebarFooter } from "./sidebar-footer"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
@@ -24,13 +23,13 @@ const items = [
     },
     {
         title: "Meus Cards",
-        url: "/myCards",
+        url: "/myLessons",
         icon: Inbox,
     },
     {
         title: "Novo Card",
-        url: "/newCard",
-        icon: Calendar,
+        url: "/newLesson",
+        icon: PlusCircle,
     },
     {
         title: "Favoritos",
