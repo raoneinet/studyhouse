@@ -7,10 +7,18 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal } from "lucide-react"
 import { useDeleteSubjectMutation } from "@/app/reducer/userReducer"
+import { useRouter } from "next/navigation"
 
 export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
 
+    const router = useRouter()
+
     const [deleteSubject] = useDeleteSubjectMutation()
+
+    const handleEditLesson= (id: number)=>{
+        console.log("ID: ", id)
+        router.push("/editLesson?id="+id)
+    }
 
     const handleDeleteSubject = async (id: number) => {
         try {
@@ -27,7 +35,7 @@ export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
                 <MoreHorizontal />
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={()=>handleEditLesson(cardId)}>
                     <span>Editar</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleDeleteSubject(cardId)}>

@@ -24,25 +24,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Subject } from "@/types/subject"
+import { useEffect } from "react"
+import { formSchema } from "@/utils/formSchema"
 
-const formSchema = z.object({
-    title: z.string().min(2),
-    links: z.array(
-        z.object({
-            value: z.string().optional()
-        })
-    ),
-    description: z.string(),
-    category: z.string(),
-    status: z.string(),
-    tags: z.string(),
-    priority: z.string()
-})
 
-export const CreateLessonForm = () => {
-
-    const [createSubject] = useCreateSubjectMutation()
-    const router = useRouter()
+export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subject, submitData?: any }) => {
+    console.log("VALORES A EDITAR: ", initialValue)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -62,26 +50,42 @@ export const CreateLessonForm = () => {
         name: "links"
     })
 
-    const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
+    // const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
 
-        const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
+    //     const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
 
-        try {
-            const createItem = await createSubject({ ...values, created_at }).unwrap()
+    //     try {
+    //         const createItem = await createSubject({ ...values, created_at }).unwrap()
 
-            toast("Criado assunto de estudo", {
-                description: values.title
+    //         toast("Criado assunto de estudo", {
+    //             description: values.title
+    //         })
+
+    //         router.push("/myCards")
+    //     } catch (error: any) {
+    //         console.log("Erro ao criar assunto. ", error)
+    //     }
+    // }
+
+    useEffect(() => {
+        if (initialValue) {
+            form.reset({
+                title: initialValue.title,
+                links: initialValue.links?.length
+                    ? initialValue.links.map(link => ({ value: link }))
+                    : [{ value: "" }],
+                description: initialValue.description,
+                category: initialValue.category,
+                status: initialValue.status,
+                tags: initialValue.tags,
+                priority: initialValue.priority
             })
-
-            router.push("/myCards")
-        } catch (error: any) {
-            console.log("Erro ao criar assunto. ", error)
         }
-    }
+    }, [initialValue, form])
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleCreateItem)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(submitData)} className="space-y-8">
                 <FormField
                     control={form.control}
                     name="title"
@@ -275,7 +279,7 @@ export const CreateLessonForm = () => {
                     />
                 </div>
                 <div className="w-full flex gap-3">
-                    <Button type="submit" className="flex-1 bg-blue-600 text-white">Criar</Button>
+                    <Button type="submit" className="flex-1 bg-blue-600 text-white">Salvar</Button>
                     <Button type="button" variant="outline" className="w-fit">Cancelar</Button>
                 </div>
             </form>
