@@ -2,9 +2,9 @@
 import { Camera, Edit } from "lucide-react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { useGetMeQuery } from "@/app/reducer/userReducer"
+import { useGetMeQuery } from "@/app/reducer/userApi"
 import { useForm, } from "react-hook-form"
-import { useUpdateAvatarMutation } from "@/app/reducer/userReducer"
+import { useUpdateAvatarMutation } from "@/app/reducer/userApi"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 

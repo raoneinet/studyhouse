@@ -6,7 +6,8 @@ import { DashboardOngoings } from "@/components/dashboard/dashboardOngoings"
 import { PageTitle } from "@/components/titles/pageTitle"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
 import { EmptyState } from "@/components/emptyState/emptyState"
-import { useGetDashBoardDataQuery, useGetMeQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery} from "@/app/reducer/lessonsApi"
+import { useGetMeQuery } from "@/app/reducer/userApi"
 
 const Dashboard = () => {
 

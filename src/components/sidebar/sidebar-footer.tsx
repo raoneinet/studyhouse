@@ -21,10 +21,10 @@ import {
     useSidebar
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
-import { userApi } from "@/app/reducer/userReducer"
+import { baseApi } from "@/app/reducer/baseApi"
 import { useDispatch } from "react-redux"
-import { useGetMeQuery } from "@/app/reducer/userReducer"
-import { useLogoutMutation } from "@/app/reducer/userReducer"
+import { useGetMeQuery } from "@/app/reducer/userApi"
+import { useLogoutMutation } from "@/app/reducer/authApi"
 
 
 export const MenuSidebarFooter = () => {
@@ -47,7 +47,7 @@ export const MenuSidebarFooter = () => {
 
     const handleLogout = async () => {
         await logout().unwrap()
-        dispatch(userApi.util.resetApiState())
+        dispatch(baseApi.util.resetApiState())
         router.push("/")
     }
 

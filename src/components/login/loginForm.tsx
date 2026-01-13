@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
-import { useLoginUserMutation } from "@/app/reducer/userReducer"
+import { useLoginUserMutation } from "@/app/reducer/authApi"
 
 const formSchema = z.object({
     email: z.email("E-mail inválido"),

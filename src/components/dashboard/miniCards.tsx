@@ -1,7 +1,7 @@
 import { Subject } from "@/types/subject"
 import { AlertCircle, Star } from "lucide-react"
 import { statusOptions } from "@/utils/statusOptions"
-import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
+import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 
 type Props = {
     card: Subject

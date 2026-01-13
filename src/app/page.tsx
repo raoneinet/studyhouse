@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import LandingPage from "@/components/lp/landingpage"
 import { Spinner } from "@/components/loading/spinner"
-import { useGetMeQuery } from "./reducer/userReducer"
+import { useGetMeQuery } from "@/app/reducer/userApi"
 
 const Page = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()

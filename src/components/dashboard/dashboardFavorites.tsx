@@ -2,7 +2,7 @@
 import { Star } from "lucide-react"
 import { MiniCards } from "./miniCards"
 import { DashboardActionButtons } from "./dashboardActionButtons"
-import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { useRouter } from "next/navigation"
 import { Subject } from "@/types/subject"
 import { LinkButton } from "../Buttons/linkButton"

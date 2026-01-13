@@ -1,8 +1,8 @@
 "use client"
 import { LessonForm } from "@/components/lessonForm/lessonForm"
 import { PageTitle } from "@/components/titles/pageTitle"
-import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
-import { useUpdateLessonMutation } from "@/app/reducer/userReducer"
+import { useLazyGetLessonByIdQuery } from "@/app/reducer/lessonsApi"
+import { useUpdateLessonMutation } from "@/app/reducer/lessonsApi"
 import { useEffect } from "react"
 import { useState } from "react"
 import { Subject } from "@/types/subject"
@@ -12,7 +12,7 @@ const EditLesson = () => {
 
     const router = useRouter()
     const [editLesson, setEditLesson] = useState<Subject>()
-    const [triggerGetSubjectById] = useLazyGetSubjectByIdQuery()
+    const [triggerGetLessonById] = useLazyGetLessonByIdQuery()
     const [updateLesson] = useUpdateLessonMutation()
 
     const handleEditLesson = async () => {
@@ -20,7 +20,7 @@ const EditLesson = () => {
         const id = Number(url.split("?id=")[1])
         
         try {
-            const res = await triggerGetSubjectById(id).unwrap()
+            const res = await triggerGetLessonById(id).unwrap()
             setEditLesson(res)
         } catch (error: any) {
             console.log("Erro ao buscar ID. ", id + " Não é válido")

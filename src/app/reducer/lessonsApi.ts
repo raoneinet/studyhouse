@@ -1,5 +1,5 @@
-import { Subject } from "@/types/subject"
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { Subject } from "@/types/subject";
+import { baseApi } from "./baseApi"
 
 type PaginatedSubjects = {
     data: Subject[];
@@ -7,48 +7,10 @@ type PaginatedSubjects = {
     limit: number;
     totalItems: number;
     totalPages: number;
-};
+}
 
-export const userApi = createApi({
-    reducerPath: "userapi",
-    refetchOnMountOrArgChange: false,
-    tagTypes: ["Auth", "Subjects"],
-    baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost/studyhouse_backend/api/",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        },
-    }),
+export const lessonsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getMe: builder.query<any, void>({
-            query: () => ({
-                url: "me.php"
-            }),
-            providesTags: ["Auth"]
-        }),
-        loginUser: builder.mutation({
-            query: ({ email, password }) => ({
-                url: "login.php",
-                method: "POST",
-                body: { email, password }
-            }),
-            invalidatesTags: ["Auth"]
-        }),
-        logout: builder.mutation<any, void>({
-            query: () => ({
-                url: "logout.php",
-                method: "POST"
-            }),
-            invalidatesTags: ["Auth"]
-        }),
-        registerUser: builder.mutation<any, FormData>({
-            query: (formData) => ({
-                url: "register.php",
-                method: "POST",
-                body: formData
-            })
-        }),
         getDashBoardData: builder.query<any, void>({
             query: () => ({
                 url: "get_dashboard_data.php"
@@ -57,7 +19,7 @@ export const userApi = createApi({
                 { type: "Subjects", id: "LIST" }
             ]
         }),
-        createSubject: builder.mutation({
+        createLesson: builder.mutation({
             query: (data) => ({
                 url: "create_lesson.php",
                 method: "POST",
@@ -65,16 +27,16 @@ export const userApi = createApi({
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
-        getAllSubjects: builder.query<PaginatedSubjects, { page: number, limit: number }>({
+        getAllLessons: builder.query<PaginatedSubjects, { page: number, limit: number }>({
             query: ({ page, limit }) => ({
                 url: `get_lessons.php?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
                     ? [
-                        ...result?.data.map((subject) => ({
+                        ...result?.data.map((lesson) => ({
                             type: "Subjects" as const,
-                            id: subject.id,
+                            id: lesson.id,
                         })),
                         { type: "Subjects" as const, id: "LIST" }
                     ]
@@ -110,7 +72,7 @@ export const userApi = createApi({
                     ]
                     : [{ type: "Subjects" as const, id: "LIST" }]
         }),
-        deleteSubject: builder.mutation({
+        deleteLesson: builder.mutation({
             query: (id: number) => ({
                 url: "delete_lesson.php",
                 method: "POST",
@@ -126,29 +88,13 @@ export const userApi = createApi({
             }),
             invalidatesTags: ["Subjects"]
         }),
-        getSubjectById: builder.query<Subject, number>({
+        getLessonById: builder.query<Subject, number>({
             query: (id: number) => ({
                 url: `get_lesson.php?id=${id}`
             }),
             providesTags: (result, error, id) => [
                 { type: "Subjects", id }
             ]
-        }),
-        updateUserPersonalInfo: builder.mutation({
-            query: (data) => ({
-                url: "update_user_personalInfo.php",
-                method: "POST",
-                body: data
-            }),
-            invalidatesTags: ["Auth"]
-        }),
-        updateAvatar: builder.mutation({
-            query: (data) => ({
-                url: "update_user_picture.php",
-                method: "POST",
-                body: data
-            }),
-            invalidatesTags: ["Auth"]
         }),
         updateLesson: builder.mutation({
             query: ({id, data})=>({
@@ -162,19 +108,13 @@ export const userApi = createApi({
 })
 
 export const {
-    useLoginUserMutation,
-    useGetMeQuery,
-    useLogoutMutation,
-    useRegisterUserMutation,
     useGetDashBoardDataQuery,
-    useCreateSubjectMutation,
-    useGetAllSubjectsQuery,
+    useCreateLessonMutation,
+    useGetAllLessonsQuery,
     useGetAllFavoritesQuery,
     useGetAllOngoingsQuery,
-    useDeleteSubjectMutation,
+    useDeleteLessonMutation,
     useToggleFavoriteMutation,
-    useLazyGetSubjectByIdQuery,
-    useUpdateUserPersonalInfoMutation,
-    useUpdateAvatarMutation,
+    useLazyGetLessonByIdQuery,
     useUpdateLessonMutation
-} = userApi
+} = lessonsApi

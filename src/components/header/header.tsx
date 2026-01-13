@@ -2,7 +2,7 @@ import { FormDialog } from "@/components/dialog/formDialog"
 import { LoginForm } from "@/components/login/loginForm"
 import { RegisterForm } from "@/components/register/registerForm"
 import { BookOpen } from 'lucide-react';
-import { useGetMeQuery } from "@/app/reducer/userReducer";
+import { useGetMeQuery } from "@/app/reducer/userApi";
 
 export const Header = () => {
 

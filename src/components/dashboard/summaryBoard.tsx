@@ -1,7 +1,7 @@
 "use client"
 import { AlertCircle, CheckCircle2, CircleDot, Grid } from "lucide-react"
 import { SummaryCards } from "./summaryCards"
-import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 
 export const SummaryBoard = () => {
 

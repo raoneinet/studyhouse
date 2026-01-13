@@ -2,7 +2,7 @@
 import { Subject } from "@/types/subject"
 import { ExternalLink, AlertCircle, Star } from "lucide-react"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
-import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
+import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 import { Priorities } from "./priorities"
 import { Statuses } from "./statuses"
 import { FavoriteIcon } from "./favoriteIcon"
