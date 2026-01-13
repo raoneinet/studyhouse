@@ -4,8 +4,8 @@ import { PageTitle } from "@/components/titles/pageTitle"
 import { SearchBar } from "@/components/search/searchbar"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
-import { useGetAllSubjectsQuery } from "@/app/reducer/userReducer"
-import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
+import { useGetAllLessonsQuery } from "@/app/reducer/lessonsApi"
+import { useLazyGetLessonByIdQuery } from "@/app/reducer/lessonsApi"
 import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
 import { GridListView } from "@/components/gridListView/gridListView"
@@ -21,8 +21,8 @@ const MyCards = () => {
     const [page, setPage] = useState(1)
     const limit = 10
 
-    const { data } = useGetAllSubjectsQuery({ page, limit })
-    const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetSubjectByIdQuery()
+    const { data } = useGetAllLessonsQuery({ page, limit })
+    const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetLessonByIdQuery()
 
     const handleSelectCard = async (id: number) => {
         try {

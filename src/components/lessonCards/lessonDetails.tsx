@@ -4,7 +4,7 @@ import { statusOptions } from "@/utils/statusOptions"
 import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot, Star } from "lucide-react"
-import { useToggleFavoriteMutation } from "@/app/reducer/userReducer"
+import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 
 export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 

@@ -1,6 +1,6 @@
 "use client"
 import { Target } from "lucide-react"
-import { useGetDashBoardDataQuery } from "@/app/reducer/userReducer"
+import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 
 type Category = {
     category: string
