@@ -4,7 +4,7 @@ import { PageTitle } from "@/components/titles/pageTitle"
 import { useLazyGetSubjectByIdQuery } from "@/app/reducer/userReducer"
 import { useUpdateLessonMutation } from "@/app/reducer/userReducer"
 import { useEffect } from "react"
-import {useState} from "react"
+import { useState } from "react"
 import { Subject } from "@/types/subject"
 import { useRouter } from "next/navigation"
 
@@ -18,15 +18,25 @@ const EditLesson = () => {
     const handleEditLesson = async () => {
         const url = window.location.href
         const id = Number(url.split("?id=")[1])
-        const res = await triggerGetSubjectById(id).unwrap()
-        setEditLesson(res)
+        
+        try {
+            const res = await triggerGetSubjectById(id).unwrap()
+            setEditLesson(res)
+        } catch (error: any) {
+            console.log("Erro ao buscar ID. ", id + " Não é válido")
+        }
     }
 
-    const handleSaveLessonEdition = async (values: any)=>{
-        console.log("Dados a enviar: ", values)
-        if(!editLesson?.id || editLesson.id === undefined) return
-        await updateLesson({id: editLesson?.id, data: values}).unwrap()
-        router.push("/myLessons")
+    const handleSubmitForm = async (values: any) => {
+        if (!editLesson?.id || editLesson.id === undefined) return
+
+        try {
+            await updateLesson({ id: editLesson?.id, data: values }).unwrap()
+            router.push("/myLessons")
+        } catch (error: any) {
+            console.log("Error ao enviar novos valores. ", error)
+        }
+
     }
 
     useEffect(() => {
@@ -43,7 +53,7 @@ const EditLesson = () => {
             <div className="bg-white border rounded-lg px-2 py-8">
                 <LessonForm
                     initialValue={editLesson}
-                    submitData={handleSaveLessonEdition}
+                    submitData={handleSubmitForm}
                 />
             </div>
         </div>
