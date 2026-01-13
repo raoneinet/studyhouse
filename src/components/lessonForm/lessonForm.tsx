@@ -30,7 +30,6 @@ import { formSchema } from "@/utils/formSchema"
 
 
 export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subject, submitData?: any }) => {
-    console.log("VALORES A EDITAR: ", initialValue)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -49,23 +48,6 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
         control: form.control,
         name: "links"
     })
-
-    // const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
-
-    //     const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
-
-    //     try {
-    //         const createItem = await createSubject({ ...values, created_at }).unwrap()
-
-    //         toast("Criado assunto de estudo", {
-    //             description: values.title
-    //         })
-
-    //         router.push("/myCards")
-    //     } catch (error: any) {
-    //         console.log("Erro ao criar assunto. ", error)
-    //     }
-    // }
 
     useEffect(() => {
         if (initialValue) {
