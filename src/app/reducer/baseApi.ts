@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const baseApi = createApi({
-    reducerPath: "userapi",
+    reducerPath: "baseApi",
     refetchOnMountOrArgChange: false,
     tagTypes: ["Auth", "Subjects"],
     baseQuery: fetchBaseQuery({

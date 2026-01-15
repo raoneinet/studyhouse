@@ -23,12 +23,21 @@ export const authApi = baseApi.injectEndpoints({
                 method: "POST"
             }),
             invalidatesTags: ["Auth"]
+        }),
+        changePassword: builder.mutation({
+            query: ({actualPassword, newPassword})=>({
+                url: "change_password.php",
+                method: "POST",
+                body: {actualPassword, newPassword}
+            })
         })
-    })
+    }),
+    overrideExisting: true
 })
 
 export const {
     useLoginUserMutation,
     useLogoutMutation,
     useRegisterUserMutation,
+    useChangePasswordMutation
 } = authApi
