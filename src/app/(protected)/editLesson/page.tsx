@@ -15,7 +15,7 @@ const EditLesson = () => {
     const [triggerGetLessonById] = useLazyGetLessonByIdQuery()
     const [updateLesson] = useUpdateLessonMutation()
 
-    const handleEditLesson = async () => {
+    const handleGetEditLesson = async () => {
         const url = window.location.href
         const id = Number(url.split("?id=")[1])
         
@@ -40,7 +40,7 @@ const EditLesson = () => {
     }
 
     useEffect(() => {
-        handleEditLesson()
+        handleGetEditLesson()
     }, [])
 
     return (
