@@ -2,7 +2,6 @@
 import { Header } from "@/components/header/header"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
-import LandingPage from "@/components/lp/landingpage"
 import { Spinner } from "@/components/loading/spinner"
 import { useGetMeQuery } from "@/app/reducer/userApi"
 import EstudakiLanding from "@/components/lp/landingPagev2"

@@ -1,14 +1,12 @@
+import { BookOpen } from "lucide-react"
 
-type Props = {
-    title: string
-    subtitle?: string
-}
-
-export const Logobrand = ({title, subtitle}: Props) => {
+export const Logobrand = () => {
     return (
-        <div>
-            <h3 className="text-neutral-800 font-bold text-3xl">{title}</h3>
-            <p className="text-neutral-600">{subtitle}</p>
+        <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-xl font-bold text-slate-800">Estudaki</span>
         </div>
     )
 }
