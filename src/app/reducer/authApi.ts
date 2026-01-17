@@ -36,6 +36,12 @@ export const authApi = baseApi.injectEndpoints({
                 url: "pause_account.php",
                 method: "POST"
             })
+        }),
+        deleteAccount: builder.mutation<any, void>({
+            query: ()=>({
+                url: "delete_account.php",
+                method: "POST"
+            })
         })
     }),
     overrideExisting: true
@@ -46,5 +52,6 @@ export const {
     useLogoutMutation,
     useRegisterUserMutation,
     useChangePasswordMutation,
-    usePauseAccountMutation
+    usePauseAccountMutation,
+    useDeleteAccountMutation
 } = authApi

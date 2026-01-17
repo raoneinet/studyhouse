@@ -1,8 +1,6 @@
 "use client"
 import { BookOpen } from "lucide-react"
-import {
-    DropdownMenu
-} from "@/components/ui/dropdown-menu"
+import { DropdownMenu } from "@/components/ui/dropdown-menu"
 import {
     SidebarMenu,
     SidebarMenuButton,

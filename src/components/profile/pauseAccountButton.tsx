@@ -4,10 +4,13 @@ import { Button } from "../ui/button"
 import { ConfirmationModal } from "../modals/confirmationModal"
 import { usePauseAccountMutation } from "@/app/reducer/authApi"
 import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { baseApi } from "@/app/reducer/baseApi"
 
 export const PauseAccountButton = () => {
     const [pauseAccount] = usePauseAccountMutation()
     const [showModal, setShowModal] = useState(false)
+    const dispatch = useDispatch()
 
     const router = useRouter()
 
@@ -16,10 +19,12 @@ export const PauseAccountButton = () => {
     const handlePauseAccount = async () => {
         try {
             await pauseAccount().unwrap()
-            router.push("/")
-
+            dispatch(baseApi.util.resetApiState())
+            
+            setShowModal(false)
+            router.replace("/")
         } catch (error: any) {
-            console.log("Erro ao pausar conta.")
+            console.log("Erro ao pausar conta.", error)
         }
     }
 
@@ -35,7 +40,13 @@ export const PauseAccountButton = () => {
                     subTitle=" Sua conta será reativada ao fazer login novamente."
                 />
             </Activity>
-            <Button variant="outline" className="place-self-end" onClick={() => setShowModal(true)}>Suspender Conta</Button>
+            <Button
+                variant="outline"
+                className="place-self-end"
+                onClick={() => setShowModal(true)}
+            >
+                Suspender Conta
+            </Button>
         </>
     )
 }
