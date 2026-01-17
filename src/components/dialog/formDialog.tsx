@@ -10,7 +10,7 @@ import {
 export const FormDialog = ({ title, form, desc, links }: any) => {
     return (
         <Dialog>
-            <DialogTrigger className="text-slate-800">{title}</DialogTrigger>
+            <DialogTrigger className="text-slate-800 cursor-pointer">{title}</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Studyhouse</DialogTitle>
