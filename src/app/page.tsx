@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import LandingPage from "@/components/lp/landingpage"
 import { Spinner } from "@/components/loading/spinner"
 import { useGetMeQuery } from "@/app/reducer/userApi"
+import EstudakiLanding from "@/components/lp/landingPagev2"
 
 const Page = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()
@@ -23,7 +24,7 @@ const Page = () => {
                 <div className="min-h-screen">
                     <Header />
                     <main className="min-h-screen flex items-center justify-center">
-                        <LandingPage />
+                        <EstudakiLanding />
                     </main>
                 </div>
             }

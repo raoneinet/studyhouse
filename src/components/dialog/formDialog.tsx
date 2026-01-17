@@ -7,7 +7,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-export const FormDialog = ({title, form, desc}: any) => {
+export const FormDialog = ({ title, form, desc, links }: any) => {
     return (
         <Dialog>
             <DialogTrigger className="text-slate-800">{title}</DialogTrigger>
@@ -19,6 +19,9 @@ export const FormDialog = ({title, form, desc}: any) => {
                     </DialogDescription>
                 </DialogHeader>
                 {form}
+                <div>
+                    {links}
+                </div>
             </DialogContent>
         </Dialog>
     )
