@@ -79,7 +79,7 @@ export const RegisterForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleRegistration)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(handleRegistration)} className="space-y-6">
                 <FormField
                     control={form.control}
                     name="firstname"

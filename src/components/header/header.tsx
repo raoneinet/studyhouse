@@ -5,6 +5,7 @@ import { BookOpen } from 'lucide-react';
 import { useGetMeQuery } from "@/app/reducer/userApi";
 import { LoginLinks } from "../login/loginLinks";
 import { Logobrand } from "./logobrand";
+import Link from "next/link"
 
 export const Header = () => {
 
@@ -22,12 +23,7 @@ export const Header = () => {
                             desc="Faça login para organizar seus estudos de forma fácil"
                             links={<LoginLinks />}
                         />
-                        <FormDialog
-                            title="Criar conta"
-                            form={<RegisterForm />}
-                            desc="Crie uma conta para organizar seus estudos de forma fácil"
-                            links={<p className="text-sm text-slate-600 hover:underline"><a href="#">já tenho conta</a></p>}
-                        />
+                        <Link href="/register">Criar conta</Link>
                     </div>
                 }
             </div>
