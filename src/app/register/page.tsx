@@ -12,9 +12,9 @@ const RegistrationPage = () => {
                         <Logobrand />
                         <p className="text-sm mt-3">Crie uma conta para organizar seus estudos de forma fácil</p>
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                         <RegisterForm />
-                        <Link href="/" className="text-sm text-slate-600 hover:underline">já tenho conta</Link>
+                        <Link href="/login" className="text-sm text-slate-600 hover:underline mt-4">já tenho conta</Link>
                     </div>
                 </div>
             </div>
