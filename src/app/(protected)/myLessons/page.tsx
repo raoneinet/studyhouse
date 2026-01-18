@@ -24,6 +24,7 @@ const MyCards = () => {
     const { data } = useGetAllLessonsQuery({ page, limit })
     const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetLessonByIdQuery()
 
+    console.log(data)
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
@@ -61,7 +62,7 @@ const MyCards = () => {
                             <LessonCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))}
 
-                        {data?.totalItems !== 1 && (
+                        {data?.totalItems === 0 && (
                             <>
                                 <EmptyState />
                             </>
