@@ -61,9 +61,9 @@ const MyCards = () => {
                                 <LessonCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                             ))
                         }
-                        {data?.totalItems === 0 && <EmptyState />}
+                        {data?.data.length === 0 && <EmptyState />}
                     </div>
-                    {data?.totalItems !== 0 &&
+                    {data?.data.length !== 0 &&
                         <div className="flex gap-5 items-center justify-center">
                             <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
                                 Anterior
