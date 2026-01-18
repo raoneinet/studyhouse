@@ -6,9 +6,9 @@ export const DashboardActionButtons = () => {
 
     const router = useRouter()
 
-    const goTocreateNewCard = ()=> router.push("/newCard")
+    const goTocreateNewCard = ()=> router.push("/newLesson")
 
-    const goToAllCards = ()=> router.push("/myCards")
+    const goToAllCards = ()=> router.push("/myLessons")
 
     return (
         <div className="mt-6 pt-6 border-t border-slate-200">
