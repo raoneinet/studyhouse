@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRegisterUserMutation } from "@/app/reducer/authApi"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 const formSchema = z.object({
     firstname: z.string("Nome deve conter ao menos 2 letras"),
@@ -26,6 +28,8 @@ const formSchema = z.object({
 })
 
 export const RegisterForm = () => {
+
+    const router = useRouter()
 
     const [registerUser] = useRegisterUserMutation()
 
@@ -69,6 +73,11 @@ export const RegisterForm = () => {
 
             if (createUser.status === "success") {
                 console.log("Usuário criado! Faça login")
+                router.push("/")
+                toast(`${createUser.message}. Faça login`)
+            }else{
+                console.log("Erro ao criar conta. ",createUser.message)
+                toast(`${createUser.message}. Verifique os dados`)
             }
 
             return createUser
@@ -191,7 +200,7 @@ export const RegisterForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" variant="outline">Criar conta</Button>
+                <Button type="submit" variant="outline" className="cursor-pointer">Criar conta</Button>
             </form>
         </Form>
     )
