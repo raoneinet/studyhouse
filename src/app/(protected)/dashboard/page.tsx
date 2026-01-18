@@ -14,6 +14,8 @@ const Dashboard = () => {
     const { data } = useGetDashBoardDataQuery()
     const {data: user} = useGetMeQuery()
 
+    console.log(data)
+
     return (
         <>
             <PageTitle
@@ -24,7 +26,7 @@ const Dashboard = () => {
             <div>
                 <SummaryBoard />
             </div>
-            {data?.data.length === 0 &&
+            {data?.stats.total === 0 &&
                 <div className="mt-5">
                     <EmptyState />
                 </div>
