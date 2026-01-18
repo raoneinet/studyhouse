@@ -62,7 +62,7 @@ const MyCards = () => {
                             <LessonCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))}
 
-                        {data?.totalItems === 0 && (
+                        {data?.data.length === 0 && (
                             <>
                                 <EmptyState />
                             </>
