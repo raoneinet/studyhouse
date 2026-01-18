@@ -24,7 +24,7 @@ const Dashboard = () => {
             <div>
                 <SummaryBoard />
             </div>
-            {data?.stats.total === 0 &&
+            {data?.data.length === 0 &&
                 <div className="mt-5">
                     <EmptyState />
                 </div>
