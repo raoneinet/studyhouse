@@ -15,17 +15,15 @@ export const FormDialog = ({ title, form, desc, links }: any) => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
-                        <Logobrand/>
+                        <Logobrand />
                     </DialogTitle>
                     <DialogDescription>
                         {desc}
                     </DialogDescription>
                 </DialogHeader>
-                <div className="overflow-y-visible">
-                    {form}
-                    <div>
-                        {links}
-                    </div>
+                {form}
+                <div>
+                    {links}
                 </div>
             </DialogContent>
         </Dialog>

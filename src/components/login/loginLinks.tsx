@@ -1,8 +1,10 @@
+import Link from "next/link"
+
 export const LoginLinks = () => {
     return (
-        <div>
-            <p className="text-sm text-slate-600 hover:underline"><a href="#">Esqueceu a senha?</a></p>
-            <p className="text-sm text-slate-600 hover:underline"><a href="#">Não tenho conta</a></p>
+        <div className="flex flex-col">
+            <Link href="#" className="text-sm text-slate-600 hover:underline">Esqueceu a senha?</Link>
+            <Link href="/register" className="text-sm text-slate-600 hover:underline">Não tenho conta</Link>
         </div>
     )
 }
