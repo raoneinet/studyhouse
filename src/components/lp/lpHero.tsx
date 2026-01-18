@@ -36,29 +36,29 @@ export const LpHero = () => {
                                 </div>
 
                                 {/* Stats Cards */}
-                                <div className="grid grid-cols-4 gap-3 mb-6">
-                                    <div className="bg-white p-4 rounded-xl border border-gray-200">
+                                <div className="grid lg:grid-cols-4 gap-3 mb-6">
+                                    <div className="bg-white px-3 py-2 rounded-xl border border-gray-200">
                                         <div className="flex items-center justify-between mb-2">
                                             <span className="text-xs text-gray-600">Total de Cards</span>
                                             <Grid className="w-4 h-4 text-gray-400" />
                                         </div>
                                         <div className="text-2xl font-bold text-gray-900">9</div>
                                     </div>
-                                    <div className="bg-white p-4 rounded-xl border border-gray-200">
+                                    <div className="bg-white px-3 py-2 rounded-xl border border-gray-200">
                                         <div className="flex items-center justify-between mb-2">
                                             <span className="text-xs text-gray-600">Em Andamento</span>
                                             <Clock className="w-4 h-4 text-blue-500" />
                                         </div>
                                         <div className="text-2xl font-bold text-blue-600">4</div>
                                     </div>
-                                    <div className="bg-white p-4 rounded-xl border border-gray-200">
+                                    <div className="bg-white px-3 py-2 rounded-xl border border-gray-200">
                                         <div className="flex items-center justify-between mb-2">
                                             <span className="text-xs text-gray-600">Urgente</span>
                                             <AlertCircle className="w-4 h-4 text-red-500" />
                                         </div>
                                         <div className="text-2xl font-bold text-red-600">2</div>
                                     </div>
-                                    <div className="bg-white p-4 rounded-xl border border-gray-200">
+                                    <div className="bg-white px-3 py-2 rounded-xl border border-gray-200">
                                         <div className="flex items-center justify-between mb-2">
                                             <span className="text-xs text-gray-600">Concluído</span>
                                             <CheckCircle className="w-4 h-4 text-green-500" />
@@ -81,19 +81,21 @@ export const LpHero = () => {
                                             { title: 'React Hook Form with Zod', category: 'programming', priority: 'high', status: 'progress' },
                                             { title: 'Cache', category: 'computing', priority: 'medium', status: 'progress' }
                                         ].map((card, i) => (
-                                            <div key={i} className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                                                <div className="flex items-start justify-between mb-2">
-                                                    <span className={`text-xs px-2 py-1 rounded ${card.category === 'programming' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
-                                                        {card.category}
-                                                    </span>
-                                                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                            <div key={i} className="bg-white p-4 flex flex-col justify-between rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+                                                <div>
+                                                    <div className="flex items-start justify-between mb-2">
+                                                        <span className={`text-xs px-2 py-1 rounded ${card.category === 'programming' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+                                                            {card.category}
+                                                        </span>
+                                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                                    </div>
+                                                    <h5 className="font-semibold text-sm text-gray-900 mb-2">{card.title}</h5>
                                                 </div>
-                                                <h5 className="font-semibold text-sm text-gray-900 mb-2">{card.title}</h5>
-                                                <div className="flex flex-col lg:flex-row justify-start items-end gap-2">
-                                                    <span className={`text-xs px-2 py-0.5 rounded ${card.priority === 'high' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600'}`}>
+                                                <div className="flex flex-col lg:flex-row lg:items-end gap-2">
+                                                    <span className={`text-xs px-2 py-0.5 w-fit rounded ${card.priority === 'high' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600'}`}>
                                                         {card.priority}
                                                     </span>
-                                                    <span className="text-xs text-blue-600 flex items-center gap-1">
+                                                    <span className="text-xs text-blue-600 w-fit flex items-center gap-1">
                                                         <Clock className="w-3 h-3" />
                                                         Em andamento
                                                     </span>
