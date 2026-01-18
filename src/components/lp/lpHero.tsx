@@ -76,7 +76,7 @@ export const LpHero = () => {
                                         </h4>
                                         <span className="text-xs text-blue-600 cursor-pointer">Ver Todos →</span>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-3">
+                                    <div className="grid grid-rows-2 lg:grid-cols-2 gap-3">
                                         {[
                                             { title: 'React Hook Form with Zod', category: 'programming', priority: 'high', status: 'progress' },
                                             { title: 'Cache', category: 'computing', priority: 'medium', status: 'progress' }
@@ -89,7 +89,7 @@ export const LpHero = () => {
                                                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                                 </div>
                                                 <h5 className="font-semibold text-sm text-gray-900 mb-2">{card.title}</h5>
-                                                <div className="flex flex-col lg:flex-row items-center gap-2">
+                                                <div className="flex flex-col lg:flex-row justify-start items-end gap-2">
                                                     <span className={`text-xs px-2 py-0.5 rounded ${card.priority === 'high' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600'}`}>
                                                         {card.priority}
                                                     </span>
