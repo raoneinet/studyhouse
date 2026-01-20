@@ -17,7 +17,7 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
 
     const { data: user, isLoading } = useGetMeQuery()
     const API_URL = process.env.NEXT_PUBLIC_API_URL
-    const avatarUrl = user.user.avatar ? `${API_URL}${user.user.avatar}` : "https://github.com/shadcn.png"
+    const avatarUrl = user.user.avatar ? `https://estudaki.site${user.user.avatar}` : "https://github.com/shadcn.png"
 
     const [updateAvatar] = useUpdateAvatarMutation()
     const { register, handleSubmit, formState: { errors } } = useForm()
