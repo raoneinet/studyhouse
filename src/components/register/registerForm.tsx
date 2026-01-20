@@ -23,8 +23,8 @@ const formSchema = z.object({
     date_of_birth: z.iso.date(),
     profession: z.string().optional(),
     country: z.string().optional(),
-    email: z.email(),
-    password: z.string().min(2, "Senha deve conter no mínimo 6 caracteres")
+    email: z.email("Email inválido"),
+    password: z.string().min(6, "Senha deve conter no mínimo 6 caracteres")
 })
 
 export const RegisterForm = () => {
@@ -75,9 +75,9 @@ export const RegisterForm = () => {
                 console.log("Usuário criado! Faça login")
                 router.push("/login")
                 toast(`${createUser.message}. Faça login`)
-            }else{
-                console.log("Erro ao criar conta. ",createUser.message)
-                toast(`${createUser.message}. Verifique os dados`)
+            } else {
+                console.log("Erro ao criar conta. ", createUser.message)
+                toast.warning(`${createUser.message}. Verifique os dados`)
             }
 
             return createUser
@@ -94,7 +94,10 @@ export const RegisterForm = () => {
                     name="firstname"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nome</FormLabel>
+                            <FormLabel>
+                                Nome
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input placeholder="Prrimeiro nome" {...field} />
                             </FormControl>
@@ -107,7 +110,10 @@ export const RegisterForm = () => {
                     name="lastname"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Sobrenome</FormLabel>
+                            <FormLabel>
+                                Sobrenome
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input placeholder="Sobrenome" {...field} />
                             </FormControl>
@@ -140,7 +146,10 @@ export const RegisterForm = () => {
                     name="date_of_birth"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Data de nascimento</FormLabel>
+                            <FormLabel>
+                                Data de nascimento
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input type="date" {...field} />
                             </FormControl>
@@ -166,7 +175,10 @@ export const RegisterForm = () => {
                     name="country"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>País</FormLabel>
+                            <FormLabel>
+                                País
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input placeholder="Brasil..." {...field} />
                             </FormControl>
@@ -179,7 +191,10 @@ export const RegisterForm = () => {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>
+                                Email
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input placeholder="exemplo@email.com" {...field} />
                             </FormControl>
@@ -192,7 +207,10 @@ export const RegisterForm = () => {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Senha</FormLabel>
+                            <FormLabel>
+                                Senha
+                                <span className="text-xs text-slate-600">*</span>
+                            </FormLabel>
                             <FormControl>
                                 <Input type="password" placeholder="******" {...field} />
                             </FormControl>
