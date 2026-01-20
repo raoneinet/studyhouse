@@ -45,6 +45,10 @@ export const LoginForm = () => {
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
+            form.setError("root", {
+                type: "manual",
+                message: error.data.message,
+            })
         }
     }
 
@@ -83,6 +87,9 @@ export const LoginForm = () => {
                         </FormItem>
                     )}
                 />
+                {form.formState.errors.root &&
+                    <p className="text-sm text-red-600">{form.formState.errors.root.message}</p>
+                }
                 <Button variant="outline" type="submit">Entrar</Button>
             </form>
         </Form>
