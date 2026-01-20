@@ -24,7 +24,7 @@ const formSchema = z.object({
     profession: z.string().optional(),
     country: z.string().optional(),
     email: z.email("Email inválido"),
-    password: z.string().min(2, "Senha deve conter no mínimo 6 caracteres")
+    password: z.string().min(6, "Senha deve conter no mínimo 6 caracteres")
 })
 
 export const RegisterForm = () => {
@@ -77,7 +77,7 @@ export const RegisterForm = () => {
                 toast(`${createUser.message}. Faça login`)
             } else {
                 console.log("Erro ao criar conta. ", createUser.message)
-                toast(`${createUser.message}. Verifique os dados`)
+                toast.warning(`${createUser.message}. Verifique os dados`)
             }
 
             return createUser
