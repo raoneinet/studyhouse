@@ -102,6 +102,7 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
                             >Salvar</Button>
                         </div>
                     </form>
+                    <p className="text-xs text-slate-500">Tamanho máx: 2MB</p>
                 </div>
             }
         </div>
