@@ -24,9 +24,12 @@ import {
 import { Subject } from "@/types/subject"
 import { useEffect } from "react"
 import { formSchema } from "@/utils/formSchema"
+import { useRouter } from "next/navigation"
 
 
 export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subject, submitData?: any }) => {
+
+    const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -61,6 +64,22 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
             })
         }
     }, [initialValue, form])
+
+    const cancelLesson = ()=>{
+        if(initialValue){
+            form.reset({
+                title: "",
+                links: [{ value: "" }],
+                description: "",
+                category: "",
+                status: "",
+                tags: "",
+                priority: ""
+            })
+        }
+
+        router.push("/dashboard")
+    }
 
     return (
         <Form {...form}>
@@ -259,7 +278,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                 </div>
                 <div className="w-full flex gap-3">
                     <Button type="submit" className="flex-1 bg-blue-600 text-white">Salvar</Button>
-                    <Button type="button" variant="outline" className="w-fit">Cancelar</Button>
+                    <Button type="button" variant="outline" className="w-fit" onClick={cancelLesson}>Cancelar</Button>
                 </div>
             </form>
         </Form>
