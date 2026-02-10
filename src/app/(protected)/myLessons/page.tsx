@@ -17,7 +17,7 @@ const MyCards = () => {
         return list ? JSON.parse(list) : false
     })
 
-    const [selectCard, setSelectCard] = useState<Subject | null>(null)
+    const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
     const limit = 10
 
@@ -28,7 +28,7 @@ const MyCards = () => {
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
-            setSelectCard(result)
+            //setSelectCard(result)
         } catch (error) {
             console.log("Erro ao buscar por assunto por ID: ", error)
         }
@@ -37,6 +37,9 @@ const MyCards = () => {
     const handleView = (view: boolean) => setViewList(view)
     const closeMobileModal = ()=> setSelectCard(null)
 
+    useEffect(()=>{
+        setSelectCard(selectedCard as Subject)
+    }, [selectCard])
     useEffect(() => {
         localStorage.setItem("listview", JSON.stringify(viewList))
     }, [viewList])
