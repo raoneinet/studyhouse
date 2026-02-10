@@ -17,7 +17,7 @@ const MyCards = () => {
         return list ? JSON.parse(list) : false
     })
 
-    const [selectCard, setSelectCard] = useState<Subject | null>(null)
+    const [selectCard, setSelectCard] = useState<Subject | any>(null)
     const [page, setPage] = useState(1)
     const limit = 10
 
