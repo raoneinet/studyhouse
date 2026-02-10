@@ -86,7 +86,7 @@ export const lessonsApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: { id, isFavorite }
             }),
-            invalidatesTags: ["Subjects"]
+            invalidatesTags: ["Subjects"],
         }),
         getLessonById: builder.query<Subject, number>({
             query: (id: number) => ({
@@ -102,9 +102,10 @@ export const lessonsApi = baseApi.injectEndpoints({
                 method: "PATCH",
                 body: {id, ...data}
             }),
-            invalidatesTags: ["Subjects"]
+            invalidatesTags: [{ type: "Subjects", id: "LIST" }],
         })
-    })
+    }),
+    overrideExisting: true
 })
 
 export const {

@@ -5,20 +5,25 @@ import { PriorityType } from "@/types/priorityType"
 import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot, Star } from "lucide-react"
 import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
+import { FavoriteIcon } from "./favoriteIcon"
 
 export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 
     const stats: StatusType[] = statusOptions.filter(opt => opt.id === selectedCard?.status)
     const priority: PriorityType[] = priorityOptions.filter(opt => opt.id === selectedCard?.priority)
 
-    // const [toggleFavorite] = useToggleFavoriteMutation()
+    const [toggleFavorite] = useToggleFavoriteMutation()
 
-    // const handleFavorite = async (item: any) => {
-    //     await toggleFavorite({
-    //         id: item.id,
-    //         isFavorite: !item?.is_favorite
-    //     }).unwrap()
-    // }
+    const handleFavorite = async (card: any) => {
+        try {
+            await toggleFavorite({
+                id: card.id,
+                isFavorite: !card?.is_favorite
+            }).unwrap()
+        } catch (error: any) {
+            console.log("Erro ao favoritar item. ", error)
+        }
+    }
 
     return (
         <div
@@ -28,13 +33,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
             <div>
                 <h2 className="font-bold text-slate-700 text-2xl capitalize flex justify-between items-center wrap-anywhere">
                     <span>{selectedCard?.title}</span>
-                    <Star
-                        className={`w-6 h-6 cursor-pointer
-                            ${(selectedCard?.is_favorite === 1)
-                                ? "text-yellow-500 fill-yellow-500"
-                                : "text-gray-400 fill-transparent"}
-                        `}
-                    />
+                    <FavoriteIcon handleFavorite={handleFavorite} card={selectedCard} />
                 </h2>
             </div>
             <div className="flex flex-col gap-2">
