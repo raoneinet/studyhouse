@@ -12,10 +12,9 @@ import { Separator } from "../ui/separator"
 
 type Props = {
     selectedCard: Subject
-    closeMobileModal?: ()=>void
 }
 
-export const LessonDetailSidebar = ({ selectedCard, closeMobileModal }: Props) => {
+export const LessonDetailSidebar = ({ selectedCard }: Props) => {
 
     return (
         <SidebarGroup>
@@ -27,7 +26,7 @@ export const LessonDetailSidebar = ({ selectedCard, closeMobileModal }: Props) =
                     {selectedCard !== null &&
                         <CardOptionsMenu cardId={selectedCard?.id} />
                     }
-                    <span className="md:hidden flex text-xl text-red-500" onClick={closeMobileModal}>X</span>
+                    <span className="md:hidden flex text-xl text-red-500">X</span>
                 </SidebarGroupLabel>
                 <Separator className="my-3" />
                 {selectedCard === null &&
