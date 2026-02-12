@@ -24,11 +24,9 @@ const MyCards = () => {
     const { data } = useGetAllLessonsQuery({ page, limit })
     const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetLessonByIdQuery()
 
-    console.log("Favorito: ", selectedCard)
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
-            console.log(result.id)
             setSelectCard(result)
         } catch (error) {
             console.log("Erro ao buscar por assunto por ID: ", error)
@@ -36,6 +34,7 @@ const MyCards = () => {
     }
 
     const handleView = (view: boolean) => setViewList(view)
+    
     const closeMobileModal = ()=> setSelectCard(null)
 
     useEffect(() => {
