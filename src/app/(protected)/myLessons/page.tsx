@@ -12,6 +12,7 @@ import { GridListView } from "@/components/gridListView/gridListView"
 
 const MyCards = () => {
 
+    const [selectCard, setSelectCard] = useState<any | null>(null)
     const [viewList, setViewList] = useState(() => {
         const list = localStorage.getItem("listview")
         return list ? JSON.parse(list) : false
@@ -32,6 +33,8 @@ const MyCards = () => {
     }
 
     const handleView = (view: boolean) => setViewList(view)
+
+    const closeMobileModal = ()=> setSelectCard(null)
 
     useEffect(() => {
         localStorage.setItem("listview", JSON.stringify(viewList))
@@ -79,7 +82,7 @@ const MyCards = () => {
                 </div>
                 <div className={`${selectedCard != undefined ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
                     <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
-                        <LessonDetailSidebar selectedCard={selectedCard}/>
+                        <LessonDetailSidebar selectedCard={selectedCard} closeMobileModal={closeMobileModal}/>
                     </div>
                 </div>
             </div>

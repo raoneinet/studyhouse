@@ -16,7 +16,7 @@ const MyCards = () => {
         return list ? JSON.parse(list) : true
     })
 
-    const [selectCard, setSelectCard] = useState<Subject | any>(null)
+    const [selectCard, setSelectCard] = useState<any | null>(null)
     const [page, setPage] = useState(1)
     const limit = 10
 
@@ -26,7 +26,7 @@ const MyCards = () => {
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
-            setSelectCard(result)
+            setSelectCard(result.id)
         } catch (error: any) {
             console.log("Erro ao buscar item favorito por ID. ", error)
         }
@@ -77,7 +77,7 @@ const MyCards = () => {
                 </div>
                 <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
                     <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
-                        <LessonDetailSidebar selectCard={selectCard} closeMobileModal={closeMobileModal}/>
+                        <LessonDetailSidebar selectedCard={selectCard} closeMobileModal={closeMobileModal}/>
                     </div>
                 </div>
             </div>
