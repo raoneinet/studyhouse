@@ -12,7 +12,7 @@ import { Separator } from "../ui/separator"
 
 type Props = {
     selectedCard: Subject
-    closeMobileModal?: ()=>void
+    closeMobileModal: ()=>void
 }
 
 export const LessonDetailSidebar = ({ selectedCard, closeMobileModal }: Props) => {

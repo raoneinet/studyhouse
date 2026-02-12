@@ -12,12 +12,12 @@ import { GridListView } from "@/components/gridListView/gridListView"
 
 const MyCards = () => {
 
+    const [selectCard, setSelectCard] = useState<any | null>(null)
     const [viewList, setViewList] = useState(() => {
         const list = localStorage.getItem("listview")
         return list ? JSON.parse(list) : false
     })
 
-    const [selectCard, setSelectCard] = useState<number | null>(null)
     const [page, setPage] = useState(1)
     const limit = 10
 
@@ -27,14 +27,13 @@ const MyCards = () => {
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
-            setSelectCard(result)
         } catch (error) {
             console.log("Erro ao buscar por assunto por ID: ", error)
         }
     }
 
     const handleView = (view: boolean) => setViewList(view)
-    
+
     const closeMobileModal = ()=> setSelectCard(null)
 
     useEffect(() => {
