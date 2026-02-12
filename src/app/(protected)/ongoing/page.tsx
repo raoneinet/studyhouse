@@ -26,7 +26,7 @@ const MyCards = () => {
     const handleSelectCard = async (id: number) => {
         try {
             const result = await triggerGetSubjectById(id).unwrap()
-            setSelectCard(result)
+            setSelectCard(result.id)
         } catch (error: any) {
             console.log("Erro ao bucar itens Ongoing por ID. ", error)
         }
