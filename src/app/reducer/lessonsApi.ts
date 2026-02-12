@@ -88,7 +88,7 @@ export const lessonsApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["Subjects"],
         }),
-        getLessonById: builder.query<Subject, number>({
+        getLessonById: builder.query<any, number>({
             query: (id: number) => ({
                 url: `get_lesson.php?id=${id}`
             }),
