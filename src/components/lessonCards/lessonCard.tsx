@@ -33,7 +33,6 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
         <div className="p-4 bg-white rounded-lg border">
             <div
                 className="flex-1 flex flex-col justify-between h-full"
-                onClick={() => handleSelectCard(card.id)}
             >
                 <div className="flex justify-between items-center ">
                     <div className="flex gap-3">
@@ -45,7 +44,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                         <Priorities priority={card.priority} />
                     </div>
                     <div className="w-fit place-self-end">
-                        <CardOptionsMenu cardId={card.id} />
+                        <CardOptionsMenu cardId={card.id} viewMore={handleSelectCard} />
                     </div>
                 </div>
                 <div className="py-2">

@@ -9,21 +9,23 @@ import { MoreHorizontal } from "lucide-react"
 import { useDeleteLessonMutation } from "@/app/reducer/lessonsApi"
 import { useRouter } from "next/navigation"
 
-export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
+type Props = {
+    cardId: number
+    viewMore: (id: number)=>void
+}
+
+export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
 
     const router = useRouter()
 
     const [deleteLesson] = useDeleteLessonMutation()
 
-    const handleEditLesson= (id: number)=>{
-        console.log("ID: ", id)
-        router.push("/editLesson?id="+id)
-    }
+    const handleEditLesson= (id: number)=> router.push("/editLesson?id="+id)
+    
 
     const handleDeleteLesson = async (id: number) => {
         try {
             await deleteLesson(id).unwrap()
-            console.log("APAGOU O ID: ", id)
         } catch (error: any) {
             console.log("Erro ao eliminar assunto. ", error)
         }
@@ -40,6 +42,9 @@ export const CardOptionsMenu = ({ cardId }: { cardId: number }) => {
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleDeleteLesson(cardId)}>
                     <span>Deletar</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => viewMore(cardId)}>
+                    <span>Vizualizar</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
