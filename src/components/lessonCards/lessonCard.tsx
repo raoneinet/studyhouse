@@ -18,12 +18,12 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
 
-    const handleFavorite = async (card: Subject) => {
-        console.log("Favoritado: ", card.id)
+    const handleFavorite = async (favorite: Subject) => {
+        console.log("Favoritado: ", favorite?.id)
         try {
             await toggleFavorite({
-                id: card.id,
-                isFavorite: !card?.is_favorite
+                id: favorite.id,
+                isFavorite: !favorite?.is_favorite
             }).unwrap()
         } catch (error: any) {
             console.log("Erro ao favoritar item. ", error)
