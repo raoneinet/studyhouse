@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation"
 
 type Props = {
     cardId: number
-    viewMore: (id: number)=>void
+    viewMore?: (id: number) => void
 }
 
 export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
@@ -20,8 +20,8 @@ export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
 
     const [deleteLesson] = useDeleteLessonMutation()
 
-    const handleEditLesson= (id: number)=> router.push("/editLesson?id="+id)
-    
+    const handleEditLesson = (id: number) => router.push("/editLesson?id=" + id)
+
 
     const handleDeleteLesson = async (id: number) => {
         try {
@@ -37,15 +37,17 @@ export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
                 <MoreHorizontal />
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
-                <DropdownMenuItem onClick={()=>handleEditLesson(cardId)}>
+                <DropdownMenuItem onClick={() => handleEditLesson(cardId)}>
                     <span>Editar</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleDeleteLesson(cardId)}>
                     <span>Deletar</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => viewMore(cardId)}>
-                    <span>Vizualizar</span>
-                </DropdownMenuItem>
+                {viewMore &&
+                    <DropdownMenuItem onClick={() => viewMore(cardId)}>
+                        <span>Vizualizar</span>
+                    </DropdownMenuItem>
+                }
             </DropdownMenuContent>
         </DropdownMenu>
     )
