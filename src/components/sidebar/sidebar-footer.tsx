@@ -29,7 +29,7 @@ import { useLogoutMutation } from "@/app/reducer/authApi"
 
 export const MenuSidebarFooter = () => {
 
-    const {data: user, isLoading, isError} = useGetMeQuery()
+    const { data: user, isLoading, isError } = useGetMeQuery()
     const [logout] = useLogoutMutation()
 
     console.log("user: ", user)
@@ -46,9 +46,14 @@ export const MenuSidebarFooter = () => {
     const goToAccount = () => router.push("/account")
 
     const handleLogout = async () => {
-        await logout().unwrap()
-        dispatch(baseApi.util.resetApiState())
-        router.replace("/")
+        try {
+            await logout().unwrap()
+            dispatch(baseApi.util.resetApiState())
+            router.replace("/")
+        }catch(error: any){
+            console.log("Erro ao fazer log out. ", error)
+            return
+        }
     }
 
     return (
