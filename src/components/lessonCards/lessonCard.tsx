@@ -1,6 +1,6 @@
 "use client"
 import { Subject } from "@/types/subject"
-import { ExternalLink, AlertCircle, Star } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 import { Priorities } from "./priorities"
