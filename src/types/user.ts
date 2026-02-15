@@ -8,4 +8,5 @@ export type User = {
     email: string
     profession: string
     country: string
+    is_favorite: number
 }

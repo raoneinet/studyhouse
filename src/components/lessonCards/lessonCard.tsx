@@ -19,7 +19,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
     const [toggleFavorite] = useToggleFavoriteMutation()
 
     const handleFavorite = async (favorite: Subject) => {
-        console.log("Favoritado: ", favorite?.id)
+        console.log("Favoritado: ", favorite.id)
         try {
             await toggleFavorite({
                 id: favorite.id,
