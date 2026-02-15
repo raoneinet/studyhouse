@@ -48,7 +48,7 @@ export const MenuSidebarFooter = () => {
     const handleLogout = async () => {
         await logout().unwrap()
         dispatch(baseApi.util.resetApiState())
-        router.push("/")
+        router.replace("/")
     }
 
     return (

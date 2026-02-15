@@ -12,7 +12,7 @@ const Page = () => {
 
     useEffect(() => {
         if (user && !isLoading) {
-            router.push("/dashboard")
+            router.replace("/dashboard")
         }
     }, [user, isLoading, router])
 
