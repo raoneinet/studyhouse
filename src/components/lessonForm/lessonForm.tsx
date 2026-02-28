@@ -78,7 +78,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
             })
         }
 
-        router.push("/dashboard")
+        router.back()
     }
 
     return (
