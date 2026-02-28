@@ -32,7 +32,7 @@ const EditLesson = () => {
 
         try {
             await updateLesson({ id: editLesson?.id, data: values }).unwrap()
-            router.push("/myLessons")
+            router.back()
         } catch (error: any) {
             console.log("Error ao enviar novos valores. ", error)
         }
