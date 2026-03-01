@@ -32,8 +32,7 @@ export const LinkPreview = ({ links }: Props) => {
                     setError(true)
                     return
                 }
-
-                console.log("Preview: ", req)
+                
                 setPreview(preview.hybridGraph)
             } catch (error: any) {
                 console.log("Erro ao mostrar preview: ", error)
@@ -48,7 +47,7 @@ export const LinkPreview = ({ links }: Props) => {
             {!error &&
                 <div className="flex gap-2">
                     <div className="w-10">
-                        <img src={preview?.image} alt="Link preview of website" className="w-10 h-10" />
+                        <img src={preview?.image ?? "IMG"} alt="Link preview of website" className="w-10 h-10" />
                     </div>
                     <div className="flex-1">
                         <div className="font-bold text-xs">{preview?.title}</div>
