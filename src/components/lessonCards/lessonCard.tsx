@@ -3,6 +3,7 @@ import { Subject } from "@/types/subject"
 import { ExternalLink } from "lucide-react"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
+import { useUpdateStatusMutation } from "@/app/reducer/lessonsApi"
 import { Priorities } from "./priorities"
 import { Statuses } from "./statuses"
 import { FavoriteIcon } from "./favoriteIcon"
@@ -17,6 +18,7 @@ type Props = {
 export const LessonCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
+    const [updateStatus] = useUpdateStatusMutation()
 
     const handleFavorite = async (favorite: Subject) => {
         console.log("Favoritado: ", favorite.id)
@@ -28,6 +30,16 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
         } catch (error: any) {
             console.log("Erro ao favoritar item. ", error)
         }
+    }
+
+    type StatProps = {
+        id: any
+        status: any
+    }
+    const handleUpdateStatus = async ({id, status}: StatProps)=>{
+
+        console.log("Id: ", id, "status: ", status.trim())
+        await updateStatus({id,status}).unwrap()
     }
 
     return (
@@ -68,7 +80,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">
-                        <Statuses status={card.status} />
+                        <Statuses card={card} handleUpdateStatus={handleUpdateStatus}/>
                     </div>
                 </div>
             </div>

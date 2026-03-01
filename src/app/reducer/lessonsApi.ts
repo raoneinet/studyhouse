@@ -97,12 +97,20 @@ export const lessonsApi = baseApi.injectEndpoints({
             ]
         }),
         updateLesson: builder.mutation({
-            query: ({id, data})=>({
+            query: ({ id, data }) => ({
                 url: "update_lesson.php",
                 method: "PATCH",
-                body: {id, ...data}
+                body: { id, ...data }
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }],
+        }),
+        updateStatus: builder.mutation({
+            query: ({ id, status }) => ({
+                url: "update_status.php",
+                method: "POST",
+                body: { id, status }
+            }),
+            invalidatesTags: ["Subjects"]
         })
     }),
     overrideExisting: true
@@ -117,5 +125,6 @@ export const {
     useDeleteLessonMutation,
     useToggleFavoriteMutation,
     useLazyGetLessonByIdQuery,
-    useUpdateLessonMutation
+    useUpdateLessonMutation,
+    useUpdateStatusMutation
 } = lessonsApi
