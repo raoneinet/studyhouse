@@ -1,3 +1,5 @@
+"use client"
+import { useEffect, useState } from "react"
 import { Subject } from "@/types/subject"
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
@@ -6,6 +8,7 @@ import { priorityOptions } from "@/utils/priorityOptions"
 import { ExternalLink, CircleDot, Star } from "lucide-react"
 import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 import { FavoriteIcon } from "./favoriteIcon"
+import { LinkPreview } from "../linkPreview/linkPreview"
 
 export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 
@@ -98,8 +101,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                         key={index}
                         className=" bg-slate-100 px-2 py-3 rounded-md my-1 wrap-anywhere">
                         <a href={item} target="_blank" className="flex gap-2 items-center">
-                            <ExternalLink className="w-4" />
-                            {item}
+                            <LinkPreview links={item}/>
                         </a>
                     </div>
                 ))}
