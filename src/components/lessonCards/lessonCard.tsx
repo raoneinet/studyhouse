@@ -15,13 +15,17 @@ type Props = {
     handleSelectCard: (id: number) => void
 }
 
+type StatProps = {
+    id: number
+    status: string
+}
+
 export const LessonCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
     const [updateStatus] = useUpdateStatusMutation()
 
     const handleFavorite = async (favorite: Subject) => {
-        console.log("Favoritado: ", favorite.id)
         try {
             await toggleFavorite({
                 id: favorite.id,
@@ -32,14 +36,15 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
         }
     }
 
-    type StatProps = {
-        id: any
-        status: any
-    }
-    const handleUpdateStatus = async ({id, status}: StatProps)=>{
-
-        console.log("Id: ", id, "status: ", status.trim())
-        await updateStatus({id,status}).unwrap()
+    const handleUpdateStatus = async ({ id, status }: StatProps) => {
+        try {
+            await updateStatus({
+                id,
+                status
+            }).unwrap()
+        } catch (error: any) {
+            console.log("Erro ao atualizar status da lição: ", error)
+        }
     }
 
     return (
@@ -80,7 +85,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">
-                        <Statuses status={card} handleUpdateStatus={handleUpdateStatus}/>
+                        <Statuses status={card} handleUpdateStatus={handleUpdateStatus} />
                     </div>
                 </div>
             </div>
