@@ -1,9 +1,10 @@
 import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { CardOptionsStatus } from "../cardOptions/cardOptionsStatus"
+import { Subject } from "@/types/subject"
 
 type Props = {
-    status: any
+    status: Subject
     handleUpdateStatus?: any
 }
 

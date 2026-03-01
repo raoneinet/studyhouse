@@ -2,15 +2,7 @@
 import { TrendingUp } from "lucide-react"
 import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { Statuses } from "../lessonCards/statuses"
-
-type RecentAct = {
-    id: number
-    title: string
-    category: string
-    description: string
-    status: string
-    created_at: string
-}
+import { Subject } from "@/types/subject"
 
 export const RecentActivity = () => {
 
@@ -26,21 +18,21 @@ export const RecentActivity = () => {
                     Atividade Recente
                 </h1>
             </div>
-            {data?.recentActivity.map((item: RecentAct) => (
-                <div key={item.id} className="flex justify-between border-b last:border-none pb-2">
+            {data?.recentActivity.map((activity: Subject) => (
+                <div key={activity.id} className="flex justify-between border-b last:border-none pb-2">
                     <div className="">
                         <div className="flex gap-1 font-bold text-sm text-slate-600">
-                            <span>{item.title}</span>
+                            <span>{activity.title}</span>
                             -
-                            <span>{item.category}</span>
+                            <span>{activity.category}</span>
                         </div>
                         <div className="w-fit text-xs">
-                            <Statuses status={item.status} />
+                            <Statuses status={activity} />
                         </div>
                     </div>
                     <div>
                         <div className="text-slate-500 text-sm">
-                            <span>{item.created_at?.split(" ")[0]}</span>
+                            <span>{activity.created_at?.split(" ")[0]}</span>
                         </div>
                     </div>
                 </div>
