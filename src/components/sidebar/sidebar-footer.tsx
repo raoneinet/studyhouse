@@ -32,7 +32,6 @@ export const MenuSidebarFooter = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()
     const [logout] = useLogoutMutation()
 
-    console.log("user: ", user)
     const API_URL = process.env.NEXT_PUBLIC_API_URL
 
     const avatarUrl = user.user.avatar ? `${API_URL}${user.user.avatar}` : "https://github.com/shadcn.png"
