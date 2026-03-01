@@ -34,7 +34,7 @@ export const MenuSidebarFooter = () => {
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-    const avatarUrl = user.user.avatar ? `${API_URL}${user.user.avatar}` : "https://github.com/shadcn.png"
+    const avatarUrl = user.user.avatar ? `https://estudaki.site${user.user.avatar}` : "https://github.com/shadcn.png"
 
     const { isMobile } = useSidebar()
 
