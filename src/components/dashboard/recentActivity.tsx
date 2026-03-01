@@ -3,10 +3,14 @@ import { TrendingUp } from "lucide-react"
 import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { Statuses } from "../lessonCards/statuses"
 import { Subject } from "@/types/subject"
+import { statusOptions } from "@/utils/statusOptions"
 
 export const RecentActivity = () => {
 
+
     const { data } = useGetDashBoardDataQuery()
+    const stats = statusOptions.filter(item => data?.recentActivity.map((stts: Subject) => item.id === stts.status))
+    console.log(data)
 
     return (
         <div className="flex flex-col flex-1 p-5 gap-4 bg-white rounded-lg border">
@@ -27,7 +31,18 @@ export const RecentActivity = () => {
                             <span>{activity.category}</span>
                         </div>
                         <div className="w-fit text-xs">
-                            <Statuses status={activity} />
+                            {stats.map(item => {
+                                const Icon = item.icon
+                                return (
+                                    item.id === activity.status &&
+                                    <div
+                                        key={item.id}
+                                        className={`px-2 rounded-md flex gap-1 text-xs w-full items-center ${item.bgColor} ${item.textColor}`}>
+                                        <Icon className="w-3" />
+                                        <span>{item?.label}</span>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                     <div>
