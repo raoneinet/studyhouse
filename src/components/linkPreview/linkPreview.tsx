@@ -15,12 +15,10 @@ type Preview = {
 export const LinkPreview = ({ links }: Props) => {
     const [preview, setPreview] = useState<Preview>()
 
-
-
     console.log("Links: ", links)
 
     useEffect(() => {
-        const apiKey = process.env.NEXT_PUBLIC_LINK_API
+        const apiKey = process.env.LINK_PREVIEW_API
         const endpoint = `https://opengraph.io/api/1.1/site/${encodeURIComponent(links)}?app_id=${apiKey}`;
 
         async function fetchPreview() {
