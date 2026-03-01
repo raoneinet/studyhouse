@@ -29,6 +29,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
         }
     }
 
+
     return (
         <div
             key={selectedCard?.id}
@@ -99,10 +100,9 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                 {selectedCard.links.map((item: string, index: number) => (
                     <div
                         key={index}
-                        className=" bg-slate-100 px-2 py-3 rounded-md my-1 wrap-anywhere">
-                        <a href={item} target="_blank" className="flex gap-2 items-center">
-                            <LinkPreview links={item}/>
-                        </a>
+                        className=" bg-slate-100 px-2 py-3 rounded-md my-1 wrap-anywhere"
+                    >
+                        <LinkPreview links={item} />
                     </div>
                 ))}
             </div>
