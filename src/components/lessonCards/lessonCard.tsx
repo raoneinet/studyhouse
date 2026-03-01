@@ -29,7 +29,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
         try {
             await toggleFavorite({
                 id: favorite.id,
-                isFavorite: !favorite?.is_favorite
+                isFavorite: !favorite.is_favorite
             }).unwrap()
         } catch (error: any) {
             console.log("Erro ao favoritar item. ", error)
