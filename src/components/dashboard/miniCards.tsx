@@ -1,10 +1,16 @@
 import { Subject } from "@/types/subject"
 import { AlertCircle, Star } from "lucide-react"
 import { statusOptions } from "@/utils/statusOptions"
-import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
+import { useToggleFavoriteMutation, useUpdateStatusMutation } from "@/app/reducer/lessonsApi"
+import { Statuses } from "../lessonCards/statuses"
 
 type Props = {
     card: Subject
+}
+
+type StatProps = {
+    id: number
+    status: string
 }
 
 export const MiniCards = ({ card }: Props) => {
@@ -12,6 +18,7 @@ export const MiniCards = ({ card }: Props) => {
     const stats = statusOptions.filter(item => item.id === card?.status)
 
     const [toggleFavorite] = useToggleFavoriteMutation()
+    const [updateStatus] = useUpdateStatusMutation()
 
     const handleFavorite = async (card: any) => {
         try {
@@ -21,6 +28,17 @@ export const MiniCards = ({ card }: Props) => {
             }).unwrap()
         } catch (error: any) {
             console.log("Erro ao favoritar item. ", error)
+        }
+    }
+
+    const handleUpdateStatus = async ({id, status}: StatProps)=>{
+        try{
+            await updateStatus({
+                id,
+                status
+            }).unwrap()
+        }catch(error: any){
+            console.log("Eroo ao atualizar status de lição: ", error)
         }
     }
 
@@ -49,17 +67,7 @@ export const MiniCards = ({ card }: Props) => {
                     {card?.priority}
                 </div>
                 <div>
-                    {stats.map(item => {
-                        const Icon = item.icon
-                        return (
-                            <div
-                                key={item.id}
-                                className={`px-2 rounded-md flex gap-1 text-xs w-fit items-center ${item.bgColor} ${item.textColor}`}>
-                                <Icon className="w-3" />
-                                <span>{item?.label}</span>
-                            </div>
-                        )
-                    })}
+                    <Statuses status={card} handleUpdateStatus={handleUpdateStatus}/>
                 </div>
             </div>
         </div>
