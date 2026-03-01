@@ -80,7 +80,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-md overflow-hidden">
-                        <Statuses card={card} handleUpdateStatus={handleUpdateStatus}/>
+                        <Statuses status={card} handleUpdateStatus={handleUpdateStatus}/>
                     </div>
                 </div>
             </div>

@@ -2,9 +2,14 @@ import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { CardOptionsStatus } from "../cardOptions/cardOptionsStatus"
 
-export const Statuses = ({ card, handleUpdateStatus }: { card: any, handleUpdateStatus: any}) => {
+type Props = {
+    status: any
+    handleUpdateStatus?: any
+}
 
-    const statuses: StatusType[] = statusOptions.filter(opt => opt.id === card?.status)
+export const Statuses = ({ status, handleUpdateStatus }: Props) => {
+
+    const statuses: StatusType[] = statusOptions.filter(opt => opt.id === status?.status)
 
     return (
         <>
@@ -21,7 +26,7 @@ export const Statuses = ({ card, handleUpdateStatus }: { card: any, handleUpdate
                                 {stat.label}
                             </span>
                         </div>
-                        <CardOptionsStatus label={stat} id={card.id} handleUpdateStatus={handleUpdateStatus}/>
+                        <CardOptionsStatus label={stat} id={status.id} handleUpdateStatus={handleUpdateStatus}/>
                     </div>
                 )
             }
