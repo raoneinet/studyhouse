@@ -30,7 +30,7 @@ export const DashboardFavorites = () => {
             <div className="flex flex-col gap-5 py-5">
                 <div className="flex flex-row md:grid lg:grid-cols-4 md:grid-cols-2 lg:overflow-x-hidden overflow-x-scroll gap-5">
                     {data?.favorites.map((remark: Subject) => 
-                        (remark.is_favorite !== 0) && (
+                        (remark.is_favorite != 0) && (
                         <MiniCards 
                             key={remark.id}
                             card={remark}
