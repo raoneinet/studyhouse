@@ -9,6 +9,7 @@ import { ExternalLink, CircleDot, Star } from "lucide-react"
 import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 import { FavoriteIcon } from "./favoriteIcon"
 import { LinkPreview } from "../linkPreview/linkPreview"
+import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
 
 export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 
@@ -35,11 +36,12 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
             key={selectedCard?.id}
             className="max-w-full flex flex-col gap-5 px-2 wrap"
         >
-            <div>
-                <h2 className="font-bold text-slate-700 text-2xl capitalize flex justify-between items-center wrap-anywhere">
+            <div className="flex justify-between items-center">
+                <h2 className="font-bold text-slate-700 text-2xl capitalize flex gap-2 items-center wrap-anywhere">
                     <span>{selectedCard?.title}</span>
                     <FavoriteIcon handleFavorite={handleFavorite} card={selectedCard} />
                 </h2>
+                <CardOptionsMenu cardId={selectedCard?.id} />
             </div>
             <div className="flex flex-col gap-2">
                 <div>
