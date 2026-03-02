@@ -20,7 +20,7 @@ export const Profile = () => {
     return (
         <div className="py-5 w-full lg:max-w-5xl">
             <div className="lg:max-w-4xl rounded-lg flex flex-col items-start gap-5">
-                <div className="border bg-white p-3 w-full mx-auto rounded-lg flex items-start justify-between">
+                <div className="border bg-white p-3 w-full mx-auto rounded-lg flex flex-col items-center md:flex-row gap-5">
                     <ProfilePicture editPicture={editPicture} setEditPicture={setEditPicture} />
                     <div className="">
                         <h2 className="font-medium text-2xl">{user.user.firstname} {user.user.lastname}</h2>
