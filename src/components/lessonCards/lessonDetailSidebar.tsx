@@ -24,9 +24,6 @@ export const LessonDetailSidebar = ({ selectedCard, closeMobileModal }: Props) =
                     <span className=" text-slate-800 text-xl font-semibold">
                         Detalhes de estudo
                     </span>
-                    {selectedCard?.id &&
-                        <CardOptionsMenu cardId={selectedCard?.id} />
-                    }
                     <span className="md:hidden flex text-xl text-red-500" onClick={closeMobileModal}>X</span>
                 </SidebarGroupLabel>
                 <Separator className="my-3" />
