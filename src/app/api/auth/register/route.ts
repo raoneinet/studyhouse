@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { scrypt, randomBytes } from "crypto";
+import { hashPassword } from "@/lib/password";
 
 const registerSchema = z.object({
   firstname: z.string().min(2, "Nome deve ter ao menos 2 caracteres").max(50),
@@ -19,17 +19,6 @@ const registerSchema = z.object({
   profession: z.string().max(100).optional(),
   country: z.string().max(100).optional(),
 });
-
-async function hashPassword(password: string): Promise<string> {
-  const salt = randomBytes(16).toString("hex");
-  const key = await new Promise<Buffer>((resolve, reject) => {
-    scrypt(password, salt, 64, (err, derivedKey) => {
-      if (err) reject(err);
-      else resolve(derivedKey);
-    });
-  });
-  return `${salt}:${key.toString("hex")}`;
-}
 
 function parseBody(formData: FormData): Record<string, string> {
   const result: Record<string, string> = {};
