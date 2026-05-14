@@ -41,7 +41,7 @@ export const LoginForm = () => {
         try {
             const userFetch = await loginUser({ email, password }).unwrap()
 
-            if (userFetch.status === "success") router.push("/")
+            if (userFetch.status === "success") router.push("/dashboard")
 
         } catch (error: any) {
             console.log("Erro ao fazer login: ", error)
