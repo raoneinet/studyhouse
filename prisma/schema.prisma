@@ -11,3 +11,25 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum AccountStatus {
+  ACTIVE
+  PAUSED
+  DELETED
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  email         String        @unique
+  username      String        @unique
+  password      String
+  firstname     String
+  lastname      String
+  avatar        String?
+  date_of_birth DateTime?
+  profession    String?
+  country       String?
+  status        AccountStatus @default(ACTIVE)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
