@@ -4,7 +4,7 @@ export const authApi = baseApi.injectEndpoints({
     endpoints: (builder) =>({
         registerUser: builder.mutation<any, FormData>({
             query: (formData) => ({
-                url: "register.php",
+                url: "api/auth/register",
                 method: "POST",
                 body: formData
             })
