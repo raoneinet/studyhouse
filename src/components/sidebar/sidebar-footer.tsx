@@ -23,7 +23,7 @@ import {
 import { useRouter } from "next/navigation"
 import { baseApi } from "@/app/reducer/baseApi"
 import { useDispatch } from "react-redux"
-import { useGetMeQuery } from "@/app/reducer/userApi"
+import { useGetMeQuery } from "@/app/reducer/authApi"
 import { useLogoutMutation } from "@/app/reducer/authApi"
 
 

@@ -3,7 +3,7 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 import { Spinner } from "@/components/loading/spinner"
-import { useGetMeQuery } from "@/app/reducer/userApi"
+import { useGetMeQuery } from "@/app/reducer/authApi"
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 

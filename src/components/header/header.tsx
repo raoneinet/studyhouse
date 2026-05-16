@@ -2,7 +2,7 @@ import { FormDialog } from "@/components/dialog/formDialog"
 import { LoginForm } from "@/components/login/loginForm"
 import { RegisterForm } from "@/components/register/registerForm"
 import { BookOpen } from 'lucide-react';
-import { useGetMeQuery } from "@/app/reducer/userApi";
+import { useGetMeQuery } from "@/app/reducer/authApi";
 import { LoginLinks } from "../login/loginLinks";
 import { Logobrand } from "./logobrand";
 import Link from "next/link"

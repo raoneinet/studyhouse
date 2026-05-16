@@ -6,7 +6,7 @@ import { Edit, LockIcon } from "lucide-react"
 import { Passwords } from "./passwords"
 import { ProfilePicture } from "./profilePicture"
 import { DeleteAccount } from "./deleteAccount"
-import { useGetMeQuery } from "@/app/reducer/userApi"
+import { useGetMeQuery } from "@/app/reducer/authApi"
 
 export const Profile = () => {
 
