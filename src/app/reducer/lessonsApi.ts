@@ -29,7 +29,7 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         getAllLessons: builder.query<PaginatedSubjects, { page: number, limit: number }>({
             query: ({ page, limit }) => ({
-                url: `get_lessons.php?page=${page}&limit=${limit}`
+                url: `api/lessons?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
