@@ -21,7 +21,7 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         createLesson: builder.mutation({
             query: (data) => ({
-                url: "create_lesson.php",
+                url: "api/lessons/create",
                 method: "POST",
                 body: data
             }),
