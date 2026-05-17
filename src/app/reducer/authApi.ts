@@ -1,57 +1,70 @@
 import { baseApi } from "./baseApi"
 
 export const authApi = baseApi.injectEndpoints({
-    endpoints: (builder) =>({
+    endpoints: (builder) => ({
         registerUser: builder.mutation<any, FormData>({
-            query: (formData) => ({
-                url: "register.php",
-                method: "POST",
-                body: formData
-            })
+            queryFn: async (formData) => {
+                try {
+                    const res = await fetch("/api/auth/register", {
+                        method: "POST",
+                        credentials: "include",
+                        body: formData,
+                    })
+                    const data = await res.json()
+                    return { data }
+                } catch (error) {
+                    return { error: { status: "FETCH_ERROR", error: String(error) } }
+                }
+            },
         }),
         loginUser: builder.mutation({
             query: ({ email, password }) => ({
-                url: "login.php",
+                url: "api/auth/login",
                 method: "POST",
-                body: { email, password }
+                body: { email, password },
             }),
-            invalidatesTags: ["Auth"]
+            invalidatesTags: ["Auth"],
         }),
         logout: builder.mutation<any, void>({
             query: () => ({
-                url: "logout.php",
-                method: "POST"
+                url: "api/auth/logout",
+                method: "POST",
             }),
-            invalidatesTags: ["Auth"]
+            invalidatesTags: ["Auth"],
+        }),
+        getMe: builder.query<any, void>({
+            query: () => ({ url: "api/auth/me" }),
+            providesTags: ["Auth"],
         }),
         changePassword: builder.mutation({
-            query: ({actualPassword, newPassword})=>({
+            query: ({ actualPassword, newPassword }) => ({
                 url: "change_password.php",
                 method: "POST",
-                body: {actualPassword, newPassword}
-            })
+                body: { actualPassword, newPassword },
+            }),
         }),
         pauseAccount: builder.mutation<any, void>({
-            query: ()=>({
+            query: () => ({
                 url: "pause_account.php",
-                method: "POST"
-            })
+                method: "POST",
+            }),
         }),
         deleteAccount: builder.mutation<any, void>({
-            query: ()=>({
+            query: () => ({
                 url: "delete_account.php",
-                method: "POST"
-            })
-        })
+                method: "POST",
+            }),
+        }),
     }),
-    overrideExisting: true
+    overrideExisting: true,
 })
 
 export const {
     useLoginUserMutation,
     useLogoutMutation,
     useRegisterUserMutation,
+    useGetMeQuery,
     useChangePasswordMutation,
     usePauseAccountMutation,
-    useDeleteAccountMutation
+    useDeleteAccountMutation,
 } = authApi

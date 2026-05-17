@@ -10,6 +10,7 @@ import { useToggleFavoriteMutation } from "@/app/reducer/lessonsApi"
 import { FavoriteIcon } from "./favoriteIcon"
 import { LinkPreview } from "../linkPreview/linkPreview"
 import { CardOptionsMenu } from "../cardOptions/cardOptionsMenu"
+import { LessonNotes } from "./lessonNotes"
 
 export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
 
@@ -108,6 +109,8 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                     </div>
                 ))}
             </div>
+            
+            <LessonNotes lessonId={selectedCard.id} />
         </div>
     )
 }

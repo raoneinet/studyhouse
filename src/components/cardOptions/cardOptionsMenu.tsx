@@ -8,6 +8,7 @@ import {
 import { MoreHorizontal } from "lucide-react"
 import { useDeleteLessonMutation } from "@/app/reducer/lessonsApi"
 import { useRouter } from "next/navigation"
+import { ConfirmDeleteDialog } from "@/components/ui/confirm-delete-dialog"
 
 type Props = {
     cardId: number
@@ -40,9 +41,15 @@ export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
                 <DropdownMenuItem onClick={() => handleEditLesson(cardId)}>
                     <span>Editar</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleDeleteLesson(cardId)}>
-                    <span>Deletar</span>
-                </DropdownMenuItem>
+                
+                <ConfirmDeleteDialog
+                    trigger={
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                            <span>Deletar</span>
+                        </DropdownMenuItem>
+                    }
+                    onConfirm={() => handleDeleteLesson(cardId)}
+                />
                 {viewMore &&
                     <DropdownMenuItem onClick={() => viewMore(cardId)}>
                         <span>Vizualizar</span>

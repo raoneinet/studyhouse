@@ -2,12 +2,6 @@ import { baseApi } from "./baseApi"
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getMe: builder.query<any, void>({
-            query: () => ({
-                url: "me.php"
-            }),
-            providesTags: ["Auth"]
-        }),
         updateUserPersonalInfo: builder.mutation({
             query: (data) => ({
                 url: "update_user_personalInfo.php",
@@ -29,7 +23,6 @@ export const userApi = baseApi.injectEndpoints({
 })
 
 export const {
-    useGetMeQuery,
     useUpdateUserPersonalInfoMutation,
     useUpdateAvatarMutation,
 } = userApi

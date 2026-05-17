@@ -8,6 +8,7 @@ import { Priorities } from "./priorities"
 import { Statuses } from "./statuses"
 import { FavoriteIcon } from "./favoriteIcon"
 import { Tags } from "./tags"
+import { LessonNotes } from "./lessonNotes"
 
 
 type Props = {
@@ -88,6 +89,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                         <Statuses status={card} handleUpdateStatus={handleUpdateStatus} />
                     </div>
                 </div>
+                <LessonNotes lessonId={card.id} />
             </div>
         </div>
     )

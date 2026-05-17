@@ -2,7 +2,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useUpdateUserPersonalInfoMutation } from "@/app/reducer/userApi"
-import { useGetMeQuery } from "@/app/reducer/userApi"
+import { useGetMeQuery } from "@/app/reducer/authApi"
 import { toast } from "sonner"
 
 type Props = {

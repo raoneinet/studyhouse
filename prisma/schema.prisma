@@ -18,6 +18,38 @@ enum AccountStatus {
   DELETED
 }
 
+enum LessonStatus {
+  notstarted
+  ongoing
+  onhold
+  done
+}
+
+enum LessonPriority {
+  low
+  medium
+  high
+  urgent
+}
+
+enum LessonCategory {
+  history
+  math
+  programming
+  computing
+  engineering
+  language
+  linguistics
+  science
+  economics
+  law
+  world
+  biology
+  humanities
+  politics
+  other
+}
+
 model User {
   id            Int           @id @default(autoincrement())
   email         String        @unique
@@ -32,4 +64,31 @@ model User {
   status        AccountStatus @default(ACTIVE)
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
+  lessons       Lesson[]
+}
+
+model Lesson {
+  id          Int            @id @default(autoincrement())
+  title       String
+  description String
+  category    LessonCategory
+  status      LessonStatus   @default(notstarted)
+  priority    LessonPriority @default(medium)
+  tags        String?
+  links       String[]
+  isFavorite  Boolean        @default(false)
+  userId      Int
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes       Note[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  content   String
+  lessonId  Int
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
