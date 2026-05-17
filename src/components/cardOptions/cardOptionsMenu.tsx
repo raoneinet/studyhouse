@@ -51,8 +51,8 @@ export const CardOptionsMenu = ({ cardId, viewMore }: Props) => {
                     onConfirm={() => handleDeleteLesson(cardId)}
                 />
                 {viewMore &&
-                    <DropdownMenuItem onClick={() => viewMore(cardId)}>
-                        <span>Vizualizar</span>
+                    <DropdownMenuItem onSelect={() => viewMore(cardId)}>
+                        <span>Visualizar</span>
                     </DropdownMenuItem>
                 }
             </DropdownMenuContent>
