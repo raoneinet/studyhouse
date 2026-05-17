@@ -13,7 +13,7 @@ export const lessonsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getDashBoardData: builder.query<any, void>({
             query: () => ({
-                url: "get_dashboard_data.php"
+                url: "api/dashboard"
             }),
             providesTags: (result, error, id) => [
                 { type: "Subjects", id: "LIST" }
