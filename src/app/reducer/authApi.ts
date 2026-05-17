@@ -45,14 +45,14 @@ export const authApi = baseApi.injectEndpoints({
         }),
         pauseAccount: builder.mutation<any, void>({
             query: () => ({
-                url: "pause_account.php",
-                method: "POST",
+                url: "api/auth/pause",
+                method: "PATCH",
             }),
         }),
         deleteAccount: builder.mutation<any, void>({
             query: () => ({
-                url: "delete_account.php",
-                method: "POST",
+                url: "api/auth/delete",
+                method: "DELETE",
             }),
         }),
     }),

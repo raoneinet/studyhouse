@@ -51,10 +51,12 @@ export async function POST(req: NextRequest) {
     }
 
     if (user.status !== "ACTIVE") {
-      return NextResponse.json(
-        { status: "error", message: "Conta inativa ou suspensa" },
-        { status: 403 }
-      );
+      // Reativa a conta se estiver pausada ou pendente de exclusão
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { status: "ACTIVE" },
+      });
+      user.status = "ACTIVE";
     }
 
     const session = await getIronSession<SessionData>(
