@@ -11,7 +11,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
     const { data, isLoading } = useGetNotesQuery(lessonId)
     const [addNote, { isLoading: isAdding }] = useAddNoteMutation()
     const [deleteNote] = useDeleteNoteMutation()
-    
+
     const [content, setContent] = useState("")
     const [isAddingNote, setIsAddingNote] = useState(false)
     const [isNotesVisible, setIsNotesVisible] = useState(false)
@@ -42,7 +42,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
             <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center gap-3">
                     <span className="font-bold text-slate-700">Anotações ({data?.data?.length || 0})</span>
-                    <button 
+                    <button
                         onClick={() => setIsNotesVisible(!isNotesVisible)}
                         className="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-2 py-1 rounded-md transition-colors font-medium flex items-center gap-1"
                     >
@@ -50,7 +50,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
                         {isNotesVisible ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                     </button>
                 </div>
-                {!isAddingNote && isNotesVisible && (
+                {!isAddingNote && (
                     <button
                         onClick={() => setIsAddingNote(true)}
                         className="text-sm text-blue-600 font-semibold hover:underline px-2 py-1"
@@ -59,42 +59,40 @@ export const LessonNotes = ({ lessonId }: Props) => {
                     </button>
                 )}
             </div>
-            
-            {isNotesVisible && (
-                <div className="flex flex-col gap-3">
-                    {isAddingNote && (
-                        <form onSubmit={handleAddNote} className="flex flex-col gap-2 py-2">
-                            <textarea
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
-                                placeholder="Escreva uma nova anotação ou comentário..."
-                                className="w-full border rounded-md p-3 text-sm text-slate-700 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                                rows={3}
-                                autoFocus
-                            />
-                            <div className="flex justify-end gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setIsAddingNote(false)
-                                        setContent("")
-                                    }}
-                                    className="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-md text-sm font-semibold transition-colors"
-                                >
-                                    Cancelar
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={isAdding || !content.trim()}
-                                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center gap-2 transition-colors"
-                                >
-                                    <Send className="w-4 h-4" />
-                                    {isAdding ? "Carregando..." : "Salvar"}
-                                </button>
-                            </div>
-                        </form>
-                    )}
-
+            <div className="flex flex-col gap-3">
+                {isAddingNote && (
+                    <form onSubmit={handleAddNote} className="flex flex-col gap-2 py-2">
+                        <textarea
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            placeholder="Escreva uma nova anotação ou comentário..."
+                            className="w-full border rounded-md p-3 text-sm text-slate-700 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            rows={3}
+                            autoFocus
+                        />
+                        <div className="flex justify-end gap-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setIsAddingNote(false)
+                                    setContent("")
+                                }}
+                                className="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={isAdding || !content.trim()}
+                                className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center gap-2 transition-colors"
+                            >
+                                <Send className="w-4 h-4" />
+                                {isAdding ? "Carregando..." : "Salvar"}
+                            </button>
+                        </div>
+                    </form>
+                )}
+                {isNotesVisible && (
                     <div className="flex flex-col gap-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
                         {isLoading ? (
                             <span className="text-sm text-slate-500">Carregando anotações...</span>
@@ -122,8 +120,8 @@ export const LessonNotes = ({ lessonId }: Props) => {
                             )
                         )}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     )
 }
