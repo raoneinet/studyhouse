@@ -44,7 +44,7 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         getAllFavorites: builder.query<PaginatedSubjects, { page: number, limit: number }>({
             query: ({ page, limit }) => ({
-                url: `get_favorites.php?page=${page}&limit=${limit}`
+                url: `api/lessons/favorites?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
@@ -93,11 +93,25 @@ export const lessonsApi = baseApi.injectEndpoints({
                         if (lesson) lesson.is_favorite = isFavorite ? 1 : 0;
                     })
                 );
+
+                const patchResultFav = dispatch(
+                    lessonsApi.util.updateQueryData('getAllFavorites', { page: 1, limit: 10 }, (draft) => {
+                        if (!isFavorite) {
+                            draft.data = draft.data.filter(l => l.id !== id);
+                            draft.totalItems -= 1;
+                        } else {
+                            // Optionally, if we toggle to true, we might want to add it, 
+                            // but usually it requires refetch since we don't have the full object here.
+                            // We invalidate tags so it will re-fetch anyway.
+                        }
+                    })
+                );
                 
                 try {
                     await queryFulfilled;
                 } catch {
                     patchResultAll.undo();
+                    patchResultFav.undo();
                 }
             },
             invalidatesTags: ["Subjects"],
