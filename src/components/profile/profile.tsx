@@ -17,6 +17,14 @@ export const Profile = () => {
 
     const handleEditing = () => setEditPersonal(true)
 
+    if (isLoading) {
+        return <div className="py-5 text-slate-500">Carregando informações da conta...</div>
+    }
+
+    if (!user || !user.user) {
+        return <div className="py-5 text-red-500">Erro ao carregar informações do usuário.</div>
+    }
+
     return (
         <div className="py-5 w-full lg:max-w-5xl">
             <div className="lg:max-w-4xl rounded-lg flex flex-col items-start gap-5">

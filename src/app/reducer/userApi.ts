@@ -4,16 +4,16 @@ export const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         updateUserPersonalInfo: builder.mutation({
             query: (data) => ({
-                url: "update_user_personalInfo.php",
-                method: "POST",
+                url: "api/user",
+                method: "PATCH",
                 body: data
             }),
             invalidatesTags: ["Auth"]
         }),
         updateAvatar: builder.mutation({
             query: (data) => ({
-                url: "update_user_picture.php",
-                method: "POST",
+                url: "api/user/avatar",
+                method: "PATCH",
                 body: data
             }),
             invalidatesTags: ["Auth"]
