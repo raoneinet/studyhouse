@@ -79,6 +79,16 @@ model Lesson {
   isFavorite  Boolean        @default(false)
   userId      Int
   user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes       Note[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  content   String
+  lessonId  Int
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -139,6 +139,27 @@ export const lessonsApi = baseApi.injectEndpoints({
                 body: { id, status }
             }),
             invalidatesTags: ["Subjects"]
+        }),
+        getNotes: builder.query<any, number>({
+            query: (lessonId) => ({
+                url: `api/lessons/${lessonId}/notes`,
+            }),
+            providesTags: (result, error, lessonId) => [{ type: "Notes", id: lessonId }]
+        }),
+        addNote: builder.mutation({
+            query: ({ lessonId, content }) => ({
+                url: `api/lessons/${lessonId}/notes`,
+                method: "POST",
+                body: { content },
+            }),
+            invalidatesTags: (result, error, arg) => [{ type: "Notes", id: arg.lessonId }]
+        }),
+        deleteNote: builder.mutation({
+            query: ({ noteId, lessonId }) => ({
+                url: `api/notes/${noteId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: (result, error, arg) => [{ type: "Notes", id: arg.lessonId }]
         })
     }),
     overrideExisting: true
@@ -154,5 +175,8 @@ export const {
     useToggleFavoriteMutation,
     useLazyGetLessonByIdQuery,
     useUpdateLessonMutation,
-    useUpdateStatusMutation
+    useUpdateStatusMutation,
+    useGetNotesQuery,
+    useAddNoteMutation,
+    useDeleteNoteMutation
 } = lessonsApi
