@@ -70,3 +70,114 @@ export async function DELETE(
         );
     }
 }
+
+export async function GET(
+    _req: NextRequest,
+    context: { params: Promise<{ id: string }> } | { params: { id: string } }
+) {
+    try {
+        const session = await getIronSession<SessionData>(
+            await cookies(),
+            sessionOptions
+        );
+
+        if (!session.isLoggedIn || !session.userId) {
+            return NextResponse.json(
+                { status: "error", message: "Não autenticado" },
+                { status: 401 }
+            );
+        }
+
+        const resolvedParams = await context.params;
+        const id = resolvedParams.id;
+        const lessonId = parseInt(id, 10);
+
+        if (isNaN(lessonId)) {
+            return NextResponse.json(
+                { status: "error", message: "ID inválido" },
+                { status: 400 }
+            );
+        }
+
+        const lesson = await prisma.lesson.findUnique({
+            where: { id: lessonId },
+            include: { notes: true }
+        });
+
+        if (!lesson || lesson.userId !== session.userId) {
+            return NextResponse.json(
+                { status: "error", message: "Lição não encontrada" },
+                { status: 404 }
+            );
+        }
+
+        return NextResponse.json(lesson);
+    } catch (error) {
+        console.error("[lessons/GET]", error);
+        return NextResponse.json(
+            { status: "error", message: "Erro interno do servidor" },
+            { status: 500 }
+        );
+    }
+}
+
+export async function PATCH(
+    req: NextRequest,
+    context: { params: Promise<{ id: string }> } | { params: { id: string } }
+) {
+    try {
+        const session = await getIronSession<SessionData>(
+            await cookies(),
+            sessionOptions
+        );
+
+        if (!session.isLoggedIn || !session.userId) {
+            return NextResponse.json(
+                { status: "error", message: "Não autenticado" },
+                { status: 401 }
+            );
+        }
+
+        const resolvedParams = await context.params;
+        const id = resolvedParams.id;
+        const lessonId = parseInt(id, 10);
+
+        if (isNaN(lessonId)) {
+            return NextResponse.json(
+                { status: "error", message: "ID inválido" },
+                { status: 400 }
+            );
+        }
+
+        const lesson = await prisma.lesson.findUnique({
+            where: { id: lessonId },
+            select: { userId: true },
+        });
+
+        if (!lesson || lesson.userId !== session.userId) {
+            return NextResponse.json(
+                { status: "error", message: "Lição não encontrada ou sem permissão" },
+                { status: 404 }
+            );
+        }
+
+        const body = await req.json();
+
+        const updatedLesson = await prisma.lesson.update({
+            where: { id: lessonId },
+            data: body,
+        });
+
+        return NextResponse.json({
+            status: "success",
+            message: "Lição atualizada com sucesso",
+            data: updatedLesson
+        });
+    } catch (error) {
+        console.error("[lessons/PATCH]", error);
+        return NextResponse.json(
+            { status: "error", message: "Erro interno do servidor" },
+            { status: 500 }
+        );
+    }
+}

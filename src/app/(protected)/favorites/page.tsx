@@ -25,7 +25,7 @@ const MyCards = () => {
 
     const handleSelectCard = async (id: number) => {
         try {
-            const result = await triggerGetSubjectById(id).unwrap()
+            const result = await triggerGetSubjectById(id, true).unwrap()
             setSelectCard(result.id)
         } catch (error: any) {
             console.log("Erro ao buscar item favorito por ID. ", error)

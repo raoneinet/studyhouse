@@ -118,7 +118,7 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         getLessonById: builder.query<any, number>({
             query: (id: number) => ({
-                url: `get_lesson.php?id=${id}`
+                url: `api/lessons/${id}`
             }),
             providesTags: (result, error, id) => [
                 { type: "Subjects", id }
@@ -126,17 +126,17 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         updateLesson: builder.mutation({
             query: ({ id, data }) => ({
-                url: "update_lesson.php",
+                url: `api/lessons/${id}`,
                 method: "PATCH",
-                body: { id, ...data }
+                body: data
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }],
         }),
         updateStatus: builder.mutation({
             query: ({ id, status }) => ({
-                url: "update_status.php",
-                method: "POST",
-                body: { id, status }
+                url: `api/lessons/${id}`,
+                method: "PATCH",
+                body: { status }
             }),
             invalidatesTags: ["Subjects"]
         }),
