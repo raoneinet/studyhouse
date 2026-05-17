@@ -59,7 +59,7 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         getAllOngoings: builder.query<PaginatedSubjects, { page: number, limit: number }>({
             query: ({ page, limit }) => ({
-                url: `get_ongoings.php?page=${page}&limit=${limit}`
+                url: `api/lessons/ongoing?page=${page}&limit=${limit}`
             }),
             providesTags: (result) =>
                 result
