@@ -74,18 +74,32 @@ export const lessonsApi = baseApi.injectEndpoints({
         }),
         deleteLesson: builder.mutation({
             query: (id: number) => ({
-                url: "delete_lesson.php",
-                method: "POST",
-                body: { id }
+                url: `api/lessons/${id}`,
+                method: "DELETE",
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
         toggleFavorite: builder.mutation({
             query: ({ id, isFavorite }) => ({
-                url: `favorite.php`,
+                url: `api/lessons/favorite`,
                 method: "POST",
                 body: { id, isFavorite }
             }),
+            async onQueryStarted({ id, isFavorite }, { dispatch, queryFulfilled }) {
+                // Optimistic update para todas as listas que podem conter esta lição
+                const patchResultAll = dispatch(
+                    lessonsApi.util.updateQueryData('getAllLessons', { page: 1, limit: 10 }, (draft) => {
+                        const lesson = draft.data.find(l => l.id === id);
+                        if (lesson) lesson.is_favorite = isFavorite ? 1 : 0;
+                    })
+                );
+                
+                try {
+                    await queryFulfilled;
+                } catch {
+                    patchResultAll.undo();
+                }
+            },
             invalidatesTags: ["Subjects"],
         }),
         getLessonById: builder.query<any, number>({
