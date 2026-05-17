@@ -51,7 +51,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
             </div>
             
             {isAddingNote && (
-                <form onSubmit={handleAddNote} className="flex flex-col gap-2">
+                <form onSubmit={handleAddNote} className="flex flex-col gap-2 py-2">
                     <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
@@ -77,7 +77,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
                             className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center gap-2 transition-colors"
                         >
                             <Send className="w-4 h-4" />
-                            {isAdding ? "A Guardar..." : "Salvar"}
+                            {isAdding ? "Carregando..." : "Salvar"}
                         </button>
                     </div>
                 </form>
@@ -85,7 +85,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
 
             <div className="flex flex-col gap-3">
                 {isLoading ? (
-                    <span className="text-sm text-slate-500">A carregar anotações...</span>
+                    <span className="text-sm text-slate-500">Carregando anotações...</span>
                 ) : (
                     data?.data?.length === 0 ? (
                         <span className="text-sm text-slate-500 italic">Nenhuma anotação ainda.</span>
