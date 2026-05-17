@@ -26,7 +26,7 @@ const MyCards = () => {
 
     const handleSelectCard = async (id: number) => {
         try {
-            const result = await triggerGetSubjectById(id).unwrap()
+            const result = await triggerGetSubjectById(id, true).unwrap()
             setSelectCard(result.id)
         } catch (error) {
             console.log("Erro ao buscar por assunto por ID: ", error)
