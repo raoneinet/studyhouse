@@ -30,7 +30,8 @@ export async function GET(req: NextRequest) {
 
         const where = { 
             userId: session.userId,
-            status: "ongoing" as const
+            status: "ongoing" as const,
+            roadmapId: null
         };
 
         const [lessons, totalItems] = await prisma.$transaction([

@@ -28,6 +28,7 @@ const createLessonSchema = z.object({
         .transform((arr) =>
             (arr ?? []).map((l) => l.value ?? "").filter(Boolean)
         ),
+    roadmapId: z.number().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const { title, description, category, status, priority, tags, links } =
+        const { title, description, category, status, priority, tags, links, roadmapId } =
             parsed.data;
 
         const lesson = await prisma.lesson.create({
@@ -67,6 +68,7 @@ export async function POST(req: NextRequest) {
                 tags,
                 links,
                 userId: session.userId,
+                roadmapId,
             },
         });
 
