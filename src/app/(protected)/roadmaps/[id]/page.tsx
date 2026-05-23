@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { AddLessonDialog } from "@/components/roadmaps/AddLessonDialog";
 import { AddGroupDialog } from "@/components/roadmaps/AddGroupDialog";
 import { RoadmapLessonItem } from "@/components/roadmaps/RoadmapLessonItem";
+import { DeleteRoadmapButton } from "@/components/roadmaps/DeleteRoadmapButton";
 import { FolderPlus, PlusCircle } from "lucide-react";
 
 export const metadata = {
@@ -72,7 +73,7 @@ export default async function RoadmapDetailPage({
                         </span>
                         <h1 className="text-3xl font-bold">{roadmap.title}</h1>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap justify-end">
                         <AddGroupDialog roadmapId={roadmap.id}>
                             <Button variant="outline" className="gap-2">
                                 <FolderPlus className="w-4 h-4" /> Novo Grupo
@@ -83,6 +84,7 @@ export default async function RoadmapDetailPage({
                                 <PlusCircle className="w-4 h-4" /> Lição Avulsa
                             </Button>
                         </AddLessonDialog>
+                        <DeleteRoadmapButton roadmapId={roadmap.id} />
                     </div>
                 </div>
                 {roadmap.description && (

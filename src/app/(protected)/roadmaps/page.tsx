@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageTitle } from "@/components/titles/pageTitle";
+import { DeleteRoadmapIcon } from "@/components/roadmaps/DeleteRoadmapIcon";
 import { Map, Target, CalendarDays, BookOpen } from "lucide-react";
 
 export const metadata = {
@@ -63,12 +64,15 @@ export default async function RoadmapsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {roadmaps.map((roadmap) => (
                         <Link key={roadmap.id} href={`/roadmaps/${roadmap.id}`}>
-                            <div className="bg-white border rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
+                            <div className="bg-white border rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col group">
                                 <div className="flex items-start justify-between mb-3">
                                     <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">
                                         <Target className="w-3 h-3" />
                                         {roadmap.goal}
                                     </span>
+                                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <DeleteRoadmapIcon roadmapId={roadmap.id} />
+                                    </div>
                                 </div>
                                 
                                 <h3 className="text-lg font-bold text-neutral-800 mb-2 line-clamp-1">
