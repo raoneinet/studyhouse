@@ -81,10 +81,12 @@ model Lesson {
   userId      Int
   user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   notes       Note[]
-  roadmapId   Int?
-  roadmap     Roadmap?       @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  roadmapId      Int?
+  roadmap        Roadmap?      @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
+  roadmapGroupId Int?
+  roadmapGroup   RoadmapGroup? @relation(fields: [roadmapGroupId], references: [id], onDelete: Cascade)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 }
 
 model Note {
@@ -104,6 +106,18 @@ model Roadmap {
   userId      Int
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   lessons     Lesson[]
+  groups      RoadmapGroup[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model RoadmapGroup {
+  id        Int      @id @default(autoincrement())
+  name      String
+  order     Int      @default(0)
+  roadmapId Int
+  roadmap   Roadmap  @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
+  lessons   Lesson[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

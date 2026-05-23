@@ -6,6 +6,9 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AddLessonDialog } from "@/components/roadmaps/AddLessonDialog";
+import { AddGroupDialog } from "@/components/roadmaps/AddGroupDialog";
+import { RoadmapLessonItem } from "@/components/roadmaps/RoadmapLessonItem";
+import { FolderPlus, PlusCircle } from "lucide-react";
 
 export const metadata = {
     title: "Detalhes do Roadmap - StudyHouse",
@@ -30,7 +33,19 @@ export default async function RoadmapDetailPage({
     const roadmap = await prisma.roadmap.findUnique({
         where: { id: roadmapId, userId: session.userId },
         include: {
+            groups: {
+                orderBy: [
+                    { order: "asc" },
+                    { createdAt: "asc" }
+                ],
+                include: {
+                    lessons: {
+                        orderBy: { createdAt: "asc" },
+                    },
+                },
+            },
             lessons: {
+                where: { roadmapGroupId: null }, // Only fetch uncategorized lessons
                 orderBy: { createdAt: "asc" },
             },
         },
@@ -40,8 +55,8 @@ export default async function RoadmapDetailPage({
         return (
             <div className="container mx-auto py-8 px-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">Roadmap não encontrado</h1>
-                <Link href="/dashboard">
-                    <Button variant="outline">Voltar para o início</Button>
+                <Link href="/roadmaps">
+                    <Button variant="outline">Voltar para roadmaps</Button>
                 </Link>
             </div>
         );
@@ -57,44 +72,81 @@ export default async function RoadmapDetailPage({
                         </span>
                         <h1 className="text-3xl font-bold">{roadmap.title}</h1>
                     </div>
-                    <AddLessonDialog roadmapId={roadmap.id}>
-                        <Button>Adicionar Lição</Button>
-                    </AddLessonDialog>
+                    <div className="flex gap-2">
+                        <AddGroupDialog roadmapId={roadmap.id}>
+                            <Button variant="outline" className="gap-2">
+                                <FolderPlus className="w-4 h-4" /> Novo Grupo
+                            </Button>
+                        </AddGroupDialog>
+                        <AddLessonDialog roadmapId={roadmap.id}>
+                            <Button className="gap-2 bg-blue-600 hover:bg-blue-700">
+                                <PlusCircle className="w-4 h-4" /> Lição Avulsa
+                            </Button>
+                        </AddLessonDialog>
+                    </div>
                 </div>
                 {roadmap.description && (
                     <p className="text-muted-foreground mt-2">{roadmap.description}</p>
                 )}
             </div>
 
-            <h2 className="text-xl font-bold mb-4">Lições do Roadmap ({roadmap.lessons.length})</h2>
-            
-            {roadmap.lessons.length === 0 ? (
-                <div className="text-center py-12 bg-muted/30 rounded-lg border border-dashed border-border">
-                    <p className="text-muted-foreground mb-4">Nenhuma lição adicionada ainda.</p>
-                    <AddLessonDialog roadmapId={roadmap.id}>
-                        <Button variant="outline">Criar a primeira lição</Button>
-                    </AddLessonDialog>
-                </div>
-            ) : (
-                <div className="space-y-4">
-                    {roadmap.lessons.map((lesson, index) => (
-                        <div key={lesson.id} className="bg-white p-4 rounded-lg shadow-sm border flex items-center gap-4">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-500">
-                                {index + 1}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold text-lg truncate">{lesson.title}</h3>
-                                <p className="text-sm text-slate-500 line-clamp-1">{lesson.description}</p>
-                            </div>
-                            <div>
-                                <span className="text-xs px-2 py-1 rounded bg-slate-100 text-slate-600">
-                                    {lesson.status}
+            <div className="space-y-8">
+                {/* Renderizar os Grupos */}
+                {roadmap.groups.map((group) => (
+                    <div key={group.id} className="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                                <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                                    {group.order + 1}
                                 </span>
-                            </div>
+                                {group.name}
+                            </h2>
+                            <AddLessonDialog roadmapId={roadmap.id} groupId={group.id}>
+                                <Button variant="secondary" size="sm" className="gap-2 bg-white hover:bg-slate-100 border">
+                                    <PlusCircle className="w-4 h-4 text-blue-600" /> Adicionar Lição
+                                </Button>
+                            </AddLessonDialog>
                         </div>
-                    ))}
-                </div>
-            )}
+                        
+                        {group.lessons.length === 0 ? (
+                            <div className="text-center py-6 bg-white rounded-lg border border-dashed border-slate-300">
+                                <p className="text-slate-500 text-sm">Este grupo ainda não tem lições.</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-3">
+                                {group.lessons.map((lesson) => (
+                                    <RoadmapLessonItem key={lesson.id} lesson={lesson} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
+
+                {/* Renderizar Lições Avulsas (Sem grupo) */}
+                {roadmap.lessons.length > 0 && (
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 opacity-80">
+                        <h2 className="text-lg font-bold text-slate-700 mb-4">Outras Lições (Geral)</h2>
+                        <div className="space-y-3">
+                            {roadmap.lessons.map((lesson) => (
+                                <RoadmapLessonItem key={lesson.id} lesson={lesson} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+                
+                {roadmap.groups.length === 0 && roadmap.lessons.length === 0 && (
+                    <div className="text-center py-16 bg-muted/30 rounded-lg border border-dashed border-border flex flex-col items-center">
+                        <FolderPlus className="w-12 h-12 text-slate-300 mb-4" />
+                        <h3 className="text-lg font-semibold text-slate-700 mb-2">Estruture seu aprendizado</h3>
+                        <p className="text-muted-foreground mb-6 max-w-sm">
+                            Crie grupos para organizar suas áreas de estudo (ex: Módulos, Disciplinas) e adicione lições dentro deles.
+                        </p>
+                        <AddGroupDialog roadmapId={roadmap.id}>
+                            <Button>Criar meu primeiro grupo</Button>
+                        </AddGroupDialog>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

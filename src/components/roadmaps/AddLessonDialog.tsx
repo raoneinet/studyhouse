@@ -17,9 +17,11 @@ import { useRouter } from "next/navigation";
 
 export function AddLessonDialog({
   roadmapId,
+  groupId,
   children,
 }: {
   roadmapId: number;
+  groupId?: number;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -28,7 +30,7 @@ export function AddLessonDialog({
 
   const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
     const created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
-    const payload = { ...values, created_at, roadmapId };
+    const payload = { ...values, created_at, roadmapId, roadmapGroupId: groupId };
 
     try {
       await createLesson(payload).unwrap();
