@@ -41,18 +41,18 @@ const CreateNewItemContent = () => {
     }
 
     return (
-        <div className="md:max-w-[1009px]">
+        <>
             <UserHeader
                 title="Novo Assunto"
                 subtitle="Criar um novo assunto para estudar"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
-            <div className="bg-white border rounded-lg px-2 py-8">
+            <div className="md:max-w-[1009px] bg-white border rounded-lg px-2 py-8">
                 <LessonForm
                     submitData={handleCreateItem}
                 />
             </div>
-        </div>
+        </>
     )
 }
 
