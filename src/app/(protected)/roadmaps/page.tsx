@@ -5,7 +5,7 @@ import { sessionOptions, SessionData } from "@/lib/session";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { PageTitle } from "@/components/titles/pageTitle";
+import { UserHeader } from "@/components/header/userHeader";
 import { DeleteRoadmapIcon } from "@/components/roadmaps/DeleteRoadmapIcon";
 import { Map, Target, CalendarDays, BookOpen } from "lucide-react";
 
@@ -36,17 +36,18 @@ export default async function RoadmapsPage() {
     return (
         <div className="md:max-w-full pb-10">
             <div className="flex justify-between items-end pb-5">
-                <PageTitle
+                <UserHeader
                     title={`Roadmaps (${roadmaps.length})`}
                     subtitle="Suas trilhas de estudo focadas em metas"
                     style="text-2xl font-bold text-neutral-800"
-                />
-                <Link href="/roadmaps/create">
-                    <Button className="gap-2">
-                        <Map className="w-4 h-4" />
-                        Novo Roadmap
-                    </Button>
-                </Link>
+                >
+                    <Link href="/roadmaps/create">
+                        <Button className="gap-2">
+                            <Map className="w-4 h-4" />
+                            Novo Roadmap
+                        </Button>
+                    </Link>
+                </UserHeader>
             </div>
 
             {roadmaps.length === 0 ? (

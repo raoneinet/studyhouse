@@ -2,7 +2,7 @@
 type Props = {
     title: string
     subtitle?: string
-    style: string
+    style?: string
 }
 
 export const PageTitle = ({title, subtitle, style}: Props)=>{
