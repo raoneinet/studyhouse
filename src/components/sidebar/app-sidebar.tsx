@@ -1,9 +1,8 @@
 "use client"
-import { Calendar, CircleDot, Home, Inbox, Star, PlusCircle, Map } from "lucide-react"
+import { CircleDot, Home, Inbox, Star, PlusCircle, Map } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarHeader,
@@ -11,7 +10,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem
 } from "@/components/ui/sidebar"
-import { MenuSidebarFooter } from "./sidebar-footer"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
 
@@ -73,9 +71,6 @@ export function AppSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
-                <MenuSidebarFooter />
-            </SidebarFooter>
         </Sidebar>
     )
 }

@@ -27,9 +27,9 @@ export const lessonsApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [{ type: "Subjects", id: "LIST" }]
         }),
-        getAllLessons: builder.query<PaginatedSubjects, { page: number, limit: number }>({
-            query: ({ page, limit }) => ({
-                url: `api/lessons?page=${page}&limit=${limit}`
+        getAllLessons: builder.query<PaginatedSubjects, { page: number, limit: number, q?: string }>({
+            query: ({ page, limit, q }) => ({
+                url: `api/lessons?page=${page}&limit=${limit}${q ? `&q=${encodeURIComponent(q)}` : ""}`
             }),
             providesTags: (result) =>
                 result

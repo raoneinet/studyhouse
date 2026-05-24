@@ -56,7 +56,7 @@ export const MenuSidebarFooter = () => {
     }
 
     return (
-        <SidebarMenu>
+        <SidebarMenu className="w-fit">
             <SidebarMenuItem>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -65,16 +65,12 @@ export const MenuSidebarFooter = () => {
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
                             <UserAvatar avatar={avatarUrl} />
-                            <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-medium">{user.user.firstname} {user.user.lastname}</span>
-                                <span className="truncate text-xs">{user.user.username}</span>
-                            </div>
                             <ChevronsUpDown className="ml-auto size-4" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-                        side={isMobile ? "bottom" : "right"}
+                        className="w-(--radix-dropdown-menu-trigger-width) w-fit rounded-lg"
+                        side="bottom"
                         align="end"
                         sideOffset={4}
                     >

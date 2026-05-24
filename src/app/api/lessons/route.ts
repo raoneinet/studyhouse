@@ -26,9 +26,13 @@ export async function GET(req: NextRequest) {
             50,
             Math.max(1, parseInt(searchParams.get("limit") ?? "10", 10))
         );
+        const q = searchParams.get("q");
         const skip = (page - 1) * limit;
 
-        const where = { userId: session.userId, roadmapId: null };
+        const where: any = { userId: session.userId, roadmapId: null };
+        if (q) {
+            where.title = { contains: q, mode: "insensitive" };
+        }
 
         const [lessons, totalItems] = await prisma.$transaction([
             prisma.lesson.findMany({
