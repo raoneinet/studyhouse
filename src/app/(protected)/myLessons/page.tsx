@@ -8,15 +8,16 @@ import { useGetAllLessonsQuery } from "@/app/reducer/lessonsApi"
 import { useLazyGetLessonByIdQuery } from "@/app/reducer/lessonsApi"
 import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
-import { GridListView } from "@/components/gridListView/gridListView"
+import { UserHeader } from "@/components/header/userHeader"
+//import { GridListView } from "@/components/gridListView/gridListView"
 
 const MyCards = () => {
 
     const [selectCard, setSelectCard] = useState<any | null>(null)
-    const [viewList, setViewList] = useState(() => {
-        const list = localStorage.getItem("listview")
-        return list ? JSON.parse(list) : false
-    })
+    // const [viewList, setViewList] = useState(() => {
+    //     const list = localStorage.getItem("listview")
+    //     return list ? JSON.parse(list) : false
+    // })
 
     const [page, setPage] = useState(1)
     const limit = 10
@@ -33,31 +34,24 @@ const MyCards = () => {
         }
     }
 
-    const handleView = (view: boolean) => setViewList(view)
+    //const handleView = (view: boolean) => setViewList(view)
 
     const closeMobileModal = ()=> setSelectCard(null)
 
-    useEffect(() => {
-        localStorage.setItem("listview", JSON.stringify(viewList))
-    }, [viewList])
+    // useEffect(() => {
+    //     localStorage.setItem("listview", JSON.stringify(viewList))
+    // }, [viewList])
 
     return (
         <div className="md:max-w-full">
-            <PageTitle
+            <UserHeader
                 title={`Meus Cards (${data?.totalItems ?? 0})`}
                 subtitle="Todos os meus cards de estudo"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
-                    <div className="p-4 bg-white rounded-lg border flex gap-3">
-                        <SearchBar />
-                        <GridListView
-                            handleView={handleView}
-                            viewList={viewList}
-                        />
-                    </div>
-                    <div className={`flex-1 ${viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"} gap-3`}>
+                    <div className={`flex-1 ${/*viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"*/ "md:flex-2 flex flex-col"} gap-3`}>
                         {data?.data.map((item: Subject) => (
                             <LessonCard key={item.id} card={item} handleSelectCard={handleSelectCard} />
                         ))}
