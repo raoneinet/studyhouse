@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, CircleDot, Home, Inbox, Star, PlusCircle } from "lucide-react"
+import { Calendar, CircleDot, Home, Inbox, Star, PlusCircle, Map } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
@@ -20,6 +20,11 @@ const items = [
         title: "Home",
         url: "/",
         icon: Home,
+    },
+    {
+        title: "Roadmaps",
+        url: "/roadmaps",
+        icon: Map,
     },
     {
         title: "Meus Cards",

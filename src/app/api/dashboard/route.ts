@@ -33,28 +33,28 @@ export async function GET(req: NextRequest) {
             recentActivityRaw,
             groupedCategories
         ] = await Promise.all([
-            prisma.lesson.count({ where: { userId } }),
-            prisma.lesson.count({ where: { userId, status: "ongoing" } }),
-            prisma.lesson.count({ where: { userId, priority: "urgent" } }),
-            prisma.lesson.count({ where: { userId, status: "done" } }),
+            prisma.lesson.count({ where: { userId, roadmapId: null } }),
+            prisma.lesson.count({ where: { userId, status: "ongoing", roadmapId: null } }),
+            prisma.lesson.count({ where: { userId, priority: "urgent", roadmapId: null } }),
+            prisma.lesson.count({ where: { userId, status: "done", roadmapId: null } }),
             prisma.lesson.findMany({
-                where: { userId, status: "ongoing" },
+                where: { userId, status: "ongoing", roadmapId: null },
                 take: 10,
                 orderBy: { updatedAt: "desc" }
             }),
             prisma.lesson.findMany({
-                where: { userId, isFavorite: true },
+                where: { userId, isFavorite: true, roadmapId: null },
                 take: 10,
                 orderBy: { updatedAt: "desc" }
             }),
             prisma.lesson.findMany({
-                where: { userId },
+                where: { userId, roadmapId: null },
                 take: 5,
                 orderBy: { createdAt: "desc" }
             }),
             prisma.lesson.groupBy({
                 by: ["category"],
-                where: { userId },
+                where: { userId, roadmapId: null },
                 _count: {
                     category: true
                 },

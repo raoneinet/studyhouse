@@ -5,9 +5,13 @@ import { toast } from "sonner"
 import { formSchema } from "@/utils/formSchema"
 import { z } from "zod"
 import { useCreateLessonMutation } from "@/app/reducer/lessonsApi"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-const CreateNewItem = () => {
+const CreateNewItemContent = () => {
+
+    const searchParams = useSearchParams();
+    const roadmapId = searchParams.get("roadmapId");
 
     const [createLesson] = useCreateLessonMutation()
     const router = useRouter()
@@ -15,15 +19,22 @@ const CreateNewItem = () => {
     const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
 
         const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
+        const payload = roadmapId 
+            ? { ...values, created_at, roadmapId: parseInt(roadmapId, 10) } 
+            : { ...values, created_at };
 
         try {
-            const createItem = await createLesson({ ...values, created_at }).unwrap()
+            const createItem = await createLesson(payload).unwrap()
 
             toast("Criado assunto de estudo", {
                 description: values.title
             })
 
-            router.push("/myLessons")
+            if (roadmapId) {
+                router.push(`/roadmaps/${roadmapId}`)
+            } else {
+                router.push("/myLessons")
+            }
         } catch (error: any) {
             console.log("Erro ao criar assunto. ", error)
         }
@@ -42,6 +53,14 @@ const CreateNewItem = () => {
                 />
             </div>
         </div>
+    )
+}
+
+const CreateNewItem = () => {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <CreateNewItemContent />
+        </Suspense>
     )
 }
 

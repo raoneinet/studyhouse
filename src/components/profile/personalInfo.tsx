@@ -25,14 +25,36 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
 
     const { data: user } = useGetMeQuery()
 
+    const userData = user?.user || {}
+
+    const formatDateForInput = (dateStr?: string) => {
+        if (!dateStr) return "";
+        try {
+            return new Date(dateStr).toISOString().split('T')[0];
+        } catch {
+            return "";
+        }
+    }
+
+    const formatDateForDisplay = (dateStr?: string) => {
+        if (!dateStr) return "Não informado";
+        try {
+            // Usa timezone local para evitar que 1990-01-01 vire 1989-12-31 no Brasil
+            const date = new Date(dateStr);
+            return new Date(date.getTime() + date.getTimezoneOffset() * 60000).toLocaleDateString('pt-BR');
+        } catch {
+            return "Não informado";
+        }
+    }
+
     const { register, handleSubmit, formState: { errors } } = useForm<UpdatePersonalInfo>({
         defaultValues: {
-            firstname: user.user.firstname || "",
-            lastname: user.user.lastname || "",
-            email: user.user.email || "",
-            date_of_birth: user.user.date_of_birth || "",
-            profession: user.user.profession || "",
-            country: user.user.country || ""
+            firstname: userData.firstname || "",
+            lastname: userData.lastname || "",
+            email: userData.email || "",
+            date_of_birth: formatDateForInput(userData.date_of_birth),
+            profession: userData.profession || "",
+            country: userData.country || ""
         }
     })
 
@@ -60,13 +82,13 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     {editPersonal ?
                         <div className="w-full flex gap-2">
                             <Input
-                                defaultValue={user.user.firstname}
+                                defaultValue={userData.firstname}
                                 {...register("firstname")}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="Primeiro nome"
                             />
                             <Input
-                                defaultValue={user.user.lastname}
+                                defaultValue={userData.lastname}
                                 {...register("lastname")}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="Sobrenome"
@@ -74,7 +96,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                         </div>
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
-                            {`${user.user.firstname} ${user.user.lastname}`}
+                            {`${userData.firstname} ${userData.lastname}`}
                         </p>
                     }
                 </div>
@@ -83,14 +105,14 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     {editPersonal ?
                         <Input
                             type="email"
-                            defaultValue={user.user.email}
+                            defaultValue={userData.email}
                             {...register("email")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             placeholder="joao@email.com"
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
-                            {user.email || 'Não informado'}
+                            {userData.email || 'Não informado'}
                         </p>
                     }
                 </div>
@@ -99,13 +121,13 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     {editPersonal ?
                         <Input
                             type="date"
-                            defaultValue={user.user.date_of_birth}
+                            defaultValue={formatDateForInput(userData.date_of_birth)}
                             {...register("date_of_birth")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
-                            {user.user.date_of_birth}
+                            {formatDateForDisplay(userData.date_of_birth)}
                         </p>
                     }
                 </div>
@@ -113,14 +135,14 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     <label className="block text-sm font-medium text-slate-700 mt-2">Profissão</label>
                     {editPersonal ?
                         <Input
-                            defaultValue={user.user.profession || "Não informado"}
+                            defaultValue={userData.profession || ""}
                             {...register("profession")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             placeholder="estudante"
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
-                            {user.user.profession || 'Não informado'}
+                            {userData.profession || 'Não informado'}
                         </p>
                     }
                 </div>
@@ -128,14 +150,14 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     <label className="block text-sm font-medium text-slate-700 mt-2">País</label>
                     {editPersonal ?
                         <Input
-                            defaultValue={user.user.country || "Não Informado"}
+                            defaultValue={userData.country || ""}
                             {...register("country")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             placeholder="Brasil"
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
-                            {user.user.country || 'Não informado'}
+                            {userData.country || 'Não informado'}
                         </p>
                     }
                 </div>

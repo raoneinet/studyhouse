@@ -38,21 +38,21 @@ export const authApi = baseApi.injectEndpoints({
         }),
         changePassword: builder.mutation({
             query: ({ actualPassword, newPassword }) => ({
-                url: "change_password.php",
-                method: "POST",
+                url: "api/auth/change-password",
+                method: "PATCH",
                 body: { actualPassword, newPassword },
             }),
         }),
         pauseAccount: builder.mutation<any, void>({
             query: () => ({
-                url: "pause_account.php",
-                method: "POST",
+                url: "api/auth/pause",
+                method: "PATCH",
             }),
         }),
         deleteAccount: builder.mutation<any, void>({
             query: () => ({
-                url: "delete_account.php",
-                method: "POST",
+                url: "api/auth/delete",
+                method: "DELETE",
             }),
         }),
     }),

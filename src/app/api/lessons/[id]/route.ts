@@ -163,6 +163,13 @@ export async function PATCH(
 
         const body = await req.json();
 
+        // Tratamento do campo links que pode vir do frontend (ex: react-hook-form field array) como [{ value: 'url' }]
+        if (body.links && Array.isArray(body.links)) {
+            body.links = body.links.map((link: any) => {
+                return typeof link === 'object' && link !== null && 'value' in link ? link.value : link;
+            });
+        }
+
         const updatedLesson = await prisma.lesson.update({
             where: { id: lessonId },
             data: body,

@@ -30,7 +30,8 @@ export async function GET(req: NextRequest) {
 
         const where = { 
             userId: session.userId,
-            isFavorite: true 
+            isFavorite: true,
+            roadmapId: null 
         };
 
         const [lessons, totalItems] = await prisma.$transaction([

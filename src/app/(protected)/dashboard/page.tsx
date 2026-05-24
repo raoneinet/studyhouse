@@ -6,22 +6,23 @@ import { DashboardOngoings } from "@/components/dashboard/dashboardOngoings"
 import { PageTitle } from "@/components/titles/pageTitle"
 import { SummaryBoard } from "@/components/dashboard/summaryBoard"
 import { EmptyState } from "@/components/emptyState/emptyState"
-import { useGetDashBoardDataQuery} from "@/app/reducer/lessonsApi"
+import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { useGetMeQuery } from "@/app/reducer/authApi"
+import { UserHeader } from "@/components/header/userHeader"
 
 const Dashboard = () => {
 
     const { data } = useGetDashBoardDataQuery()
-    const {data: user} = useGetMeQuery()
+    const { data: user } = useGetMeQuery()
 
     console.log(data)
 
     return (
         <>
-            <PageTitle
+            <UserHeader
                 title="Dashboard"
                 subtitle={`Bem-vindo de volta ${user.user.firstname}! Aqui está um resumo dos seus estudos`}
-                style="text-2xl font-bold text-slate-800 pb-5"
+                style="text-2xl font-bold text-slate-800 pb-5" 
             />
             <div>
                 <SummaryBoard />

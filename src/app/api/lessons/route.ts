@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
         );
         const skip = (page - 1) * limit;
 
-        const where = { userId: session.userId };
+        const where = { userId: session.userId, roadmapId: null };
 
         const [lessons, totalItems] = await prisma.$transaction([
             prisma.lesson.findMany({
