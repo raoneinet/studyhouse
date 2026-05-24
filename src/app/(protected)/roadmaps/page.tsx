@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { UserHeader } from "@/components/header/userHeader";
 import { DeleteRoadmapIcon } from "@/components/roadmaps/DeleteRoadmapIcon";
-import { Map, Target, CalendarDays, BookOpen } from "lucide-react";
+import { Map, Target, CalendarDays, BookOpen, Plus } from "lucide-react";
 
 export const metadata = {
     title: "Meus Roadmaps - StudyHouse",
@@ -43,8 +43,8 @@ export default async function RoadmapsPage() {
                 >
                     <Link href="/roadmaps/create">
                         <Button className="gap-2">
-                            <Map className="w-4 h-4" />
-                            Novo Roadmap
+                            <Plus className="w-4 h-4" />
+                            
                         </Button>
                     </Link>
                 </UserHeader>
