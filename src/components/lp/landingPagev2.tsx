@@ -1,7 +1,8 @@
 import { LpHero } from './lpHero';
+import { LpStats } from './lpStats';
 import { LpHowItWorks } from './lpHowItWorks';
 import { LpResources } from './lpResources';
-import { LpStats } from './lpStats';
+import { LpTestimonials } from './lpTestimonials';
 import { LpRegisterPush } from './lpRegisterPush';
 import { LpFooter } from './lpFooter';
 
@@ -12,14 +13,17 @@ export default function EstudakiLanding() {
       {/* Hero */}
       <LpHero/>
 
+      {/* Stats */}
+      <LpStats/>
+
       {/* Como Funciona */}
       <LpHowItWorks/>
 
       {/* Recursos */}
       <LpResources/>
 
-      {/* Stats */}
-      <LpStats/>
+      {/* Depoimentos */}
+      <LpTestimonials/>
 
       {/* CTA Final */}
       <LpRegisterPush/>

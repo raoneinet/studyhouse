@@ -1,20 +1,22 @@
 export const LpRegisterPush = () => {
     return (
         <>
-            <section className="py-24 px-6">
+            <section className="py-24 px-6 bg-[#6735BC]">
                 <div className="container mx-auto text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                        Comece a organizar seus estudos hoje
+                    <h2 className="text-4xl md:text-5xl font-black font-display text-white mb-6 tracking-tight">
+                        Comece agora. É grátis.
                     </h2>
-                    <p className="text-xl text-gray-600 mb-10">
-                        Junte-se a milhares de estudantes que já transformaram sua forma de estudar
+                    <p className="text-xl font-sans text-purple-200 mb-10 max-w-2xl mx-auto">
+                        Sem cartão de crédito. Crie sua conta e organize seus primeiros cards em menos de 2 minutos
                     </p>
-                    <button className="px-10 py-4 bg-purple-600 text-white rounded-lg font-semibold text-lg hover:bg-purple-700 transition-colors shadow-lg shadow-purple-600/30">
-                        Criar Conta Gratuita
+                    <button className="px-10 py-4 bg-white text-[#6735BC] rounded-lg font-bold font-sans text-lg hover:bg-gray-50 transition-all shadow-lg shadow-black/10 hover:-translate-y-1">
+                        Criar conta gratuita →
                     </button>
-                    <p className="text-sm text-gray-500 mt-6">
-                        Sem compromisso • Comece em menos de 2 minutos
-                    </p>
+                    <div className="mt-8 flex justify-center items-center gap-2 text-purple-300 text-xs font-sans">
+                        <span>Seguro e rápido</span>
+                        <span>•</span>
+                        <span>Cancele quando quiser</span>
+                    </div>
                 </div>
             </section>
         </>
