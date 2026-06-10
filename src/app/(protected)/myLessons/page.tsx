@@ -42,6 +42,15 @@ const MyCards = () => {
     //     localStorage.setItem("listview", JSON.stringify(viewList))
     // }, [viewList])
 
+    useEffect(() => {
+        if (data?.data && data.data.length > 0) {
+            const isSelectedCardInPage = data.data.some((item: any) => item.id === selectedCard?.id);
+            if (!isSelectedCardInPage && !isFetching) {
+                triggerGetSubjectById(data.data[0].id, true)
+            }
+        }
+    }, [data, selectedCard, isFetching, triggerGetSubjectById])
+
     return (
         <div className="md:max-w-full">
             <UserHeader

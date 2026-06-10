@@ -41,6 +41,16 @@ const MyCards = () => {
     //     localStorage.setItem("ongolist", JSON.stringify(viewList))
     // },[viewList])
 
+    useEffect(() => {
+        if (data?.data && data.data.length > 0) {
+            const isSelectedCardInPage = data.data.some((item: any) => item.id === selectedCard?.id);
+            if (!isSelectedCardInPage && !isFetching) {
+                const firstValid = data.data.find((item: any) => item.status === "ongoing") || data.data[0];
+                if (firstValid) triggerGetSubjectById(firstValid.id, true);
+            }
+        }
+    }, [data, selectedCard, isFetching, triggerGetSubjectById])
+
     return (
         <div className="md:max-w-full">
             <UserHeader

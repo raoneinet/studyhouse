@@ -1,5 +1,5 @@
 "use client"
-import { Suspense, useState } from "react"
+import { Suspense, useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
@@ -18,7 +18,16 @@ const SearchContent = () => {
 
     // Using getAllLessons but with the q parameter
     const { data } = useGetAllLessonsQuery({ page, limit, q: query }, { skip: !query })
-    const [triggerGetSubjectById, { data: selectedCard }] = useLazyGetLessonByIdQuery()
+    const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetLessonByIdQuery()
+
+    useEffect(() => {
+        if (data?.data && data.data.length > 0) {
+            const isSelectedCardInPage = data.data.some((item: any) => item.id === selectedCard?.id);
+            if (!isSelectedCardInPage && !isFetching) {
+                triggerGetSubjectById(data.data[0].id, true)
+            }
+        }
+    }, [data, selectedCard, isFetching, triggerGetSubjectById])
 
     const handleSelectCard = async (id: number) => {
         try {
