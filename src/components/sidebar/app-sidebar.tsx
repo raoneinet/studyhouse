@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
+import { useSidebar } from "@/components/ui/sidebar"
 
 const items = [
     {
@@ -47,6 +48,7 @@ const items = [
 ]
 
 export function AppSidebar() {
+    const { setOpenMobile, isMobile } = useSidebar()
     
     return (
         <Sidebar variant="floating" collapsible="icon" >
@@ -60,7 +62,12 @@ export function AppSidebar() {
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <Link href={item.url}>
+                                        <Link 
+                                            href={item.url}
+                                            onClick={() => {
+                                                if (isMobile) setOpenMobile(false)
+                                            }}
+                                        >
                                             <item.icon />
                                             {item.title}
                                         </Link>

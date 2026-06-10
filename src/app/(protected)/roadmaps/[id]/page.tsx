@@ -9,7 +9,7 @@ import { AddLessonDialog } from "@/components/roadmaps/AddLessonDialog";
 import { AddGroupDialog } from "@/components/roadmaps/AddGroupDialog";
 import { RoadmapLessonItem } from "@/components/roadmaps/RoadmapLessonItem";
 import { DeleteRoadmapButton } from "@/components/roadmaps/DeleteRoadmapButton";
-import { FolderPlus, PlusCircle } from "lucide-react";
+import { FolderPlus, PlusCircle, ArrowLeft } from "lucide-react";
 
 export const metadata = {
     title: "Detalhes do Roadmap - StudyHouse",
@@ -65,6 +65,11 @@ export default async function RoadmapDetailPage({
 
     return (
         <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <Link href="/roadmaps" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-6 transition-colors">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Todos os Roadmaps
+            </Link>
+            
             <div className="bg-card text-card-foreground p-6 rounded-lg shadow-sm border border-border mb-8">
                 <div className="flex justify-between items-start mb-4">
                     <div>

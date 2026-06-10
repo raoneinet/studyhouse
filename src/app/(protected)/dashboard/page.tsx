@@ -9,11 +9,16 @@ import { EmptyState } from "@/components/emptyState/emptyState"
 import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { useGetMeQuery } from "@/app/reducer/authApi"
 import { UserHeader } from "@/components/header/userHeader"
+import { DashboardSkeleton } from "@/components/dashboard/dashboardSkeleton"
 
 const Dashboard = () => {
 
-    const { data } = useGetDashBoardDataQuery()
-    const { data: user } = useGetMeQuery()
+    const { data, isLoading: isDashboardLoading } = useGetDashBoardDataQuery()
+    const { data: user, isLoading: isUserLoading } = useGetMeQuery()
+
+    if (isDashboardLoading || isUserLoading) {
+        return <DashboardSkeleton />
+    }
 
     console.log(data)
 
