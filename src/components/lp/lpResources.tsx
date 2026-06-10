@@ -33,8 +33,111 @@ export const LpResources = () => {
                         </div>
                         <div className="lg:w-1/2">
                             <div className="relative">
-                                <div className="absolute inset-0 bg-linear-to-tr from-[#6735BC]/5 to-transparent rounded-3xl transform translate-x-4 translate-y-4"></div>
-                                <img src="/placeholder-dashboard.png" alt="Dashboard do Estudaki" className="relative rounded-2xl border border-gray-200 shadow-2xl w-full h-auto object-cover" onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop"; }} />
+                                {/* Glow Background */}
+                                <div className="absolute inset-0 bg-linear-to-tr from-[#6735BC]/10 to-transparent rounded-[2.5rem] transform translate-x-4 translate-y-4"></div>
+                                
+                                {/* Dashboard Mockup Container */}
+                                <div className="relative bg-white rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(103,53,188,0.08)] p-6 md:p-8 w-full z-10">
+                                    
+                                    {/* Header */}
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div>
+                                            <h3 className="text-2xl font-black font-display text-gray-900 mb-1">Dashboard</h3>
+                                            <p className="text-gray-500 font-sans text-sm">Bem-vindo de volta, Raone 👋</p>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-8 rounded-lg bg-purple-100"></div>
+                                            <div className="w-10 h-10 rounded-full bg-[#6735BC]"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Metrics */}
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                                        <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
+                                            <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Total</span>
+                                            <span className="text-3xl font-black font-display text-gray-900">9</span>
+                                        </div>
+                                        <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
+                                            <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Em andamento</span>
+                                            <span className="text-3xl font-black font-display text-blue-500">4</span>
+                                        </div>
+                                        <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
+                                            <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Urgente</span>
+                                            <span className="text-3xl font-black font-display text-red-500">2</span>
+                                        </div>
+                                        <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
+                                            <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Concluído</span>
+                                            <span className="text-3xl font-black font-display text-green-500">2</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Continue Studying */}
+                                    <div className="mb-8">
+                                        <div className="flex justify-between items-end mb-4">
+                                            <h4 className="font-bold text-gray-500 font-sans text-sm">Continuar estudando</h4>
+                                            <span className="font-bold text-[#6735BC] text-xs cursor-pointer hover:underline">Ver todos →</span>
+                                        </div>
+                                        <div className="grid md:grid-cols-2 gap-4">
+                                            {/* Card 1 */}
+                                            <div className="border border-gray-100 rounded-2xl p-4 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                                                <div className="mb-3">
+                                                    <span className="px-3 py-1 bg-purple-100 text-[#6735BC] rounded-full text-xs font-bold">programming</span>
+                                                </div>
+                                                <h5 className="font-bold font-display text-gray-900 text-sm mb-1">React Hook Form + Zod</h5>
+                                                <p className="text-xs text-gray-400 font-sans mb-4 leading-relaxed">Validação de formulários com TypeScript.</p>
+                                                
+                                                <div className="w-full bg-purple-50 rounded-full h-1.5 mb-3">
+                                                    <div className="bg-[#6735BC] h-1.5 rounded-full" style={{ width: '70%' }}></div>
+                                                </div>
+                                                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-500">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Em andamento
+                                                </div>
+                                            </div>
+
+                                            {/* Card 2 */}
+                                            <div className="border border-gray-100 rounded-2xl p-4 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                                                <div className="mb-3">
+                                                    <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold">computing</span>
+                                                </div>
+                                                <h5 className="font-bold font-display text-gray-900 text-sm mb-1">Cache API Service Workers</h5>
+                                                <p className="text-xs text-gray-400 font-sans mb-4 leading-relaxed">Estratégias offline-first com SW.</p>
+                                                
+                                                <div className="w-full bg-green-50 rounded-full h-1.5 mb-3">
+                                                    <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '45%' }}></div>
+                                                </div>
+                                                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-500">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Em andamento
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Categories */}
+                                    <div className="border border-gray-100 rounded-2xl p-5 bg-gray-50/30">
+                                        <h4 className="font-bold text-gray-500 font-sans text-sm mb-4">Cards por categoria</h4>
+                                        <div className="space-y-3">
+                                            <div className="flex justify-between items-center text-sm font-bold font-sans">
+                                                <div className="flex items-center gap-2 text-gray-700">
+                                                    <div className="w-2 h-2 rounded-full bg-[#6735BC]"></div> programming
+                                                </div>
+                                                <span className="text-gray-900">5</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-sm font-bold font-sans">
+                                                <div className="flex items-center gap-2 text-gray-700">
+                                                    <div className="w-2 h-2 rounded-full bg-blue-500"></div> computing
+                                                </div>
+                                                <span className="text-gray-900">3</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-sm font-bold font-sans">
+                                                <div className="flex items-center gap-2 text-gray-700">
+                                                    <div className="w-2 h-2 rounded-full bg-gray-400"></div> other
+                                                </div>
+                                                <span className="text-gray-900">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
