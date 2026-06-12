@@ -48,7 +48,7 @@ export const MenuSidebarFooter = () => {
         try {
             await logout().unwrap()
             dispatch(baseApi.util.resetApiState())
-            router.replace("/")
+            window.location.href = "/"
         }catch(error: any){
             console.log("Erro ao fazer log out. ", error)
             return
