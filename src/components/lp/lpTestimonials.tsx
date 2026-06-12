@@ -2,7 +2,7 @@ import { Star } from 'lucide-react';
 
 export const LpTestimonials = () => {
     return (
-        <section className="py-20 px-6 bg-[#F5F4FB]">
+        <section id="depoimentos" className="py-20 px-6 bg-[#F5F4FB]">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
                     <p className="text-sm font-bold font-display text-[#6735BC] tracking-widest uppercase mb-2">QUEM USA, NÃO PARA</p>
