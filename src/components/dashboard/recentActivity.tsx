@@ -13,15 +13,10 @@ export const RecentActivity = () => {
     console.log(data)
 
     return (
-        <div className="flex flex-col flex-1 p-5 gap-4 bg-white rounded-lg border">
-            <div>
-                <h1 className="text-xl flex gap-2 items-center font-bold text-slate-600">
-                    <span>
-                        <TrendingUp className="w-6 h-6 text-green-500" />
-                    </span>
-                    Atividade Recente
-                </h1>
-            </div>
+        <div className="flex flex-col flex-1 p-6 bg-white rounded-2xl shadow-sm border h-full">
+            <h3 className="text-lg flex gap-2 items-center font-bold text-slate-800 pb-6 border-b mb-4">
+                <TrendingUp className="w-5 h-5 text-orange-500" /> Atividade Recente
+            </h3>
             {data?.recentActivity.map((activity: Subject) => (
                 <div key={activity.id} className="flex justify-between border-b last:border-none pb-2">
                     <div className="">

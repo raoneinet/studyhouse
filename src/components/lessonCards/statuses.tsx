@@ -19,15 +19,15 @@ export const Statuses = ({ status, handleUpdateStatus }: Props) => {
                 return (
                     <div
                         key={stat.id}
-                        className={`${stat.bgColor} w-full flex px-2 items-center justify-between rounded-lg`}
+                        className={`${stat.bgColor} w-full flex px-2 items-center justify-between rounded-lg text-sm`}
                     >
                         <div className="flex gap-2">
-                            <Icon className={`${stat.color} w-4`} />
+                            <Icon className={`${stat.color} w-3 h-3`} />
                             <span className={`${stat.textColor}`}>
                                 {stat.label}
                             </span>
                         </div>
-                        <CardOptionsStatus label={stat} id={status.id} handleUpdateStatus={handleUpdateStatus}/>
+                        <CardOptionsStatus label={stat} id={status.id} handleUpdateStatus={handleUpdateStatus} />
                     </div>
                 )
             }

@@ -19,7 +19,7 @@ export const CardOptionsStatus = ({ id, label, handleUpdateStatus }: Props) => {
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-                <ChevronRight className={label.color} />
+                <ChevronRight className={`w-4 h-4 ${label.color}`} />
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="end">
                 {statusOptions.map(stat =>

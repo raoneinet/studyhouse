@@ -85,7 +85,8 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
     }
 
     // Function to guess link type for icon
-    const getLinkIcon = (url: string) => {
+    const getLinkIcon = (url?: string) => {
+        if (!url) return <LinkIcon size={16} className="text-orange-500" />
         if (url.includes('youtube.com') || url.includes('youtu.be')) return <PlaySquare size={16} className="text-red-500" />
         return <LinkIcon size={16} className="text-orange-500" />
     }
@@ -172,7 +173,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                                 {fields.map((item, index) => (
                                     <div key={item.id} className="flex items-center gap-3 bg-slate-50 border rounded-xl py-2 px-4 shadow-sm w-full md:w-auto overflow-hidden">
                                         {getLinkIcon(item.value)}
-                                        <span className="text-sm text-slate-700 truncate max-w-[200px]">{item.value.replace(/^https?:\/\//, '')}</span>
+                                        <span className="text-sm text-slate-700 truncate max-w-[200px]">{item.value?.replace(/^https?:\/\//, '') || ''}</span>
                                         <button 
                                             type="button" 
                                             onClick={() => remove(index)}
