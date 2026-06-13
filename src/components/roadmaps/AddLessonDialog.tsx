@@ -54,7 +54,7 @@ export function AddLessonDialog({
         <DialogHeader>
           <DialogTitle className="text-xl">Adicionar Nova Lição ao Roadmap</DialogTitle>
         </DialogHeader>
-        <div className="mt-4 p-4 bg-white border rounded-lg shadow-sm">
+        <div className="mt-4 p-4 bg-white border rounded-2xl shadow-sm">
           <LessonForm submitData={handleCreateItem} />
         </div>
       </DialogContent>

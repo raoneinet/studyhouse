@@ -15,7 +15,7 @@ export const Button = ({routeLink, bgColor, txtColor, hoverColor, icon, value}: 
     return (
         <button
             onClick={routeLink}
-            className={`flex items-center justify-center gap-2 px-4 py-3 ${bgColor} ${txtColor} rounded-lg hover:${hoverColor} transition-colors`}
+            className={`flex items-center justify-center gap-2 px-4 py-3 ${bgColor} ${txtColor} rounded-2xl hover:${hoverColor} transition-colors`}
         >
             <Icon className="w-4 h-4" />
             <span className="text-sm font-medium">{value}</span>

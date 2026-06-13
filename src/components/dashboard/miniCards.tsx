@@ -45,7 +45,7 @@ export const MiniCards = ({ card }: Props) => {
     return (
         <div className="w-full h-full bg-white border-2 border-slate-100 p-5 rounded-2xl flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-center">
-                <div className="text-xs bg-green-200 text-green-700 px-2 rounded-md">{card?.category}</div>
+                <div className="text-xs bg-green-200 text-green-700 px-2 rounded-xl">{card?.category}</div>
                 <Star
                     onClick={() => handleFavorite(card)}
                     className={`w-4 h-4 cursor-pointer
@@ -62,7 +62,7 @@ export const MiniCards = ({ card }: Props) => {
                 </div>
             </div>
             <div className="flex flex-col gap-2">
-                <div className="px-2 text-xs bg-red-100 w-fit rounded-md text-red-500 font-medium flex gap-1 items-center">
+                <div className="px-2 text-xs bg-red-100 w-fit rounded-xl text-red-500 font-medium flex gap-1 items-center">
                     <AlertCircle className="w-3 h-3" />
                     {card?.priority}
                 </div>

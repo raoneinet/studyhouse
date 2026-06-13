@@ -50,7 +50,7 @@ const EditLesson = () => {
                 subtitle="Edite seus assuntos de forma fácil"
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
-            <div className="bg-white border rounded-lg px-2 py-8">
+            <div className="bg-white border rounded-2xl px-2 py-8">
                 <LessonForm
                     initialValue={editLesson}
                     submitData={handleSubmitForm}

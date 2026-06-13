@@ -46,7 +46,7 @@ export const LpResources = () => {
                                             <p className="text-gray-500 font-sans text-sm">Bem-vindo de volta, Raone 👋</p>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-lg bg-purple-100"></div>
+                                            <div className="w-8 h-8 rounded-2xl bg-purple-100"></div>
                                             <div className="w-10 h-10 rounded-full bg-[#6735BC]"></div>
                                         </div>
                                     </div>

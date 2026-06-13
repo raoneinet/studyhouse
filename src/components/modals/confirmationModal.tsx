@@ -11,7 +11,7 @@ type Props = {
 export const ConfirmationModal = ({ confirmAction, confirmLabel,  cancelLabel, cancelAction, title, subTitle }: Props) => {
     return (
         <div className="w-full h-full fixed z-50 top-0 right-0 bottom-0 left-0 bg-black/50 flex justify-center items-center">
-            <div className="p-3 bg-white rounded-lg">
+            <div className="p-3 bg-white rounded-2xl">
                 <div className="py-2 border-b text-center">
                     <p className="text-xl font-bold">{title}</p>
                     <p>

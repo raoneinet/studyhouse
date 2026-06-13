@@ -11,7 +11,7 @@ export const Priorities = ({ priority }: { priority: string }) => {
             {priorities.map((item) => (
                 <div
                     key={item.id}
-                    className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-md`}
+                    className={`${item.bgColor} ${item.borderColor} ${item.color} text-xs items-center flex gap-1 px-2 rounded-xl`}
                 >
                     <AlertCircle className="w-3" />
                     <span>{item.label}</span>

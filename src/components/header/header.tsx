@@ -29,7 +29,7 @@ export const Header = () => {
                             desc="Faça login para organizar seus estudos de forma fácil"
                             links={<LoginLinks />}
                         />
-                        <Link href="/register" className="px-5 py-2.5 bg-[#6735BC] text-white text-sm rounded-lg font-bold font-sans hover:bg-[#522996] transition-all shadow-md shadow-[#6735BC]/20">
+                        <Link href="/register" className="px-5 py-2.5 bg-[#6735BC] text-white text-sm rounded-2xl font-bold font-sans hover:bg-[#522996] transition-all shadow-md shadow-[#6735BC]/20">
                             Começar grátis
                         </Link>
                     </div>

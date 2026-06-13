@@ -19,10 +19,10 @@ export const LpHero = () => {
                                 Crie cards de estudo, defina prioridades e acompanhe seu progresso. Pare de perder o fio do que está aprendendo.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
-                                <button className="px-8 py-3.5 w-full sm:w-auto bg-[#6735BC] text-white rounded-lg font-bold font-sans hover:bg-[#522996] transition-all shadow-lg shadow-[#6735BC]/30">
+                                <button className="px-8 py-3.5 w-full sm:w-auto bg-[#6735BC] text-white rounded-2xl font-bold font-sans hover:bg-[#522996] transition-all shadow-lg shadow-[#6735BC]/30">
                                     Começar gratuitamente →
                                 </button>
-                                <button className="px-8 py-3.5 w-full sm:w-auto bg-white text-gray-700 border border-gray-200 rounded-lg font-bold font-sans hover:bg-gray-50 transition-all">
+                                <button className="px-8 py-3.5 w-full sm:w-auto bg-white text-gray-700 border border-gray-200 rounded-2xl font-bold font-sans hover:bg-gray-50 transition-all">
                                     Ver como funciona
                                 </button>
                             </div>
@@ -58,8 +58,8 @@ export const LpHero = () => {
                                     <div className="bg-white border border-gray-100 rounded-xl p-4 mb-4 shadow-sm">
                                         <div className="flex items-start justify-between mb-3">
                                             <div className="flex gap-2">
-                                                <span className="text-xs font-bold px-2 py-1 bg-purple-100 text-purple-600 rounded-md">programming</span>
-                                                <span className="text-xs font-bold px-2 py-1 bg-yellow-100 text-yellow-600 rounded-md">Média</span>
+                                                <span className="text-xs font-bold px-2 py-1 bg-purple-100 text-purple-600 rounded-xl">programming</span>
+                                                <span className="text-xs font-bold px-2 py-1 bg-yellow-100 text-yellow-600 rounded-xl">Média</span>
                                             </div>
                                             <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                                         </div>
@@ -88,8 +88,8 @@ export const LpHero = () => {
 
                                         <div className="flex items-start justify-between mb-3">
                                             <div className="flex gap-2">
-                                                <span className="text-xs font-bold px-2 py-1 bg-green-100 text-green-600 rounded-md">engineering</span>
-                                                <span className="text-xs font-bold px-2 py-1 bg-yellow-100 text-yellow-600 rounded-md">Média</span>
+                                                <span className="text-xs font-bold px-2 py-1 bg-green-100 text-green-600 rounded-xl">engineering</span>
+                                                <span className="text-xs font-bold px-2 py-1 bg-yellow-100 text-yellow-600 rounded-xl">Média</span>
                                             </div>
                                             <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                                         </div>

@@ -66,7 +66,7 @@ export const MenuSidebarFooter = () => {
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-(--radix-dropdown-menu-trigger-width) w-fit rounded-lg"
+                        className="w-(--radix-dropdown-menu-trigger-width) w-fit rounded-2xl"
                         side="bottom"
                         align="end"
                         sideOffset={4}

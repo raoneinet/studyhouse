@@ -3,7 +3,7 @@
 
 // export const GridListView = ({handleView, viewList}: {handleView: (arg: boolean)=>void, viewList?: boolean}) => {
 //     return (
-//         <div className="hidden lg:flex border border-slate-200 rounded-lg overflow-hidden w-fit">
+//         <div className="hidden lg:flex border border-slate-200 rounded-2xl overflow-hidden w-fit">
 //             <Button
 //                 variant={`${viewList === false ? "default" : "ghost"}`}
 //                 className={`p-2`}
