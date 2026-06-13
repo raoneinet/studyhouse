@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
 
     const hashedPassword = await hashPassword(password);
 
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         firstname: firstname.trim(),
         lastname: lastname.trim(),
@@ -91,6 +91,19 @@ export async function POST(req: NextRequest) {
         profession: profession?.trim() || null,
         country: country?.trim() || null,
       },
+    });
+
+    await prisma.lesson.create({
+      data: {
+        title: "📚 Bem-vindo(a) ao StudyHouse!",
+        description: "Este é o seu primeiro Card de Estudos. A plataforma permite que você organize o que está estudando de forma simples. Você pode atribuir categorias, salvar links úteis, prioridades e escrever anotações ativas. Quando entender como funciona, pode excluir este card sem problemas!",
+        category: "other",
+        status: "notstarted",
+        priority: "low",
+        tags: "boas-vindas, tutorial",
+        links: ["https://youtube.com"],
+        userId: newUser.id,
+      }
     });
 
     return NextResponse.json(
