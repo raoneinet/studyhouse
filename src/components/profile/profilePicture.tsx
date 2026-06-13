@@ -59,16 +59,21 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
     }, [])
 
     return (
-        <div className="flex flex-col">
-            <div>
+        <div className="flex flex-col items-center">
+            <div className="relative">
                 <img
-                    className="w-20 h-20 rounded-full"
+                    className="w-32 h-32 rounded-full object-cover"
                     src={avatarUrl} alt="profile picture"
                     onMouseEnter={() => setShowEdit(true)}
                     onMouseLeave={() => setShowEdit(false)}
                 />
                 {!editPicture &&
-                    <Edit onClick={() => setEditPicture(true)} className="cursor-pointer w-5 place-self-end absolute"/>
+                    <div 
+                        onClick={() => setEditPicture(true)} 
+                        className="absolute bottom-0 right-0 bg-orange-500 text-white p-2 rounded-full cursor-pointer shadow-md hover:bg-orange-600 transition-colors"
+                    >
+                        <Edit className="w-4 h-4" />
+                    </div>
                 }
             </div>
             {editPicture &&
