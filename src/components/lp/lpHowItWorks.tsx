@@ -5,7 +5,7 @@ export const LpHowItWorks = () => {
             <section id="como-funciona" className="py-20 px-6 bg-gray-50">
                 <div className="container mx-auto">
                     <div className="mb-16">
-                        <p className="text-sm font-bold font-display text-[#6735BC] tracking-widest uppercase mb-2">COMO FUNCIONA</p>
+                        <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">COMO FUNCIONA</p>
                         <h2 className="text-4xl md:text-5xl font-black font-display text-gray-900 mb-4 tracking-tight">Simples como 1, 2, 3</h2>
                         <p className="text-xl font-sans text-gray-600 max-w-2xl">Em menos de 2 minutos você já tem seus primeiros cards organizados e prontos para estudar.</p>
                     </div>

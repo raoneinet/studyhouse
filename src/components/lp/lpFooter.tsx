@@ -8,7 +8,7 @@ export const LpFooter = () => {
                     <div className="grid md:grid-cols-4 gap-8 mb-8">
                         <div>
                             <div className="text-white font-bold font-display text-2xl flex items-center gap-2 mb-2">
-                                <div className="w-8 h-8 bg-[#6735BC] rounded-2xl flex items-center justify-center">
+                                <div className="w-8 h-8 bg-[#f97316] rounded-2xl flex items-center justify-center">
                                     <span className="text-white text-sm">✓</span>
                                 </div>
                                 Estudaki
@@ -27,7 +27,7 @@ export const LpFooter = () => {
                                 <ul className="space-y-2">
                                     {col.links.map((link, j) => (
                                         <li key={j}>
-                                            <a href="#" className="text-gray-400 font-sans hover:text-[#6735BC] transition-colors text-sm">{link}</a>
+                                            <a href="#" className="text-gray-400 font-sans hover:text-[#f97316] transition-colors text-sm">{link}</a>
                                         </li>
                                     ))}
                                 </ul>
