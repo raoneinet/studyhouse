@@ -14,9 +14,9 @@ export const statusOptions: StatusType[] = [
         id: "ongoing",
         label: "Em andamento",
         icon: CircleDot,
-        color: "text-blue-500",
-        bgColor: "bg-blue-100",
-        textColor: "text-blue-700"
+        color: "text-orange-500",
+        bgColor: "bg-orange-100",
+        textColor: "text-orange-700"
     },
     {
         id: "onhold",

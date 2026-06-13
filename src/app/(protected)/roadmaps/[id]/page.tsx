@@ -73,19 +73,19 @@ export default async function RoadmapDetailPage({
             <div className="bg-card text-card-foreground p-6 rounded-lg shadow-sm border border-border mb-8">
                 <div className="flex justify-between items-start mb-4">
                     <div>
-                        <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide mb-2">
+                        <span className="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wide mb-2">
                             Meta: {roadmap.goal}
                         </span>
                         <h1 className="text-3xl font-bold">{roadmap.title}</h1>
                     </div>
                     <div className="flex gap-2 flex-wrap justify-end">
                         <AddGroupDialog roadmapId={roadmap.id}>
-                            <Button variant="outline" className="gap-2">
+                            <Button variant="outline" className="gap-2 rounded-xl font-semibold h-11">
                                 <FolderPlus className="w-4 h-4" /> Novo Grupo
                             </Button>
                         </AddGroupDialog>
                         <AddLessonDialog roadmapId={roadmap.id}>
-                            <Button className="gap-2 bg-blue-600 hover:bg-blue-700">
+                            <Button className="gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl h-11">
                                 <PlusCircle className="w-4 h-4" /> Lição Avulsa
                             </Button>
                         </AddLessonDialog>
@@ -103,14 +103,14 @@ export default async function RoadmapDetailPage({
                     <div key={group.id} className="bg-slate-50 p-5 rounded-xl border border-slate-200">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                                <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                                <span className="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
                                     {group.order + 1}
                                 </span>
                                 {group.name}
                             </h2>
                             <AddLessonDialog roadmapId={roadmap.id} groupId={group.id}>
-                                <Button variant="secondary" size="sm" className="gap-2 bg-white hover:bg-slate-100 border">
-                                    <PlusCircle className="w-4 h-4 text-blue-600" /> Adicionar Lição
+                                <Button variant="secondary" size="sm" className="gap-2 bg-white hover:bg-slate-100 border rounded-lg font-medium">
+                                    <PlusCircle className="w-4 h-4 text-orange-500" /> Adicionar Lição
                                 </Button>
                             </AddLessonDialog>
                         </div>

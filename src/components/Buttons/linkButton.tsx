@@ -10,7 +10,7 @@ export const LinkButton = ({type, link, value}: Props) => {
         <button
             type={type}
             onClick={link}
-            className="text-sm text-blue-600 font-medium"
+            className="text-sm text-orange-600 font-medium"
         >
             {value} →
         </button>

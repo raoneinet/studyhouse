@@ -3,7 +3,7 @@ import { AlertCircle, CheckCircle, Clock, Grid, Layers, Sparkles, Star } from "l
 export const LpHero = () => {
     return (
         <>
-            <section className="overflow-hidden bg-linear-to-br from-purple-50 via-blue-50 to-indigo-50">
+            <section className="overflow-hidden bg-linear-to-br from-purple-50 via-orange-50 to-indigo-50">
                 <div className="inset-0 opacity-60"></div>
                 <div className="mx-auto px-6 py-24 md:py-32 container">
                     <div className="grid md:grid-cols-2 gap-12 items-center">

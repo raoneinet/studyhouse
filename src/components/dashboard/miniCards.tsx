@@ -43,7 +43,7 @@ export const MiniCards = ({ card }: Props) => {
     }
 
     return (
-        <div className="min-w-full md:flex-1 border-2 p-5 rounded-lg flex flex-col gap-3">
+        <div className="w-full h-full bg-white border-2 border-slate-100 p-5 rounded-2xl flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-center">
                 <div className="text-xs bg-green-200 text-green-700 px-2 rounded-md">{card?.category}</div>
                 <Star

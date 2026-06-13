@@ -23,7 +23,7 @@ export const SearchBar = () => {
                 placeholder="buscar..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="bg-white w-full pl-10 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                className="bg-white w-full pl-10 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" 
             />
         </form>
     )

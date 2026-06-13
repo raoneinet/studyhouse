@@ -60,7 +60,7 @@ export function RoadmapLessonItem({ lesson }: { lesson: any }) {
         
         <Link href={`/editLesson?id=${lesson.id}`}>
             <Button variant="ghost" size="sm" title="Editar lição">
-            <Edit2 className="w-4 h-4 text-blue-600" />
+            <Edit2 className="w-4 h-4 text-orange-600" />
             </Button>
         </Link>
         

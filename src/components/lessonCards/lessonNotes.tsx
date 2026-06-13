@@ -53,7 +53,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
                 {!isAddingNote && (
                     <button
                         onClick={() => setIsAddingNote(true)}
-                        className="text-sm text-blue-600 font-semibold hover:underline px-2 py-1"
+                        className="text-sm text-orange-600 font-semibold hover:underline px-2 py-1"
                     >
                         Adicionar nota
                     </button>
@@ -66,7 +66,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                             placeholder="Escreva uma nova anotação ou comentário..."
-                            className="w-full border rounded-md p-3 text-sm text-slate-700 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            className="w-full border rounded-md p-3 text-sm text-slate-700 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
                             rows={3}
                             autoFocus
                         />
@@ -84,7 +84,7 @@ export const LessonNotes = ({ lessonId }: Props) => {
                             <button
                                 type="submit"
                                 disabled={isAdding || !content.trim()}
-                                className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center gap-2 transition-colors"
+                                className="bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 text-white px-4 py-2 rounded-md text-sm font-semibold flex items-center gap-2 transition-colors"
                             >
                                 <Send className="w-4 h-4" />
                                 {isAdding ? "Carregando..." : "Salvar"}

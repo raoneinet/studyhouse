@@ -18,8 +18,8 @@ export const SummaryBoard = () => {
             <SummaryCards
                 title="Em Andamento"
                 total={data?.stats.ongoing ?? 0}
-                Icon={<CircleDot className="w-8 h-8 text-blue-500" />}
-                txtColor="text-blue-600"
+                Icon={<CircleDot className="w-8 h-8 text-orange-500" />}
+                txtColor="text-orange-600"
             />
             <SummaryCards
                 title="Urgente"

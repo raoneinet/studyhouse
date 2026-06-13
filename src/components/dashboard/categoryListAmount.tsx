@@ -12,19 +12,14 @@ export const CategoryListAmounts = () => {
     const { data } = useGetDashBoardDataQuery()
 
     return (
-        <div className="flex flex-col flex-1 p-5 gap-4 bg-white rounded-lg border">
-            <div>
-                <h1 className="text-xl flex gap-2 items-center font-bold text-slate-600">
-                    <span>
-                        <Target className="w-6 h-6 text-blue-500" />
-                    </span>
-                    Cards por categoria
-                </h1>
-            </div>
+        <div className="flex-1 bg-white border p-6 rounded-2xl shadow-sm h-full flex flex-col">
+            <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2 pb-4 border-b">
+                <Target className="w-5 h-5 text-orange-500" /> Assuntos / Categorias
+            </h3>
             {data?.categories.map((cat: Category) => (
                 <div key={cat.category} className="flex justify-between items-center ">
                     <div className="flex gap-2 items-center">
-                        <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+                        <div className="w-3 h-3 rounded-full bg-orange-600"></div>
                         <div className="font-bold">{cat.category}</div>
                     </div>
                     <div>

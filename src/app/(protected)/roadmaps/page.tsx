@@ -42,33 +42,33 @@ export default async function RoadmapsPage() {
                     style="text-2xl font-bold text-neutral-800"
                 >
                     <Link href="/roadmaps/create">
-                        <Button className="gap-2">
-                            <Plus className="w-4 h-4" />
-                            
+                        <Button className="gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl h-11 px-6">
+                            <Plus className="w-5 h-5" />
+                            Novo Roadmap
                         </Button>
                     </Link>
                 </UserHeader>
             </div>
 
             {roadmaps.length === 0 ? (
-                <div className="text-center py-16 bg-white rounded-lg border border-dashed border-neutral-300">
-                    <Map className="w-12 h-12 mx-auto text-neutral-300 mb-4" />
-                    <h3 className="text-lg font-semibold text-neutral-700 mb-2">Nenhum roadmap encontrado</h3>
+                <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-neutral-300 shadow-sm">
+                    <Map className="w-12 h-12 mx-auto text-orange-200 mb-4" />
+                    <h3 className="text-lg font-bold text-neutral-800 mb-2">Nenhum roadmap encontrado</h3>
                     <p className="text-neutral-500 mb-6 max-w-sm mx-auto">
                         Comece definindo sua primeira grande meta de estudos e organize suas lições.
                     </p>
                     <Link href="/roadmaps/create">
-                        <Button>Criar meu primeiro Roadmap</Button>
+                        <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl h-11 px-6">Criar meu primeiro Roadmap</Button>
                     </Link>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {roadmaps.map((roadmap) => (
                         <Link key={roadmap.id} href={`/roadmaps/${roadmap.id}`}>
-                            <div className="bg-white border rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col group">
-                                <div className="flex items-start justify-between mb-3">
-                                    <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full font-medium">
-                                        <Target className="w-3 h-3" />
+                            <div className="bg-white border rounded-2xl p-6 hover:shadow-md transition-all cursor-pointer h-full flex flex-col group">
+                                <div className="flex items-start justify-between mb-4">
+                                    <span className="inline-flex items-center gap-1 bg-orange-100 text-orange-700 text-xs px-3 py-1.5 rounded-full font-bold">
+                                        <Target className="w-3.5 h-3.5" />
                                         {roadmap.goal}
                                     </span>
                                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
