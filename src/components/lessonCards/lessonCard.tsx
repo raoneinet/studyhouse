@@ -68,7 +68,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="py-2">
                     <div
-                        className="flex gap-2 items-center text-lg font-semibold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors"
+                        className="flex gap-2 items-center text-lg font-semibold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors"
                     >
                         <span>{card.title}</span>
                         <FavoriteIcon handleFavorite={handleFavorite} card={card} />

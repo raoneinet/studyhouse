@@ -59,7 +59,7 @@ export const LpResources = () => {
                                         </div>
                                         <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
                                             <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Em andamento</span>
-                                            <span className="text-3xl font-black font-display text-blue-500">4</span>
+                                            <span className="text-3xl font-black font-display text-orange-500">4</span>
                                         </div>
                                         <div className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex flex-col justify-between min-h-[90px]">
                                             <span className="text-xs font-sans text-gray-500 uppercase tracking-wide">Urgente</span>
@@ -89,8 +89,8 @@ export const LpResources = () => {
                                                 <div className="w-full bg-purple-50 rounded-full h-1.5 mb-3">
                                                     <div className="bg-[#6735BC] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                                                 </div>
-                                                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-500">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Em andamento
+                                                <div className="flex items-center gap-1.5 text-xs font-bold text-orange-500">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Em andamento
                                                 </div>
                                             </div>
 
@@ -105,8 +105,8 @@ export const LpResources = () => {
                                                 <div className="w-full bg-green-50 rounded-full h-1.5 mb-3">
                                                     <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '45%' }}></div>
                                                 </div>
-                                                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-500">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Em andamento
+                                                <div className="flex items-center gap-1.5 text-xs font-bold text-orange-500">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Em andamento
                                                 </div>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@ export const LpResources = () => {
                                             </div>
                                             <div className="flex justify-between items-center text-sm font-bold font-sans">
                                                 <div className="flex items-center gap-2 text-gray-700">
-                                                    <div className="w-2 h-2 rounded-full bg-blue-500"></div> computing
+                                                    <div className="w-2 h-2 rounded-full bg-orange-500"></div> computing
                                                 </div>
                                                 <span className="text-gray-900">3</span>
                                             </div>

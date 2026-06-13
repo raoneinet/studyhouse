@@ -77,7 +77,7 @@ export const CreateLessonModal = () => {
             <DialogTrigger asChild>
                 <Button
                     id="create-lesson-btn"
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                    className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white"
                 >
                     <Plus className="w-4 h-4" />
                     Nova Lição
@@ -87,7 +87,7 @@ export const CreateLessonModal = () => {
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2 text-xl">
-                        <BookOpen className="w-5 h-5 text-blue-600" />
+                        <BookOpen className="w-5 h-5 text-orange-600" />
                         Criar Nova Lição
                     </DialogTitle>
                 </DialogHeader>
@@ -314,7 +314,7 @@ export const CreateLessonModal = () => {
                             <Button
                                 type="submit"
                                 disabled={isLoading}
-                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                className="bg-orange-600 hover:bg-orange-700 text-white"
                                 id="submit-lesson-btn"
                             >
                                 {isLoading ? (

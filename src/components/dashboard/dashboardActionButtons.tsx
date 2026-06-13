@@ -16,9 +16,9 @@ export const DashboardActionButtons = () => {
             <div className="grid grid-cols-2 gap-3">
                 <Button
                     routeLink={goToAllCards}
-                    bgColor="bg-blue-50"
-                    txtColor="text-blue-600"
-                    hoverColor="bg-blue-100"
+                    bgColor="bg-orange-50"
+                    txtColor="text-orange-600"
+                    hoverColor="bg-orange-100"
                     icon={Grid}
                     value="Todos os Cards"
                 />

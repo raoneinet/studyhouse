@@ -84,13 +84,13 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                             <Input
                                 defaultValue={userData.firstname}
                                 {...register("firstname")}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                 placeholder="Primeiro nome"
                             />
                             <Input
                                 defaultValue={userData.lastname}
                                 {...register("lastname")}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                 placeholder="Sobrenome"
                             />
                         </div>
@@ -107,7 +107,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                             type="email"
                             defaultValue={userData.email}
                             {...register("email")}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                             placeholder="joao@email.com"
                         />
                         :
@@ -123,7 +123,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                             type="date"
                             defaultValue={formatDateForInput(userData.date_of_birth)}
                             {...register("date_of_birth")}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
@@ -137,7 +137,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                         <Input
                             defaultValue={userData.profession || ""}
                             {...register("profession")}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                             placeholder="estudante"
                         />
                         :
@@ -152,7 +152,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                         <Input
                             defaultValue={userData.country || ""}
                             {...register("country")}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                             placeholder="Brasil"
                         />
                         :

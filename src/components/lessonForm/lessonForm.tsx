@@ -87,7 +87,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
     // Function to guess link type for icon
     const getLinkIcon = (url: string) => {
         if (url.includes('youtube.com') || url.includes('youtu.be')) return <PlaySquare size={16} className="text-red-500" />
-        return <LinkIcon size={16} className="text-blue-500" />
+        return <LinkIcon size={16} className="text-orange-500" />
     }
 
     return (

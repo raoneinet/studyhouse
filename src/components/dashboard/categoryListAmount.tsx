@@ -16,7 +16,7 @@ export const CategoryListAmounts = () => {
             <div>
                 <h1 className="text-xl flex gap-2 items-center font-bold text-slate-600">
                     <span>
-                        <Target className="w-6 h-6 text-blue-500" />
+                        <Target className="w-6 h-6 text-orange-500" />
                     </span>
                     Cards por categoria
                 </h1>
@@ -24,7 +24,7 @@ export const CategoryListAmounts = () => {
             {data?.categories.map((cat: Category) => (
                 <div key={cat.category} className="flex justify-between items-center ">
                     <div className="flex gap-2 items-center">
-                        <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+                        <div className="w-3 h-3 rounded-full bg-orange-600"></div>
                         <div className="font-bold">{cat.category}</div>
                     </div>
                     <div>

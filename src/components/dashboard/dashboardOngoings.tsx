@@ -17,7 +17,7 @@ export const DashboardOngoings = () => {
         <div className="p-5 rounded-lg bg-white border">
             <div className="flex justify-between items-center pb-5">
                 <h1 className="font-bold text-xl text-slate-700 flex gap-2 items-center">
-                    <CircleDot className="w-6 h-6 text-blue-600" />
+                    <CircleDot className="w-6 h-6 text-orange-600" />
                     Continuar estudando
                 </h1>
                 <LinkButton
