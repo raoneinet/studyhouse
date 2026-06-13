@@ -69,7 +69,12 @@ const MyCards = () => {
                                 <LessonCardSkeleton />
                             </>
                         ) : data?.data.length === 0 ? (
-                            <EmptyState />
+                            <EmptyState 
+                                title="Você ainda não tem favoritos"
+                                description="Marque seus cards mais importantes com a estrelinha para acessá-colos rapidamente por aqui."
+                                actionLabel="Ver todos os cards"
+                                actionLink="/myLessons"
+                            />
                         ) : (
                             data?.data.map((item: Subject) =>
                                 (item.is_favorite !== 0) && (
@@ -90,7 +95,7 @@ const MyCards = () => {
                     }
                 </div>
                 <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 scroll-y-hidden" : "hidden"} md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
-                    <div className={`sticky top-4 bg-white rounded-lg py-3 border`}>
+                    <div className={`sticky top-4 bg-white rounded-2xl py-3 border`}>
                         {isFetching || (isLoading && !selectedCard) ? (
                             <LessonDetailSidebarSkeleton />
                         ) : (

@@ -40,7 +40,7 @@ export function DeleteRoadmapIcon({ roadmapId }: { roadmapId: number }) {
     <button 
       onClick={handleDelete}
       disabled={isDeleting}
-      className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+      className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
       title="Excluir Roadmap"
     >
       <Trash className="w-4 h-4" />

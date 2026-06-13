@@ -81,7 +81,7 @@ const SearchContent = () => {
                     }
                 </div>
                 <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 z-50" : "hidden"} md:z-0 md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
-                    <div className={`sticky top-4 bg-white rounded-lg py-3 border overflow-y-auto`}>
+                    <div className={`sticky top-4 bg-white rounded-2xl py-3 border overflow-y-auto`}>
                         {isFetching || (isLoading && !selectedCard && query) ? (
                             <LessonDetailSidebarSkeleton />
                         ) : (

@@ -8,7 +8,7 @@ export const LpResources = () => {
                     <div className="flex flex-col lg:flex-row items-center gap-16">
                         <div className="lg:w-1/2">
                             <div className="mb-10">
-                                <p className="text-sm font-bold font-display text-[#6735BC] tracking-widest uppercase mb-2">TUDO QUE VOCÊ PRECISA</p>
+                                <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">TUDO QUE VOCÊ PRECISA</p>
                                 <h2 className="text-4xl md:text-5xl font-black font-display text-gray-900 mb-6 tracking-tight">Tudo que você precisa, num só lugar</h2>
                                 <p className="text-xl font-sans text-gray-600">O Estudaki foi feito para estudantes que querem parar de procrastinar e começar a progredir.</p>
                             </div>
@@ -34,7 +34,7 @@ export const LpResources = () => {
                         <div className="lg:w-1/2">
                             <div className="relative">
                                 {/* Glow Background */}
-                                <div className="absolute inset-0 bg-linear-to-tr from-[#6735BC]/10 to-transparent rounded-[2.5rem] transform translate-x-4 translate-y-4"></div>
+                                <div className="absolute inset-0 bg-linear-to-tr from-[#f97316]/10 to-transparent rounded-[2.5rem] transform translate-x-4 translate-y-4"></div>
                                 
                                 {/* Dashboard Mockup Container */}
                                 <div className="relative bg-white rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(103,53,188,0.08)] p-6 md:p-8 w-full z-10">
@@ -46,8 +46,8 @@ export const LpResources = () => {
                                             <p className="text-gray-500 font-sans text-sm">Bem-vindo de volta, Raone 👋</p>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-lg bg-purple-100"></div>
-                                            <div className="w-10 h-10 rounded-full bg-[#6735BC]"></div>
+                                            <div className="w-8 h-8 rounded-2xl bg-orange-100"></div>
+                                            <div className="w-10 h-10 rounded-full bg-[#f97316]"></div>
                                         </div>
                                     </div>
 
@@ -75,19 +75,19 @@ export const LpResources = () => {
                                     <div className="mb-8">
                                         <div className="flex justify-between items-end mb-4">
                                             <h4 className="font-bold text-gray-500 font-sans text-sm">Continuar estudando</h4>
-                                            <span className="font-bold text-[#6735BC] text-xs cursor-pointer hover:underline">Ver todos →</span>
+                                            <span className="font-bold text-[#f97316] text-xs cursor-pointer hover:underline">Ver todos →</span>
                                         </div>
                                         <div className="grid md:grid-cols-2 gap-4">
                                             {/* Card 1 */}
                                             <div className="border border-gray-100 rounded-2xl p-4 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                                                 <div className="mb-3">
-                                                    <span className="px-3 py-1 bg-purple-100 text-[#6735BC] rounded-full text-xs font-bold">programming</span>
+                                                    <span className="px-3 py-1 bg-orange-100 text-[#f97316] rounded-full text-xs font-bold">programming</span>
                                                 </div>
                                                 <h5 className="font-bold font-display text-gray-900 text-sm mb-1">React Hook Form + Zod</h5>
                                                 <p className="text-xs text-gray-400 font-sans mb-4 leading-relaxed">Validação de formulários com TypeScript.</p>
                                                 
-                                                <div className="w-full bg-purple-50 rounded-full h-1.5 mb-3">
-                                                    <div className="bg-[#6735BC] h-1.5 rounded-full" style={{ width: '70%' }}></div>
+                                                <div className="w-full bg-orange-50 rounded-full h-1.5 mb-3">
+                                                    <div className="bg-[#f97316] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                                                 </div>
                                                 <div className="flex items-center gap-1.5 text-xs font-bold text-orange-500">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Em andamento
@@ -118,7 +118,7 @@ export const LpResources = () => {
                                         <div className="space-y-3">
                                             <div className="flex justify-between items-center text-sm font-bold font-sans">
                                                 <div className="flex items-center gap-2 text-gray-700">
-                                                    <div className="w-2 h-2 rounded-full bg-[#6735BC]"></div> programming
+                                                    <div className="w-2 h-2 rounded-full bg-[#f97316]"></div> programming
                                                 </div>
                                                 <span className="text-gray-900">5</span>
                                             </div>

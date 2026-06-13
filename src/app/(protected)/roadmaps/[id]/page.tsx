@@ -70,7 +70,7 @@ export default async function RoadmapDetailPage({
                 Todos os Roadmaps
             </Link>
             
-            <div className="bg-card text-card-foreground p-6 rounded-lg shadow-sm border border-border mb-8">
+            <div className="bg-card text-card-foreground p-6 rounded-2xl shadow-sm border border-border mb-8">
                 <div className="flex justify-between items-start mb-4">
                     <div>
                         <span className="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wide mb-2">
@@ -109,14 +109,14 @@ export default async function RoadmapDetailPage({
                                 {group.name}
                             </h2>
                             <AddLessonDialog roadmapId={roadmap.id} groupId={group.id}>
-                                <Button variant="secondary" size="sm" className="gap-2 bg-white hover:bg-slate-100 border rounded-lg font-medium">
+                                <Button variant="secondary" size="sm" className="gap-2 bg-white hover:bg-slate-100 border rounded-2xl font-medium">
                                     <PlusCircle className="w-4 h-4 text-orange-500" /> Adicionar Lição
                                 </Button>
                             </AddLessonDialog>
                         </div>
                         
                         {group.lessons.length === 0 ? (
-                            <div className="text-center py-6 bg-white rounded-lg border border-dashed border-slate-300">
+                            <div className="text-center py-6 bg-white rounded-2xl border border-dashed border-slate-300">
                                 <p className="text-slate-500 text-sm">Este grupo ainda não tem lições.</p>
                             </div>
                         ) : (
@@ -142,7 +142,7 @@ export default async function RoadmapDetailPage({
                 )}
                 
                 {roadmap.groups.length === 0 && roadmap.lessons.length === 0 && (
-                    <div className="text-center py-16 bg-muted/30 rounded-lg border border-dashed border-border flex flex-col items-center">
+                    <div className="text-center py-16 bg-muted/30 rounded-2xl border border-dashed border-border flex flex-col items-center">
                         <FolderPlus className="w-12 h-12 text-slate-300 mb-4" />
                         <h3 className="text-lg font-semibold text-slate-700 mb-2">Estruture seu aprendizado</h3>
                         <p className="text-muted-foreground mb-6 max-w-sm">

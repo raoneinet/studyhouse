@@ -35,7 +35,7 @@ export function RoadmapLessonItem({ lesson }: { lesson: any }) {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center gap-4 group">
+    <div className="bg-white p-4 rounded-2xl shadow-sm border flex items-center gap-4 group">
       <div className="flex-1 min-w-0">
         <h3 className="font-semibold text-lg truncate flex items-center gap-2">
           {lesson.title}

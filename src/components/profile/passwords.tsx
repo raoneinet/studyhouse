@@ -34,7 +34,7 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
                                 <Input
                                     type="password"
                                     {...register("actualPassword")}
-                                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                     placeholder="*********"
                                 />
                             </div>
@@ -43,13 +43,13 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
                                 <Input
                                     type="password"
                                     {...register("newPassword")}
-                                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                     placeholder="*********"
                                 />
                             </div>
                         </div>
                         :
-                        <p className="px-4 py-2 bg-slate-50 rounded-lg text-slate-800">
+                        <p className="px-4 py-2 bg-slate-50 rounded-2xl text-slate-800">
                             *********
                         </p>
                     }

@@ -16,7 +16,7 @@ export const LessonDetailSidebarSkeleton = () => {
                     <span className="text-slate-800 text-xl font-semibold">
                         Detalhes de estudo
                     </span>
-                    <Skeleton className="md:hidden h-6 w-6 rounded-md" />
+                    <Skeleton className="md:hidden h-6 w-6 rounded-xl" />
                 </SidebarGroupLabel>
                 <Separator className="my-3" />
             </SidebarMenu>
@@ -28,9 +28,9 @@ export const LessonDetailSidebarSkeleton = () => {
                             <Skeleton className="h-6 w-20 rounded-full" />
                             <Skeleton className="h-6 w-24 rounded-full" />
                         </div>
-                        <Skeleton className="h-8 w-full rounded-md" />
-                        <Skeleton className="h-4 w-full rounded-md" />
-                        <Skeleton className="h-4 w-4/5 rounded-md" />
+                        <Skeleton className="h-8 w-full rounded-xl" />
+                        <Skeleton className="h-4 w-full rounded-xl" />
+                        <Skeleton className="h-4 w-4/5 rounded-xl" />
                     </div>
 
                     <Separator />
@@ -38,17 +38,17 @@ export const LessonDetailSidebarSkeleton = () => {
                     {/* Meta info */}
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <Skeleton className="h-5 w-24 rounded-md" />
+                            <Skeleton className="h-5 w-24 rounded-xl" />
                             <div className="flex gap-2">
-                                <Skeleton className="h-6 w-16 rounded-md" />
-                                <Skeleton className="h-6 w-20 rounded-md" />
+                                <Skeleton className="h-6 w-16 rounded-xl" />
+                                <Skeleton className="h-6 w-20 rounded-xl" />
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Skeleton className="h-5 w-32 rounded-md" />
+                            <Skeleton className="h-5 w-32 rounded-xl" />
                             <div className="space-y-2">
-                                <Skeleton className="h-8 w-full rounded-md" />
-                                <Skeleton className="h-8 w-full rounded-md" />
+                                <Skeleton className="h-8 w-full rounded-xl" />
+                                <Skeleton className="h-8 w-full rounded-xl" />
                             </div>
                         </div>
                     </div>

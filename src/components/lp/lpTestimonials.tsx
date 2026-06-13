@@ -5,7 +5,7 @@ export const LpTestimonials = () => {
         <section id="depoimentos" className="py-20 px-6 bg-[#F5F4FB]">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
-                    <p className="text-sm font-bold font-display text-[#6735BC] tracking-widest uppercase mb-2">QUEM USA, NÃO PARA</p>
+                    <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">QUEM USA, NÃO PARA</p>
                     <h2 className="text-4xl md:text-5xl font-bold font-display text-gray-900 mb-4">Quem usa, não para</h2>
                     <p className="text-xl font-sans text-gray-600">Estudantes que transformaram a sua rotina com o Estudaki.</p>
                 </div>
@@ -15,7 +15,7 @@ export const LpTestimonials = () => {
                             quote: "Meus estudos eram uma bagunça, perdi minha aprovação para a OAB. Com o Estudaki parei de focar no irrelevante. Com certeza recomendaria usar a plataforma!",
                             name: "Ana Santos",
                             role: "Estudante Direito",
-                            color: "bg-[#6735BC]"
+                            color: "bg-[#f97316]"
                         },
                         {
                             quote: "Como trabalho e estudo, não tenho tempo para me organizar. O Estudaki virou meu hub de estudo e revisões. Um sistema visual me ajudou a fixar muito mais fácil.",

@@ -47,7 +47,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
             <div className="flex flex-col gap-2">
                 <div>
                     <span className="font-bold text-slate-700">Categoria:</span>
-                    <span className="ml-2 px-2 py-1 rounded-md bg-green-100 text-green-600 bg-opacity-10 w-fit">
+                    <span className="ml-2 px-2 py-1 rounded-xl bg-green-100 text-green-600 bg-opacity-10 w-fit">
                         {selectedCard?.category}
                     </span>
                 </div>
@@ -58,7 +58,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                         return (
                             <div
                                 key={item.id}
-                                className={`ml-2 w-fit flex items-center gap-2 px-2 rounded-md capitalize ${item.textColor} ${item.bgColor}`}
+                                className={`ml-2 w-fit flex items-center gap-2 px-2 rounded-xl capitalize ${item.textColor} ${item.bgColor}`}
                             >
                                 <Icon className="w-3" />
                                 <span>{item.label}</span>
@@ -71,7 +71,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                     {priority.map(item => (
                         <div
                             key={item.id}
-                            className={`ml-2 px-2 rounded-md flex w-fit items-center gap-2 ${item.bgColor} ${item.color} ${item.borderColor}`}
+                            className={`ml-2 px-2 rounded-xl flex w-fit items-center gap-2 ${item.bgColor} ${item.color} ${item.borderColor}`}
                         >
                             <CircleDot className="w-3" />
                             <span>{item.label}</span>
@@ -90,7 +90,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                     {selectedCard?.tags.split(",").map((item, index) => (
                         <div
                             key={index}
-                            className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-md flex-wrap">
+                            className="px-2 py-1 bg-slate-100 text-slate-600 text-xs md:text-sm rounded-xl flex-wrap">
                             <span className="">
                                 {item}
                             </span>
@@ -103,7 +103,7 @@ export const LessonDetails = ({ selectedCard }: { selectedCard: Subject }) => {
                 {selectedCard.links.map((item: string, index: number) => (
                     <div
                         key={index}
-                        className=" bg-slate-100 px-2 py-3 rounded-md my-1 wrap-anywhere"
+                        className=" bg-slate-100 px-2 py-3 rounded-xl my-1 wrap-anywhere"
                     >
                         <LinkPreview links={item} />
                     </div>

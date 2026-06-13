@@ -49,7 +49,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
     }
 
     return (
-        <div className="p-4 bg-white rounded-lg border">
+        <div className="p-4 bg-white rounded-2xl border">
             <div
                 className="flex-1 flex flex-col justify-between h-full"
             >
@@ -85,7 +85,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                     <span>{card.links?.length} links</span>
                 </div>
                 <div className="py-2">
-                    <div className="w-full bg-slate-100 rounded-md overflow-hidden">
+                    <div className="w-full bg-slate-100 rounded-xl overflow-hidden">
                         <Statuses status={card} handleUpdateStatus={handleUpdateStatus} />
                     </div>
                 </div>

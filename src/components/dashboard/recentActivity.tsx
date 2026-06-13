@@ -32,7 +32,7 @@ export const RecentActivity = () => {
                                     item.id === activity.status &&
                                     <div
                                         key={item.id}
-                                        className={`px-2 rounded-md flex gap-1 text-xs w-full items-center ${item.bgColor} ${item.textColor}`}>
+                                        className={`px-2 rounded-xl flex gap-1 text-xs w-full items-center ${item.bgColor} ${item.textColor}`}>
                                         <Icon className="w-3" />
                                         <span>{item?.label}</span>
                                     </div>
