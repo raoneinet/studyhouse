@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Map } from "lucide-react";
 
 const formSchema = z.object({
     goal: z.string().trim().min(2, "A meta deve ter no mínimo 2 caracteres"),
@@ -64,32 +65,35 @@ export function RoadmapForm() {
     }
 
     return (
-        <div className="bg-card text-card-foreground p-6 rounded-lg shadow-sm border border-border max-w-2xl mx-auto mt-6">
-            <h2 className="text-2xl font-bold mb-6">Criar Novo Roadmap</h2>
+        <div className="bg-white rounded-2xl shadow-sm border p-6 md:p-8 max-w-2xl mx-auto mt-6">
+            <div className="flex items-center gap-2 mb-6">
+                <Map className="text-orange-500" size={24} />
+                <h2 className="text-2xl font-bold text-slate-800">Criar Novo Roadmap</h2>
+            </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                        control={form.control}
-                        name="goal"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Meta (ex: ENEM, Concurso Banco do Brasil, Vestibular USP)</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Qual o objetivo deste roadmap?" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                        <FormField
+                            control={form.control}
+                            name="goal"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-slate-700 font-medium">Meta (ex: ENEM, Concurso, Mestrado)</FormLabel>
+                                    <FormControl>
+                                        <Input className="h-11 rounded-xl" placeholder="Qual o objetivo deste roadmap?" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                     
                     <FormField
                         control={form.control}
                         name="title"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Título</FormLabel>
+                                <FormLabel className="text-slate-700 font-medium">Título</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Dê um nome para o seu roadmap" {...field} />
+                                    <Input className="h-11 rounded-xl" placeholder="Dê um nome para o seu roadmap" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -101,11 +105,11 @@ export function RoadmapForm() {
                         name="description"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Descrição (Opcional)</FormLabel>
+                                <FormLabel className="text-slate-700 font-medium">Descrição (Opcional)</FormLabel>
                                 <FormControl>
                                     <Textarea
                                         placeholder="Detalhes adicionais sobre sua jornada..."
-                                        className="resize-none"
+                                        className="resize-y rounded-xl min-h-[120px]"
                                         {...field}
                                     />
                                 </FormControl>
@@ -114,16 +118,21 @@ export function RoadmapForm() {
                         )}
                     />
 
-                    <div className="flex justify-end gap-3">
+                    <div className="flex flex-col sm:flex-row justify-end gap-4 pt-4">
                         <Button
                             type="button"
                             variant="outline"
+                            className="h-12 px-8 rounded-xl font-medium"
                             onClick={() => router.back()}
                             disabled={isLoading}
                         >
                             Cancelar
                         </Button>
-                        <Button type="submit" disabled={isLoading}>
+                        <Button 
+                            type="submit" 
+                            className="h-12 px-10 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-md transition-colors"
+                            disabled={isLoading}
+                        >
                             {isLoading ? "Criando..." : "Criar Roadmap"}
                         </Button>
                     </div>
