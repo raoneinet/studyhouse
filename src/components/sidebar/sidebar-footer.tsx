@@ -32,9 +32,7 @@ export const MenuSidebarFooter = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()
     const [logout] = useLogoutMutation()
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL
-
-    const avatarUrl = user.user.avatar ? `https://estudaki.site${user.user.avatar}` : "https://github.com/shadcn.png"
+    const avatarUrl = user.user.avatar ? user.user.avatar : "https://github.com/shadcn.png"
 
     const { isMobile } = useSidebar()
 
@@ -75,7 +73,7 @@ export const MenuSidebarFooter = () => {
                     >
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <UserAvatar avatar={API_URL + user.user.avatar} />
+                                <UserAvatar avatar={user.user.avatar} />
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-bold">{user.user.firstname} {user.user.lastname}</span>
                                     <span className="truncate text-xs opacity-70">{user.user.username}</span>
