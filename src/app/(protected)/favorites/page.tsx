@@ -69,7 +69,12 @@ const MyCards = () => {
                                 <LessonCardSkeleton />
                             </>
                         ) : data?.data.length === 0 ? (
-                            <EmptyState />
+                            <EmptyState 
+                                title="Você ainda não tem favoritos"
+                                description="Marque seus cards mais importantes com a estrelinha para acessá-colos rapidamente por aqui."
+                                actionLabel="Ver todos os cards"
+                                actionLink="/myLessons"
+                            />
                         ) : (
                             data?.data.map((item: Subject) =>
                                 (item.is_favorite !== 0) && (
