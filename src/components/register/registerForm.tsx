@@ -72,7 +72,7 @@ export const RegisterForm = () => {
             const createUser = await registerUser(formData).unwrap()
 
             if (createUser.status === "success") {
-                console.log("Usuário criado! Faça login")
+                //console.log("Usuário criado! Faça login")
                 router.push("/login")
                 toast(`${createUser.message}. Faça login`)
             } else {

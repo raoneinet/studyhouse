@@ -17,7 +17,7 @@ export const LinkPreview = ({ links }: Props) => {
     const [preview, setPreview] = useState<Preview>()
     const [error, setError] = useState(false)
 
-    console.log("Links: ", links)
+    //console.log("Links: ", links)
 
     useEffect(() => {
         const apiKey = process.env.NEXT_PUBLIC_LINK_API

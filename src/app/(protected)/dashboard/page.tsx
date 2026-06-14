@@ -21,7 +21,7 @@ const Dashboard = () => {
         return <DashboardSkeleton />
     }
 
-    console.log(data)
+    //console.log(data)
 
     return (
         <>

@@ -38,7 +38,7 @@ export const MiniCards = ({ card }: Props) => {
                 status
             }).unwrap()
         }catch(error: any){
-            console.log("Eroo ao atualizar status de lição: ", error)
+            console.log("Erro ao atualizar status de lição: ", error)
         }
     }
 
