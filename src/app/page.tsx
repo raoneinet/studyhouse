@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Spinner } from "@/components/loading/spinner"
 import { useGetMeQuery } from "@/app/reducer/authApi"
 import EstudakiLanding from "@/components/lp/landingPagev2"
+import { Analytics } from "@vercel/analytics/react"
 
 const Page = () => {
     const { data: user, isLoading, isError } = useGetMeQuery()
@@ -27,6 +28,7 @@ const Page = () => {
                     </main>
                 </div>
             }
+            <Analytics />
         </>
     )
 }
