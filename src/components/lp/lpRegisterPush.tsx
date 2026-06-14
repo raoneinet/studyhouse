@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export const LpRegisterPush = () => {
     return (
         <>
@@ -9,9 +11,9 @@ export const LpRegisterPush = () => {
                     <p className="text-xl font-sans text-orange-200 mb-10 max-w-2xl mx-auto">
                         Sem cartão de crédito. Crie sua conta e organize seus primeiros cards em menos de 2 minutos
                     </p>
-                    <button className="px-10 py-4 bg-white text-[#f97316] rounded-2xl font-bold font-sans text-lg hover:bg-gray-50 transition-all shadow-lg shadow-black/10 hover:-translate-y-1">
+                    <Link href="/register" className="inline-flex justify-center items-center px-10 py-4 bg-white text-[#f97316] rounded-2xl font-bold font-sans text-lg hover:bg-gray-50 transition-all shadow-lg shadow-black/10 hover:-translate-y-1">
                         Criar conta gratuita →
-                    </button>
+                    </Link>
                     <div className="mt-8 flex justify-center items-center gap-2 text-orange-300 text-xs font-sans">
                         <span>Seguro e rápido</span>
                         <span>•</span>
