@@ -17,7 +17,7 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
         const newPassword: string = values.newPassword.trim()
         try {
             await changePassword({actualPassword, newPassword}).unwrap()
-            console.log("Senhas: ",values)
+            //console.log("Senhas: ",values)
         } catch (error: any) {
             console.log("Ocorreu um erro ao alterar senha: ", error)
         }

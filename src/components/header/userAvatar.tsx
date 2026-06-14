@@ -6,7 +6,7 @@ import {
 
 export const UserAvatar = (avatar: any) => {
 
-    console.log(avatar)
+    //console.log(avatar)
     return (
         <Avatar>
             <AvatarImage src={avatar?.avatar} alt="profile picture"/>
