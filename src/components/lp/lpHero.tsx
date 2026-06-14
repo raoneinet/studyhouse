@@ -1,4 +1,5 @@
 import { AlertCircle, CheckCircle, Clock, Grid, Layers, Sparkles, Star } from "lucide-react"
+import Link from "next/link"
 
 export const LpHero = () => {
     return (
@@ -19,9 +20,9 @@ export const LpHero = () => {
                                 Crie cards de estudo, defina prioridades e acompanhe seu progresso. Pare de perder o fio do que está aprendendo.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
-                                <button className="px-8 py-3.5 w-full sm:w-auto bg-[#f97316] text-white rounded-2xl font-bold font-sans hover:bg-[#ea580c] transition-all shadow-lg shadow-[#f97316]/30">
+                                <Link href="/register" className="inline-flex justify-center items-center px-8 py-3.5 w-full sm:w-auto bg-[#f97316] text-white rounded-2xl font-bold font-sans hover:bg-[#ea580c] transition-all shadow-lg shadow-[#f97316]/30">
                                     Começar gratuitamente →
-                                </button>
+                                </Link>
                                 <button className="px-8 py-3.5 w-full sm:w-auto bg-white text-gray-700 border border-gray-200 rounded-2xl font-bold font-sans hover:bg-gray-50 transition-all">
                                     Ver como funciona
                                 </button>
