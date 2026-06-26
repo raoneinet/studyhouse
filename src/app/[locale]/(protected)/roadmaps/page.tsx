@@ -8,12 +8,14 @@ import { Button } from "@/components/ui/button";
 import { UserHeader } from "@/components/header/userHeader";
 import { DeleteRoadmapIcon } from "@/components/roadmaps/DeleteRoadmapIcon";
 import { Map, Target, CalendarDays, BookOpen, Plus } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
     title: "Meus Roadmaps - StudyHouse",
 };
 
 export default async function RoadmapsPage() {
+    const tPages = await getTranslations('Pages');
     const session = await getIronSession<SessionData>(
         await cookies(),
         sessionOptions
@@ -37,8 +39,8 @@ export default async function RoadmapsPage() {
         <div className="md:max-w-full pb-10">
             <div className="flex justify-between items-end pb-5">
                 <UserHeader
-                    title={`Roadmaps (${roadmaps.length})`}
-                    subtitle="Suas trilhas de estudo focadas em metas"
+                    title={tPages('roadmapsTitle', { count: roadmaps.length })}
+                    subtitle={tPages('roadmapsSub')}
                     style="text-2xl font-bold text-neutral-800"
                 >
                     <Link href="/roadmaps/create">

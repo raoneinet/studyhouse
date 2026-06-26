@@ -12,12 +12,15 @@ import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
 import { UserHeader } from "@/components/header/userHeader"
 //import { GridListView } from "@/components/gridListView/gridListView"
+import { useTranslations } from "next-intl"
 
 const MyCards = () => {
     // const [viewList, setViewList] = useState(()=>{
     //     const list = localStorage.getItem("favlist")
     //     return list ? JSON.parse(list) : true
     // })
+
+    const tPages = useTranslations('Pages');
 
     const [selectCard, setSelectCard] = useState<any | null>(null)
     const [page, setPage] = useState(1)
@@ -55,8 +58,8 @@ const MyCards = () => {
     return (
         <div className="md:max-w-full">
             <UserHeader
-                title={`Favoritos (${data?.totalItems ?? 0})`}
-                subtitle="Todos os meus cards favoritos de estudo"
+                title={tPages('favoritesTitle', { count: data?.totalItems ?? 0 })}
+                subtitle={tPages('favoritesSub')}
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
@@ -69,12 +72,11 @@ const MyCards = () => {
                                 <LessonCardSkeleton />
                             </>
                         ) : data?.data.length === 0 ? (
-                            <EmptyState 
-                                title="Você ainda não tem favoritos"
-                                description="Marque seus cards mais importantes com a estrelinha para acessá-colos rapidamente por aqui."
-                                actionLabel="Ver todos os cards"
-                                actionLink="/myLessons"
-                            />
+                            <div className="pt-20">
+                                <EmptyState 
+                                    title={tPages('noFavorites')}
+                                />
+                            </div>
                         ) : (
                             data?.data.map((item: Subject) =>
                                 (item.is_favorite !== 0) && (

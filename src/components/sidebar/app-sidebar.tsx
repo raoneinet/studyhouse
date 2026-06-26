@@ -16,64 +16,53 @@ import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
 import { useSidebar } from "@/components/ui/sidebar"
 import { usePathname } from "next/navigation"
-
-type NavItem = {
-    title: string;
-    url: string;
-    icon: any;
-    matchPath?: string[];
-    badge?: string;
-}
-
-type NavGroup = {
-    label: string;
-    items: NavItem[];
-}
-
-const navGroups: NavGroup[] = [
-    {
-        label: "Visão Geral",
-        items: [
-            {
-                title: "Dashboard",
-                url: "/dashboard",
-                icon: Home,
-                matchPath: ["/", "/dashboard"]
-            },
-            {
-                title: "Roadmaps",
-                url: "/roadmaps",
-                icon: Map,
-                badge: "Novo"
-            },
-        ]
-    },
-    {
-        label: "Meus Estudos",
-        items: [
-            {
-                title: "Meus Cards",
-                url: "/myLessons",
-                icon: Inbox,
-            },
-            {
-                title: "Favoritos",
-                url: "/favorites",
-                icon: Star,
-            },
-            {
-                title: "Em Andamento",
-                url: "/ongoing",
-                icon: CircleDot,
-            },
-        ]
-    }
-]
+import { useTranslations } from "next-intl"
 
 export function AppSidebar() {
     const { setOpenMobile, isMobile } = useSidebar()
     const pathname = usePathname()
+    const t = useTranslations('Sidebar');
     
+    const navGroups = [
+        {
+            label: t('overview'),
+            items: [
+                {
+                    title: t('dashboard'),
+                    url: "/dashboard",
+                    icon: Home,
+                    matchPath: ["/", "/dashboard"]
+                },
+                {
+                    title: t('roadmaps'),
+                    url: "/roadmaps",
+                    icon: Map,
+                    badge: t('badgeNew')
+                },
+            ]
+        },
+        {
+            label: t('myStudies'),
+            items: [
+                {
+                    title: t('myCards'),
+                    url: "/myLessons",
+                    icon: Inbox,
+                },
+                {
+                    title: t('favorites'),
+                    url: "/favorites",
+                    icon: Star,
+                },
+                {
+                    title: t('ongoing'),
+                    url: "/ongoing",
+                    icon: CircleDot,
+                },
+            ]
+        }
+    ]
+
     return (
         <Sidebar variant="floating" collapsible="icon" >
             <SidebarHeader>
@@ -90,7 +79,7 @@ export function AppSidebar() {
                         className="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2.5 rounded-xl transition-all shadow-sm shadow-orange-500/20"
                     >
                         <PlusCircle size={20} />
-                        <span className="group-data-[collapsible=icon]:hidden">Novo Card</span>
+                        <span className="group-data-[collapsible=icon]:hidden">{t('newCard')}</span>
                     </Link>
                 </div>
 

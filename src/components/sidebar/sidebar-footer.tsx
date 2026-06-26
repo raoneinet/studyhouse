@@ -3,6 +3,7 @@ import {
     BadgeCheck,
     ChevronsUpDown,
     LogOut,
+    Globe,
 } from "lucide-react"
 import { UserAvatar } from "../header/userAvatar"
 import {
@@ -12,7 +13,10 @@ import {
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-    DropdownMenuTrigger
+    DropdownMenuTrigger,
+    DropdownMenuSub,
+    DropdownMenuSubTrigger,
+    DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu"
 import {
     SidebarMenu,
@@ -25,6 +29,8 @@ import { baseApi } from "@/app/reducer/baseApi"
 import { useDispatch } from "react-redux"
 import { useGetMeQuery } from "@/app/reducer/authApi"
 import { useLogoutMutation } from "@/app/reducer/authApi"
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter as useIntlRouter, usePathname } from '@/i18n/routing';
 
 
 export const MenuSidebarFooter = () => {
@@ -37,8 +43,11 @@ export const MenuSidebarFooter = () => {
     const { isMobile } = useSidebar()
 
     const dispatch = useDispatch()
-
     const router = useRouter()
+    const intlRouter = useIntlRouter()
+    const pathname = usePathname()
+    const locale = useLocale()
+    const t = useTranslations('Sidebar')
 
     const goToAccount = () => router.push("/account")
 
@@ -51,6 +60,10 @@ export const MenuSidebarFooter = () => {
             console.log("Erro ao fazer log out. ", error)
             return
         }
+    }
+
+    const changeLocale = (nextLocale: string) => {
+        intlRouter.replace({ pathname }, { locale: nextLocale });
     }
 
     return (
@@ -85,13 +98,23 @@ export const MenuSidebarFooter = () => {
                         <DropdownMenuGroup>
                             <DropdownMenuItem onClick={goToAccount}>
                                 <BadgeCheck />
-                                Conta
+                                {t('account')}
                             </DropdownMenuItem>
+                            <DropdownMenuSub>
+                                <DropdownMenuSubTrigger>
+                                    <Globe />
+                                    {t('language')} ({locale})
+                                </DropdownMenuSubTrigger>
+                                <DropdownMenuSubContent>
+                                    <DropdownMenuItem onClick={() => changeLocale('pt')}>{t('portuguese')}</DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => changeLocale('en')}>{t('english')}</DropdownMenuItem>
+                                </DropdownMenuSubContent>
+                            </DropdownMenuSub>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleLogout}>
                             <LogOut />
-                            Sair
+                            {t('logout')}
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

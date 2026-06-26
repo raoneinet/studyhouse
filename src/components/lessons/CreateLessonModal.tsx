@@ -6,7 +6,8 @@ import { useForm, useFieldArray } from "react-hook-form"
 import { toast } from "sonner"
 import { Plus, X, Loader2, BookOpen } from "lucide-react"
 import { useCreateLessonMutation } from "@/app/reducer/lessonsApi"
-import { formSchema } from "@/utils/formSchema"
+import { getFormSchema } from "@/utils/formSchema"
+import { useTranslations } from "next-intl"
 import {
     Dialog,
     DialogContent,
@@ -33,11 +34,13 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 
-type FormValues = z.infer<typeof formSchema>
+type FormValues = z.infer<ReturnType<typeof getFormSchema>>
 
 export const CreateLessonModal = () => {
     const [open, setOpen] = useState(false)
     const [createLesson, { isLoading }] = useCreateLessonMutation()
+    const t = useTranslations('LessonForm')
+    const formSchema = getFormSchema(t)
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),

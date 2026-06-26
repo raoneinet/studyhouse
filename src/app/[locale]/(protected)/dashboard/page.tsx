@@ -11,6 +11,7 @@ import { useGetMeQuery } from "@/app/reducer/authApi"
 import { UserHeader } from "@/components/header/userHeader"
 import { DashboardSkeleton } from "@/components/dashboard/dashboardSkeleton"
 import { DashboardActionButtons } from "@/components/dashboard/dashboardActionButtons"
+import { useTranslations } from "next-intl"
 
 const Dashboard = () => {
 
@@ -23,12 +24,14 @@ const Dashboard = () => {
 
     //console.log(data)
 
+    const t = useTranslations('Pages');
+
     return (
         <>
             <UserHeader
-                title="Dashboard"
-                subtitle={`Bem-vindo de volta ${user.user.firstname}! Aqui está um resumo dos seus estudos`}
-                style="text-2xl font-bold text-slate-800 pb-5" 
+                title={t('dashboardTitle')}
+                subtitle={t('dashboardSub', { name: user.user.firstname })}
+                style="text-2xl font-bold text-neutral-800 pb-5" 
             />
             <div className="flex flex-col gap-6 pb-10">
                 {/* Ações Rápidas (Seção Separada) */}

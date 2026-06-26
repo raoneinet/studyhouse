@@ -1,32 +1,35 @@
 import { Star } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export const LpTestimonials = () => {
+    const t = useTranslations('LandingPage.Testimonials');
+
     return (
         <section id="depoimentos" className="py-20 px-6 bg-[#F5F4FB]">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
-                    <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">QUEM USA, NÃO PARA</p>
-                    <h2 className="text-4xl md:text-5xl font-bold font-display text-gray-900 mb-4">Quem usa, não para</h2>
-                    <p className="text-xl font-sans text-gray-600">Estudantes que transformaram a sua rotina com o Estudaki.</p>
+                    <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">{t('badge')}</p>
+                    <h2 className="text-4xl md:text-5xl font-bold font-display text-gray-900 mb-4">{t('title')}</h2>
+                    <p className="text-xl font-sans text-gray-600">{t('subtitle')}</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                     {[
                         {
-                            quote: "Meus estudos eram uma bagunça, perdi minha aprovação para a OAB. Com o Estudaki parei de focar no irrelevante. Com certeza recomendaria usar a plataforma!",
-                            name: "Ana Santos",
-                            role: "Estudante Direito",
+                            quote: t('testimonial1Quote'),
+                            name: t('testimonial1Name'),
+                            role: t('testimonial1Role'),
                             color: "bg-[#f97316]"
                         },
                         {
-                            quote: "Como trabalho e estudo, não tenho tempo para me organizar. O Estudaki virou meu hub de estudo e revisões. Um sistema visual me ajudou a fixar muito mais fácil.",
-                            name: "Matheus Costa",
-                            role: "Eng. de Software",
+                            quote: t('testimonial2Quote'),
+                            name: t('testimonial2Name'),
+                            role: t('testimonial2Role'),
                             color: "bg-[#10C98F]"
                         },
                         {
-                            quote: "Eu me frustrava com resumos infinitos. Com o Estudaki eu resumo num card a essência da matéria. Muito mais fácil pra quando for fazer uma revisão!",
-                            name: "Juliana Ferreira",
-                            role: "Eng. de Sistemas",
+                            quote: t('testimonial3Quote'),
+                            name: t('testimonial3Name'),
+                            role: t('testimonial3Role'),
                             color: "bg-[#F59E0B]"
                         }
                     ].map((testimonial, i) => (

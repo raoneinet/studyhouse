@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Subject } from "@/types/subject"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 const EditLesson = () => {
 
@@ -14,6 +15,7 @@ const EditLesson = () => {
     const [editLesson, setEditLesson] = useState<Subject>()
     const [triggerGetLessonById] = useLazyGetLessonByIdQuery()
     const [updateLesson] = useUpdateLessonMutation()
+    const t = useTranslations('Pages');
 
     const handleGetEditLesson = async () => {
         const url = window.location.href
@@ -46,8 +48,8 @@ const EditLesson = () => {
     return (
         <div className="md:max-w-[1009px]">
             <PageTitle
-                title="Editar Assunto"
-                subtitle="Edite seus assuntos de forma fácil"
+                title={t('editLessonTitle')}
+                subtitle={t('editLessonSub')}
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="bg-white border rounded-2xl px-2 py-8">

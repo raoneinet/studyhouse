@@ -9,7 +9,7 @@ import { Statuses } from "./statuses"
 import { FavoriteIcon } from "./favoriteIcon"
 import { Tags } from "./tags"
 import { LessonNotes } from "./lessonNotes"
-
+import { useTranslations } from "next-intl"
 
 type Props = {
     card: Subject
@@ -25,6 +25,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
 
     const [toggleFavorite] = useToggleFavoriteMutation()
     const [updateStatus] = useUpdateStatusMutation()
+    const t = useTranslations('LessonCards');
 
     const handleFavorite = async (favorite: Subject) => {
         try {
@@ -82,7 +83,7 @@ export const LessonCard = ({ card, handleSelectCard }: Props) => {
                 </div>
                 <div className="flex gap-2 py-2 items-center">
                     <ExternalLink className="w-4 h-4" />
-                    <span>{card.links?.length} links</span>
+                    <span>{card.links?.length} {t('links')}</span>
                 </div>
                 <div className="py-2">
                     <div className="w-full bg-slate-100 rounded-xl overflow-hidden">

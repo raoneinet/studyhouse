@@ -6,6 +6,7 @@ import { usePauseAccountMutation } from "@/app/reducer/authApi"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 import { baseApi } from "@/app/reducer/baseApi"
+import { useTranslations } from "next-intl"
 
 export const PauseAccountButton = () => {
     const [pauseAccount] = usePauseAccountMutation()
@@ -15,6 +16,7 @@ export const PauseAccountButton = () => {
     const router = useRouter()
 
     const handleCancel = () => setShowModal(false)
+    const t = useTranslations('Profile');
 
     const handlePauseAccount = async () => {
         try {
@@ -34,10 +36,10 @@ export const PauseAccountButton = () => {
                 <ConfirmationModal
                     confirmAction={handlePauseAccount}
                     cancelAction={handleCancel}
-                    confirmLabel="Confirmar"
-                    cancelLabel="Cancelar"
-                    title="Suspender a Conta?"
-                    subTitle=" Sua conta será reativada ao fazer login novamente."
+                    confirmLabel={t('confirm')}
+                    cancelLabel={t('cancel')}
+                    title={t('pauseAccountModalTitle')}
+                    subTitle={t('pauseAccountModalSub')}
                 />
             </Activity>
             <Button
@@ -45,7 +47,7 @@ export const PauseAccountButton = () => {
                 className="place-self-end"
                 onClick={() => setShowModal(true)}
             >
-                Suspender Conta
+                {t('pauseAccountBtn')}
             </Button>
         </>
     )

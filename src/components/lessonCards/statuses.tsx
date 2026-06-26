@@ -2,6 +2,7 @@ import { StatusType } from "@/types/statusType"
 import { statusOptions } from "@/utils/statusOptions"
 import { CardOptionsStatus } from "../cardOptions/cardOptionsStatus"
 import { Subject } from "@/types/subject"
+import { useTranslations } from "next-intl"
 
 type Props = {
     status: Subject
@@ -11,6 +12,7 @@ type Props = {
 export const Statuses = ({ status, handleUpdateStatus }: Props) => {
 
     const statuses: StatusType[] = statusOptions.filter(opt => opt.id === status?.status)
+    const t = useTranslations('LessonCards');
 
     return (
         <>
@@ -24,7 +26,8 @@ export const Statuses = ({ status, handleUpdateStatus }: Props) => {
                         <div className="flex gap-2">
                             <Icon className={`${stat.color} w-3 h-3`} />
                             <span className={`${stat.textColor}`}>
-                                {stat.label}
+                                {/* @ts-ignore - Dynamic key usage is intentional here */}
+                                {t(`status_${stat.id}`)}
                             </span>
                         </div>
                         <CardOptionsStatus label={stat} id={status.id} handleUpdateStatus={handleUpdateStatus} />

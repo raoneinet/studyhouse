@@ -6,6 +6,7 @@ import { useDeleteAccountMutation } from "@/app/reducer/authApi"
 import { useDispatch, UseDispatch } from "react-redux"
 import { baseApi } from "@/app/reducer/baseApi"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 export const DeleteAccountButton = () => {
 
@@ -14,6 +15,7 @@ export const DeleteAccountButton = () => {
     const [deleteAccount] = useDeleteAccountMutation()
     const dispatch = useDispatch()
     const router = useRouter()
+    const t = useTranslations('Profile');
 
     const handelDeleteAccount = async () => {
         try {
@@ -33,13 +35,13 @@ export const DeleteAccountButton = () => {
                 <ConfirmationModal
                     confirmAction={handelDeleteAccount}
                     cancelAction={handleCancel}
-                    confirmLabel="Confirmar"
-                    cancelLabel="Cancelar"
-                    title="Deletar a Conta?"
-                    subTitle=" Sua conta e todos os seus dados serão em 2 dias. Para reverter, basta fazer login dentro de 2 dias."
+                    confirmLabel={t('confirm')}
+                    cancelLabel={t('cancel')}
+                    title={t('deleteAccountModalTitle')}
+                    subTitle={t('deleteAccountModalSub')}
                 />
             </Activity>
-            <Button variant="destructive" className="place-self-end" onClick={() => setShowModal(true)}>Deletar Conta</Button>
+            <Button variant="destructive" className="place-self-end" onClick={() => setShowModal(true)}>{t('deleteAccountBtn')}</Button>
         </>
     )
 }

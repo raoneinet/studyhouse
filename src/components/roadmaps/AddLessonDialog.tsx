@@ -11,9 +11,10 @@ import {
 import { LessonForm } from "@/components/lessonForm/lessonForm";
 import { useCreateLessonMutation } from "@/app/reducer/lessonsApi";
 import { toast } from "sonner";
-import { formSchema } from "@/utils/formSchema";
+import { getFormSchema } from "@/utils/formSchema";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function AddLessonDialog({
   roadmapId,
@@ -27,15 +28,16 @@ export function AddLessonDialog({
   const [open, setOpen] = useState(false);
   const [createLesson] = useCreateLessonMutation();
   const router = useRouter();
+  const t = useTranslations('Roadmaps');
 
-  const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
+  const handleCreateItem = async (values: z.infer<ReturnType<typeof getFormSchema>>) => {
     const created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
     const payload = { ...values, created_at, roadmapId, roadmapGroupId: groupId };
 
     try {
       await createLesson(payload).unwrap();
 
-      toast.success("Lição adicionada com sucesso!", {
+      toast.success(t('lessonAdded'), {
         description: values.title,
       });
 
@@ -43,7 +45,7 @@ export function AddLessonDialog({
       router.refresh(); 
     } catch (error: any) {
       console.error("Erro ao criar assunto. ", error);
-      toast.error("Erro ao adicionar a lição");
+      toast.error(t('errorAddingLesson'));
     }
   };
 
@@ -52,7 +54,7 @@ export function AddLessonDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-50">
         <DialogHeader>
-          <DialogTitle className="text-xl">Adicionar Nova Lição ao Roadmap</DialogTitle>
+          <DialogTitle className="text-xl">{t('addLessonToRoadmap')}</DialogTitle>
         </DialogHeader>
         <div className="mt-4 p-4 bg-white border rounded-2xl shadow-sm">
           <LessonForm submitData={handleCreateItem} />

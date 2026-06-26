@@ -1,10 +1,12 @@
 import { Grid, Plus } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Button } from "../Buttons/button"
+import { useTranslations } from "next-intl"
 
 export const DashboardActionButtons = () => {
 
     const router = useRouter()
+    const t = useTranslations('Dashboard');
 
     const goTocreateNewCard = ()=> router.push("/newLesson")
 
@@ -12,7 +14,7 @@ export const DashboardActionButtons = () => {
 
     return (
         <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-semibold text-slate-600 mb-3">Ações Rápidas</h4>
+            <h4 className="text-sm font-semibold text-slate-600 mb-3">{t('quickActions')}</h4>
             <div className="grid grid-cols-2 gap-3">
                 <Button
                     routeLink={goToAllCards}
@@ -20,7 +22,7 @@ export const DashboardActionButtons = () => {
                     txtColor="text-orange-600"
                     hoverColor="bg-orange-100"
                     icon={Grid}
-                    value="Todos os Cards"
+                    value={t('allCards')}
                 />
                 <Button
                     routeLink={goTocreateNewCard}
@@ -28,7 +30,7 @@ export const DashboardActionButtons = () => {
                     txtColor="text-green-600"
                     hoverColor="bg-green-100"
                     icon={Plus}
-                    value="Novo Card"
+                    value={t('newCard')}
                 />
             </div>
         </div>

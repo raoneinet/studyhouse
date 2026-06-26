@@ -1,32 +1,36 @@
 import { BarChart3, Layers, Filter } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+
 export const LpHowItWorks = () => {
+    const t = useTranslations('LandingPage.HowItWorks');
+
     return (
         <>
             <section id="como-funciona" className="py-20 px-6 bg-gray-50">
                 <div className="container mx-auto">
                     <div className="mb-16">
-                        <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">COMO FUNCIONA</p>
-                        <h2 className="text-4xl md:text-5xl font-black font-display text-gray-900 mb-4 tracking-tight">Simples como 1, 2, 3</h2>
-                        <p className="text-xl font-sans text-gray-600 max-w-2xl">Em menos de 2 minutos você já tem seus primeiros cards organizados e prontos para estudar.</p>
+                        <p className="text-sm font-bold font-display text-[#f97316] tracking-widest uppercase mb-2">{t('badge')}</p>
+                        <h2 className="text-4xl md:text-5xl font-black font-display text-gray-900 mb-4 tracking-tight">{t('title')}</h2>
+                        <p className="text-xl font-sans text-gray-600 max-w-2xl">{t('subtitle')}</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
                                 step: '01',
-                                title: 'Crie seus cards',
-                                description: 'Adicione tópicos de estudo, defina uma categoria e prioridade. Rápido e sem burocracia.',
+                                title: t('step1Title'),
+                                description: t('step1Desc'),
                                 icon: Layers
                             },
                             {
                                 step: '02',
-                                title: 'Organize e priorize',
-                                description: 'Use categorias, tags e status de andamento para saber o que é mais urgente. Chega de acumular matéria atrasada.',
+                                title: t('step2Title'),
+                                description: t('step2Desc'),
                                 icon: Filter
                             },
                             {
                                 step: '03',
-                                title: 'Acompanhe o progresso',
-                                description: 'Veja tudo no seu painel. Quantos cards revisados, estudados ou atrasados. O controle da sua evolução.',
+                                title: t('step3Title'),
+                                description: t('step3Desc'),
                                 icon: BarChart3
                             }
                         ].map((item, i) => (

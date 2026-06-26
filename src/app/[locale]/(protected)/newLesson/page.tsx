@@ -2,11 +2,12 @@
 import { LessonForm } from "@/components/lessonForm/lessonForm"
 import { UserHeader } from "@/components/header/userHeader"
 import { toast } from "sonner"
-import { formSchema } from "@/utils/formSchema"
+import { getFormSchema } from "@/utils/formSchema"
 import { z } from "zod"
 import { useCreateLessonMutation } from "@/app/reducer/lessonsApi"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Suspense } from "react"
+import { useTranslations } from "next-intl"
 
 const CreateNewItemContent = () => {
 
@@ -15,8 +16,9 @@ const CreateNewItemContent = () => {
 
     const [createLesson] = useCreateLessonMutation()
     const router = useRouter()
+    const t = useTranslations('Pages');
 
-    const handleCreateItem = async (values: z.infer<typeof formSchema>) => {
+    const handleCreateItem = async (values: z.infer<ReturnType<typeof getFormSchema>>) => {
 
         const created_at = new Date().toISOString().slice(0, 19).replace("T", " ")
         const payload = roadmapId 
@@ -26,7 +28,7 @@ const CreateNewItemContent = () => {
         try {
             const createItem = await createLesson(payload).unwrap()
 
-            toast("Criado assunto de estudo", {
+            toast(t('lessonCreated'), {
                 description: values.title
             })
 
@@ -43,8 +45,8 @@ const CreateNewItemContent = () => {
     return (
         <>
             <UserHeader
-                title="Novo Assunto"
-                subtitle="Criar um novo assunto para estudar"
+                title={t('newLessonTitle')}
+                subtitle={t('newLessonSub')}
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="md:max-w-[1009px] w-full">
@@ -57,8 +59,9 @@ const CreateNewItemContent = () => {
 }
 
 const CreateNewItem = () => {
+    const t = useTranslations('Loading');
     return (
-        <Suspense fallback={<div>Carregando...</div>}>
+        <Suspense fallback={<div>{t('spinner')}</div>}>
             <CreateNewItemContent />
         </Suspense>
     )

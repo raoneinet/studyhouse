@@ -2,11 +2,13 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { useChangePasswordMutation } from "@/app/reducer/authApi"
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useTranslations } from "next-intl"
 
 export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boolean, setEditPassword: (arg: boolean) => void }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [changePassword] = useChangePasswordMutation()
+    const t = useTranslations('Profile');
 
     const handleCancelEdit = () => {
         setEditPassword(false)
@@ -30,7 +32,7 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
                     {editPassword ?
                         <div className={`flex-col gap-2 ${editPassword ? "flex" : "hidden"} `}>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-2">Senha Atual</label>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">{t('actualPassword')}</label>
                                 <Input
                                     type="password"
                                     {...register("actualPassword")}
@@ -39,7 +41,7 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-2">Nova Senha</label>
+                                <label className="block text-sm font-medium text-slate-700 mb-2">{t('newPassword')}</label>
                                 <Input
                                     type="password"
                                     {...register("newPassword")}
@@ -61,13 +63,13 @@ export const Passwords = ({ editPassword, setEditPassword }: { editPassword: boo
                             variant="link"
                             onClick={handleCancelEdit}
                             className="w-fit cursor-pointer"
-                        >Cancelar</Button>
+                        >{t('cancel')}</Button>
 
                         < Button
                             type="submit"
                             variant="default"
                             className="w-fit cursor-pointer"
-                        >Salvar</Button>
+                        >{t('save')}</Button>
                     </div>
                 }
             </form>

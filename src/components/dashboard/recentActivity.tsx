@@ -4,18 +4,19 @@ import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { Statuses } from "../lessonCards/statuses"
 import { Subject } from "@/types/subject"
 import { statusOptions } from "@/utils/statusOptions"
+import { useTranslations } from "next-intl"
 
 export const RecentActivity = () => {
 
 
     const { data } = useGetDashBoardDataQuery()
     const stats = statusOptions.filter(item => data?.recentActivity.map((stts: Subject) => item.id === stts.status))
-    console.log(data)
+    const t = useTranslations('Dashboard');
 
     return (
         <div className="flex flex-col flex-1 p-6 bg-white rounded-2xl shadow-sm border h-full">
             <h3 className="text-lg flex gap-2 items-center font-bold text-slate-800 pb-6 border-b mb-4">
-                <TrendingUp className="w-5 h-5 text-orange-500" /> Atividade Recente
+                <TrendingUp className="w-5 h-5 text-orange-500" /> {t('recentActivity')}
             </h3>
             {data?.recentActivity.map((activity: Subject) => (
                 <div key={activity.id} className="flex justify-between border-b last:border-none pb-2">

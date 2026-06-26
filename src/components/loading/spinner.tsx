@@ -1,4 +1,7 @@
+import { useTranslations } from "next-intl";
+
 export const Spinner = () => {
+    const t = useTranslations('Loading');
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center bg-slate-50/50">
             <style>
@@ -54,10 +57,10 @@ export const Spinner = () => {
 
                 <div className="flex flex-col items-center gap-2">
                     <h3 className="text-orange-600 font-bold text-lg animate-pulse tracking-wide">
-                        Preparando seus estudos...
+                        {t('preparing')}
                     </h3>
                     <p className="text-slate-500 text-sm font-medium">
-                        Organizando sua mesa
+                        {t('organizing')}
                     </p>
                 </div>
             </div>
