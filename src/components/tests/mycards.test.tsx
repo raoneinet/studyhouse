@@ -4,7 +4,7 @@
 
 import {fireEvent, render, screen} from "@testing-library/react"
 import "@testing-library/jest-dom"
-import MyCards from "@/app/(protected)/myLessons/page"
+import MyCards from "@/app/[locale]/(protected)/myLessons/page"
 
 describe("Mycards buttons", ()=>{
     test("should trigger event", ()=>{

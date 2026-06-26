@@ -23,7 +23,18 @@ export function AppSidebar() {
     const pathname = usePathname()
     const t = useTranslations('Sidebar');
     
-    const navGroups = [
+    type NavGroup = {
+        label: string;
+        items: {
+            title: string;
+            url: string;
+            icon: any;
+            matchPath?: string[];
+            badge?: string;
+        }[];
+    };
+
+    const navGroups: NavGroup[] = [
         {
             label: t('overview'),
             items: [

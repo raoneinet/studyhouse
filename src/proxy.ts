@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { NextResponse, NextRequest } from "next/server"
 import { getIronSession } from "iron-session"
 import { sessionOptions, SessionData } from "@/lib/session"
 import createMiddleware from 'next-intl/middleware';
@@ -65,7 +64,7 @@ export async function proxy(request: NextRequest) {
     const hasLocaleCookie = request.cookies.has('NEXT_LOCALE');
 
     if (!hasLocaleCookie) {
-        const country = request.geo?.country || request.headers.get('x-vercel-ip-country');
+        const country = (request as any).geo?.country || request.headers.get('x-vercel-ip-country');
         if (country === 'BR') {
             const headers = new Headers(request.headers);
             headers.set('accept-language', 'pt,pt-BR;q=0.9,en;q=0.8');
