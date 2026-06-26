@@ -1,35 +1,34 @@
 "use client"
-import { Suspense, useState, useEffect } from "react"
-import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { PageTitle } from "@/components/titles/pageTitle"
+import { SearchBar } from "@/components/search/searchbar"
 import { LessonCard } from "@/components/lessonCards/lessonCard"
 import { LessonCardSkeleton } from "@/components/lessonCards/lessonCardSkeleton"
 import { LessonDetailSidebar } from "@/components/lessonCards/lessonDetailSidebar"
 import { LessonDetailSidebarSkeleton } from "@/components/lessonCards/lessonDetailSidebarSkeleton"
-import { useGetAllLessonsQuery, useLazyGetLessonByIdQuery } from "@/app/reducer/lessonsApi"
+import { useGetAllLessonsQuery } from "@/app/reducer/lessonsApi"
+import { useLazyGetLessonByIdQuery } from "@/app/reducer/lessonsApi"
 import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
 import { UserHeader } from "@/components/header/userHeader"
+import { useTranslations } from "next-intl"
+//import { GridListView } from "@/components/gridListView/gridListView"
 
-const SearchContent = () => {
-    const searchParams = useSearchParams()
-    const query = searchParams.get("q") || ""
+const MyCards = () => {
 
     const [selectCard, setSelectCard] = useState<any | null>(null)
+    // const [viewList, setViewList] = useState(() => {
+    //     const list = localStorage.getItem("listview")
+    //     return list ? JSON.parse(list) : false
+    // })
+
     const [page, setPage] = useState(1)
     const limit = 10
 
-    // Using getAllLessons but with the q parameter
-    const { data, isLoading } = useGetAllLessonsQuery({ page, limit, q: query }, { skip: !query })
+    const { data, isLoading } = useGetAllLessonsQuery({ page, limit })
     const [triggerGetSubjectById, { data: selectedCard, isFetching }] = useLazyGetLessonByIdQuery()
 
-    useEffect(() => {
-        if (data?.data && data.data.length > 0) {
-            const isSelectedCardInPage = data.data.some((item: any) => item.id === selectedCard?.id);
-            if (!isSelectedCardInPage && !isFetching) {
-                triggerGetSubjectById(data.data[0].id, true)
-            }
-        }
-    }, [data, selectedCard, isFetching, triggerGetSubjectById])
+    const tPages = useTranslations('Pages');
 
     const handleSelectCard = async (id: number) => {
         try {
@@ -40,21 +39,34 @@ const SearchContent = () => {
         }
     }
 
-    const closeMobileModal = () => setSelectCard(null)
+    //const handleView = (view: boolean) => setViewList(view)
+
+    const closeMobileModal = ()=> setSelectCard(null)
+
+    // useEffect(() => {
+    //     localStorage.setItem("listview", JSON.stringify(viewList))
+    // }, [viewList])
+
+    useEffect(() => {
+        if (data?.data && data.data.length > 0) {
+            const isSelectedCardInPage = data.data.some((item: any) => item.id === selectedCard?.id);
+            if (!isSelectedCardInPage && !isFetching) {
+                triggerGetSubjectById(data.data[0].id, true)
+            }
+        }
+    }, [data, selectedCard, isFetching, triggerGetSubjectById])
 
     return (
         <div className="md:max-w-full">
             <UserHeader
-                title={query ? `Resultados para "${query}" (${data?.totalItems ?? 0})` : "Pesquisa"}
-                subtitle="Busque por assuntos criados"
+                title={tPages('myCardsTitle', { count: data?.totalItems ?? 0 })}
+                subtitle={tPages('myCardsSub')}
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">
                 <div className="flex-1 md:flex-2 flex flex-col gap-3">
-                    <div className={`flex-1 md:flex-2 flex flex-col gap-3`}>
-                        {(!query) ? (
-                            <div className="text-center text-slate-500 py-10">Digite algo para pesquisar</div>
-                        ) : isLoading ? (
+                    <div className={`flex-1 ${/*viewList ? "md:flex-2 flex flex-col" : "grid lg:grid-cols-2 xl:grid-cols-3"*/ "md:flex-2 flex flex-col"} gap-3`}>
+                        {isLoading ? (
                             <>
                                 <LessonCardSkeleton />
                                 <LessonCardSkeleton />
@@ -68,13 +80,13 @@ const SearchContent = () => {
                             ))
                         )}
                     </div>
-                    {data?.data && data.data.length !== 0 &&
-                        <div className="flex gap-5 items-center justify-center mt-4">
-                            <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1} className="disabled:opacity-50">
+                    {data?.data.length !== 0 &&
+                        <div className="flex gap-5 items-center justify-center">
+                            <button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
                                 Anterior
                             </button>
                             <p>Página {page} de {data?.totalPages || 1}</p>
-                            <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)} className="disabled:opacity-50">
+                            <button onClick={() => setPage(prev => prev + 1)} disabled={page >= (data?.totalPages ?? 1)}>
                                 Próxima
                             </button>
                         </div>
@@ -82,10 +94,10 @@ const SearchContent = () => {
                 </div>
                 <div className={`${selectCard ? "flex fixed top-0 right-0 bottom-0 left-0 z-50" : "hidden"} md:z-0 md:sticky lg:block md:flex-2 lg:flex-1 min-w-0 md:h-fit`}>
                     <div className={`sticky top-4 bg-white rounded-2xl py-3 border overflow-y-auto`}>
-                        {isFetching || (isLoading && !selectedCard && query) ? (
+                        {isFetching || (isLoading && !selectedCard) ? (
                             <LessonDetailSidebarSkeleton />
                         ) : (
-                            <LessonDetailSidebar selectedCard={selectedCard} closeMobileModal={closeMobileModal} />
+                            <LessonDetailSidebar selectedCard={selectedCard} closeMobileModal={closeMobileModal}/>
                         )}
                     </div>
                 </div>
@@ -94,12 +106,4 @@ const SearchContent = () => {
     )
 }
 
-const SearchPage = () => {
-    return (
-        <Suspense fallback={<div className="text-center text-slate-500 py-10">Carregando pesquisa...</div>}>
-            <SearchContent />
-        </Suspense>
-    )
-}
-
-export default SearchPage
+export default MyCards

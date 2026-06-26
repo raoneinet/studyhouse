@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
 
 export function AddGroupDialog({
   roadmapId,
@@ -24,6 +25,7 @@ export function AddGroupDialog({
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations('Roadmaps');
 
   const handleCreateGroup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,15 +39,15 @@ export function AddGroupDialog({
         body: JSON.stringify({ name }),
       });
 
-      if (!res.ok) throw new Error("Erro ao criar grupo");
+      if (!res.ok) throw new Error(t('errorCreating'));
 
-      toast.success("Grupo criado com sucesso!");
+      toast.success(t('successCreating'));
       setOpen(false);
       setName("");
       router.refresh();
     } catch (error) {
       console.error(error);
-      toast.error("Não foi possível criar o grupo.");
+      toast.error(t('unexpectedError'));
     } finally {
       setIsLoading(false);
     }
@@ -57,21 +59,21 @@ export function AddGroupDialog({
       <DialogContent className="max-w-md bg-white rounded-2xl p-6 md:p-8 border-none shadow-xl">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-slate-800 flex items-center gap-2">
-            Novo Grupo
+            {t('addGroupTitle')}
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleCreateGroup} className="mt-4 flex flex-col gap-4">
           <Input
             className="h-11 rounded-xl"
-            placeholder="Nome do grupo (ex: Matemática, Módulo 1)"
+            placeholder={t('groupName')}
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoFocus
           />
           <div className="flex justify-end gap-3 mt-4">
-            <Button variant="outline" type="button" className="h-11 px-6 rounded-xl font-medium" onClick={() => setOpen(false)}>Cancelar</Button>
+            <Button variant="outline" type="button" className="h-11 px-6 rounded-xl font-medium" onClick={() => setOpen(false)}>{t('cancel')}</Button>
             <Button type="submit" className="h-11 px-6 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition-colors" disabled={isLoading || !name.trim()}>
-              {isLoading ? "Criando..." : "Salvar Grupo"}
+              {isLoading ? t('creating') : t('saveGroup')}
             </Button>
           </div>
         </form>

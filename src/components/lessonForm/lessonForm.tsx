@@ -23,14 +23,17 @@ import {
 } from "@/components/ui/select"
 import { Subject } from "@/types/subject"
 import { useEffect, useState } from "react"
-import { formSchema } from "@/utils/formSchema"
+import { getFormSchema } from "@/utils/formSchema"
 import { useRouter } from "next/navigation"
 import { BookOpen, Link as LinkIcon, Tags, X, Plus, PlaySquare } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subject, submitData?: any }) => {
 
     const router = useRouter()
     const [newLink, setNewLink] = useState("")
+    const t = useTranslations('LessonForm');
+    const formSchema = getFormSchema(t);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -99,7 +102,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                 <div className="bg-white rounded-2xl shadow-sm border p-6 md:p-8">
                     <div className="flex items-center gap-2 mb-6">
                         <BookOpen className="text-orange-500" size={24} />
-                        <h2 className="text-xl font-bold text-slate-800">Informações Principais</h2>
+                        <h2 className="text-xl font-bold text-slate-800">{t('mainInfo')}</h2>
                     </div>
                     
                     <div className="space-y-6">
@@ -108,11 +111,11 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700 font-medium">Título</FormLabel>
+                                    <FormLabel className="text-slate-700 font-medium">{t('title')}</FormLabel>
                                     <FormControl>
-                                        <Input {...field} placeholder="Ex. Introdução à Fotografia Digital" className="h-11 rounded-xl" />
+                                        <Input {...field} placeholder={t('titlePlaceholder')} className="h-11 rounded-xl" />
                                     </FormControl>
-                                    <FormDescription>Dê um título claro e objetivo ao seu assunto.</FormDescription>
+                                    <FormDescription>{t('titleDesc')}</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -123,11 +126,11 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                             name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700 font-medium">Descrição</FormLabel>
+                                    <FormLabel className="text-slate-700 font-medium">{t('description')}</FormLabel>
                                     <FormControl>
-                                        <Textarea {...field} placeholder="Detalhes principais, anotações ou resumo sobre este assunto..." className="min-h-[120px] resize-y rounded-xl" />
+                                        <Textarea {...field} placeholder={t('descriptionPlaceholder')} className="min-h-[120px] resize-y rounded-xl" />
                                     </FormControl>
-                                    <FormDescription>Insira uma descrição detalhada para te ajudar a lembrar do contexto.</FormDescription>
+                                    <FormDescription>{t('descriptionDesc')}</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -139,7 +142,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                 <div className="bg-white rounded-2xl shadow-sm border p-6 md:p-8">
                     <div className="flex items-center gap-2 mb-6">
                         <LinkIcon className="text-orange-500" size={24} />
-                        <h2 className="text-xl font-bold text-slate-800">Recursos Adicionais</h2>
+                        <h2 className="text-xl font-bold text-slate-800">{t('additionalResources')}</h2>
                     </div>
 
                     <div className="space-y-4">
@@ -162,10 +165,10 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                                 disabled={fields.length >= 5 || !newLink.trim()}
                                 className="h-11 px-6 rounded-xl bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors font-medium"
                             >
-                                <Plus size={18} className="mr-2" /> Adicionar
+                                <Plus size={18} className="mr-2" /> {t('add')}
                             </Button>
                         </div>
-                        <p className="text-sm text-slate-500">Salve seus links de consulta. Máximo de 5 links.</p>
+                        <p className="text-sm text-slate-500">{t('linksLimit')}</p>
 
                         {/* Link Pills/Cards */}
                         {fields.length > 0 && (
@@ -194,7 +197,7 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                 <div className="bg-white rounded-2xl shadow-sm border p-6 md:p-8">
                     <div className="flex items-center gap-2 mb-6">
                         <Tags className="text-orange-500" size={24} />
-                        <h2 className="text-xl font-bold text-slate-800">Classificação</h2>
+                        <h2 className="text-xl font-bold text-slate-800">{t('classification')}</h2>
                     </div>
 
                     <div className="grid md:grid-cols-3 grid-cols-1 gap-6 mb-6">
@@ -203,28 +206,28 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                             name="category"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700 font-medium">Categoria</FormLabel>
+                                    <FormLabel className="text-slate-700 font-medium">{t('category')}</FormLabel>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger className="w-full h-11 rounded-xl">
-                                                <SelectValue placeholder="Selecione..." />
+                                                <SelectValue placeholder={t('select')} />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="history">História</SelectItem>
-                                                <SelectItem value="math">Matemática</SelectItem>
-                                                <SelectItem value="programming">Programação</SelectItem>
-                                                <SelectItem value="computing">Computação</SelectItem>
-                                                <SelectItem value="engineering">Engenharia</SelectItem>
-                                                <SelectItem value="language">Línguas</SelectItem>
-                                                <SelectItem value="linguistics">Linguística</SelectItem>
-                                                <SelectItem value="science">Ciência</SelectItem>
-                                                <SelectItem value="economics">Economia</SelectItem>
-                                                <SelectItem value="law">Direito</SelectItem>
-                                                <SelectItem value="world">Mundo</SelectItem>
-                                                <SelectItem value="biology">Biologia</SelectItem>
-                                                <SelectItem value="humanities">Humanidades</SelectItem>
-                                                <SelectItem value="politics">Política</SelectItem>
-                                                <SelectItem value="other">Outro</SelectItem>
+                                                <SelectItem value="history">{t('cat_history')}</SelectItem>
+                                                <SelectItem value="math">{t('cat_math')}</SelectItem>
+                                                <SelectItem value="programming">{t('cat_programming')}</SelectItem>
+                                                <SelectItem value="computing">{t('cat_computing')}</SelectItem>
+                                                <SelectItem value="engineering">{t('cat_engineering')}</SelectItem>
+                                                <SelectItem value="language">{t('cat_language')}</SelectItem>
+                                                <SelectItem value="linguistics">{t('cat_linguistics')}</SelectItem>
+                                                <SelectItem value="science">{t('cat_science')}</SelectItem>
+                                                <SelectItem value="economics">{t('cat_economics')}</SelectItem>
+                                                <SelectItem value="law">{t('cat_law')}</SelectItem>
+                                                <SelectItem value="world">{t('cat_world')}</SelectItem>
+                                                <SelectItem value="biology">{t('cat_biology')}</SelectItem>
+                                                <SelectItem value="humanities">{t('cat_humanities')}</SelectItem>
+                                                <SelectItem value="politics">{t('cat_politics')}</SelectItem>
+                                                <SelectItem value="other">{t('cat_other')}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -238,17 +241,17 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                             name="status"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700 font-medium">Status</FormLabel>
+                                    <FormLabel className="text-slate-700 font-medium">{t('status')}</FormLabel>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger className="w-full h-11 rounded-xl">
-                                                <SelectValue placeholder="Selecione..." />
+                                                <SelectValue placeholder={t('select')} />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="notstarted">Não lido</SelectItem>
-                                                <SelectItem value="ongoing">Lendo</SelectItem>
-                                                <SelectItem value="onhold">Em pausa</SelectItem>
-                                                <SelectItem value="done">Concluído</SelectItem>
+                                                <SelectItem value="notstarted">{t('status_notstarted')}</SelectItem>
+                                                <SelectItem value="ongoing">{t('status_ongoing')}</SelectItem>
+                                                <SelectItem value="onhold">{t('status_onhold')}</SelectItem>
+                                                <SelectItem value="done">{t('status_done')}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -262,17 +265,17 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                             name="priority"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="text-slate-700 font-medium">Prioridade</FormLabel>
+                                    <FormLabel className="text-slate-700 font-medium">{t('priority')}</FormLabel>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger className="w-full h-11 rounded-xl">
-                                                <SelectValue placeholder="Selecione..." />
+                                                <SelectValue placeholder={t('select')} />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="low">Baixa</SelectItem>
-                                                <SelectItem value="medium">Média</SelectItem>
-                                                <SelectItem value="high">Alta</SelectItem>
-                                                <SelectItem value="urgent">Urgente</SelectItem>
+                                                <SelectItem value="low">{t('priority_low')}</SelectItem>
+                                                <SelectItem value="medium">{t('priority_medium')}</SelectItem>
+                                                <SelectItem value="high">{t('priority_high')}</SelectItem>
+                                                <SelectItem value="urgent">{t('priority_urgent')}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -287,11 +290,11 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                         name="tags"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-slate-700 font-medium">Tags</FormLabel>
+                                <FormLabel className="text-slate-700 font-medium">{t('tags')}</FormLabel>
                                 <FormControl>
-                                    <Input {...field} placeholder="Ex: video, artigo, tutorial (separe por vírgulas)" className="h-11 rounded-xl" />
+                                    <Input {...field} placeholder={t('tagsPlaceholder')} className="h-11 rounded-xl" />
                                 </FormControl>
-                                <FormDescription>Adicione palavras-chave separadas por vírgula para facilitar a busca no futuro.</FormDescription>
+                                <FormDescription>{t('tagsDesc')}</FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -306,13 +309,13 @@ export const LessonForm = ({ initialValue, submitData }: { initialValue?: Subjec
                         className="h-12 px-8 rounded-xl font-medium" 
                         onClick={cancelLesson}
                     >
-                        Cancelar
+                        {t('cancel')}
                     </Button>
                     <Button 
                         type="submit" 
                         className="h-12 px-10 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-md transition-colors"
                     >
-                        Salvar Assunto
+                        {t('saveSubject')}
                     </Button>
                 </div>
             </form>

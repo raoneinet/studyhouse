@@ -7,6 +7,7 @@ import { useForm, } from "react-hook-form"
 import { useUpdateAvatarMutation } from "@/app/reducer/userApi"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 type Props = {
     editPicture: boolean
@@ -22,6 +23,7 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [file, setFile] = useState<File | null>(null)
     const [showEdit, setShowEdit] = useState(false)
+    const t = useTranslations('Profile');
 
     const handleCancelEdit = () => {
         setFile(null)
@@ -45,11 +47,12 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
             const res = await updateAvatar(formData).unwrap()
 
             if(res.status === "success"){
-                toast("Avatar atualizado")
+                toast(t('avatarUpdated'))
                 setFile(null)
             }
         } catch (error: any) {
             console.log("Erro ao atualizar avatar. ", error)
+            toast(t('avatarError'))
         }
         setEditPicture(false)
     }
@@ -97,16 +100,16 @@ export const ProfilePicture = ({ editPicture, setEditPicture }: Props) => {
                                 variant="link"
                                 onClick={handleCancelEdit}
                                 className="w-fit cursor-pointer"
-                            >Cancelar</Button>
+                            >{t('cancel')}</Button>
 
                             < Button
                                 type="submit"
                                 variant="default"
                                 className="w-fit cursor-pointer"
-                            >Salvar</Button>
+                            >{t('save')}</Button>
                         </div>
                     </form>
-                    <p className="text-xs text-slate-500">Tamanho máx: 2MB</p>
+                    <p className="text-xs text-slate-500">{t('maxSize')}</p>
                 </div>
             }
         </div>

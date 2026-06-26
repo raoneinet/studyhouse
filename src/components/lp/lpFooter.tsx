@@ -1,6 +1,10 @@
 import { Logobrand } from "../header/logobrand"
+import LanguageSwitcher from "../ui/LanguageSwitcher"
+import { useTranslations } from "next-intl"
 
 export const LpFooter = () => {
+    const t = useTranslations('LandingPage.LpFooter');
+
     return (
         <>
             <footer className="border-t border-gray-800 py-12 px-6 bg-[#0f172a]">
@@ -14,18 +18,18 @@ export const LpFooter = () => {
                                 Estudaki
                             </div>
                             <p className="text-gray-400 font-sans mt-2 text-sm max-w-xs">
-                                Organize seus estudos de forma inteligente e pare de perder tempo com o que não importa.
+                                {t('description')}
                             </p>
                         </div>
                         {[
-                            { title: 'Produto', links: ['Funcionalidades', 'Preços', 'Cases'] },
-                            { title: 'Empresa', links: ['Sobre', 'Blog', 'Contato'] },
-                            { title: 'Legal', links: ['Privacidade', 'Termos'] }
+                            { title: t('col1Title'), links: t.raw('col1Links') },
+                            { title: t('col2Title'), links: t.raw('col2Links') },
+                            { title: t('col3Title'), links: t.raw('col3Links') }
                         ].map((col, i) => (
                             <div key={i}>
                                 <h4 className="font-bold font-display text-white mb-4">{col.title}</h4>
                                 <ul className="space-y-2">
-                                    {col.links.map((link, j) => (
+                                    {col.links.map((link: string, j: number) => (
                                         <li key={j}>
                                             <a href="#" className="text-gray-400 font-sans hover:text-[#f97316] transition-colors text-sm">{link}</a>
                                         </li>
@@ -35,9 +39,10 @@ export const LpFooter = () => {
                         ))}
                     </div>
                     <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 font-sans">
-                        <div>© {new Date().getFullYear()} Estudaki. Todos os direitos reservados.</div>
-                        <div className="flex gap-4">
-                            <a href="#" className="hover:text-white transition-colors">Feito com ❤️ para estudantes</a>
+                        <div>© {new Date().getFullYear()} {t('rights')}</div>
+                        <div className="flex items-center gap-4">
+                            <LanguageSwitcher />
+                            <a href="#" className="hover:text-white transition-colors">{t('madeWith')}</a>
                         </div>
                     </div>
                 </div>

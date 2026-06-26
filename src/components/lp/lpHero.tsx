@@ -1,7 +1,10 @@
 import { AlertCircle, CheckCircle, Clock, Grid, Layers, Sparkles, Star } from "lucide-react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 export const LpHero = () => {
+    const t = useTranslations('LandingPage.Hero');
+
     return (
         <>
             <section className="overflow-hidden bg-linear-to-br from-purple-50 via-orange-50 to-indigo-50">
@@ -11,20 +14,20 @@ export const LpHero = () => {
                         <div>
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#f97316]/10 rounded-full mb-6 border border-[#f97316]/20">
                                 <Sparkles className="w-4 h-4 text-[#f97316]" />
-                                <span className="text-sm font-bold text-[#f97316]">A Nova forma de estudar</span>
+                                <span className="text-sm font-bold text-[#f97316]">{t('badge')}</span>
                             </div>
                             <h1 className="text-5xl md:text-6xl font-black font-display text-gray-900 mb-6 leading-tight tracking-tight">
-                                Seus estudos,<br/> <span className="text-[#f97316]">organizados<br/> de verdade.</span>
+                                {t('title1')}<br/> <span className="text-[#f97316]">{t('title2')}<br/> {t('title3')}</span>
                             </h1>
                             <p className="text-xl font-sans text-gray-600 mb-8 leading-relaxed max-w-md">
-                                Crie cards de estudo, defina prioridades e acompanhe seu progresso. Pare de perder o fio do que está aprendendo.
+                                {t('subtitle')}
                             </p>
                             <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
                                 <Link href="/register" className="inline-flex justify-center items-center px-8 py-3.5 w-full sm:w-auto bg-[#f97316] text-white rounded-2xl font-bold font-sans hover:bg-[#ea580c] transition-all shadow-lg shadow-[#f97316]/30">
-                                    Começar gratuitamente →
+                                    {t('ctaPrimary')}
                                 </Link>
                                 <button className="px-8 py-3.5 w-full sm:w-auto bg-white text-gray-700 border border-gray-200 rounded-2xl font-bold font-sans hover:bg-gray-50 transition-all">
-                                    Ver como funciona
+                                    {t('ctaSecondary')}
                                 </button>
                             </div>
                             
@@ -36,7 +39,7 @@ export const LpHero = () => {
                                     <img src="https://i.pravatar.cc/100?img=4" alt="User" className="w-8 h-8 rounded-full border-2 border-white" />
                                 </div>
                                 <p className="text-sm font-sans text-gray-500">
-                                    <span className="font-bold text-gray-700">+12K</span> de estudantes já organizam com o Estudaki
+                                    <span className="font-bold text-gray-700">+12K</span> {t('socialProofPrefix')}
                                 </p>
                             </div>
                         </div>
@@ -47,7 +50,7 @@ export const LpHero = () => {
                                 {/* Main Card Container */}
                                 <div className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(103,53,188,0.15)] border border-gray-100 p-6 relative z-10">
                                     <div className="flex items-center justify-between mb-6">
-                                        <h3 className="text-xl font-bold font-display text-gray-900">Meus Cards</h3>
+                                        <h3 className="text-xl font-bold font-display text-gray-900">{t('cardTitle')}</h3>
                                         <div className="flex gap-1.5">
                                             <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                                             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
@@ -64,13 +67,13 @@ export const LpHero = () => {
                                             </div>
                                             <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                                         </div>
-                                        <h4 className="font-bold text-gray-900 font-display mb-1">Debounce & Throttle</h4>
-                                        <p className="text-sm text-gray-500 font-sans mb-4 leading-snug">Performance em apps web com eventos frequentes.</p>
+                                        <h4 className="font-bold text-gray-900 font-display mb-1">{t('card1Title')}</h4>
+                                        <p className="text-sm text-gray-500 font-sans mb-4 leading-snug">{t('card1Desc')}</p>
                                         <div className="w-full bg-gray-100 rounded-full h-1.5 mb-3">
                                             <div className="bg-orange-600 h-1.5 rounded-full" style={{ width: '65%' }}></div>
                                         </div>
                                         <div className="flex items-center gap-1.5 text-xs font-semibold text-orange-600">
-                                            <div className="w-2 h-2 rounded-full bg-orange-600"></div> Em andamento
+                                            <div className="w-2 h-2 rounded-full bg-orange-600"></div> {t('card1Status')}
                                         </div>
                                     </div>
 
@@ -82,7 +85,7 @@ export const LpHero = () => {
                                                 📌
                                             </div>
                                             <div>
-                                                <p className="font-bold text-gray-900 font-display text-sm">4 anotações</p>
+                                                <p className="font-bold text-gray-900 font-display text-sm">{t('badgeNotes')}</p>
                                                 <p className="text-xs text-gray-500 font-sans">Cache Teste</p>
                                             </div>
                                         </div>
@@ -94,13 +97,13 @@ export const LpHero = () => {
                                             </div>
                                             <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                                         </div>
-                                        <h4 className="font-bold text-gray-900 font-display mb-1">Cache API & Service Workers</h4>
-                                        <p className="text-sm text-gray-500 font-sans mb-4 leading-snug">Estratégias offline-first com SW e cache.</p>
+                                        <h4 className="font-bold text-gray-900 font-display mb-1">{t('card2Title')}</h4>
+                                        <p className="text-sm text-gray-500 font-sans mb-4 leading-snug">{t('card2Desc')}</p>
                                         <div className="w-full bg-gray-100 rounded-full h-1.5 mb-3">
                                             <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '40%' }}></div>
                                         </div>
                                         <div className="flex items-center gap-1.5 text-xs font-semibold text-yellow-500">
-                                            <div className="w-2 h-2 rounded-full bg-yellow-500"></div> Em pausa
+                                            <div className="w-2 h-2 rounded-full bg-yellow-500"></div> {t('card2Status')}
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +114,7 @@ export const LpHero = () => {
                                         <span className="text-green-600 font-bold text-xs">✓</span>
                                     </div>
                                     <div>
-                                        <p className="font-bold text-gray-900 font-display text-sm">Card concluído!</p>
+                                        <p className="font-bold text-gray-900 font-display text-sm">{t('badgeDone')}</p>
                                         <p className="text-xs text-gray-500 font-sans">React Hooks</p>
                                     </div>
                                 </div>

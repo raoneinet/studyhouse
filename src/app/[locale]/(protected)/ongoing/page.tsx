@@ -12,6 +12,7 @@ import { Subject } from "@/types/subject"
 import { EmptyState } from "@/components/emptyState/emptyState"
 import { UserHeader } from "@/components/header/userHeader"
 //import { GridListView } from "@/components/gridListView/gridListView"
+import { useTranslations } from "next-intl"
 
 const MyCards = () => {
 
@@ -25,6 +26,8 @@ const MyCards = () => {
 
     const { data, isLoading } = useGetAllOngoingsQuery({ page, limit })
     const [triggerGetSubjectById, {data: selectedCard, isFetching}] = useLazyGetLessonByIdQuery()
+
+    const tPages = useTranslations('Pages');
 
     const handleSelectCard = async (id: number) => {
         try {
@@ -56,8 +59,8 @@ const MyCards = () => {
     return (
         <div className="md:max-w-full">
             <UserHeader
-                title={`Em Andamento (${data?.totalItems ?? 0})`}
-                subtitle="Todos os meus cards de estudo em andamento"
+                title={tPages('ongoingTitle', { count: data?.totalItems ?? 0 })}
+                subtitle={tPages('ongoingSub')}
                 style="text-2xl font-bold text-neutral-800 pb-5"
             />
             <div className="flex w-full md:gap-3">

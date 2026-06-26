@@ -6,20 +6,22 @@ import { useDeleteLessonMutation, useUpdateStatusMutation } from "@/app/reducer/
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export function RoadmapLessonItem({ lesson }: { lesson: any }) {
   const [deleteLesson] = useDeleteLessonMutation();
   const [updateStatus] = useUpdateStatusMutation();
   const router = useRouter();
+  const t = useTranslations('Roadmaps');
 
   const handleDelete = async () => {
-    if (confirm("Tem certeza que deseja excluir esta lição?")) {
+    if (confirm(t('confirmDeleteLesson'))) {
       try {
         await deleteLesson(lesson.id).unwrap();
-        toast.success("Lição excluída");
+        toast.success(t('lessonDeleted'));
         router.refresh();
       } catch (err) {
-        toast.error("Erro ao excluir lição");
+        toast.error(t('errorDeletingLesson'));
       }
     }
   };
@@ -27,10 +29,10 @@ export function RoadmapLessonItem({ lesson }: { lesson: any }) {
   const handleStatus = async (status: string) => {
     try {
       await updateStatus({ id: lesson.id, status }).unwrap();
-      toast.success("Status atualizado");
+      toast.success(t('statusUpdated'));
       router.refresh();
     } catch (err) {
-      toast.error("Erro ao atualizar status");
+      toast.error(t('errorUpdatingStatus'));
     }
   };
 
@@ -48,23 +50,23 @@ export function RoadmapLessonItem({ lesson }: { lesson: any }) {
       
       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
         {lesson.status !== "done" && (
-          <Button variant="ghost" size="sm" onClick={() => handleStatus("done")} title="Marcar como concluída">
+          <Button variant="ghost" size="sm" onClick={() => handleStatus("done")} title={t('markAsDone')}>
             <CheckCircle className="w-4 h-4 text-green-600" />
           </Button>
         )}
         {lesson.status === "done" && (
-          <Button variant="ghost" size="sm" onClick={() => handleStatus("ongoing")} title="Marcar como em andamento">
+          <Button variant="ghost" size="sm" onClick={() => handleStatus("ongoing")} title={t('markAsOngoing')}>
             <Clock className="w-4 h-4 text-orange-600" />
           </Button>
         )}
         
         <Link href={`/editLesson?id=${lesson.id}`}>
-            <Button variant="ghost" size="sm" title="Editar lição">
+            <Button variant="ghost" size="sm" title={t('editLesson')}>
             <Edit2 className="w-4 h-4 text-orange-600" />
             </Button>
         </Link>
         
-        <Button variant="ghost" size="sm" onClick={handleDelete} className="text-red-600 hover:text-red-700 hover:bg-red-50" title="Excluir lição">
+        <Button variant="ghost" size="sm" onClick={handleDelete} className="text-red-600 hover:text-red-700 hover:bg-red-50" title={t('deleteLesson')}>
           <Trash className="w-4 h-4" />
         </Button>
       </div>

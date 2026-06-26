@@ -4,16 +4,18 @@ import { useState } from "react";
 import { Trash } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function DeleteRoadmapIcon({ roadmapId }: { roadmapId: number }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
+  const t = useTranslations('Roadmaps');
 
   const handleDelete = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!confirm("Tem certeza que deseja excluir este roadmap? Todas as lições e grupos associados a ele também serão excluídos permanentemente!")) {
+    if (!confirm(t('deleteRoadmapSub'))) {
       return;
     }
 
@@ -24,14 +26,14 @@ export function DeleteRoadmapIcon({ roadmapId }: { roadmapId: number }) {
       });
 
       if (!res.ok) {
-        throw new Error("Falha ao excluir roadmap");
+        throw new Error(t('errorDeletingRoadmap'));
       }
 
-      toast.success("Roadmap excluído com sucesso");
+      toast.success(t('roadmapDeleted'));
       router.refresh();
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao excluir roadmap");
+      toast.error(t('errorDeletingRoadmap'));
       setIsDeleting(false);
     }
   };
@@ -41,7 +43,7 @@ export function DeleteRoadmapIcon({ roadmapId }: { roadmapId: number }) {
       onClick={handleDelete}
       disabled={isDeleting}
       className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
-      title="Excluir Roadmap"
+      title={t('deleteRoadmap')}
     >
       <Trash className="w-4 h-4" />
     </button>

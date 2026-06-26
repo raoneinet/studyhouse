@@ -9,6 +9,7 @@ import { useGetMeQuery } from "@/app/reducer/authApi"
 import { useLogoutMutation } from "@/app/reducer/authApi"
 import { useDispatch } from "react-redux"
 import { baseApi } from "@/app/reducer/baseApi"
+import { useTranslations } from "next-intl"
 
 export const Profile = () => {
     const [activeTab, setActiveTab] = useState<'personal' | 'conta'>('personal')
@@ -19,6 +20,7 @@ export const Profile = () => {
     const { data:user, isLoading } = useGetMeQuery()
     const [logout] = useLogoutMutation()
     const dispatch = useDispatch()
+    const t = useTranslations('Profile');
 
     const handleLogout = async () => {
         try {
@@ -31,11 +33,11 @@ export const Profile = () => {
     }
 
     if (isLoading) {
-        return <div className="py-5 text-slate-500">Carregando informações da conta...</div>
+        return <div className="py-5 text-slate-500">{t('loadingInfo')}</div>
     }
 
     if (!user || !user.user) {
-        return <div className="py-5 text-red-500">Erro ao carregar informações do usuário.</div>
+        return <div className="py-5 text-red-500">{t('loadUserError')}</div>
     }
 
     return (
@@ -60,7 +62,7 @@ export const Profile = () => {
                             }`}
                         >
                             <User size={20} className={activeTab === 'personal' ? 'text-orange-600' : 'text-slate-400'} />
-                            Informação pessoal
+                            {t('personalInfoTab')}
                         </button>
                         
                         <button 
@@ -72,7 +74,7 @@ export const Profile = () => {
                             }`}
                         >
                             <LockIcon size={20} className={activeTab === 'conta' ? 'text-orange-600' : 'text-slate-400'} />
-                            Conta e Senha
+                            {t('accountPasswordTab')}
                         </button>
                         
                         <button 
@@ -80,7 +82,7 @@ export const Profile = () => {
                             className="flex items-center gap-3 w-full px-5 py-4 rounded-2xl transition-all font-medium text-slate-500 hover:bg-slate-50"
                         >
                             <LogOut size={20} className="text-slate-400" />
-                            Sair
+                            {t('logout')}
                         </button>
                     </div>
                 </div>
@@ -90,7 +92,7 @@ export const Profile = () => {
                     {activeTab === 'personal' && (
                         <div className="bg-white rounded-3xl shadow-sm border p-8 md:p-10 w-full">
                             <div className="flex justify-between items-center mb-8">
-                                <h1 className="text-2xl font-bold text-slate-800">Informações Pessoais</h1>
+                                <h1 className="text-2xl font-bold text-slate-800">{t('personalInfoTitle')}</h1>
                                 {!editPersonal && (
                                     <Edit onClick={() => setEditPersonal(true)} className="cursor-pointer w-5 text-slate-400 hover:text-orange-500 transition-colors" />
                                 )}
@@ -103,7 +105,7 @@ export const Profile = () => {
                         <>
                             <div className="bg-white rounded-3xl shadow-sm border p-8 md:p-10">
                                 <div className="flex justify-between items-center mb-8">
-                                    <h1 className="text-2xl font-bold text-slate-800">Senha</h1>
+                                    <h1 className="text-2xl font-bold text-slate-800">{t('passwordTitle')}</h1>
                                     {!editPassword && (
                                         <Edit onClick={() => setEditPassword(true)} className="cursor-pointer w-5 text-slate-400 hover:text-orange-500 transition-colors" />
                                     )}
@@ -112,7 +114,7 @@ export const Profile = () => {
                             </div>
                             
                             <div className="bg-white rounded-3xl shadow-sm border p-8 md:p-10">
-                                <h1 className="text-2xl font-bold text-slate-800 mb-6">Conta</h1>
+                                <h1 className="text-2xl font-bold text-slate-800 mb-6">{t('accountTitle')}</h1>
                                 <DeleteAccount />
                             </div>
                         </>

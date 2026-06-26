@@ -6,11 +6,13 @@ import { useGetDashBoardDataQuery } from "@/app/reducer/lessonsApi"
 import { useRouter } from "next/navigation"
 import { Subject } from "@/types/subject"
 import { LinkButton } from "../Buttons/linkButton"
+import { useTranslations } from "next-intl"
 
 export const DashboardFavorites = () => {
 
     const { data } = useGetDashBoardDataQuery()
     const router = useRouter()
+    const t = useTranslations('Dashboard');
 
     const goToFavorites = () => router.push("/favorites")
 
@@ -19,12 +21,12 @@ export const DashboardFavorites = () => {
             <div className="flex justify-between items-center pb-6 border-b mb-6">
                 <h3 className="font-bold text-lg text-slate-800 flex gap-2 items-center">
                     <Star className="text-orange-400 w-5 h-5 fill-current" />
-                    Cards Favoritos
+                    {t('favoritesTitle')}
                 </h3>
                 <LinkButton
                     type="button"
                     link={goToFavorites}
-                    value="Ver Todos"
+                    value={t('seeAll')}
                 />
             </div>
             <div className="flex flex-col gap-5 py-5">

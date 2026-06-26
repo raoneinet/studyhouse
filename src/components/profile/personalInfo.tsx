@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useUpdateUserPersonalInfoMutation } from "@/app/reducer/userApi"
 import { useGetMeQuery } from "@/app/reducer/authApi"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 type Props = {
     editPersonal: boolean,
@@ -22,6 +23,7 @@ type UpdatePersonalInfo = {
 export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
 
     const [updateUserPersonalInfo] = useUpdateUserPersonalInfoMutation()
+    const t = useTranslations('Profile');
 
     const { data: user } = useGetMeQuery()
 
@@ -37,13 +39,13 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
     }
 
     const formatDateForDisplay = (dateStr?: string) => {
-        if (!dateStr) return "Não informado";
+        if (!dateStr) return t('notInformed');
         try {
             // Usa timezone local para evitar que 1990-01-01 vire 1989-12-31 no Brasil
             const date = new Date(dateStr);
             return new Date(date.getTime() + date.getTimezoneOffset() * 60000).toLocaleDateString('pt-BR');
         } catch {
-            return "Não informado";
+            return t('notInformed');
         }
     }
 
@@ -66,10 +68,10 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
         try {
             await updateUserPersonalInfo(data).unwrap()
             setIsEditing(false)
-            toast("Usuário atualizado com sucesso")
+            toast(t('userUpdated'))
         } catch (error: any) {
             console.log("Erro ao atualizar usuário", error)
-            toast("Erro ao atualizar usuário")
+            toast(t('updateError'))
             setIsEditing(false)
         }
     }
@@ -78,20 +80,20 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
         <div className="w-full flex flex-col gap-3">
             <form onSubmit={handleSubmit(handleSaveEdit)}>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700">Nome Completo</label>
+                    <label className="block text-sm font-medium text-slate-700">{t('fullName')}</label>
                     {editPersonal ?
                         <div className="w-full flex gap-2">
                             <Input
                                 defaultValue={userData.firstname}
                                 {...register("firstname")}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                                placeholder="Primeiro nome"
+                                placeholder={t('firstName')}
                             />
                             <Input
                                 defaultValue={userData.lastname}
                                 {...register("lastname")}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                                placeholder="Sobrenome"
+                                placeholder={t('lastName')}
                             />
                         </div>
                         :
@@ -101,7 +103,7 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     }
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mt-2">Email</label>
+                    <label className="block text-sm font-medium text-slate-700 mt-2">{t('email')}</label>
                     {editPersonal ?
                         <Input
                             type="email"
@@ -112,12 +114,12 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-2xl text-slate-800">
-                            {userData.email || 'Não informado'}
+                            {userData.email || t('notInformed')}
                         </p>
                     }
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mt-2">Data de nascimento</label>
+                    <label className="block text-sm font-medium text-slate-700 mt-2">{t('dob')}</label>
                     {editPersonal ?
                         <Input
                             type="date"
@@ -132,32 +134,32 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                     }
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mt-2">Profissão</label>
+                    <label className="block text-sm font-medium text-slate-700 mt-2">{t('profession')}</label>
                     {editPersonal ?
                         <Input
                             defaultValue={userData.profession || ""}
                             {...register("profession")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                            placeholder="estudante"
+                            placeholder={t('student')}
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-2xl text-slate-800">
-                            {userData.profession || 'Não informado'}
+                            {userData.profession || t('notInformed')}
                         </p>
                     }
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mt-2">País</label>
+                    <label className="block text-sm font-medium text-slate-700 mt-2">{t('country')}</label>
                     {editPersonal ?
                         <Input
                             defaultValue={userData.country || ""}
                             {...register("country")}
                             className="w-full px-4 py-2 border border-slate-300 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                            placeholder="Brasil"
+                            placeholder={t('brazil')}
                         />
                         :
                         <p className="px-4 py-2 bg-slate-50 rounded-2xl text-slate-800">
-                            {userData.country || 'Não informado'}
+                            {userData.country || t('notInformed')}
                         </p>
                     }
                 </div>
@@ -168,13 +170,13 @@ export const PersonalInfo = ({ editPersonal, setIsEditing }: Props) => {
                             variant="link"
                             onClick={handleCancelEdit}
                             className="w-fit cursor-pointer"
-                        >Cancelar</Button>
+                        >{t('cancel')}</Button>
 
                         < Button
                             type="submit"
                             variant="default"
                             className="w-fit cursor-pointer"
-                        >Salvar</Button>
+                        >{t('save')}</Button>
                     </div>
                 }
             </form>
