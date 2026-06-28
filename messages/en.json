@@ -22,7 +22,7 @@
       "subtitle": "Create study cards, set priorities and track your progress. Stop losing track of what you're learning.",
       "ctaPrimary": "Start for free →",
       "ctaSecondary": "See how it works",
-      "socialProofPrefix": "of students already organize with Estudaki",
+      "socialProofPrefix": "of students already organize with Learnizze",
       "cardTitle": "My Cards",
       "card1Title": "Debounce & Throttle",
       "card1Desc": "Performance in web apps with frequent events.",
@@ -53,7 +53,7 @@
     "Resources": {
       "badge": "EVERYTHING YOU NEED",
       "title": "Everything you need, in one place",
-      "subtitle": "Estudaki was built for students who want to stop procrastinating and start progressing.",
+      "subtitle": "Learnizze was built for students who want to stop procrastinating and start progressing.",
       "feature1Title": "Visual Card System",
       "feature1Desc": "Organize any content with customizable cards. Add images, notes, links, and priority levels.",
       "feature2Title": "Smart Categories & Tags",
@@ -81,14 +81,14 @@
     "Testimonials": {
       "badge": "THOSE WHO USE IT, DON'T STOP",
       "title": "Those who use it, don't stop",
-      "subtitle": "Students who transformed their routine with Estudaki.",
-      "testimonial1Quote": "My studies were a mess, I lost my OAB approval. With Estudaki I stopped focusing on the irrelevant. I would definitely recommend using the platform!",
+      "subtitle": "Students who transformed their routine with Learnizze.",
+      "testimonial1Quote": "My studies were a mess, I lost my OAB approval. With Learnizze I stopped focusing on the irrelevant. I would definitely recommend using the platform!",
       "testimonial1Name": "Ana Santos",
       "testimonial1Role": "Law Student",
-      "testimonial2Quote": "As I work and study, I have no time to organize. Estudaki became my hub for study and reviews. A visual system helped me memorize much easier.",
+      "testimonial2Quote": "As I work and study, I have no time to organize. Learnizze became my hub for study and reviews. A visual system helped me memorize much easier.",
       "testimonial2Name": "Matheus Costa",
       "testimonial2Role": "Software Eng.",
-      "testimonial3Quote": "I used to get frustrated with endless summaries. With Estudaki I summarize the essence of the subject in a card. Much easier for when I need to do a review!",
+      "testimonial3Quote": "I used to get frustrated with endless summaries. With Learnizze I summarize the essence of the subject in a card. Much easier for when I need to do a review!",
       "testimonial3Name": "Juliana Ferreira",
       "testimonial3Role": "Systems Eng."
     },
@@ -107,7 +107,7 @@
       "col2Links": ["About", "Blog", "Contact"],
       "col3Title": "Legal",
       "col3Links": ["Privacy", "Terms"],
-      "rights": "Estudaki. All rights reserved.",
+      "rights": "Learnizze. All rights reserved.",
       "madeWith": "Made with ❤️ for students"
     }
   },

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Spinner } from "@/components/loading/spinner"
 import { useGetMeQuery } from "@/app/reducer/authApi"
-import EstudakiLanding from "@/components/lp/landingPagev2"
+import LearnizzeLanding from "@/components/lp/landingPagev2"
 import { Analytics } from "@vercel/analytics/react"
 
 const Page = () => {
@@ -24,7 +24,7 @@ const Page = () => {
                 <div className="min-h-screen">
                     <Header />
                     <main className="min-h-screen flex items-center justify-center">
-                        <EstudakiLanding />
+                        <LearnizzeLanding />
                     </main>
                 </div>
             }

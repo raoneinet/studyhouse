@@ -11,7 +11,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarMenuBadge,
+    SidebarFooter,
 } from "@/components/ui/sidebar"
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher"
 import { MenuSidebarHeader } from "@/components/sidebar/sidebar-header"
 import Link from "next/link"
 import { useSidebar } from "@/components/ui/sidebar"
@@ -143,6 +145,9 @@ export function AppSidebar() {
                     </SidebarGroup>
                 ))}
             </SidebarContent>
+            <SidebarFooter className="p-4 mt-auto">
+                <LanguageSwitcher />
+            </SidebarFooter>
         </Sidebar>
     )
 }

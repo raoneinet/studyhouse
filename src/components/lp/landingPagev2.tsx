@@ -6,7 +6,7 @@ import { LpTestimonials } from './lpTestimonials';
 import { LpRegisterPush } from './lpRegisterPush';
 import { LpFooter } from './lpFooter';
 
-export default function EstudakiLanding() {
+export default function LearnizzeLanding() {
 
   return (
     <div className="w-full">
