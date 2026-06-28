@@ -17,14 +17,13 @@ const Dashboard = () => {
 
     const { data, isLoading: isDashboardLoading } = useGetDashBoardDataQuery()
     const { data: user, isLoading: isUserLoading } = useGetMeQuery()
+    const t = useTranslations('Pages');
 
     if (isDashboardLoading || isUserLoading) {
         return <DashboardSkeleton />
     }
 
     //console.log(data)
-
-    const t = useTranslations('Pages');
 
     return (
         <>
