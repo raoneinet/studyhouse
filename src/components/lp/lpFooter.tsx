@@ -15,7 +15,7 @@ export const LpFooter = () => {
                                 <div className="w-8 h-8 bg-[#f97316] rounded-2xl flex items-center justify-center">
                                     <span className="text-white text-sm">✓</span>
                                 </div>
-                                Estudaki
+                                Learnizze
                             </div>
                             <p className="text-gray-400 font-sans mt-2 text-sm max-w-xs">
                                 {t('description')}

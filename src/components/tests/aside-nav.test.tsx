@@ -8,9 +8,9 @@ import { AppSidebar } from "../sidebar/app-sidebar"
 import { Logobrand } from "../header/logobrand"
 
 describe("Menu navigation ui", ()=>{
-    test("should appear Estudaki as title", ()=>{
-        render(<Logobrand title="Estudaki"/>)
+    test("should appear Learnizze as title", ()=>{
+        render(<Logobrand title="Learnizze"/>)
 
-        expect(screen.getByText("Estudaki")).toBeInTheDocument()
+        expect(screen.getByText("Learnizze")).toBeInTheDocument()
     })
 })

@@ -22,7 +22,7 @@
       "subtitle": "Crie cards de estudo, defina prioridades e acompanhe seu progresso. Pare de perder o fio do que está aprendendo.",
       "ctaPrimary": "Começar gratuitamente →",
       "ctaSecondary": "Ver como funciona",
-      "socialProofPrefix": "de estudantes já organizam com o Estudaki",
+      "socialProofPrefix": "de estudantes já organizam com o Learnizze",
       "cardTitle": "Meus Cards",
       "card1Title": "Debounce & Throttle",
       "card1Desc": "Performance em apps web com eventos frequentes.",
@@ -53,7 +53,7 @@
     "Resources": {
       "badge": "TUDO QUE VOCÊ PRECISA",
       "title": "Tudo que você precisa, num só lugar",
-      "subtitle": "O Estudaki foi feito para estudantes que querem parar de procrastinar e começar a progredir.",
+      "subtitle": "O Learnizze foi feito para estudantes que querem parar de procrastinar e começar a progredir.",
       "feature1Title": "Sistema de Cards Visual",
       "feature1Desc": "Organize qualquer conteúdo com cards personalizáveis. Adicione imagens, anotações, links e níveis de prioridade.",
       "feature2Title": "Categorias & Tags Inteligentes",
@@ -81,14 +81,14 @@
     "Testimonials": {
       "badge": "QUEM USA, NÃO PARA",
       "title": "Quem usa, não para",
-      "subtitle": "Estudantes que transformaram a sua rotina com o Estudaki.",
-      "testimonial1Quote": "Meus estudos eram uma bagunça, perdi minha aprovação para a OAB. Com o Estudaki parei de focar no irrelevante. Com certeza recomendaria usar a plataforma!",
+      "subtitle": "Estudantes que transformaram a sua rotina com o Learnizze.",
+      "testimonial1Quote": "Meus estudos eram uma bagunça, perdi minha aprovação para a OAB. Com o Learnizze parei de focar no irrelevante. Com certeza recomendaria usar a plataforma!",
       "testimonial1Name": "Ana Santos",
       "testimonial1Role": "Estudante Direito",
-      "testimonial2Quote": "Como trabalho e estudo, não tenho tempo para me organizar. O Estudaki virou meu hub de estudo e revisões. Um sistema visual me ajudou a fixar muito mais fácil.",
+      "testimonial2Quote": "Como trabalho e estudo, não tenho tempo para me organizar. O Learnizze virou meu hub de estudo e revisões. Um sistema visual me ajudou a fixar muito mais fácil.",
       "testimonial2Name": "Matheus Costa",
       "testimonial2Role": "Eng. de Software",
-      "testimonial3Quote": "Eu me frustrava com resumos infinitos. Com o Estudaki eu resumo num card a essência da matéria. Muito mais fácil pra quando for fazer uma revisão!",
+      "testimonial3Quote": "Eu me frustrava com resumos infinitos. Com o Learnizze eu resumo num card a essência da matéria. Muito mais fácil pra quando for fazer uma revisão!",
       "testimonial3Name": "Juliana Ferreira",
       "testimonial3Role": "Eng. de Sistemas"
     },
@@ -107,7 +107,7 @@
       "col2Links": ["Sobre", "Blog", "Contato"],
       "col3Title": "Legal",
       "col3Links": ["Privacidade", "Termos"],
-      "rights": "Estudaki. Todos os direitos reservados.",
+      "rights": "Learnizze. Todos os direitos reservados.",
       "madeWith": "Feito com ❤️ para estudantes"
     }
   },

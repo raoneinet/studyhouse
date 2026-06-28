@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
   return (
     <div className="flex items-center gap-2">
       <Select defaultValue={locale} onValueChange={onSelectChange} disabled={isPending}>
-        <SelectTrigger className="w-[140px] h-8 bg-transparent border-slate-700 text-slate-300">
+        <SelectTrigger className="w-full h-9 bg-transparent border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
           <SelectValue placeholder={t('language')} />
         </SelectTrigger>
         <SelectContent>
