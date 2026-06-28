@@ -29,8 +29,8 @@ export default async function RootLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
-            <body cz-shortcut-listen="true">
+        <html lang={locale} suppressHydrationWarning>
+            <body suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
                     <Providers>
                         {children}
